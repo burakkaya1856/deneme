@@ -21,9 +21,9 @@ fi
 mkdir -p $RPM_BUILD_ROOT/opt/paypango/
 mkdir -p $RPM_BUILD_ROOT/etc/systemd/system
 cp -r /opt/deployer/temp/admin-web/admin-web $RPM_BUILD_ROOT/opt/paypango/admin
-mv $RPM_BUILD_ROOT/opt/paypango/admin/.env $RPM_BUILD_ROOT/opt/paypango/admin/.env.example
-rm $RPM_BUILD_ROOT/opt/paypango/admin/rpmbuild.spec
-cd $RPM_BUILD_ROOT/opt/paypango/admin
+mv $RPM_BUILD_ROOT/opt/paypango/admin-web/.env $RPM_BUILD_ROOT/opt/paypango/admin/.env.example
+rm $RPM_BUILD_ROOT/opt/paypango/admin-web/rpmbuild.spec
+cd $RPM_BUILD_ROOT/opt/paypango/admin-web
 mv paypango-admin.service $RPM_BUILD_ROOT/etc/systemd/system
 
 exit
@@ -43,8 +43,8 @@ fi
 rm -rf $RPM_BUILD_ROOT/opt
 
 %files
-%attr(-, paypango-admin, paypango-admin) /opt/paypango/admin
-%attr(0744, paypango-admin, paypango-admin) /opt/paypango/admin/run.sh
+%attr(-, paypango-admin, paypango-admin) /opt/paypango/admin-web
+%attr(0744, paypango-admin, paypango-admin) /opt/paypango/admin-web/run.sh
 %attr(0600, root, root) /etc/systemd/system/paypango-admin.service
 
 %changelog
