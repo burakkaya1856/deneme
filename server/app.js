@@ -13,7 +13,7 @@ require('dotenv').config()
 const app = express();
 const router = express.Router();
 
-console.log(`Paymango Admin server http://localhost:${process.env.PORT} listening`);
+console.log(`Paypango Admin server http://localhost:${process.env.PORT} listening`);
 
 app.set("Config", process.env);
 

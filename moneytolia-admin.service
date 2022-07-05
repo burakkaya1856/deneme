@@ -1,10 +1,10 @@
 [Unit]
-Description=Paymango admin service.
+Description=Paypango admin service.
 
 [Service]
 Type=simple
-User=paymango-admin
-ExecStart=/bin/bash /opt/monpaymangoeytolia/admin/run.sh
+User=paypango-admin
+ExecStart=/bin/bash /opt/monpaypangoeytolia/admin/run.sh
 
 [Install]
 WantedBy=multi-user.target
