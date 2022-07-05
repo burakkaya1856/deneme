@@ -1,0 +1,119 @@
+<a class="add" routerLink="/panel/panel-user/create">
+    <i class="fa fa-plus"></i>
+    <span>{{'panel.panelUser.list.addButton' | translate}}</span>
+</a>
+
+<div class="bg-white mt-3" *ngIf="!emptyUser">
+    <div class="d-flex flex-column flex-md-row justify-content-start justify-content-md-between px-3 pt-3 border-bottom">
+        <div *ngIf="searchData || panelUserList && panelUserList.length>0" class="dataTables_filter d-flex mx-0">
+            <label class="d-flex">
+                <span>{{ 'panel.panelUser.list.filterLabel' | translate }}:</span>
+                <input class="w-100" [ngModel]="searchData" (ngModelChange)="searchHandler($event)" type="search" placeholder="{{'panel.panelUser.list.filterPlaceholder' | translate }}">
+            </label>
+        </div>
+        <div class="dataTables_length d-flex w-100 justify-content-md-end">
+            <label class="d-flex">
+
+                <span>{{'panel.panelUser.list.tableSizeLabel' | translate }}:</span>
+                <select [ngModel]="paginationCount" (ngModelChange)="paginationCountHandler($event)" name="DataTables_Table_0_length" class="custom-select pl-3 pr-4">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="datatable-scroll">
+        <table class="table datatable-basic dataTable no-footer table-hover" role="grid">
+
+            <thead>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelUser.list.tableHead.name' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelUser.list.tableHead.surname' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelUser.list.tableHead.email' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelUser.list.tableHead.role' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelRole.list.tableHead.permission' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelUser.list.tableHead.date' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelUser.list.tableHead.status' | translate }}</th>
+
+                    <th class="text-right" tabindex="0" rowspan="1" colspan="1"><span class="mr-2">{{ 'panel.panelUser.list.tableHead.actions' | translate }}</span></th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+                    <tr *ngFor="let list of panelUserList">
+                        <td>{{list.name | titlecase}}</td>
+                        <td>{{list.surname | titlecase}}</td>
+                        <td>{{list.email}}</td>
+                        <td>{{list.role | titlecase}}</td>
+                        <td>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-3 " type="button" (click)="permissionUser(list.permissions)" tooltip="{{ 'panel.panelRole.list.actionPermissionTooltip' | translate }}">
+                                <i class="icon-user-lock"></i>
+                            </button>
+                        </td>
+                        <td>{{list.date_created | customDatePipe:true}}</td>
+
+                        <td> <span class="badge" [ngClass]="{'badge-danger': list.status === 'deleted', 'badge-info': list.status === 'passive', 'badge-success': list.status === 'active'}"> {{ 'panel.panelUser.list.tableStatus.' + list.status| translate }}</span>
+                        </td>
+
+                        <td class="text-right " colspan="1">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="detailUser(list)" tooltip="{{ 'panel.panelUser.list.actionDetailTooltip' | translate }}">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="updateUser(list)" tooltip="{{ 'panel.panelUser.list.actionEditTooltip' | translate }}">
+                                <i class="icon-pencil3"></i>
+                            </button>
+
+
+                        </td>
+                    </tr>
+                </ng-container>
+
+
+                <tr *ngIf="(panelUserList && panelUserList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'panel.panelUser.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{info.total}} {{ 'panel.panelUser.list.paginationInfo.data' | translate }} {{info.start}} - {{info.end}} {{ 'panel.panelUser.list.paginationInfo.show' | translate }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="pagination.maxPage" [(ngModel)]="pagination.page" (pageChanged)="paginationPageChangedHandler($event)"></pagination>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyUser">
+
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{ 'panel.panelUser.list.notFound.header' | translate }}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{ 'panel.panelUser.list.notFound.info' | translate }}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">{{ 'panel.panelUser.list.notFound.btnText' | translate }}</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,135 @@
+<div class="bg-white mt-3 table-container" *ngIf="!emptyTransaction">
+
+    <div class="datatable-scroll">
+        <table class="table datatable-basic dataTable no-footer table-hover" role="grid">
+
+            <thead>
+                <tr role="row" class="table-top">
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div *ngIf="searchData || (invoiceList && invoiceList.length > 0)" class="dataTables_filter">
+                            <label class="d-flex">
+                                <span>{{ 'wallet.invoice.list.filterLabel' | translate }}:</span>
+                                <input class="w-100" type="search" placeholder="{{'wallet.invoice.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchInvoice($event)">
+                            </label>
+                        </div>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="6"></td>
+
+                    <td>
+                        <div *ngIf="bsRangeValue || (invoiceList && invoiceList.length > 0 )" class="date-container">
+                            <span *ngIf="start_date && end_date" (click)="clearDate()">x</span>
+                            <input readonly class="form-control date-input" placeholder="{{'wallet.invoice.list.datePlaceholder' | translate }}" bsDaterangepicker [(ngModel)]="bsRangeValue" (ngModelChange)="searchDate($event)">
+                        </div>
+
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="1"></td>
+
+                    <td>
+                        <ng-select *ngIf="stateKeys && (invoiceList && invoiceList.length > 0 || selectedStatus)" [ngModel]="selectedStatus" class="ng-select-table" [searchable]="false" placeholder="{{'wallet.invoice.list.statusPlaceholder' | translate }}" (ngModelChange)="searchStatus($event)">
+                            <ng-option *ngFor="let item of stateKeys" [value]="item">{{'wallet.bankDeposit.list.tableStatus.' + item | translate }} </ng-option>
+                        </ng-select>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+
+                        <div class="dataTables_length">
+                            <label class="d-flex">
+                                <span>{{'wallet.invoice.list.tableSizeLabel' | translate }}:</span>
+                                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [ngModel]="paginationCount" (ngModelChange)="paginationCountChange($event)">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.name' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.surname' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.walletNo' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.transactionID' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.invoiceNumber' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.invoiceAccountValue' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.institutionName' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.date' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.amount' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.status' | translate }}</th>
+                    <th class="text-center sorting-disabled" tabindex="0" rowspan="1" colspan="1">{{ 'wallet.invoice.list.tableHead.actions' | translate }}</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+
+                    <tr *ngFor="let invoice of invoiceList">
+                        <td>{{invoice.first_name}}</td>
+                        <td>{{invoice.last_name}}</td>
+                        <td><a routerLink="/wallet/customer/detail/{{invoice.wallet_no}}" target="_blank">{{invoice.wallet_no}}</a></td>
+                        <td>{{invoice.transaction_uuid}}</td>
+                        <td>{{invoice.invoice_number}}</td>
+                        <td>{{invoice.invoice_account_value}}</td>
+                        <td>{{invoice.institution_name}}</td>
+                        <td>{{invoice.created_date | customDatePipe:true}}</td>
+                        <td>{{invoice.amount | currency:'TRY':'':'1.2-3'}} TRY</td>
+                        <td class="text-center">
+                            <span class="badge" [ngClass]="{'badge-danger': invoice.status === 'canceled', 'badge-info': invoice.status === 'waiting', 'badge-success': invoice.status === 'approved'}">
+                                {{'wallet.invoice.list.tableStatus.' + invoice.status | translate }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="invoiceDetails(invoice.transaction_uuid)" tooltip="{{ 'wallet.invoice.list.tooltips.detailsTooltip' | translate }}">
+                                <i class="icon-stats-bars2"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </ng-container>
+
+                <tr *ngIf="(invoiceList && invoiceList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{'wallet.invoice.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div class="dataTables_info mb-1 mb-md-3" *ngIf="isLoaded">
+            {{'wallet.invoice.list.paginationInfo' | translate: {totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end} }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyTransaction">
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{'wallet.invoice.list.notFound.header' | translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'wallet.invoice.list.notFound.info' | translate}}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
+                {{'wallet.invoice.list.notFound.btnText' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

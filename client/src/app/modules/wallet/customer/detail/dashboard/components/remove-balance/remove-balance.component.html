@@ -1,0 +1,45 @@
+<div class="balance-header">
+    <h1 class="modal-title">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.title' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+<form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="balance-body">
+        <div class=" row">
+            <div class="col-sm-6">
+                <label class="d-block">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item1.label' | translate }}</label>
+                <input type="text" [(ngModel)]="removeBalance.amount" class="form-control" placeholder="0,0" #amount="ngModel" name="fAmount" autocomplete="off" numbersOnly required />
+                <span class="validation mb-0" [ngStyle]="{'visibility': formSubmmitted && amount.errors?.required ? 'visible' : 'hidden'}">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item1.required' | translate }}</span>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="d-block">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item2.label' | translate }}</label>
+                <input type="text" [(ngModel)]="removeBalance.currency" class="form-control" placeholder="TRY" #amount="ngModel" name="fCurrency" autocomplete="off" required />
+                <span class="validation mb-0" [ngStyle]="{'visibility': formSubmmitted && amount.errors?.required ? 'visible' : 'hidden'}">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item2.required' | translate }}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 mt-2">
+                <label class="d-block">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item3.label' | translate }}</label>
+                <textarea type="text" [(ngModel)]="removeBalance.comment" placeholder="{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item3.placeholder' | translate }}" #note="ngModel" name="fComment" autocomplete="off" required></textarea>
+                <span class="validation mb-0" [ngStyle]="{'visibility': formSubmmitted && note.errors?.required ? 'visible' : 'hidden'}">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.item3.required' | translate }}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="balance-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.btnCancel' | translate }}</button>
+
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{ 'wallet.customer.detail.components.dashboard.components.removeBalance.form.btnSave' | translate }}</button>
+            </div>
+
+        </div>
+    </div>
+
+</form>

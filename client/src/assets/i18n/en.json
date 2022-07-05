@@ -1,0 +1,2399 @@
+{
+  "public": {
+    "login": {
+      "title": "Hesabına giriş yap",
+      "subtitle": "Kullanıcı bilgilerinizi giriniz",
+      "form": {
+        "item1": {
+          "label": "Kullanıcı Email",
+          "placeholder": "Email",
+          "validation": {
+            "required": "Lütfen mail adresi giriniz",
+            "invalid": "Hatalı mail girişi"
+          }
+        },
+        "item2": {
+          "label": "Kullanıcı Şifre",
+          "placeholder": "Şifre",
+          "warning": "Şifreniz en az 8 karakter olmalıdır. Büyük harf, küçük harf, sayı ve sembol içermelidir",
+          "validation": {
+            "required": "Lütfen şifre giriniz",
+            "rule": "Şifreniz belirtilen kriterlere uymamaktadır"
+          }
+        },
+        "buttonText": "Giriş"
+      }
+    },
+    "registerComplete": {
+      "title": "Hesap Onayı",
+      "subtitle": "Hesabınızı onaylamak için formu doldurunuz",
+      "form": {
+        "item1": {
+          "label": "Kullanıcı Email",
+          "placeholder": "Email",
+          "validation": {
+            "required": "Lütfen mail adresi giriniz",
+            "invalid": "Hatalı mail girişi"
+          }
+        },
+        "item2": {
+          "label": "Kullanıcı Şifre",
+          "placeholder": "Şifre",
+          "warning": "Şifreniz en az 8 karakter olmalıdır. Büyük harf, küçük harf, sayı ve sembol içermelidir",
+          "validation": {
+            "required": "Lütfen şifre giriniz",
+            "rule": "Şifreniz belirtilen kriterlere uymamaktadır"
+          }
+        },
+        "item3": {
+          "label": "Email Onay Kodu",
+          "placeholder": "Onay Kodu",
+          "validation": {
+            "required": "Lütfen onay kodu giriniz"
+          }
+        },
+        "buttonText": "ONAYLA"
+      }
+    },
+    "changePassword": {
+      "title": "Şifre yenileme",
+      "subtitle": "Şifrenizi yenilemek için formu doldurunuz",
+      "form": {
+        "item1": {
+          "label": "Mevcut Şifre",
+          "placeholder": "Mevcut Şifreniz",
+          "validation": {
+            "required": "Lütfen mevcut şifrenizi giriniz"
+          }
+        },
+        "item2": {
+          "label": "Yeni Şifre",
+          "placeholder": "Yeni Şifreniz",
+          "validation": {
+            "required": "Lütfen yeni şifrenizi giriniz"
+          }
+        },
+        "item3": {
+          "label": "Yeni Şifre Tekrar",
+          "placeholder": "Yeni Şifre Tekrar",
+          "validation": {
+            "required": "Lütfen yeni şifrenizi giriniz"
+          }
+        },
+        "buttonText": "KAYDET"
+      }
+    }
+  },
+  "dashboard": {
+    "selectService": {
+      "walletCardTitle": "Cüzdan",
+      "walletCardInfo": "Cüzdan Paneli",
+      "businessCardTitle": "Kurumsal",
+      "businessCardInfo": "Kurumsal Paneli",
+      "reportsCardTitle": "Raporlar",
+      "reportsCardInfo": "Raporlar Paneli",
+      "settingsCardTitle": "Ayarlar",
+      "settingsCardInfo": "Ayarlar Paneli"
+    }
+  },
+  "panel": {
+    "panelPermission": {
+      "list": {
+        "noData": "Kayıtlı İzin Bulunmamaktadır.",
+        "addButton": "İzin Ekle",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "actionUsersToolTip": "Kullanıcılar",
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "tableHead": {
+          "permissionType": "İzin Tipi",
+          "description": "Açıklama",
+          "date": "Oluşturma Tarihi",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "permissionTypes": {
+          "wallet": "Cüzdan",
+          "setting": "Ayarlar",
+          "level": "Seviye",
+          "auth": "Temel",
+          "report": "Rapor",
+          "panel": "Panel"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "paginationInfo": {
+          "data": "veri arasından",
+          "show": "görüntüleniyor"
+        },
+
+        "notFound": {
+          "header": "Panel İzni Bulunamadı",
+          "info": "Henüz panel izni oluşturulmamıştır.",
+          "btnText": "ANASAYFA"
+        },
+        "delete": {
+          "headerTitle": "İzini Sil",
+          "title": "İzini Silmek Üzeresiniz"
+        }
+      },
+
+      "users": {
+        "title": "Kullanıcılar:",
+        "tableHead": {
+          "name": "Ad",
+          "surname": "Soyad",
+          "email": "Email",
+          "role": "Rol"
+        }
+      },
+      "details": {
+        "title": "İzin Detayı",
+        "type": "İzin Tipi",
+        "description": "Açıklama",
+        "date": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "add": {
+        "title": "İzin Ekle",
+        "type": "İzin Tipi",
+        "typePlaceholder": "İzin Tipi",
+        "typeRequired": "Lütfen izin tipi giriniz",
+        "description": "Açıklama",
+        "descriptionPlaceholder": "Açıklama",
+        "descriptionRequired": "Lütfen açıklama giriniz",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "İzin Ekle"
+      },
+      "update": {
+        "title": "İzin Düzenle",
+        "type": "İzin Tipi",
+        "typePlaceholder": "İzin Tipi",
+        "typeRequired": "Lütfen izin tipi giriniz",
+        "description": "Açıklama",
+        "descriptionPlaceholder": "Açıklama",
+        "descriptionRequired": "Lütfen açıklama giriniz",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "btnCancel": "İptal",
+        "btnSubmit": "Kaydet"
+      }
+    },
+    "panelUser": {
+      "list": {
+        "noData": "Aradığınız Kriterlerde Kayıtlı Kullanıcı Bulunmamaktadır.",
+        "addButton": "Kullanıcı Ekle",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "date": "Oluşturma Tarihi",
+          "email": "Email",
+          "role": "Rol",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": {
+          "data": "veri arasından",
+          "show": "görüntüleniyor"
+        },
+
+        "notFound": {
+          "header": "Kullanıcı Bulunamadı",
+          "info": "Henüz kullanıcı oluşturulmamıştır.",
+          "btnText": "ANASAYFA"
+        }
+      },
+      "permissions": {
+        "title": "Kullanıcı Yetkileri",
+        "tabHeadings": {
+          "wallet": "Cüzdan",
+          "panel": "Panel",
+          "setting": "Ayarlar",
+          "report": "Raporlar",
+          "auth": "Temel"
+        }
+      },
+      "details": {
+        "title": "Kullanıcı Detayı",
+        "tabTitle": "İzinler",
+        "name": "İsim",
+        "surname": "Soyisim",
+        "email": "Email",
+        "role": "Rol",
+        "date": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "error": {
+          "permission": "İzin listeleme yetkiniz bulunmamaktadır"
+        }
+      },
+      "update": {
+        "title": "Kullanıcı Düzenle",
+        "name": "Kullanıcı Adı",
+        "namePlaceholder": "Adı",
+        "nameRequired": "Lütfen isim giriniz",
+        "surname": "Kullanıcı Soyadı",
+        "surnamePlaceholder": "Soyadı",
+        "surnameRequired": "Lütfen soyadı giriniz",
+        "email": "Email",
+        "emailPlaceholder": "Email",
+        "emailRequired": "Lütfen email giriniz",
+        "emailValid": "Hatalı mail girişi",
+        "role": "Rol",
+        "date": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "tabTitle": "İzinler",
+        "tabHeadings": {
+          "wallet": "Cüzdan",
+          "panel": "Panel",
+          "setting": "Ayarlar",
+          "report": "Raporlar",
+          "auth": "Temel"
+        },
+        "error": {
+          "permission": "İzin listeleme yetkiniz bulunmamaktadır",
+          "rolePermission": "Rol listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "İptal",
+        "btnSubmit": "Kaydet"
+      },
+      "create": {
+        "title": "Kullanıcı Ekle",
+        "subtitle": "Eklemek istediğiniz kullanıcının bilgilerini giriniz",
+        "form": {
+          "item1": {
+            "label": "Kullanıcı Adı",
+            "placeholder": "Adı",
+            "validation": {
+              "required": "Lütfen isim giriniz"
+            }
+          },
+          "item2": {
+            "label": "Kullanıcı Soyadı",
+            "placeholder": "Soyadı",
+            "validation": {
+              "required": "Lütfen soyadı giriniz"
+            }
+          },
+          "item3": {
+            "label": "Kullanıcı Email",
+            "placeholder": "Email",
+            "validation": {
+              "required": "Lütfen mail adresi giriniz",
+              "invalid": "Hatalı mail girişi"
+            }
+          },
+          "item4": {
+            "label": "Kullanıcı Rolü",
+            "placeholder": "Rol Seçiniz",
+            "validation": {
+              "required": "Lütfen bir rol seçiniz"
+            }
+          },
+          "tabTitle": "İzinler",
+          "tabHeadings": {
+            "wallet": "Cüzdan",
+            "panel": "Panel",
+            "setting": "Ayarlar",
+            "report": "Raporlar",
+            "auth": "Temel"
+          },
+          "error": {
+            "permission": "İzin listeleme yetkiniz bulunmamaktadır",
+            "rolePermission": "Rol listeleme yetkiniz bulunmamaktadır"
+          },
+          "btnBack": "Geri",
+          "btnAdd": "Kullanıcı Ekle"
+        }
+      }
+    },
+    "panelRole": {
+      "list": {
+        "noData": "Aradığınız Kriterlerde Kayıtlı Rol Bulunmamaktadır.",
+        "addButton": "Rol Ekle",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "actionPermissionTooltip": "Yetkiler",
+
+        "tableHead": {
+          "role": "Rol Adı",
+          "code": "Rol Kodu",
+          "permission": "Rol Yetkileri",
+          "date": "Oluşturma Tarihi",
+          "actions": "Eylemler"
+        },
+
+        "paginationInfo": {
+          "data": "veri arasından",
+          "show": "görüntüleniyor"
+        },
+
+        "notFound": {
+          "header": "Panel Rolü Bulunamadı",
+          "info": "Henüz panel rolü oluşturulmamıştır.",
+          "btnText": "ANASAYFA"
+        },
+        "delete": {
+          "headerTitle": "Rolü Sil",
+          "title": "Rolü Silmek Üzeresiniz"
+        }
+      },
+      "permissions": {
+        "title": "Rol Yetkileri",
+        "tabHeadings": {
+          "wallet": "Cüzdan",
+          "panel": "Panel",
+          "setting": "Ayarlar",
+          "report": "Raporlar",
+          "auth": "Temel"
+        }
+      },
+      "add": {
+        "title": "Rol Ekle",
+        "roleName": "Rol Adı",
+        "roleNameRequired": "Lütfen rol adı giriniz",
+        "roleCode": "Rol Kodu",
+        "roleCodeRequired": "Lütfen rol kodu giriniz",
+        "tabTitle": "İzinler",
+        "tabHeadings": {
+          "wallet": "Cüzdan",
+          "panel": "Panel",
+          "setting": "Ayarlar",
+          "report": "Raporlar",
+          "auth": "Temel"
+        },
+        "error": {
+          "permission": "İzin listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Rol Ekle"
+      },
+      "update": {
+        "title": "Rol Düzenle",
+        "roleName": "Rol Adı",
+        "roleNameRequired": "Lütfen rol adı giriniz",
+        "roleCode": "Rol Kodu",
+        "roleCodeRequired": "Lütfen rol kodu giriniz",
+        "tabTitle": "İzinler",
+        "tabHeadings": {
+          "wallet": "Cüzdan",
+          "panel": "Panel",
+          "setting": "Ayarlar",
+          "report": "Raporlar",
+          "auth": "Temel"
+        },
+        "error": {
+          "permission": "İzin listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "İptal",
+        "btnSubmit": "Kaydet"
+      },
+      "details": {
+        "title": "Rol Detayı",
+        "roleName": "Rol Adı",
+        "roleCode": "Rol Kodu",
+        "tabTitle": "İzinler",
+        "date": "Oluşturma Tarihi",
+        "tabHeadings": {
+          "wallet": "Cüzdan",
+          "panel": "Panel",
+          "setting": "Ayarlar",
+          "report": "Raporlar",
+          "auth": "Temel"
+        },
+        "error": {
+          "permission": "İzin listeleme yetkiniz bulunmamaktadır"
+        }
+      }
+    },
+    "panelConfirmation": {
+      "list": {
+        "tableSizeLabel": "Miktar",
+        "actionConfirmationTooltip": "Onayla",
+        "actionPersonsTooltip": "Onay Veren Kişiler",
+        "tableHead": {
+          "description": "Açıklama",
+          "fullName": "İşlemi Gerçekleştiren",
+          "personCount": "İşlemi Onaylayan",
+          "dateCreated": "Oluşturma Tarihi",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "waiting": "Beklemede",
+          "declined": "Reddedildi"
+        },
+        "notFound": {
+          "header": "Panel Onayı Bulunamadı",
+          "info": "Henüz panel onay listesi oluşturulmamıştır.",
+          "btnText": "ANASAYFA"
+        },
+        "paginationInfo": {
+          "data": "veri arasından",
+          "show": "görüntüleniyor"
+        },
+        "warning": "Bu işlem zaten onaylanmıştır",
+        "info": "Kendi işleminizi onaylayamazsınız"
+      },
+      "confirmation": {
+        "title": "İşlemi Onayla:",
+        "prevData": "Önceki Veri",
+        "confirmData": "Onay Bekleyen Veri",
+        "btnCancel": "Reddet",
+        "btnSubmit": "Onay"
+      }
+    }
+  },
+  "globals": {
+    "months": {
+      "January": "Ocak",
+      "February": "Şubat",
+      "March": "Mart",
+      "April": "Nisan",
+      "May": "Mayıs",
+      "June": "Haziran",
+      "July": "Temmuz",
+      "August": "Ağustos",
+      "September": "Eylül",
+      "October": "Ekim",
+      "November": "Kasım",
+      "December": "Aralık"
+    }
+  },
+  "wallet": {
+    "bankTransfer": {
+      "filterLabel": "Filtre",
+      "filterPlaceholder": "Bir değer girin...",
+      "tableSizeLabel": "Miktar",
+      "tableHead": {
+        "name": "İsim",
+        "surname": "Soyisim",
+        "walletNo": "Cüzdan Nu.",
+        "transactionID": "İşlem Nu.",
+        "date": "Tarih",
+        "bank": "Banka",
+        "amount": "Miktar",
+        "currency": "Birim",
+        "status": "Durum",
+        "actions": "Eylemler"
+      },
+      "tooltips": {
+        "detailsTooltip": "Detaylar"
+      },
+      "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor",
+      "statuses": {
+        "success": "Gönderildi",
+        "canceled": "İptal",
+        "pending": "Beklemede"
+      }
+    },
+    "customer": {
+      "customerList": {
+        "notFound": {
+          "header": "Kullanıcı Bulunamadı",
+          "info": "Henüz bir kullanıcı bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "statusPlaceholder": "Durum Filtre",
+        "tableSizeLabel": "Miktar",
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "phone": "Telefon Nu.",
+          "id": "Kimlik Nu.",
+          "email": "Email",
+          "walletNo": "Cüzdan No.",
+          "createdAt": "Oluşturma T.",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar",
+          "editTooltip": "Düzenle",
+          "transactionsTooltip": "İşlemler"
+        },
+        "tableFooterInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor",
+        "statuses": {
+          "deleted": "Silindi",
+          "passive": "Pasif",
+          "active": "Aktif"
+        }
+      },
+      "updateModal": {
+        "modalTitle": "Düzenle",
+        "phoneNumberLabel": "Telefon Numarası",
+        "phoneNumberRequired": "Telefon numarası girilmeli",
+        "emailAdressLabel": "Email Adresi",
+        "emailAdressRequired": "Email adresi girilmeli",
+        "statusLabel": "Durum",
+        "statusRequired": "Durum bilgisi girilmeli"
+      },
+      "detail": {
+        "sidebar": {
+          "dashboard": "Kullanıcı Paneli",
+          "profile": "Profil Bilgileri",
+          "accounts": "Banka Hesapları",
+          "transactions": "İşlemler",
+          "notifications": "Bildirimler",
+          "back": "Geri",
+          "walletNo": "Müşteri Nu",
+          "phoneNumber": "Telefon Nu",
+          "level": "Seviye:",
+          "limits": "İşlem Limitleri"
+        },
+        "components": {
+          "dashboard": {
+            "title": "Kullanıcı Paneli",
+            "status": "Durum",
+            "statusBtnChange": "Değiştir",
+            "balanceBtn": "Finansal Bakım",
+            "incrementBalance": "Bakiye Arttır",
+            "decrementBalance": "Bakiye Azalt",
+            "table": {
+              "field1": "İşlem Tipi",
+              "field2": "Durum",
+              "field3": "Tutar",
+              "field4": "Ücret",
+              "field5": "Toplam Tutar",
+              "field6": "Tarih",
+              "field7": "Eylemler",
+              "detailsTooltip": "Detaylar"
+            },
+
+            "accounts": {
+              "title": "Güncel Bakiye Bilgileri",
+              "total": "Toplam Bakiye"
+            },
+            "errors": {
+              "transactions": {
+                "title": "İşlem Bulunamadı",
+                "info": "Bu kullanıcıya ait bir işlem bulunmamaktadır"
+              },
+              "campaigns": {
+                "title": "Aktif Kampanya Bulunmamaktadır"
+              },
+              "dashboard": {
+                "title": "Servis Şimdilik Devre Dışı",
+                "info": "Backend kaynaklı bir sorundan dolayı şuan için kullanıcı paneline erişilememektedir."
+              }
+            },
+            "title2": "Kampanyalar",
+            "components": {
+              "addBalance": {
+                "title": "Bakiye Arttır",
+                "form": {
+                  "item1": {
+                    "label": "Tutar",
+                    "required": "Lütfen tutar giriniz"
+                  },
+                  "item2": {
+                    "label": "Para Birimi",
+                    "required": "Lütfen para birimi giriniz"
+                  },
+                  "item3": {
+                    "label": "Değişiklik Notu",
+                    "placeholder": "Lütfen değişiklik sebebinizi belirtiniz...",
+                    "required": "Lütfen bir açıklama yazınız"
+                  },
+                  "btnCancel": "Vazgeç",
+                  "btnSave": "Onayla"
+                }
+              },
+              "removeBalance": {
+                "title": "Bakiye Azalt",
+                "form": {
+                  "item1": {
+                    "label": "Tutar",
+                    "required": "Lütfen tutar giriniz"
+                  },
+                  "item2": {
+                    "label": "Para Birimi",
+                    "required": "Lütfen para birimi giriniz"
+                  },
+                  "item3": {
+                    "label": "Değişiklik Notu",
+                    "placeholder": "Lütfen değişiklik sebebinizi belirtiniz...",
+                    "required": "Lütfen bir açıklama yazınız"
+                  },
+                  "btnCancel": "Vazgeç",
+                  "btnSave": "Onayla"
+                }
+              },
+              "update": {
+                "title": "Müşteri Durum Değiştir",
+                "form": {
+                  "item1": {
+                    "label": "Değişiklik Notu",
+                    "placeholder": "Lütfen değişiklik sebebinizi belirtiniz...",
+                    "required": "Lütfen bir açıklama yazınız"
+                  },
+                  "item2": {
+                    "label": "Durum"
+                  },
+                  "btnCancel": "Vazgeç",
+                  "btnSave": "Kaydet"
+                },
+                "statusActive": "Aktif",
+                "statusPassive": "Pasif"
+              }
+            }
+          },
+          "profileInfo": {
+            "title": "Profil Bilgileri",
+            "editProfile": "Profili Düzenle",
+            "person": {
+              "title": "Kişisel Bilgiler",
+              "fullName": "İsim Soyisim",
+              "identity": "Tc Kimlik No",
+              "birthday": "Doğum Tarihi",
+              "email": "Email",
+              "phone": "Telefon"
+            },
+            "error": {
+              "noData": {
+                "title": "Profil Bulunamadı",
+                "info": "Kullanıcı profili bulunmamaktadır."
+              }
+            },
+            "options": {
+              "title": "Bildirim Seçenekleri",
+              "email": "Email",
+              "sms": "Sms",
+              "mobile": "Mobil"
+            },
+            "components": {
+              "update": {
+                "title": "Profili Düzenle",
+                "form": {
+                  "item1": {
+                    "label": "Email Adresi",
+                    "validation": {
+                      "required": "Lütfen email adresi giriniz"
+                    }
+                  },
+                  "item2": {
+                    "label": "Telefon Numarası",
+                    "validation": {
+                      "required": "Lütfen telefon numarası giriniz",
+                      "phone": "Hatalı telefon numara girişi"
+                    }
+                  },
+                  "btnCancel": "Vazgeç",
+                  "btnSave": "Kaydet"
+                }
+              }
+            }
+          },
+          "bankAccounts": {
+            "title": "Banka Hesapları",
+            "table": {
+              "field1": "Banka",
+              "field2": "Hesap Sahibi",
+              "field3": "IBAN",
+              "field4": "Banka Logo"
+            },
+            "error": {
+              "noData": {
+                "title": "Banka Hesabı Bulunamadı",
+                "info": "Kayıtlı banka hesabı bulunmamaktadır."
+              }
+            }
+          },
+          "transactions": {
+            "title": "İşlem Geçmişi",
+            "data": {
+              "transactionDate": [
+                {
+                  "code": "last_3_day",
+                  "value": "Son 3 gün"
+                },
+                {
+                  "code": "last_1_week",
+                  "value": "Son 1 hafta"
+                },
+                {
+                  "code": "last_1_month",
+                  "value": "Son 1 ay"
+                },
+                {
+                  "code": "last_3_month",
+                  "value": "Son 3 ay"
+                },
+                {
+                  "code": "last_6_month",
+                  "value": "Son 6 ay"
+                },
+                {
+                  "code": "last_1_year",
+                  "value": "Son 1 yıl"
+                },
+                {
+                  "code": "last_2_year",
+                  "value": "Son 2 yıl"
+                }
+              ]
+            },
+            "transactionBar": {
+              "datePlaceholder": "Tarih Aralığı Belirle",
+              "filterButton": "Detaylı Arama",
+              "download": {
+                "text": "İndir",
+                "csv": ".csv dosyası indir",
+                "xlsx": ".xlsx dosyası indir"
+              }
+            },
+            "table": {
+              "field1": "İşlem Tipi",
+              "field2": "Durum",
+              "field3": "Tutar",
+              "field4": "Ücret",
+              "field5": "Toplam Tutar",
+              "field6": "Tarih",
+              "field7": "Eylemler",
+              "detailsTooltip": "Detaylar"
+            },
+            "error": {
+              "noData": {
+                "title": "İşlem Bulunamadı",
+                "info": "Bu kullanıcıya ait işlem bulunmamaktadır"
+              },
+              "noFilter": {
+                "title": "İşlem Bulunamadı",
+                "info": "Filtreleme kriterleriniz ile eşleşen işlem bulunamadı",
+                "reload": "Tüm işlemler"
+              }
+            },
+            "components": {
+              "filter": {
+                "title": "Detaylı Arama",
+                "data": {
+                  "transactionType": [
+                    {
+                      "code": "bank_withdrawal",
+                      "value": "Bankaya Para Gönderme"
+                    },
+                    {
+                      "code": "bank_deposit",
+                      "value": "Bankadan Para Yükleme"
+                    },
+                    {
+                      "code": "card_withdrawal",
+                      "value": "Kredi Kartı Ödemesi"
+                    },
+                    {
+                      "code": "card_deposit",
+                      "value": "Kredi Kartı Yüklemesi"
+                    },
+                    {
+                      "code": "transfer",
+                      "value": "Transfer"
+                    },
+                    {
+                      "code": "invoice",
+                      "value": "Fatura Ödemesi"
+                    },
+                    {
+                      "code": "pay_in",
+                      "value": "Kurumsal Para Yükleme"
+                    },
+                    {
+                      "code": "pay_out",
+                      "value": "Kurumsal Para Gönderme"
+                    }
+                  ],
+                  "transactionStatus": ["Başarılı", "Başarısız", "Beklemede"]
+                },
+                "form": {
+                  "item1": {
+                    "label": "İşlem Tipi",
+                    "placeholder": "İşlem Tipi Seç",
+                    "validation": {
+                      "required": "Lütfen işlem tipi giriniz"
+                    }
+                  },
+                  "item2": {
+                    "label": "İşlem Durumu",
+                    "placeholder": "İşlem Durumu Seç",
+                    "validation": {
+                      "required": "Lütfen işlem durumu giriniz"
+                    }
+                  },
+                  "item3": {
+                    "label": "Başlangıç Tarihi",
+                    "placeholder": "Gün/Ay/Yıl",
+                    "validation": {
+                      "required": "Lütfen tarih giriniz"
+                    }
+                  },
+                  "item4": {
+                    "label": "Bitiş Tarihi",
+                    "placeholder": "Gün/Ay/Yıl",
+                    "validation": {
+                      "required": "Lütfen tarih giriniz"
+                    }
+                  },
+                  "item5": {
+                    "title": "Tutar Aralığı Belirtin",
+                    "list1": {
+                      "label": "Minimum Tutar",
+                      "placeholder": "0 TL",
+                      "validation": {
+                        "required": "Lütfen değer giriniz"
+                      }
+                    },
+                    "list2": {
+                      "label": "Maximum Tutar",
+                      "placeholder": "1000 TL",
+                      "validation": {
+                        "required": "Lütfen değer giriniz"
+                      }
+                    }
+                  },
+                  "buttonText": "Filtreyi Uygula",
+                  "label": "Basit Arama"
+                }
+              }
+            },
+            "values": {
+              "months": [
+                "Ocak",
+                "Şubat",
+                "Mart",
+                "Nisan",
+                "Mayıs",
+                "Haziran",
+                "Temmuz",
+                "Ağustos",
+                "Eylül",
+                "Ekim",
+                "Kasım",
+                "Aralık"
+              ],
+              "fileDownloadKeys": [
+                "Para Birimi",
+                "Kurum/Kişi",
+                "İşlem Tipi",
+                "Tutar",
+                "Ücret",
+                "Toplam Ücret",
+                "Transfer Tarihi",
+                "Transaction ID",
+                "Durum",
+                "İsim",
+                "Soyisim"
+              ],
+              "fileDownloadTitle": "İşlemler"
+            }
+          },
+          "limits": {
+            "title": "İşlem Limitleri",
+            "table": {
+              "field1": "İşlem Türü",
+              "field2": "Limit",
+              "field3": "Günlük Limit",
+              "field4": "Haftalık Limit",
+              "field5": "Aylık Limit",
+              "field6": "Mininum Limit",
+              "field7": "Maksimum Limit"
+            },
+            "error": {
+              "noData": {
+                "title": "İşlem Limiti Bulunamadı",
+                "info": "Bu hesaba ait kayıtlı bir işlem limiti bulunmamaktadır."
+              }
+            }
+          },
+          "notifications": {
+            "title": "Bildirimler",
+            "table": {
+              "field1": "Başlık",
+              "field2": "Açıklama",
+              "field3": "Tarih",
+              "field4": "Eylemler"
+            },
+            "error": {
+              "noData": {
+                "title": "Bildirim Bulunamadı",
+                "info": "Kullanıcıya ait bir bildirim bulunamadı"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fraudTransactions": {
+      "filterLabel": "Filtre",
+      "filterPlaceholder": "Bir değer girin...",
+      "tableSizeLabel": "Miktar",
+      "tableHead": {
+        "name": "İsim",
+        "surname": "Soyisim",
+        "walletNo": "Cüzdan Nu.",
+        "transactionID": "İşlem Nu.",
+        "date": "Tarih",
+        "bank": "Banka",
+        "amount": "Miktar",
+        "currency": "Birim",
+        "status": "Durum",
+        "actions": "Eylemler"
+      },
+      "tooltips": {
+        "detailsTooltip": "Detaylar"
+      },
+      "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+    },
+    "invoice": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz bir işlem bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "statusPlaceholder": "Durum Filtre",
+        "tableSizeLabel": "Miktar",
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "transactionID": "İşlem Nu.",
+          "date": "Tarih",
+          "bank": "Banka",
+          "amount": "Miktar",
+          "currency": "Birim",
+          "status": "Durum",
+          "actions": "Eylemler",
+          "invoiceNumber": "Fatura Nu.",
+          "invoiceAccountValue": "Fatura Hesap Değ.",
+          "institutionName": "Kurum Adı"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+      }
+    },
+    "requestMoney": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz bir işlem bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "statusPlaceholder": "Durum Filtre",
+        "tableSizeLabel": "Miktar",
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "transactionID": "İşlem Nu.",
+          "date": "Tarih",
+          "bank": "Banka",
+          "amount": "Miktar",
+          "currency": "Birim",
+          "status": "Durum",
+          "actions": "Eylemler",
+          "receiverPhone": "Alıcı Telefon Nu."
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+      }
+    },
+    "cardDeposit": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz kart ile yükleme işlemi bulunmamaktadır.",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "statusPlaceholder": "Durum Filtre",
+        "tableSizeLabel": "Miktar",
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "transactionID": "İşlem Nu.",
+          "date": "Tarih",
+          "amount": "Miktar",
+          "currency": "Birim",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+      }
+    },
+    "bankDeposit": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz bir işlem bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "statusPlaceholder": "Durum Filtre",
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "tableSizeLabel": "Miktar",
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "bank": "Banka",
+          "transactionID": "İşlem Nu.",
+          "date": "Tarih",
+          "amount": "Miktar",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": {
+          "data": "veri arasından",
+          "show": "görüntüleniyor"
+        },
+        "statuses": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "detailsModal": {
+          "modalTitle": "Yükleme Detay",
+          "customerName": "Adı",
+          "customerLastname": "Soyadı",
+          "walletNo": "Cüzdan Numarası",
+          "transactionID": "İşlem Numarası",
+          "bank": "Banka",
+          "amount": "Miktar",
+          "currency": "Birim",
+          "date": "Tarih",
+          "status": "Durum"
+        }
+      }
+    },
+    "sendMoney": {
+      "bankWithdraw": {
+        "list": {
+          "notFound": {
+            "header": "İşlem Bulunamadı",
+            "info": "Henüz bankadan yükleme işlemi bulunmamaktadır.",
+            "btnText": "ANASAYFA"
+          },
+          "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+          "filterLabel": "Filtre",
+          "filterPlaceholder": "Bir değer girin...",
+          "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+          "statusPlaceholder": "Durum Filtre",
+          "tableSizeLabel": "Miktar",
+          "tableStatus": {
+            "approved": "Onaylandı",
+            "declined": "Reddedildi",
+            "waiting": "Beklemede"
+          },
+          "tableHead": {
+            "name": "İsim",
+            "surname": "Soyisim",
+            "walletNo": "Cüzdan Nu.",
+            "transactionID": "İşlem Nu.",
+            "date": "Tarih",
+            "bank": "Banka",
+            "amount": "Miktar",
+            "currency": "Birim",
+            "status": "Durum",
+            "actions": "Eylemler"
+          },
+          "tooltips": {
+            "detailsTooltip": "Detaylar"
+          },
+          "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+        }
+      },
+      "cardWithdraw": {
+        "list": {
+          "notFound": {
+            "header": "İşlem Bulunamadı",
+            "info": "Henüz bir işlem bulunmamaktadır",
+            "btnText": "ANASAYFA"
+          },
+          "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+          "filterLabel": "Filtre",
+          "filterPlaceholder": "Bir değer girin...",
+          "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+          "statusPlaceholder": "Durum Filtre",
+          "tableSizeLabel": "Miktar",
+          "tableStatus": {
+            "approved": "Onaylandı",
+            "declined": "Reddedildi",
+            "waiting": "Beklemede"
+          },
+          "tableHead": {
+            "name": "İsim",
+            "surname": "Soyisim",
+            "walletNo": "Cüzdan Nu.",
+            "transactionID": "İşlem Nu.",
+            "date": "Tarih",
+            "amount": "Miktar",
+            "status": "Durum",
+            "actions": "Eylemler",
+            "cardNumber": "Kart Nu."
+          },
+          "tooltips": {
+            "detailsTooltip": "Detaylar"
+          },
+          "paginationInfo": {
+            "data": "veri arasından",
+            "show": "görüntüleniyor"
+          },
+          "statuses": {
+            "approved": "Onaylandı",
+            "declined": "Reddedildi",
+            "waiting": "Beklemede"
+          },
+          "detailsModal": {
+            "modalTitle": "Yükleme Detay",
+            "customerName": "Adı",
+            "customerLastname": "Soyadı",
+            "walletNo": "Cüzdan Numarası",
+            "transactionID": "İşlem Numarası",
+            "bank": "Banka",
+            "amount": "Miktar",
+            "currency": "Birim",
+            "date": "Tarih",
+            "status": "Durum"
+          }
+        }
+      }
+    },
+    "donation": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz bir işlem bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "statusPlaceholder": "Durum Filtre",
+        "tableSizeLabel": "Miktar",
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "tableHead": {
+          "name": "İsim",
+          "surname": "Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "transactionID": "İşlem Nu.",
+          "institution": "Kurum",
+          "date": "Tarih",
+          "amount": "Miktar",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+      }
+    },
+    "manuelBalance": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz bir işlem bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "tableHead": {
+          "nameSurname": "İsim Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "adminNameSurname": "İşlemi Gerçekleştiren",
+          "description": "Açıklama",
+          "date": "Tarih",
+          "amount": "Miktar"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+      }
+    },
+    "transfer": {
+      "list": {
+        "notFound": {
+          "header": "İşlem Bulunamadı",
+          "info": "Henüz bir işlem bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "statusPlaceholder": "Durum Filtre",
+        "tableSizeLabel": "Miktar",
+        "tableStatus": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "tableHead": {
+          "sender": "Gönderen",
+          "senderWalletNo": "Gönderen Cüzdan Nu.",
+          "receiver": "Alıcı",
+          "receiverWalletNo": "Alıcı Cüzdan Nu.",
+          "surname": "Soyisim",
+          "walletNo": "Cüzdan Nu.",
+          "transactionID": "İşlem Nu.",
+          "date": "Tarih",
+          "bank": "Banka",
+          "amount": "Miktar",
+          "currency": "Birim",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tooltips": {
+          "detailsTooltip": "Detaylar"
+        },
+        "paginationInfo": "{{ totalLength }} veri arasından {{ start }} - {{ end }} görüntüleniyor"
+      }
+    }
+  },
+  "navigations": {
+    "selectService": "Servis Seçimi",
+    "business": {
+      "title": "Kurumsal",
+      "children": {
+        "seller": "Bayi Başvuruları"
+      }
+    },
+    "reports": {
+      "title": "Raporlar",
+      "children": {
+        "accounting": "Koruma Hesabı"
+      },
+      "accounting": {
+        "list": {
+          "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+          "showRezerv": "Koruma Hesabı Bakiyesi",
+          "filterLabel": "Filtre",
+          "filterPlaceholder": "Bir değer girin...",
+          "tableSizeLabel": "Miktar",
+          "dateLabel": "Tarih:",
+          "dateFilterPlaceholder": "Tarih seçiniz...",
+          "totalTitle": "Koruma Hesabı Bakiyesi:",
+          "tableHead": {
+            "name": "İsim",
+            "surname": "Soyisim",
+            "walletNo": "Cüzdan Numarası",
+            "balance": "Bakiye",
+            "calculateDate": "Hesaplama Tarihi"
+          }
+        },
+        "values": {
+          "fileDownloadKeys": [
+            "İsim",
+            "Soyisim",
+            "Cuzdan Numarası",
+            "Bakiye",
+            "Hesaplama Tarihi"
+          ],
+          "months": [
+            "Ocak",
+            "Şubat",
+            "Mart",
+            "Nisan",
+            "Mayıs",
+            "Haziran",
+            "Temmuz",
+            "Ağustos",
+            "Eylül",
+            "Ekim",
+            "Kasım",
+            "Aralık"
+          ],
+          "fileDownloadTitle": "Koruma Hesabı"
+        }
+      }
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "children": {
+        "bank": "Banka",
+        "bankAccounts": "Banka Hesapları",
+        "vpos": "Vpos",
+        "fraud": "Fraud",
+        "blacklist": "Engelli Hesaplar",
+        "campaign": "Kampanya",
+        "document": "Döküman",
+        "limit": "Limit",
+        "level": "Seviye",
+        "fees": "Komisyon",
+        "commission": "Komisyon",
+        "faq": "Sık Sorulan Sorular",
+        "approvalTransactions": "Onay İşlemleri",
+        "operators": "Operatorler",
+        "roles": "Roller"
+      }
+    },
+    "wallet": {
+      "title": "Cüzdan",
+      "children": {
+        "customer": "Müşteri",
+        "bankDeposit": "Banka ile para yükleme",
+        "cardDeposit": "Kart ile para yükleme",
+        "transfer": "Transfer",
+        "requestMoney": "Para istekleri",
+        "sendMoney": "Para Gönderme",
+        "bankWithdraw": "Banka hesabına para gönderme",
+        "cardWithdraw": "Kart borcu ödeme",
+        "invoice": "Fatura",
+        "fraudTransactions": "Fraud İşlemler",
+        "donation": "Bağış",
+        "manuelBalance": "Finansal Bakım"
+      }
+    },
+    "panel": {
+      "title": "Panel",
+      "children": {
+        "panelUser": "Panel Kullanıcıları",
+        "create": "Kullanıcı Ekle",
+        "panelPermission": "Panel İzinleri",
+        "panelRole": "Panel Rolleri",
+        "panelConfirmation": "Panel Onayları"
+      }
+    }
+  },
+  "footer": {
+    "footerText": "Tüm hakları saklıdır."
+  },
+  "navbar": {
+    "admin": "Yönetici",
+    "accountDropdown": {
+      "profile": "Profil",
+      "changePassword": "Şifre Değiştir",
+      "logout": "Çıkış yap"
+    }
+  },
+  "shared": {
+    "modals": {
+      "deleteModal": {
+        "subtitle": "Bu işlemi yapmak istediğinize emin misiniz ?",
+        "buttonCancel": "Vazgeç",
+        "buttonDelete": "Sil"
+      }
+    },
+    "tableDetailsModal": {
+      "customerName": "Kullanıcı Adı",
+      "walletNo": "Cüzdan Numarası",
+      "senderName": "Gönderen Adı",
+      "senderWalletNo": "Gönderen Cüzdan Nu.",
+      "receiverName": "Alıcı Adı",
+      "receiverWalletNo": "Alıcı Cüzdan Nu.",
+      "sendReceipt": "Makbuz Gönder"
+    },
+    "notAccess": {
+      "title": "Hata, erişim izniniz yok",
+      "subtitle": "403 erişim yasak",
+      "button": "Servis Seçimi"
+    },
+    "notFound": {
+      "title": "Hata, bir hata oluştu. Sayfa bulunamadı!",
+      "button": "Servis Seçimi"
+    },
+    "spinner": {
+      "subtitle": "Veriler yükleniyor lütfen bekleyiniz..."
+    }
+  },
+  "settings": {
+    "bankAccounts": {
+      "list": {
+        "notFound": {
+          "header": "Hesap Bulunamadı",
+          "info": "Henüz bir banka hesabı bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Banka Hesabı Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} hesap arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Hesap Ekle",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "bankHolder": "Hesap Sahibi",
+          "bankName": "Banka Adı",
+          "accountNumber": "Hesap Nu.",
+          "branchName": "Şube Adı",
+          "branchCode": "Şube Kodu",
+          "dateCreated": "Oluşturma Tarihi",
+          "status": "Durum",
+          "iban": "IBAN",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "delete": {
+          "headerTitle": "Banka Hesabını Sil",
+          "title": "Banka Hesabını Silmek Üzeresiniz"
+        }
+      },
+      "details": {
+        "header": "Hesap Detayları",
+        "accountNumber": "Hesap Numarası",
+        "bankHolder": "Hesap Sahibi",
+        "bankName": "Banka Adı",
+        "iban": "IBAN",
+        "branchName": "Şube Adı",
+        "branchCode": "Şube Kodu",
+        "dateCreated": "Oluşturma Tarihi",
+        "id": "ID",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "update": {
+        "header": "Hesap Düzenle",
+        "bank": "Banka",
+        "bankRequired": "Lütfen bir banka seçiniz",
+        "bankHolder": "Hesap Sahibi",
+        "bankHolderRequired": "Lütfen hesap sahibi giriniz.",
+        "iban": "IBAN",
+        "ibanRequired": "Lütfen iban giriniz.",
+        "ibanInvalid": "Lütfen geçerli bir iban giriniz.",
+        "branchCode": "Şube Kodu",
+        "branchCodeRequired": "Lütfen şube kodu giriniz.",
+        "branchName": "Şube Adı",
+        "branchNameRequired": "Lütfen şube adı giriniz",
+        "accountNumber": "Hesap Numarası",
+        "accountNumberRequired": "Lütfen hesap numarası giriniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "error": {
+          "bankPermission": "Banka listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet"
+      },
+      "add": {
+        "header": "Hesap Ekle",
+        "bankHolder": "Hesap Sahibi",
+        "bankHolderPlaceholder": "Hesap Sahibi",
+        "bankHolderRequired": "Lütfen hesap sahibi giriniz.",
+        "accountNumber": "Hesap Numarası",
+        "accountNumberPlaceholder": "Hesap Numarası",
+        "accountNumberRequired": "Lütfen hesap numarası giriniz.",
+        "branchName": "Şube Adı",
+        "branchNamePlaceholder": "Şube Adı",
+        "branchNameRequired": "Lütfen şube adı giriniz",
+        "branchCode": "Şube Kodu",
+        "branchCodePlaceholder": "Şube Kodu",
+        "branchCodeRequired": "Lütfen şube kodu giriniz.",
+        "iban": "IBAN",
+        "ibanPlaceholder": "TR58 5858 8585 8585 8585 85",
+        "ibanRequired": "Lütfen iban giriniz.",
+        "ibanInvalid": "Lütfen geçerli bir iban giriniz.",
+        "bankID": "Banka Adı",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "error": {
+          "bankPermission": "Banka listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Hesap Ekle"
+      }
+    },
+    "blacklist": {
+      "list": {
+        "notFound": {
+          "header": "Kullanıcı Bulunamadı",
+          "info": "Henüz bir veri bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Yasaklı Kullanıcı Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} kullanıcı arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Kullanıcı Engelle",
+        "tableHead": {
+          "btnAddAccount": "Kullanıcı Engelle",
+          "blacklistValue": "Değeri",
+          "blacklistType": "Engellenen Tür",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "statusPlaceholder": "Durum Filtre",
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "delete": {
+          "headerTitle": "Kullanıcı Engelini Kaldır",
+          "title": "Kullanıcının Engelini Kaldırmak Üzeresiniz"
+        }
+      },
+      "add": {
+        "header": "Kullanıcı Engelle",
+        "blacklistValue": "Kullanıcı Adı",
+        "blacklistValueRequired": "giriniz.",
+        "blacklistType": "Engellenen Tür",
+        "creditCardNumber": "Kredi Kartı Numarası",
+        "identityNumber": "Kimlik Numarası",
+        "emailAdress": "Email Adresi",
+        "ipAdress": "IP Adresi",
+        "phoneNumber": "Telefon Numarası",
+        "bankID": "Banka ID",
+        "bankIDRequired": "Lütfen banka ID giriniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kullanıcı Engelle",
+        "blacklistOptions": {
+          "credit_card_number": "Kredi Kartı Numarası",
+          "identity_number": "Kimlik Numarası",
+          "email_address": "E-Mail Adresi",
+          "ip_address": "IP Adresi",
+          "phone_number": "Telefon Numarası"
+        }
+      },
+      "details": {
+        "header": "Kullanıcı Engeli Detay",
+        "blacklistType": "Engellenen Tür",
+        "blacklistValue": "Değer",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "update": {
+        "header": "Kullanıcı Engeli Düzenle",
+        "valueLabel": "Değer",
+        "valueRequired": "giriniz.",
+        "typeLabel": "Engellenen Tür",
+        "typeRequired": "Lütfen bir type giriniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet",
+        "blacklistOptions": {
+          "credit_card_number": "Kredi Kartı Numarası",
+          "identity_number": "Kimlik Numarası",
+          "email_address": "E-Mail Adresi",
+          "ip_address": "IP Adresi",
+          "phone_number": "Telefon Numarası"
+        }
+      }
+    },
+    "bank": {
+      "list": {
+        "notFound": {
+          "header": "Banka Bulunamadı",
+          "info": "Henüz bir banka bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Banka Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} banka arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Banka Ekle",
+        "bankID": "ID",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "bankName": "Banka Adı",
+          "dateCreated": "Oluşturma Tarihi",
+          "shortCode": "Kısa Kod",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+
+        "delete": {
+          "headerTitle": "Bankayı Sil",
+          "title": "Bankayı Silmek Üzeresiniz"
+        }
+      },
+      "add": {
+        "header": "Banka Ekle",
+        "bankName": "Banka Adı",
+        "bankNamePlaceholder": "Banka Adı",
+        "bankNameRequired": "Lütfen bir banka adı giriniz.",
+        "shortcode": "Kısa Kod",
+        "shortcodePlaceholder": "Kısa Kod",
+        "shortcodeRequired": "Lütfen bir kısa kod giriniz.",
+        "imageURL": "Banka Resmi",
+        "imageURLRequired": "Lütfen bir resim seçiniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Banka Ekle",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      },
+      "details": {
+        "header": "Banka Detay",
+        "bankName": "Banka Adı",
+        "bankID": "ID",
+        "shortcode": "Kısa Kod",
+        "dateCreated": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "update": {
+        "header": "Banka Düzenle",
+        "bankName": "Banka Adı",
+        "bankNameRequired": "Lütfen bir banka adı giriniz.",
+        "shortcode": "Kısa Kod",
+        "shortcodeRequired": "Lütfen bir kısa kod giriniz.",
+        "imageURL": "Banka Resmi",
+        "imageURLRequired": "Lütfen bir resim seçiniz.",
+        "imageSaveText": "Resmi Kaydet",
+        "imageSavedText": "Resim Başarıyla Kaydedildi",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "btnCancel": "İptal",
+        "btnSubmit": "Kaydet",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      }
+    },
+    "campaign": {
+      "list": {
+        "notFound": {
+          "header": "Kampanya Bulunamadı",
+          "info": "Henüz bir kampanya bulunmamaktadır",
+          "btnText": "ANA SAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Kampanya Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} kampanya arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnCreateCampaign": "Kampanya Ekle",
+        "tableHead": {
+          "campaignTitle": "Kampanya Başlığı",
+          "campaignDesc": "Kampanya Açıklaması",
+          "campaignImage": "Kampanya Resmi",
+          "campaignDetailImage": "Kısa Detaylı Resim",
+          "dateCreated": "Oluşturma Tarihi",
+          "campaignStartDate": "Başlangıç Tarihi",
+          "campaignEndDate": "Bitiş Tarihi",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "statusPlaceholder": "Durum Filtre",
+        "actions": "Eylemler",
+        "actionDetailsTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "datePlaceholder": "Tarih (Başlangıç - Bitiş)",
+        "delete": {
+          "headerTitle": "Kampanyayı Sil",
+          "title": "Kampanyayı Silmek Üzeresiniz"
+        }
+      },
+      "add": {
+        "header": "Kampanya Ekle",
+        "campaignTitle": "Kampanya Başlığı",
+        "campaignTitlePlaceholder": "Kampanya Başlığı",
+        "campaignTitleRequired": "Lütfen kampanya başlığı giriniz.",
+        "campaignDesc": "Kampanya Açıklaması",
+        "campaignDescPlaceholder": "Açıklama",
+        "campaignDescRequired": "Lütfen kampanya açıklaması giriniz.",
+        "startTimeLabel": "Kampanya Başlangıç Süresi",
+        "endTimeLabel": "Kampanya Bitiş Süresi",
+        "hourPlaceholder": "Sa",
+        "minutePlaceholder": "Dk",
+        "imageURL": "Kampanya Resmi",
+        "imageURLRequired": "Lütfen bir resim seçiniz.",
+        "imageDetailURL": "Kampanya Detay Resmi",
+        "imageDetailURLRequired": "Lütfen bir resim seçiniz.",
+        "campaignStartDate": "Kampanya Başlangıç Tarihi",
+        "campaignStartDateRequired": "Lütfen kampanya başlangıç tarihi giriniz.",
+        "campaignEndDate": "Kampanya Bitiş Tarihi",
+        "campaignEndDateRequired": "Lütfen kampanya bitiş tarihi giriniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kampanya Ekle",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      },
+      "update": {
+        "header": "Kampanya Düzenle",
+        "campaignTitle": "Kampanya Başlığı",
+        "campaignTitleRequired": "Lütfen bir kampanya başlığı giriniz.",
+        "campaignDesc": "Kampanya Açıklaması",
+        "campaignDescRequired": "Lütfen bir kampanya açıklaması giriniz.",
+        "startTimeLabel": "Kampanya Başlangıç Süresi",
+        "endTimeLabel": "Kampanya Bitiş Süresi",
+        "hourPlaceholder": "Sa",
+        "minutePlaceholder": "Dk",
+        "imageURL": "Kampanya Resmi",
+        "imageDetailURL": "Kampanya Detay Resmi",
+        "imageDetailURLRequired": "Lütfen bir resim seçiniz.",
+        "campaignStartDate": "Kampanya Başlangıç Tarihi",
+        "campaignStartDateRequired": "Lütfen kampanya başlangıç tarihi giriniz.",
+        "campaignEndDate": "Kampanya Bitiş Tarihi",
+        "campaignEndDateRequired": "Lütfen kampanya bitiş tarihi giriniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      },
+      "details": {
+        "title": "Kampanya Detay",
+        "btnClose": "Kapat"
+      }
+    },
+    "limit": {
+      "list": {
+        "notFound": {
+          "header": "Limit Bulunamadı",
+          "info": "Henüz bir limit bulunmamaktadır",
+          "btnText": "ANA SAYFA"
+        },
+
+        "noData": "Aradığınız Kriterlerde Limit Bulunmamaktadır.",
+        "statusPlaceholder": "Durum Filtre",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "filterRemove": "Filtreyi Kaldır",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} limit arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnCreateCampaign": "Limit Ekle",
+        "bankWithdraw": "Bankaya Para Gönderme",
+        "bankDeposit": "Bankadan Para Yükleme",
+        "cardWithdraw": "Kredi Kartı Ödemesi",
+        "cardDeposit": "Kredi Kartı Yüklemesi",
+        "transfer": "Transfer",
+        "invoice": "Fatura",
+        "payIn": "Kurumsal Para Yükleme",
+        "payOut": "Kurumsal Para Gönderme",
+        "tableHead": {
+          "limitLevelID": "Seviye",
+          "limitCurrencyID": "Para Birimi",
+          "limitTransactionType": "İşlem Tipi",
+          "limitDaily": "Günlük",
+          "limitWeekly": "Haftalık",
+          "limitMonthly": "Aylık",
+          "limitMin": "Minimum",
+          "limitMax": "Maksimum",
+          "limitDateCreated": "Oluşturma Tarihi",
+          "limitDateModified": "Değiştirme Tarihi",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        },
+        "transactionTypePlaceholder": "İşlem Tipine Göre Filtrele...",
+        "actionDetailsTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+
+        "delete": {
+          "headerTitle": "Limiti Sil",
+          "title": "Limiti Silmek Üzeresiniz"
+        }
+      },
+      "add": {
+        "header": "Limit Ekle",
+        "levelID": "Seviye",
+        "levelIDRequired": "Lütfen bir seviye seçiniz.",
+        "currencyID": "Para Birimi",
+        "currencyIDRequired": "Lütfen bir para birimi seçiniz.",
+        "transactionType": "İşlem Tipi",
+        "transactionTypeRequired": "Lütfen işlem tipi giriniz.",
+        "daily": "Günlük Limit",
+        "dailyPlaceholder": "Günlük Limit",
+        "dailyRequired": "Lütfen günlük limit giriniz.",
+        "weekly": "Haftalık Limit",
+        "weeklyPlaceholder": "Haftalık Limit",
+        "weeklyRequired": "Lütfen haftalık limit giriniz.",
+        "monthly": "Aylık Limit",
+        "monthlyPlaceholder": "Aylık Limit",
+        "monthlyRequired": "Lütfen aylık limit giriniz.",
+        "min": "Minimum Limit",
+        "minPlaceholder": "Minimum Limit",
+        "minRequired": "Lütfen minimum limit giriniz.",
+        "max": "Maksimum Limit",
+        "maxPlaceholder": "Maksimum Limit",
+        "maxRequired": "Lütfen maksimum limit giriniz.",
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        },
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "error": {
+          "levelPermission": "Seviye listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Limit Ekle"
+      },
+      "update": {
+        "header": "Limit Düzenle",
+        "levelID": "Seviye",
+        "levelIDRequired": "Lütfen bir seviye seçiniz.",
+        "currencyID": "Para Birimi",
+        "currencyIDRequired": "Lütfen bir birim seçiniz.",
+        "transactionType": "İşlem Tipi",
+        "transactionTypeRequired": "Lütfen bir işlem tipi giriniz.",
+        "daily": "Günlük Limit",
+        "dailyRequired": "Lütfen günlük limit giriniz.",
+        "weekly": "Haftalık Limit",
+        "weeklyRequired": "Lütfen haftalık limit giriniz.",
+        "monthly": "Aylık Limit",
+        "monthlyRequired": "Lütfen aylık limit giriniz.",
+        "min": "Minimum Limit",
+        "minRequired": "Lütfen minimum limit giriniz.",
+        "max": "Maksimum Limit",
+        "maxRequired": "Lütfen maksimum limit giriniz.",
+        "dateCreated": "Oluşturma Tarihi",
+        "dateModified": "Değiştirme Tarihi",
+        "bankWithdraw": "Bankaya Para Gönderme",
+        "bankDeposit": "Bankadan Para Yükleme",
+        "cardWithdraw": "Kredi Kartı Ödemesi",
+        "cardDeposit": "Kredi Kartı Yüklemesi",
+        "transfer": "Transfer",
+        "invoice": "Fatura",
+        "payIn": "Kurumsal Para Yükleme",
+        "payOut": "Kurumsal Para Gönderme",
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        },
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet",
+        "error": {
+          "levelPermission": "Seviye listeleme yetkiniz bulunmamaktadır"
+        }
+      },
+      "details": {
+        "header": "Limit Detayları",
+        "levelID": "Seviye",
+        "currencyID": "Para Birimi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "dateCreated": "Oluşturma Tarihi",
+        "dateModified": "Değiştirme Tarihi",
+        "daily": "Günlük",
+        "weekly": "Haftalık",
+        "monthly": "Aylık",
+        "min": "Minimum",
+        "max": "Maksimum",
+        "transactionType": "İşlem Tipi",
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        }
+      }
+    },
+    "level": {
+      "list": {
+        "notFound": {
+          "header": "Seviye Bulunamadı",
+          "info": "Henüz bir seviye bulunmamaktadır",
+          "btnText": "ANA SAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Seviye Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} seviye arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnCreateLevel": "Seviye Ekle",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "levelID": "Seviye ID",
+          "levelName": "Seviye Adı",
+          "levelType": "Seviye Türü",
+          "dateCreated": "Oluşturma Tarihi",
+          "withDrawAllow": "Para Gönderme Yetkisi",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "actionDetailsTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "withDrawActive": "Aktif",
+        "withDrawPassive": "Pasif",
+
+        "delete": {
+          "headerTitle": "Seviyeyi Sil",
+          "title": "Seviyeyi Silmek Üzeresiniz"
+        }
+      },
+      "add": {
+        "header": "Seviye Ekle",
+        "levelName": "Seviye Adı",
+        "levelNamePlaceholder": "Seviye Adı",
+        "levelNameRequired": "Lütfen bir seviye adı giriniz.",
+        "levelType": "Seviye Türü",
+        "withDrawAllow": "Para Gönderme Yetkisi",
+        "withDrawActive": "Aktif",
+        "withDrawPassive": "Pasif",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Seviye Ekle"
+      },
+      "update": {
+        "header": "Level Düzenle",
+        "levelName": "Seviye Adı",
+        "levelNameRequired": "Lütfen bir seviye adı giriniz.",
+        "levelType": "Seviye Türü",
+        "withDrawAllow": "Para Gönderme Yetkisi",
+        "withDrawActive": "Aktif",
+        "withDrawPassive": "Pasif",
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        }
+      },
+      "details": {
+        "header": "Seviye Detay",
+        "levelID": "Seviye ID",
+        "levelName": "Seviye Adı",
+        "levelType": "Seviye Türü",
+        "dateCreated": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "wdToOther": "Para Gönderme Yetkisi",
+        "withDrawActive": "Aktif",
+        "withDrawPassive": "Pasif"
+      }
+    },
+    "fees": {
+      "list": {
+        "notFound": {
+          "header": "Ücret Bulunamadı",
+          "info": "Henüz bir ücret bulunmamaktadır",
+          "btnText": "ANA SAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Komisyon Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} komisyon arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnCreateFee": "Komisyon Ekle",
+        "tableHead": {
+          "feeType": "Komisyon Türü",
+          "fixValue": "Sabit Komisyon",
+          "feeDirectionType": "Komisyon Yön",
+          "minValue": "Minimum Değer",
+          "rateValue": "Oran",
+          "transactionType": "İşlem Tipi",
+          "currencyCode": "Birim Kodu",
+          "levelName": "Seviye Adı",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        },
+        "statusPlaceholder": "Durum Filtre",
+        "actions": "Eylemler",
+        "actionDetailsTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+
+        "delete": {
+          "headerTitle": "Komisyonu Sil",
+          "title": "Komisyonu Silmek Üzeresiniz"
+        }
+      },
+      "details": {
+        "header": "Komisyon Detay",
+        "feeHeader": "Komisyon",
+        "currencyHeader": "Birim",
+        "levelHeader": "Seviye",
+        "feeID": "ID",
+        "feeType": "Komisyon Türü",
+        "feeDirectionType": "Komisyon Yön",
+        "feeTransactionType": "İşlem Tipi",
+        "fixValue": "Sabit Komisyon",
+        "minValue": "Minimum",
+        "rateValue": "Oran",
+        "currencyID": "Birim ID",
+        "currencyCode": "Birim Kodu",
+        "currencyName": "Birim Adı",
+        "currencyFlag": "Birim Bayrak",
+        "currencyStatus": "Birim Durum",
+        "currencyStatuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "levelID": "Seviye ID",
+        "levelName": "Seviye Adı",
+        "levelStatus": "Seviye Durum",
+        "levelStatuses": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "levelType": "Seviye Türü",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "add": {
+        "header": "Komisyon Ekle",
+        "levelLabel": "Seviye",
+        "currencyLabel": "Birim",
+        "transactionTypeLabel": "İşlem Tipi",
+        "feeDirectionTypeLabel": "Komisyon Yön",
+        "feeTypeLabel": "Komisyon Türü",
+        "fixValueLabel": "Sabit Komisyon",
+        "fixValuePlaceholder": "Sabit Değer",
+        "fixValueRequired": "Lütfen sabit değer giriniz",
+        "rateValueLabel": "Oran",
+        "rateValuePlaceholder": "Oran",
+        "rateValueRequired": "Lütfen bir oran giriniz",
+        "minValueLabel": "Minimum Komisyon",
+        "minValuePlaceholder": "Minimum Komisyon",
+        "minValueRequired": "Lütfen minimum değer giriniz",
+        "bankWithdraw": "Bankaya Para Gönderme",
+        "bankDeposit": "Bankadan Para Yükleme",
+        "cardWithdraw": "Kredi Kartı Ödemesi",
+        "cardDeposit": "Kredi Kartı Yüklemesi",
+        "transfer": "Transfer",
+        "invoice": "Fatura",
+        "payIn": "Kurumsal Para Yükleme",
+        "payOut": "Kurumsal Para Gönderme",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        },
+        "error": {
+          "levelPermission": "Seviye listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Komisyon Ekle"
+      },
+      "update": {
+        "header": "Komisyon Düzenle",
+        "levelLabel": "Seviye",
+        "currencyLabel": "Birim",
+        "transactionTypeLabel": "İşlem Tipi",
+        "feeDirectionTypeLabel": "Komisyon Yön",
+        "feeTypeLabel": "Komisyon Türü",
+        "fixValueLabel": "Sabit Komisyon",
+        "fixValuePlaceholder": "Sabit Değer",
+        "fixValueRequired": "Lütfen sabit değer giriniz",
+        "rateValueLabel": "Oran",
+        "rateValuePlaceholder": "Oran",
+        "rateValueRequired": "Lütfen bir oran giriniz",
+        "minValueLabel": "Minimum Komisyon",
+        "minValuePlaceholder": "Minimum Komisyon",
+        "minValueRequired": "Lütfen minimum değer giriniz",
+        "bankWithdraw": "Bankaya Para Gönderme",
+        "bankDeposit": "Bankadan Para Yükleme",
+        "cardWithdraw": "Kredi Kartı Ödemesi",
+        "cardDeposit": "Kredi Kartı Yüklemesi",
+        "transfer": "Transfer",
+        "invoice": "Fatura",
+        "payIn": "Kurumsal Para Yükleme",
+        "payOut": "Kurumsal Para Gönderme",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "transactionOptions": {
+          "bank_deposit": "Bankadan Para Yükleme",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "card_deposit": "Kredi Kartı Yüklemesi",
+          "card_withdrawal": "Kredi Kartı Ödemesi",
+          "donation": "Bağış",
+          "invoice": "Fatura Ödemesi",
+          "pay_in": "Kurumsal Para Yükleme",
+          "pay_out": "Kurumsal Para Gönderme",
+          "transfer": "Transfer"
+        },
+        "error": {
+          "levelPermission": "Seviye listeleme yetkiniz bulunmamaktadır"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet"
+      }
+    }
+  },
+  "profile": {
+    "changePassword": {
+      "title": "Şifre Değiştirme",
+      "subtitle": "Şifrenizi değiştirmek için formu doldurunuz",
+      "form": {
+        "item1": {
+          "label": "Mevcut Şifre",
+          "placeholder": "Mevcut Şifreniz",
+          "warning": "Şifreniz en az 8 karakter olmalıdır. Büyük harf, küçük harf, sayı ve sembol içermelidir",
+          "validation": {
+            "required": "Lütfen mevcut şifrenizi giriniz",
+            "rule": "Şifreniz belirtilen kriterlere uymamaktadır"
+          }
+        },
+        "item2": {
+          "label": "Yeni Şifre",
+          "placeholder": "Yeni Şifreniz",
+          "warning": "Şifreniz en az 8 karakter olmalıdır. Büyük harf, küçük harf, sayı ve sembol içermelidir",
+          "validation": {
+            "required": "Lütfen yeni şifrenizi giriniz",
+            "rule": "Şifreniz belirtilen kriterlere uymamaktadır"
+          }
+        },
+        "item3": {
+          "label": "Yeni Şifre Tekrar",
+          "placeholder": "Yeni Şifre Tekrar",
+          "warning": "Şifreniz en az 8 karakter olmalıdır. Büyük harf, küçük harf, sayı ve sembol içermelidir",
+          "validation": {
+            "required": "Lütfen yeni şifrenizi giriniz",
+            "rule": "Şifreniz belirtilen kriterlere uymamaktadır"
+          }
+        },
+        "validation": {
+          "samePassword": "Girilen şifre yeni şifreniz ile aynı değildir."
+        },
+        "buttonText": "KAYDET"
+      }
+    }
+  }
+}

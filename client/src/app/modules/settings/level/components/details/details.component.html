@@ -1,0 +1,49 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.level.details.header' | translate}}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body" *ngIf="level">
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.level.details.levelID' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{level.id}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.level.details.levelName' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{level.name}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.level.details.dateCreated' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{level.date_created | customDatePipe:true}}</div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.level.details.levelType' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{level.type | titlecase}}</div>
+                </li>
+
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.level.details.status' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{'settings.level.details.statuses.' + level.status | translate}}</div>
+                </li>
+
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.level.details.wdToOther' | translate}}</span>
+                    <div *ngIf="level.wd_to_other" class="form-control-plaintext pt-0">{{ 'settings.level.details.withDrawActive' | translate }}</div>
+                    <div *ngIf="!level.wd_to_other" class="form-control-plaintext pt-0">{{ 'settings.level.details.withDrawPassive' | translate }}</div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>

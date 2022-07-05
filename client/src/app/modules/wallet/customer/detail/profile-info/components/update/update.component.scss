@@ -1,0 +1,70 @@
+.update-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+}
+
+.update-body {
+  padding: 30px 20px 20px 20px;
+
+  input {
+    padding: 7px 10px !important;
+    background-color: #ffffff;
+  }
+
+  .validation {
+    visibility: hidden;
+    margin-top: 5px;
+    font-size: 11px;
+    height: 12px;
+    color: #f74f00;
+    padding-left: 10px;
+  }
+}
+
+.update-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 30px 20px 20px 20px;
+
+
+  button {
+    width: 196px;
+    border: 1px solid #293a50;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .btn-save {
+    background-color: #293a50;
+    color: #ffffff;
+
+    margin-left: 16px;
+  }
+
+  .btn-cancel {
+    background-color: #ffffff !important;
+    color: #293a50;
+  }
+}
+
+.form-group {
+  &:last-child {
+    padding-top: 12px;
+    margin-bottom: 0 !important;
+
+  }
+}

@@ -1,0 +1,22 @@
+
+.container-fluid {
+  height: 600px;
+
+  .select-service {
+    max-width: 800px;
+    width: 100%;
+
+    .card {
+      height: 120px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: .8;
+        transform: translateY(-10px);
+        transition-duration: 0.3s;
+      }
+    }
+  }
+
+}
+

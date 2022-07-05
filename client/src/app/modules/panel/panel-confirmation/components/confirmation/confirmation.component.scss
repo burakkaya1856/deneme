@@ -1,0 +1,110 @@
+@import '../../../../../../assets/styles/helpers/mixins';
+
+.confirmation-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+}
+
+.confirmation-body {
+  padding: 40px 25px 40px 40px;
+
+  @include screen-size('sm') {
+    padding: 20px 15px 20px 20px;
+  }
+
+  h4 {
+    font-size: 20px;
+    color: #293a50;
+  }
+
+  label {
+    color: #f74f00;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  .scroll {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 15px;
+
+    @include screen-size('sm') {
+      padding-right: 5px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: #2c2d45;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(44, 45, 69, 0.4);
+    }
+  }
+
+  .middle-border {
+    border-right: 1px solid #ddd;
+
+    @include screen-size('sm') {
+      border: none;
+    }
+  }
+
+  .break-word {
+    overflow-wrap: break-word;
+  }
+}
+
+.confirmation-footer {
+  padding: 40px 20px;
+
+  &.create-padding {
+    padding: 20px 60px 40px 60px;
+
+    @include screen-size('sm') {
+      padding: 40px 20px;
+    }
+  }
+
+  button {
+    width: 200px;
+
+    @include screen-size('sm') {
+      width: 100%;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .btn-save {
+    background-color: #4caf50;
+    color: #ffffff;
+  }
+
+  .btn-cancel {
+    background-color: #ffffff !important;
+    color: #293a50;
+    border: 1px solid #293a50;
+  }
+}

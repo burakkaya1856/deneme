@@ -1,0 +1,45 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{ 'panel.panelPermission.details.title' | translate }}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+
+<div class="detail-body" *ngIf="permissionDetail">
+    <div class="row">
+        <div class="col-sm-12">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{ 'panel.panelPermission.details.type' | translate }}</span>
+                    <div class="ml-auto text-break">{{permissionDetail.permission_type}}</div>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'panel.panelPermission.details.description' | translate}}</span>
+                    <div class="ml-auto">{{permissionDetail.description | titlecase}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'panel.panelPermission.details.status' | translate}}</span>
+                    <div class="ml-auto">{{ 'panel.panelPermission.details.statuses.' + permissionDetail.status | translate }}</div>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'panel.panelPermission.details.date' | translate}}</span>
+                    <div class="ml-auto">{{permissionDetail.date_created | customDatePipe:true}}</div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+.delete-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+
+  }
+
+}
+
+
+.delete-body {
+  padding: 30px 20px 20px 20px;
+
+  h2 {
+    color: #f74f;
+    font-weight: 600;
+  }
+}
+
+.delete-footer {
+  padding: 30px 20px 20px 20px;
+
+  button {
+    border: 1px solid #293a50;
+    width: 100%;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+
+  }
+
+  .btn-save {
+    background-color: #293a50;
+    color: #ffffff;
+  }
+
+  .btn-cancel {
+    background-color: #ffffff !important;
+    color: #293a50;
+  }
+
+}

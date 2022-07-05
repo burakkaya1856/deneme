@@ -1,0 +1,98 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.limit.update.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="limitData">
+    <div class="update-body">
+
+        <div class="row mb-4 ">
+            <div class="col-sm-6  mobile-space ">
+                <label>{{'settings.limit.update.levelID' | translate}}</label>
+                <ng-select *ngIf="levelPermission" name="level-id" [ngModel]="limitData.level" (ngModelChange)="changeLevelID($event)" class="ng-select-table" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let level of levels" [value]="level.id">{{level.name}}</ng-option>
+                </ng-select>
+
+                <p class="no-permission" *ngIf="!levelPermission">{{'settings.limit.update.error.levelPermission' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.limit.update.currencyID' | translate}}</label>
+                <ng-select *ngIf="currencies" name="currency-id" [(ngModel)]="limitData.currency_id" class="ng-select-table" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let currency of currencies" [value]="currency.id">
+                        {{currency.code}}
+                        <img class="currency-flag" src="{{currency.flag}}" alt="currency-flag">
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <label>{{'settings.limit.update.transactionType' | translate}}</label>
+                <ng-select *ngIf="this.transactionKeys" class="ng-select-table" name="transaction-type" [(ngModel)]="limitData.transaction_type" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of transactionKeys" [value]="item">{{'settings.limit.add.transactionOptions.' + item | translate }}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="row mb-4">
+            <div class="col-sm-4">
+                <label>{{'settings.limit.update.daily' | translate}}</label>
+                <input [(ngModel)]="limitData.daily" type="text" class="form-control" numbersOnly name="daily" #fDaily="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fDaily.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.update.dailyRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-4">
+                <label>{{'settings.limit.update.weekly' | translate}}</label>
+                <input [(ngModel)]="limitData.weekly" type="text" class="form-control" numbersOnly name="weekly" #fWeekly="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fWeekly.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.update.weeklyRequired' | translate }}</p>
+
+            </div>
+
+            <div class=" col-sm-4">
+                <label>{{'settings.limit.update.monthly' | translate}}</label>
+                <input [(ngModel)]="limitData.monthly" type="text" class="form-control" numbersOnly name="monthly" #fMonthly="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fMonthly.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.update.monthlyRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-4">
+                <label>{{'settings.limit.update.min' | translate}}</label>
+                <input [(ngModel)]="limitData.min" type="text" class="form-control" numbersOnly name="min" #fMin="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fMin.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.update.minRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-4">
+                <label>{{'settings.limit.update.max' | translate}}</label>
+                <input [(ngModel)]="limitData.max" type="text" class="form-control" numbersOnly name="max" #fMax="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fMax.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.update.maxRequired' | translate }}</p>
+            </div>
+
+
+            <div class="col-sm-4">
+                <label>{{'settings.limit.update.statusLabel' | translate}}</label>
+
+                <ng-select *ngIf="statusKeys" name="limit-status" class="ng-select-table" [(ngModel)]="limitData.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.limit.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="update-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.limit.update.btnCancel' | translate}}</button>
+
+            </div>
+            <div class="col-6">
+                <button type="submit" [disabled]="!levelPermission" class="btn btn-save">{{'settings.limit.update.btnSubmit' | translate}}</button>
+
+            </div>
+
+        </div>
+    </div>
+</form>

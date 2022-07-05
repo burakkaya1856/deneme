@@ -1,0 +1,98 @@
+<div class="bg-white mt-3" *ngIf="!emptyConfirmation">
+
+    <div class="d-flex justify-content-md-between px-3 pt-3 border-bottom">
+
+        <div class="dataTables_length d-flex w-100 justify-content-md-end">
+            <label class="d-flex">
+
+                <span>{{'panel.panelUser.list.tableSizeLabel' | translate }}:</span>
+                <select [ngModel]="paginationCount" (ngModelChange)="paginationCountHandler($event)" name="DataTables_Table_0_length" class="custom-select pl-3 pr-4">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </label>
+        </div>
+
+    </div>
+
+    <div class="datatable-scroll">
+        <table class="table datatable-basic dataTable no-footer table-hover" role="grid">
+
+            <thead>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelConfirmation.list.tableHead.description' | translate }}</th>
+                    <th>{{ 'panel.panelConfirmation.list.tableHead.fullName' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelConfirmation.list.tableHead.personCount' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelConfirmation.list.tableHead.dateCreated' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelConfirmation.list.tableHead.status' | translate }}</th>
+                    <th class="text-right" tabindex="0" rowspan="1" colspan="1"><span class="mr-3">{{ 'panel.panelConfirmation.list.tableHead.actions' | translate }}</span></th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+
+                    <tr *ngFor="let list of panelConfirmations">
+                        <td>{{list.description | titlecase}}</td>
+                        <td>{{list.submitted_by.full_name | titlecase}}</td>
+                        <td><span *ngIf="list.managed_user">{{list.managed_user.panel_user.full_name | titlecase}}</span>
+                            <span *ngIf="!list.managed_user">-</span></td>
+
+                        <td>{{list.date_created | customDatePipe:true}}</td>
+                        <td class="text-center">
+                            <span class="badge" [ngClass]="{'badge-danger': list.status == 'declined', 'bg-orange': list.status == 'waiting', 'badge-success': list.status =='approved'}">
+                                {{'panel.panelConfirmation.list.tableStatus.' + list.status | translate}}
+                            </span>
+                        </td>
+                        <td class="text-right" colspan="1">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round mr-4" type="button" (click)="confirmation(list)" tooltip="{{ 'panel.panelConfirmation.list.actionConfirmationTooltip' | translate }}">
+                                <i class="icon-user-check
+                                "></i>
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </ng-container>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{info.total}} {{ 'panel.panelConfirmation.list.paginationInfo.data' | translate }} {{info.start}} - {{info.end}} {{ 'panel.panelConfirmation.list.paginationInfo.show' | translate }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="pagination.maxPage" [(ngModel)]="pagination.page" (pageChanged)="paginationPageChangedHandler($event)"></pagination>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyConfirmation">
+
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{ 'panel.panelConfirmation.list.notFound.header' | translate }}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{ 'panel.panelConfirmation.list.notFound.info' | translate }}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">{{ 'panel.panelConfirmation.list.notFound.btnText' | translate }}</button>
+        </div>
+    </div>
+
+</div>

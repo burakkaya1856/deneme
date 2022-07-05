@@ -1,0 +1,49 @@
+<div class="login">
+
+    <div class="login-title">
+        <i class="icon-library2 icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-1" aria-hidden="true"></i>
+        <h1>{{'public.login.title' | translate}}</h1>
+        <p>{{'public.login.subtitle' | translate}}</p>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="submitForm(form)">
+
+        <div class="item">
+            <label>{{'public.login.form.item1.label' | translate}}</label>
+            <i class="icon-envelop text-muted"></i>
+            <input [(ngModel)]="userEmail" type="text" placeholder="{{'public.login.form.item1.placeholder' | translate}}" name="femail" #email="ngModel" email="true" autocomplete="off" required />
+
+            <div class="validation" [ngStyle]="{visibility: formSubmitted && email.invalid ? 'visible' : 'hidden'}">
+                <span *ngIf="email.errors?.required">{{'public.login.form.item1.validation.required' | translate}}</span>
+                <span *ngIf="email.errors?.email">{{'public.login.form.item1.validation.invalid' |
+          translate}}</span>
+            </div>
+
+        </div>
+
+        <div class="item">
+            <label>{{'public.login.form.item2.label' | translate}}</label>
+            <i class="icon-lock2 text-muted"></i>
+            <input [ngModel]="userPassword.password" (ngModelChange)="changePassword($event)" type="{{userPassword.type}}" placeholder="{{'public.login.form.item2.placeholder' | translate}}" name="fpassword" #password="ngModel" autocomplete="off" required />
+
+            <div class="password-icon" (click)="handlerUserPasswordShow()">
+                <i *ngIf="!userPassword.show" class="icon-eye" [class.active]="userPassword.password"></i>
+                <i *ngIf="userPassword.show" class="icon-eye-blocked" [class.active]="userPassword.password"></i>
+            </div>
+
+            <div class="warning">
+                <i class="icon-exclamation" [class.active]="userPassword.password" tooltip="{{'public.login.form.item2.warning' | translate}}"></i>
+            </div>
+
+            <div class="validation" [ngStyle]="{visibility: formSubmitted  ? 'visible' : 'hidden'}">
+                <span *ngIf="password.errors?.required && password.invalid">{{'public.login.form.item2.validation.required' | translate}}</span>
+                <span *ngIf="!password.invalid && !userPassword.validation">{{'public.login.form.item2.validation.rule' | translate}} </span>
+            </div>
+
+        </div>
+
+        <button type="submit">{{'public.login.form.buttonText' | translate}}</button>
+
+    </form>
+
+</div>

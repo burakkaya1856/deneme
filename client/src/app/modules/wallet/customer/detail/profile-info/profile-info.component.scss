@@ -1,0 +1,134 @@
+@import '../../../../../../assets/styles/helpers/mixins';
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+
+    @include screen-size('md') {
+      margin-top: 12px;
+      border-left: 1px solid #cccccc;
+      padding-left: 9px;
+    }
+
+    span {
+      margin-right: 12px;
+      color: #2c2d45;
+      opacity: 0.8;
+      font-size: 19px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    i {
+      color: #ff4308;
+    }
+  }
+}
+
+.card {
+  height: 519px;
+}
+
+.profile {
+  padding: 28px 105px 46px 37px;
+
+  @include screen-size('xl') {
+    padding: 20px;
+  }
+
+  .personal-info {
+    margin-top: 12px;
+
+    h4 {
+      line-height: 16px;
+      opacity: 0.87;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c2d45;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      margin: 0;
+
+      li {
+        &:first-of-type {
+          line-height: 19px;
+          font-size: 16px;
+          font-weight: 500;
+          color: #2c2d45;
+        }
+
+        &:last-of-type {
+          line-height: 16px;
+          font-size: 16px;
+          text-align: right;
+          color: #2c2d45;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .notification-info {
+    margin-top: 32px;
+
+    h4 {
+      line-height: 16px;
+      opacity: 0.87;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c2d45;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      border-bottom: 1px solid #ddd;
+      padding: 8px 0;
+      margin: 0;
+
+      li {
+        &:first-of-type {
+          line-height: 16px;
+          font-size: 16px;
+          text-align: right;
+          color: #2c2d45;
+        }
+      }
+    }
+  }
+}
+
+.error-container {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+}

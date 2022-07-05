@@ -1,0 +1,153 @@
+ <div class="customer">
+
+     <div class="detail">
+
+         <div class="card detail-sidebar" *ngIf="customerDashboard">
+
+             <div class="card-body text-center">
+                 <div class="card-img-actions d-inline-block mb-3">
+                     <img *ngIf="!customerDashboard.profile_image" class="rounded-circle profile-img" src="../../../../../assets/images/profile-image.png" alt="profile-img" />
+                     <img *ngIf="customerDashboard.profile_image" class="rounded-circle profile-img" [src]="customerDashboard.profile_image" alt="profile-img" />
+                 </div>
+                 <h6 class="font-weight-semibold mb-2">
+                     {{ customerDashboard.full_name }}
+                 </h6>
+                 <ul>
+                     <li>{{ 'wallet.customer.detail.sidebar.walletNo' | translate }}:</li>
+                     <li>{{customerDashboard.customer_no}} <img class="copy" (click)="copy(customerDashboard.customer_no, 'Müşteri numarası kopyalandı.')" src="../../../../../assets/images/icons-text-copy.svg" alt="copy" /></li>
+                 </ul>
+                 <ul>
+                     <li>{{ 'wallet.customer.detail.sidebar.phoneNumber' | translate }}:</li>
+                     <li>{{customerDashboard.phone_number}} <img class="copy" (click)="copy(customerDashboard.phone_number, 'Telefon numarası kopyalandı.')" src="../../../../../assets/images/icons-text-copy.svg" alt="copy" /></li>
+                 </ul>
+                 <ul>
+                     <li>{{ 'wallet.customer.detail.sidebar.level' | translate }}</li>
+                     <li>{{customerDashboard.level?.name}} </li>
+                 </ul>
+             </div>
+
+             <ul class="nav nav-sidebar">
+
+                 <li class="nav-item">
+                     <a routerLink="/wallet/customer/detail/{{walletNo}}/dashboard" class="nav-link" routerLinkActive="active">
+                         <i class="icon-home2"></i>
+                         {{ 'wallet.customer.detail.sidebar.dashboard' | translate }} </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a routerLink="/wallet/customer/detail/{{walletNo}}/profile" class="nav-link" routerLinkActive="active">
+                         <i class="icon-user"></i>
+                         {{ 'wallet.customer.detail.sidebar.profile' | translate }} </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a routerLink="/wallet/customer/detail/{{walletNo}}/bank-accounts" class="nav-link" routerLinkActive="active">
+                         <i class="icon-wallet"></i>
+                         {{ 'wallet.customer.detail.sidebar.accounts' | translate }} </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a routerLink="/wallet/customer/detail/{{walletNo}}/transactions" class="nav-link" routerLinkActive="active">
+                         <i class="icon-stats-bars2"></i>
+                         {{ 'wallet.customer.detail.sidebar.transactions' | translate }} </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a routerLink="/wallet/customer/detail/{{walletNo}}/limits" class="nav-link" routerLinkActive="active">
+                         <i class="icon-coins"></i>
+                         {{ 'wallet.customer.detail.sidebar.limits' | translate }}</a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a routerLink="/wallet/customer/detail/{{walletNo}}/notifications" class="nav-link" routerLinkActive="active">
+                         <i class="icon-bell2"></i>
+                         {{ 'wallet.customer.detail.sidebar.notifications' | translate }}
+                         <span class="badge badge-dark badge-pill ml-auto">{{customerDashboard.number_of_notifications}}</span>
+                     </a>
+                 </li>
+
+                 <li class="nav-item-divider"></li>
+
+                 <li class="nav-item">
+                     <div routerLink="/wallet/customer" class="nav-link">
+                         <i class="icon-arrow-left8"></i>
+                         {{ 'wallet.customer.detail.sidebar.back' | translate }} </div>
+                 </li>
+             </ul>
+         </div>
+
+         <div *ngIf="customerDashboard" class="navbar-phone col-lg-12 d-xl-none" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+
+             <div class="navbar-container">
+
+                 <img *ngIf="!customerDashboard.profile_image" src="../../../../../assets/images/profile-image.png" alt="profile-img" />
+                 <img *ngIf="customerDashboard.profile_image" [src]="customerDashboard.profile_image" alt="profile-img" />
+
+                 <div class="phone">
+                     <i class="icon-phone2"></i>
+                     <span>{{ customerDashboard.phone_number }}</span>
+                 </div>
+
+                 <span>{{customerDashboard.customer_no}}</span>
+                 <i class="icon-arrow-down15 down-icon" [class.rotate]="!isCollapsed"></i>
+
+             </div>
+
+             <div id="collapseBasic" class="open-navbar" [collapse]="isCollapsed" [isAnimated]="true">
+
+                 <ul class="well well-lg card card-block card-header nav nav-sidebar">
+                     <li class="nav-item">
+                         <a routerLink="/wallet/customer/detail/{{walletNo}}/dashboard" class="nav-link" routerLinkActive="active">
+                             <i class="icon-home2"></i>
+                             {{ 'wallet.customer.detail.sidebar.dashboard' | translate }} </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a routerLink="/wallet/customer/detail/{{walletNo}}/profile" class="nav-link" routerLinkActive="active">
+                             <i class="icon-user"></i>
+                             {{ 'wallet.customer.detail.sidebar.profile' | translate }} </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a routerLink="/wallet/customer/detail/{{walletNo}}/bank-accounts" class="nav-link" routerLinkActive="active">
+                             <i class="icon-wallet"></i>
+                             {{ 'wallet.customer.detail.sidebar.accounts' | translate }} </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a routerLink="/wallet/customer/detail/{{walletNo}}/transactions" class="nav-link" routerLinkActive="active">
+                             <i class="icon-stats-bars2"></i>
+                             {{ 'wallet.customer.detail.sidebar.transactions' | translate }} </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a routerLink="/wallet/customer/detail/{{walletNo}}/limits" class="nav-link" routerLinkActive="active">
+                             <i class="icon-coins"></i>
+                             {{ 'wallet.customer.detail.sidebar.limits' | translate }}</a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a routerLink="/wallet/customer/detail/{{walletNo}}/notifications" class="nav-link" routerLinkActive="active">
+                             <i class="icon-bell2"></i>
+                             {{ 'wallet.customer.detail.sidebar.notifications' | translate }}
+                             <span class="badge badge-dark badge-pill ml-auto"></span>
+                         </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <div routerLink="/wallet/customer" class="nav-link">
+                             <i class="icon-arrow-left8"></i>
+                             {{ 'wallet.customer.detail.sidebar.back' | translate }} </div>
+                     </li>
+
+                 </ul>
+             </div>
+         </div>
+
+         <div>
+             <router-outlet></router-outlet>
+         </div>
+
+     </div>
+
+ </div>

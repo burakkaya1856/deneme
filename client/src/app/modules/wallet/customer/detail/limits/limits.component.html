@@ -1,0 +1,40 @@
+<h1>{{ 'wallet.customer.detail.components.limits.title' | translate }}</h1>
+<hr>
+
+<div class="card">
+    <div class="table-responsive" *ngIf="!emptyLimit">
+        <table class="table">
+            <thead>
+                <tr class="table-header text-white">
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field1' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field2' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field3' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field4' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field5' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field6' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.limits.table.field7' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody class="t-body">
+                <tr *ngFor="let item of limitData; let i = index">
+                    <td>{{ item.transaction_type }}</td>
+                    <td>{{ item.limit  | currency:'item.currency':'':'1.2-3'}} <span>{{item.currency}}</span> </td>
+                    <td>{{ item.daily  | currency:'item.currency':'':'1.2-3'}} <span>{{item.currency}}</span> </td>
+                    <td>{{ item.weekly | currency:'item.currency':'':'1.2-3'}} <span>{{item.currency}}</span> </td>
+                    <td>{{ item.monthly | currency:'item.currency':'':'1.2-3'}} <span>{{item.currency}}</span> </td>
+                    <td>{{ item.max  | currency:'item.currency':'':'1.2-3'}} <span>{{item.currency}}</span> </td>
+                    <td>{{ item.min  | currency:'item.currency':'':'1.2-3'}} <span>{{item.currency}}</span> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="error-container" *ngIf="emptyLimit">
+        <div>
+            <h2>{{ 'wallet.customer.detail.components.limits.error.noData.title' | translate }}</h2>
+            <p>{{ 'wallet.customer.detail.components.limits.error.noData.info' | translate }}</p>
+        </div>
+
+    </div>
+
+</div>

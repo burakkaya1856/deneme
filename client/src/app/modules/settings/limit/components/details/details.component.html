@@ -1,0 +1,74 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.limit.details.header' | translate}}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body" *ngIf="limit">
+    <div class="row">
+        <div class="col-lg-6">
+            <ul>
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.transactionType' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{'settings.limit.details.transactionOptions.' + limit.transaction_type | translate }}</div>
+                </li>
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.currencyID' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.currency}}</div>
+                </li>
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.weekly' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.weekly | currency:'selectCurrency':'':'1.2-3' | currencyFormat}}</div>
+                </li>
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.min' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.min | currency:'selectCurrency':'':'1.2-3' | currencyFormat}}</div>
+                </li>
+
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.status' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{'settings.limit.details.statuses.' + limit.status | translate}}</div>
+                </li>
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.dateCreated' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.date_created | customDatePipe:true}}</div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-lg-6">
+            <ul>
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.levelID' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.level}}</div>
+                </li>
+
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.daily' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.daily | currency:'selectCurrency':'':'1.2-3' | currencyFormat}} </div>
+                </li>
+
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.monthly' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.monthly | currency:'selectCurrency':'':'1.2-3' | currencyFormat}}</div>
+                </li>
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.max' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.max | currency:'selectCurrency':'':'1.2-3' | currencyFormat}}</div>
+                </li>
+
+                <li>
+                    <label class="font-weight-semibold mb-0">{{'settings.limit.details.dateModified' | translate}}</label>
+                    <div class="form-control-plaintext pt-0">{{limit.date_modified | customDatePipe:true}}</div>
+                </li>
+
+            </ul>
+        </div>
+    </div>

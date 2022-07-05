@@ -1,0 +1,92 @@
+<div class="update-header">
+    <h1 class="modal-title">{{ 'panel.panelRole.update.title' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+<form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="roleData">
+    <div class="update-body">
+
+        <div class="form-group row justify-content-between">
+            <div class="col-sm-5">
+                <label class="col-form-label d-block">{{ 'panel.panelRole.update.roleName' | translate }}:</label>
+                <input [(ngModel)]="roleData.name" type="text" class="form-control" placeholder="{{ 'panel.panelRole.update.roleName' | translate }}" name="fRoleName" #roleName="ngModel" maxlength="5" autocomplete="off" required>
+
+                <div [ngStyle]="{'visibility': f.submitted &&  roleName.errors?.required ? 'visible' : 'hidden'}" class="validation">
+                    <span>{{ 'panel.panelRole.update.roleNameRequired' | translate }}</span>
+                </div>
+
+            </div>
+
+            <div class="col-sm-5">
+                <label class="col-form-label d-block">{{ 'panel.panelRole.update.roleCode' | translate }}:</label>
+                <input [(ngModel)]="roleData.code" type="text" class="form-control" placeholder="{{ 'panel.panelRole.update.roleCode' | translate }}" name="fRoleCode" #roleCode="ngModel" maxlength="5" autocomplete="off" required>
+
+                <div [ngStyle]="{'visibility': f.submitted &&  roleCode.errors?.required ? 'visible' : 'hidden'}" class="validation">
+                    <span>{{ 'panel.panelRole.update.roleCodeRequired' | translate }}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12" class="tab-container">
+            <h4>{{ 'panel.panelRole.update.tabTitle' | translate }}</h4>
+
+            <tabset *ngIf="modifiedPermissions && modifiedPermissions.length>0" class="tab" [vertical]="tabTitleState" [justified]="justified">
+                <tab heading="{{ 'panel.panelRole.update.tabHeadings.wallet' | translate }}">
+                    <ul *ngFor="let item of  modifiedPermissions | searchFilter:'wallet'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelRole.update.tabHeadings.panel' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'panel'" (click)="item.state = !item.state">
+                        <li class="w-100">{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelRole.update.tabHeadings.setting' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'setting'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelRole.update.tabHeadings.report' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'report'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelRole.update.tabHeadings.auth' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'auth'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+            </tabset>
+
+            <p *ngIf="!permissionState" class="text-center pt-4">{{ 'panel.panelRole.update.error.permission' | translate }}</p>
+
+        </div>
+
+    </div>
+
+    <div class="update-footer">
+        <div class="row">
+
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{ 'panel.panelRole.update.btnCancel' | translate }}</button>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" [disabled]="!permissionState" class="btn btn-save">{{ 'panel.panelRole.update.btnSubmit' | translate }}</button>
+            </div>
+
+        </div>
+    </div>
+</form>

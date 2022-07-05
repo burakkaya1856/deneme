@@ -1,0 +1,27 @@
+.add {
+  display: flex;
+  margin-left: auto;
+  height: 42px;
+  width: 140px;
+  align-items: center;
+  justify-content: center;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-top: 20px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  i {
+    font-size: 16px;
+    margin-right: 8px;
+    display: inline-block;
+  }
+}
+.badge {
+  margin-left: 3px;
+}

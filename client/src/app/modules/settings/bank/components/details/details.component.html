@@ -1,0 +1,35 @@
+    <div class="detail-header">
+        <h1 class="modal-title">{{'settings.bank.details.header' | translate}}</h1>
+        <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="detail-body" *ngIf="bank">
+        <div class="row">
+            <div class="col-sm-6">
+                <ul>
+                    <li>
+                        <span class="font-weight-semibold">{{'settings.bank.details.bankName' | translate}}</span>
+                        <div class="ml-auto">{{bank.name}}</div>
+                    </li>
+
+                    <li>
+                        <span class="font-weight-semibold">{{'settings.bank.details.status' | translate}}</span>
+                        <div class="ml-auto">{{'settings.bank.details.statuses.' + bank.status | translate}}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul>
+                    <li>
+                        <span class="font-weight-semibold">{{'settings.bank.details.shortcode' | translate}}</span>
+                        <div class="ml-auto">{{bank.shortcode}}</div>
+                    </li>
+
+                    <li>
+                        <span class="font-weight-semibold">{{'settings.bank.details.dateCreated' | translate}}</span>
+                        <div class="ml-auto">{{bank.date_created | customDatePipe:true}}</div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>

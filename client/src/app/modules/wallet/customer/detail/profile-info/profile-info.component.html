@@ -1,0 +1,70 @@
+<div class="title">
+
+    <h1>{{ 'wallet.customer.detail.components.profileInfo.title' | translate }}</h1>
+
+    <div *ngIf="profileData" (click)="updateProfile(walletNo)" class="update-profile">
+        <span>{{ 'wallet.customer.detail.components.profileInfo.editProfile' | translate }}</span>
+        <i class="icon-pencil5"></i>
+    </div>
+
+</div>
+<hr>
+
+<div class="card">
+    <div *ngIf="profileData" class="profile">
+
+        <div class="personal-info">
+            <h4>{{ 'wallet.customer.detail.components.profileInfo.person.title' | translate }}</h4>
+            <ul>
+                <li>{{ 'wallet.customer.detail.components.profileInfo.person.fullName' | translate }}
+                </li>
+                <li>{{profileData.first_name}} {{profileData.last_name}}</li>
+            </ul>
+            <ul>
+                <li>{{ 'wallet.customer.detail.components.profileInfo.person.identity' | translate }}</li>
+                <li>{{profileData.identity_number}}</li>
+            </ul>
+            <ul>
+                <li>{{ 'wallet.customer.detail.components.profileInfo.person.birthday' | translate }}</li>
+                <li>{{profileData.birth_date}}</li>
+            </ul>
+            <ul>
+                <li>{{ 'wallet.customer.detail.components.profileInfo.person.email' | translate }}</li>
+                <li>{{profileData.email}}</li>
+            </ul>
+            <ul>
+                <li>{{ 'wallet.customer.detail.components.profileInfo.person.phone' | translate }}</li>
+                <li>{{profileData.phone_number}}</li>
+            </ul>
+        </div>
+
+        <div class="notification-info">
+            <h4>{{'wallet.customer.detail.components.profileInfo.options.title' | translate }}</h4>
+
+            <ul>
+                <li>{{'wallet.customer.detail.components.profileInfo.options.email' | translate }}</li>
+                <li>
+                    <ui-switch disabled [ngModel]="profileData.customer_campaign_setting.email_allowed"></ui-switch>
+                </li>
+            </ul>
+
+            <ul>
+                <li>{{ 'wallet.customer.detail.components.profileInfo.options.sms' | translate }}</li>
+                <li>
+                    <ui-switch disabled [ngModel]="profileData.customer_campaign_setting.sms_allowed"></ui-switch>
+                </li>
+            </ul>
+
+            <ul>
+                <li>{{'wallet.customer.detail.components.profileInfo.options.mobile' | translate }}</li>
+                <li>
+                    <ui-switch disabled [ngModel]="profileData.customer_campaign_setting.notification_allowed"></ui-switch>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+</div>

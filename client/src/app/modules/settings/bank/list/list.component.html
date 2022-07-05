@@ -1,0 +1,125 @@
+<div class="container-fluid d-flex justify-content-end align-items-center">
+    <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3" (click)="addBank()">
+        <i class="fa fa-plus mr-2"></i>
+        <span>{{'settings.bank.list.btnAddAccount' | translate }}</span>
+    </div>
+</div>
+
+<div class="bg-white table-container" *ngIf="!emptyBank">
+
+    <div class="datatable-scroll">
+        <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
+            <thead>
+
+                <tr role="row" class="table-top">
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div *ngIf="searchData || (bankList && bankList.length > 0)" class="dataTables_filter">
+                            <label class="d-flex">
+                                <span>{{ 'settings.bank.list.filterLabel' | translate }}:</span>
+                                <input class="w-100" type="search" placeholder="{{'settings.bank.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchBank($event)">
+                            </label>
+                        </div>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="2"></td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <ng-select *ngIf="statusKeys && (bankList && bankList.length > 0 || selectedStatus)" [ngModel]="selectedStatus" class="ng-select-table" [searchable]="false" placeholder="{{'settings.bank.list.statusPlaceholder' | translate }}" (ngModelChange)="searchStatus($event)">
+                            <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.bank.list.tableStatus.' + item | translate }} </ng-option>
+                        </ng-select>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div class="dataTables_length d-flex">
+                            <label class="d-flex">
+                                <span>{{'settings.bank.list.tableSizeLabel' | translate }}:</span>
+                                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.bank.list.tableHead.bankName' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.bank.list.tableHead.shortCode' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'settings.bank.list.tableHead.dateCreated' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'settings.bank.list.tableHead.status' | translate }}</th>
+                    <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">{{ 'settings.bank.list.tableHead.actions' | translate }}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+                    <tr *ngFor="let bank of bankList">
+                        <td colspan="1">{{bank.name}}</td>
+                        <td colspan="1">{{bank.shortcode}}</td>
+                        <td class="text-center" colspan="1">{{bank.date_created | customDatePipe:true}}</td>
+                        <td class="text-center" colspan="1">
+                            <span class="badge" [ngClass]="{'badge-danger': bank.status === 'deleted', 'badge-info': bank.status === 'passive', 'badge-success': bank.status === 'active'}">
+                                {{ 'settings.bank.list.tableStatus.' + bank.status | translate }} </span>
+                        </td>
+                        <td class="text-center" colspan="2">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="bankDetails(bank.id)" tooltip="{{ 'settings.bank.list.actionDetailTooltip' | translate }}">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="updateBank(bank)" tooltip="{{ 'settings.bank.list.actionEditTooltip' | translate }}">
+                                <i class="icon-pencil3"></i>
+                            </button>
+                            <button class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="deleteBank(bank,'banka Sİl')" tooltip="{{ 'settings.bank.list.actionDeleteTooltip' | translate }}">
+                                <i class="icon-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <tr *ngIf="(bankList && bankList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'settings.bank.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{'settings.bank.list.paginationInfo' | translate: {totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end} }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyBank">
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{'settings.bank.list.notFound.header' | translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'settings.bank.list.notFound.info' | translate}}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
+                {{'settings.bank.list.notFound.btnText' | translate}}
+            </button>
+        </div>
+    </div>
+</div>
+
+<delete-modal *ngIf="deleteModal"></delete-modal>

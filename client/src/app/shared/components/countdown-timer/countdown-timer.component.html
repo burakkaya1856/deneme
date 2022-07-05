@@ -1,0 +1,8 @@
+<div *ngIf="expTime" class="nav-item countdown d-sm-none d-md-block ml-1 scale-up-center">
+    <div class="countdown-number font-size-xs" [class.blink]="blinkPoint < 60">
+        {{ expTime }}
+    </div>
+    <svg>
+        <circle [style.animation-duration.s]="seconds" r="18" cx="20" cy="20"></circle>
+    </svg>
+</div>

@@ -1,0 +1,99 @@
+<div class="add-header">
+    <h1 class="modal-title">{{'settings.limit.add.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="limit.currency_id">
+    <div class="add-body">
+
+        <div class="row mb-4">
+            <div class="col-sm-6 mobile-space">
+                <label>{{'settings.limit.add.levelID' | translate}}</label>
+                <ng-select *ngIf="levels && levelPermission" class="ng-select-table" [(ngModel)]="limit.level_id" name="level-id" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let level of levels" [value]="level.id">{{level.name}}</ng-option>
+                </ng-select>
+
+                <p class="no-permission" *ngIf="!levelPermission">{{'settings.limit.add.error.levelPermission' | translate }}</p>
+
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.limit.add.currencyID' | translate}}</label>
+                <ng-select *ngIf="currencies" class="ng-select-table" [(ngModel)]="limit.currency_id" name="currency-id" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let currency of currencies" [value]="currency.id">
+                        {{currency.code}}
+                        <img class="currency-flag" src="{{currency.flag}}" alt="currency-flag">
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <label>{{'settings.limit.add.transactionType' | translate}}</label>
+                <ng-select *ngIf="this.transactionKeys" class="ng-select-table" name="transaction-type" [(ngModel)]="limit.transaction_type" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of transactionKeys" [value]="item">{{'settings.limit.add.transactionOptions.' + item | translate }}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="row mb-4">
+            <div class="col-sm-4 mobile-space">
+                <label>{{'settings.limit.add.daily' | translate}}</label>
+                <input type="text" [(ngModel)]="limit.daily" numbersOnly class="form-control" placeholder="{{'settings.limit.add.dailyPlaceholder' | translate }}" name="daily" #fDaily="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fDaily.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.add.dailyRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-4 mobile-space">
+                <label>{{'settings.limit.add.weekly' | translate}}</label>
+                <input type="text" [(ngModel)]="limit.weekly" numbersOnly class="form-control" placeholder="{{'settings.limit.add.weeklyPlaceholder' | translate }}" name="weekly" #fWeekly="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fWeekly.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.add.weeklyRequired' | translate }}</p>
+
+            </div>
+
+            <div class=" col-sm-4 mobile-space">
+                <label>{{'settings.limit.add.monthly' | translate}}</label>
+                <input type="text" [(ngModel)]="limit.monthly" numbersOnly class="form-control" placeholder="{{'settings.limit.add.monthlyPlaceholder' | translate }}" name="monthly" #fMonthly="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fMonthly.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.add.monthlyRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 mobile-space">
+                <label>{{'settings.limit.add.min' | translate}}</label>
+                <input type="text" [(ngModel)]="limit.min" numbersOnly class="form-control" placeholder="{{'settings.limit.add.minPlaceholder' | translate }}" name="min" #fMin="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fMin.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.add.minRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-4 mobile-space">
+                <label>{{'settings.limit.add.max' | translate}}</label>
+                <input type="text" [(ngModel)]="limit.max " numbersOnly class="form-control" placeholder="{{'settings.limit.add.maxPlaceholder' | translate }}" name="max" #fMax="ngModel" autocomplete="off" required>
+                <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fMax.errors?.required ? 'visible' : 'hidden'}">{{'settings.limit.add.maxRequired' | translate }}</p>
+
+            </div>
+
+            <div class=" col-sm-4 mobile-space">
+                <label>{{'settings.limit.add.statusLabel' | translate}}</label>
+                <ng-select *ngIf="statusKeys" name="status" class="ng-select-table" [(ngModel)]="limit.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.limit.add.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="add-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.limit.add.btnCancel' | translate}}</button>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" [disabled]="!levelPermission" class="btn btn-save">{{'settings.limit.add.btnSubmit' | translate}}</button>
+            </div>
+
+        </div>
+    </div>
+
+</form>

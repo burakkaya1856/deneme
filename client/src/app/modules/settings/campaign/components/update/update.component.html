@@ -1,0 +1,136 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.campaign.update.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="campaignData">
+    <div class="update-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>{{'settings.campaign.update.campaignTitle' | translate}}</label>
+                    <input type="text" class="form-control" name="campaign-title" [(ngModel)]="campaignData.title" #fCampaignTitle="ngModel" required autocomplete="off">
+                    <p [ngStyle]="{'visibility': f.submitted && fCampaignTitle.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.campaign.update.campaignTitleRequired' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12 d-flex flex-column">
+                    <label for="campaign-desc">{{'settings.campaign.update.campaignDesc' | translate}}</label>
+                    <angular-editor (input)="changeContent()" [(ngModel)]="campaignData.content" [config]="editorConfig" id="campaign-desc" name="campaign-desc" #fCampaignDesc="ngModel" required autocomplete="off"></angular-editor>
+                    <p [ngStyle]="{'visibility': f.submitted && fCampaignDesc.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.campaign.update.campaignDescRequired' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-1">
+            <div class="row justify-content-sm-center justify-content-between">
+                <div class="col-sm-4 col-6  ">
+                    <label class="image-label">{{'settings.campaign.update.imageURL' | translate}}</label>
+                    <div class="image">
+
+                        <img [src]="campaignData.image_url" class="picture">
+
+                        <label for="firstImg">
+                            <div class="container-circle">
+                                <div class="circle">
+                                    <img src="../../../../../../assets/images/profile-edit.svg" alt="">
+                                </div>
+                            </div>
+
+                        </label>
+                        <input type="file" accept="image/png, image/jpeg, image/jpg" id="firstImg" (change)="campaignImageSelected($event)">
+
+                        <div class="spinner-container" *ngIf="loadingState">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+
+                    <div class="validation mb-0 img-validation" [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
+                        <p *ngIf="loadingState">{{'settings.campaign.update.loadingValidation' | translate}}</p>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4 col-6">
+                    <label class="image-label">{{'settings.campaign.update.imageDetailURL' | translate}}</label>
+
+                    <div class="image">
+
+                        <img [src]="campaignData.detail_image_url" class="picture">
+
+                        <label for="secondImg">
+                            <div class="container-circle">
+                                <div class="circle">
+                                    <img src="../../../../../../assets/images/profile-edit.svg" alt="">
+                                </div>
+                            </div>
+
+                        </label>
+                        <input type="file" accept="image/png, image/jpeg, image/jpg" id="secondImg" (change)="detailedImageSelected($event)">
+
+                        <div class="spinner-container" *ngIf="detailLoadingState">
+                            <div class="loader"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation mb-0 img-validation" [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
+                        <p *ngIf="detailLoadingState">{{'settings.campaign.update.loadingValidation' | translate}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <label>{{'settings.campaign.update.campaignStartDate' | translate}}</label>
+                    <input type="text" readonly="readonly" class="form-control" [(ngModel)]="campaignData.start_date" name="campaign-start-date" #fCampaignStartDate="ngModel" required autocomplete="off" bsDatepicker placement="top right">
+                    <label class="mt-3 mt-sm-4">{{'settings.campaign.update.startTimeLabel' | translate}}</label>
+                    <timepicker [(ngModel)]="startTime" [showMeridian]="false" [hoursPlaceholder]="hourPlaceholder" [minutesPlaceholder]="minutePlaceholder" name="start-time" #fStartTime="ngModel" required></timepicker>
+
+                </div>
+
+                <div class="col-sm-4 mt-4 mt-sm-0">
+
+                    <label>{{'settings.campaign.update.campaignEndDate' | translate}}</label>
+                    <input type="text" readonly="readonly" class="form-control" [(ngModel)]="campaignData.end_date" name="campaign-end-date" #fCampaignEndDate="ngModel" required autocomplete="off" bsDatepicker placement="top left">
+                    <label class="mt-3 mt-sm-4">{{'settings.campaign.update.endTimeLabel' | translate}}</label>
+                    <timepicker [(ngModel)]="endTime" [showMeridian]="false" [hoursPlaceholder]="hourPlaceholder" [minutesPlaceholder]="minutePlaceholder" name="end-time" #fEndTime="ngModel" required></timepicker>
+
+                </div>
+
+                <div class="col-sm-4 mt-4 mt-sm-0">
+
+                    <label>{{'settings.campaign.update.statusLabel' | translate}}</label>
+                    <ng-select *ngIf="statusKeys" name="status" class="ng-select-table" [(ngModel)]="campaignData.status" [clearable]="false" [searchable]="false">
+                        <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.campaign.update.status.' + item | translate }} </ng-option>
+                    </ng-select>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="update-footer">
+
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.campaign.update.btnCancel' | translate}}</button>
+
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{'settings.campaign.update.btnSubmit' | translate}}</button>
+
+            </div>
+
+        </div>
+    </div>
+</form>

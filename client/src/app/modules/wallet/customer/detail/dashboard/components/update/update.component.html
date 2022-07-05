@@ -1,0 +1,31 @@
+<div class="update-header">
+    <h1 class="modal-title">{{ 'wallet.customer.detail.components.dashboard.components.update.title' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+<form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="update-body">
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{ 'wallet.customer.detail.components.dashboard.components.update.form.item1.label' | translate }}</label>
+            <div class="col-sm-9">
+                <textarea [(ngModel)]="comment" placeholder="{{ 'wallet.customer.detail.components.dashboard.components.update.form.item1.placeholder' | translate }}" #note="ngModel" name="fComment" required cols="30" rows="10"></textarea>
+                <p class="validation mb-0" [ngStyle]="{'visibility': formSubmmitted && note.errors?.required ? 'visible' : 'hidden'}">{{ 'wallet.customer.detail.components.dashboard.components.update.form.item1.required' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{ 'wallet.customer.detail.components.dashboard.components.update.form.item2.label' | translate }}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="statusKeys" name="status" class="ng-select-table" [(ngModel)]="userStatus" [clearable]="false" [searchable]="false">
+                    <ng-option [value]="statusKeys[0]">{{ 'wallet.customer.detail.components.dashboard.components.update.statusActive' | translate }}</ng-option>
+                    <ng-option [value]="statusKeys[1]">{{ 'wallet.customer.detail.components.dashboard.components.update.statusPassive' | translate }}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-cancel">{{ 'wallet.customer.detail.components.dashboard.components.update.form.btnCancel' | translate }}</button>
+        <button type="submit" class="btn btn-save">{{ 'wallet.customer.detail.components.dashboard.components.update.form.btnSave' | translate }}</button>
+    </div>
+</form>

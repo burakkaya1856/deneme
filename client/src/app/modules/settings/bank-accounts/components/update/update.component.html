@@ -1,0 +1,83 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.bankAccounts.update.header' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+<form *ngIf="bankAccountData" class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="update-body">
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.bank' | translate }}</label>
+            <div class="col-sm-9">
+
+                <ng-select *ngIf="bankPermission" class="ng-select-table" [(ngModel)]="bankAccountData.bank_id" name="bank-id" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let bank of banks" [value]="bank.id">{{bank.name}}</ng-option>
+                </ng-select>
+
+                <div *ngIf="bankPermission" class="validation" [ngStyle]="{'visibility': f.submitted && !bankAccountData.bank_id ? 'visible' : 'hidden'}">
+                    <span>{{'settings.bankAccounts.update.bankRequired' | translate}}</span>
+                </div>
+
+                <p class="no-permission" *ngIf="!bankPermission">{{'settings.bankAccounts.update.error.bankPermission' | translate }}</p>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.bankHolder' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankAccountData.bank_holder" #fBankHolder="ngModel" name="bankHolder" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankHolder.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.bankAccounts.update.bankHolderRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.iban' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [ngModel]="bankAccountData.iban | iban" (ngModelChange)="bankAccountData.iban=$event" name="iban" #fIBAN="ngModel" class="form-control" required autocomplete="off" ngxIban="TR" maxlength="32">
+                <div [ngStyle]="{'visibility': f.submitted && fIBAN.invalid ? 'visible' : 'hidden'}" class="validation">
+                    <p *ngIf="f.submitted && fIBAN.errors?.required" class="mb-0">{{'settings.bankAccounts.update.ibanRequired' | translate }}</p>
+                    <p *ngIf="f.submitted && fIBAN.invalid && !fIBAN.errors?.required" class="mb-0">{{'settings.bankAccounts.update.ibanInvalid' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.branchCode' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankAccountData.branch_code" #fBranchCode="ngModel" name="branchCode" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBranchCode.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.bankAccounts.update.branchCodeRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.branchName' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankAccountData.branch_name" #fBranchName="ngModel" name="branchName" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBranchName.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.bankAccounts.update.branchNameRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.accountNumber' | translate}}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankAccountData.account_number" #fAccountNumber="ngModel" name="accountNumber" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fAccountNumber.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.bankAccounts.update.accountNumberRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankAccounts.update.statusLabel' | translate}}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="statusKeys" name="status" class="ng-select-table" [(ngModel)]="bankAccountData.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.bankAccounts.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-cancel">{{'settings.bankAccounts.update.btnCancel' | translate}}</button>
+        <button type="submit" [disabled]="!bankPermission" class="btn btn-save">{{'settings.bankAccounts.update.btnSubmit' | translate}}</button>
+    </div>
+</form>

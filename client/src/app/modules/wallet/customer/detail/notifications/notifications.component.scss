@@ -1,0 +1,21 @@
+@import '../../../../../../assets/styles/helpers/mixins';
+
+.table-header {
+  background-color: rgba(204, 204, 204, 0.8);
+}
+
+.data-error {
+  height: 691px;
+}
+
+.error-container {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+}

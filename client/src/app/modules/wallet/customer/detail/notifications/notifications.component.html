@@ -1,0 +1,51 @@
+<h1>{{ 'wallet.customer.detail.components.notifications.title' | translate }}</h1>
+<hr>
+<div class="card">
+    <div *ngIf="!emptyNotifications" class="table-responsive" [class.data-error]="!notificationData">
+        <table class="table">
+            <thead>
+                <tr class="table-header text-white">
+                    <th>{{ 'wallet.customer.detail.components.notifications.table.field1' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.notifications.table.field2' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.notifications.table.field3' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.notifications.table.field4' | translate }}</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of notificationData; let i = index">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.date | customDatePipe:true }}</td>
+                    <td>
+                        <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="detailHandler(item.relation_id)" tooltip="{{ 'wallet.customer.detail.components.dashboard.table.detailsTooltip' | translate }}">
+                            <i class="icon-stats-bars2"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="datatable-footer pb-1 pb-md-0" *ngIf="notificationData && notificationData.length>0">
+
+            <div class="dataTables_info mb-1 mb-md-3">
+                {{ 'wallet.customer.customerList.tableFooterInfo' | translate: { totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end } }}
+            </div>
+
+            <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+                <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="error-container" *ngIf="emptyNotifications">
+        <div>
+            <h2>{{ 'wallet.customer.detail.components.notifications.error.noData.title' | translate }}</h2>
+            <p>{{ 'wallet.customer.detail.components.notifications.error.noData.info' | translate }}</p>
+        </div>
+
+    </div>
+
+</div>

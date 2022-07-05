@@ -1,0 +1,128 @@
+<div class="bg-white mt-3 table-container" *ngIf="!emptyCustomer">
+
+    <div class="datatable-scroll">
+        <table class="table datatable-basic dataTable no-footer table-hover" role="grid">
+
+            <thead>
+
+                <tr role="row" class="table-top">
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+
+                        <div *ngIf="searchData || (customerList && customerList.length > 0)" class="dataTables_filter">
+                            <label class="d-flex">
+                                <span>{{ 'wallet.customer.customerList.filterLabel' | translate }}:</span>
+                                <input class="w-100" type="search" placeholder="{{ 'wallet.customer.customerList.filterPlaceholder' | translate}}" [ngModel]="searchData" (ngModelChange)="searchCustomer($event)">
+                            </label>
+                        </div>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="7"></td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <ng-select *ngIf="statusKeys && (customerList && customerList.length > 0 || selectedStatus)" [ngModel]="selectedStatus" (ngModelChange)="searchStatus($event)" class="ng-select-table" name="status" [searchable]="false" placeholder="{{'wallet.customer.customerList.statusPlaceholder' | translate }}">
+                            <ng-option *ngFor="let item of statusKeys" [value]="item">{{ 'wallet.customer.customerList.tableStatus.' + item  | translate }} </ng-option>
+
+                        </ng-select>
+                    </td>
+
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div class="dataTables_length d-flex">
+                            <label class="d-flex">
+                                <span>{{ 'wallet.customer.customerList.tableSizeLabel' | translate}}:</span>
+                                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1"></th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.name' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.surname' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.walletNo' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.phone' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.id' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.email' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.createdAt' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.status' | translate }}</th>
+                    <th class="text-center sorting-disabled" tabindex="0" rowspan="1" colspan="1">{{ 'wallet.customer.customerList.tableHead.actions' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+
+                    <tr *ngFor="let customer of customerList">
+                        <td>
+                            <img *ngIf="!customer.image" class="rounded-circle" src="../../../../../assets/images/profile-image.png" alt="customer image" width="36" height="36">
+                            <img *ngIf="customer.image" class="rounded-circle" src="{{customer.image}}" alt="customer image" width="36" height="36">
+                        </td>
+                        <td>{{customer.first_name}}</td>
+                        <td>{{customer.last_name}}</td>
+                        <td><a routerLink="/wallet/customer/detail/{{customer.wallet_no}}" target="_blank">{{customer.wallet_no}}</a></td>
+                        <td>{{customer.phone_number}}</td>
+                        <td>{{customer.identity_number}}</td>
+                        <td>{{customer.email}}</td>
+                        <td>{{customer.date_created | customDatePipe:true}}</td>
+                        <td class="text-center">
+                            <span class="badge" [ngClass]="{'badge-danger': customer.status === 'deleted', 'badge-info': customer.status === 'passive', 'badge-success': customer.status === 'active'}">
+                                {{ 'wallet.customer.customerList.tableStatus.' + customer.status  | translate }} </span>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" routerLink="/wallet/customer/detail/{{customer.wallet_no}}" tooltip="{{ 'wallet.customer.customerList.tooltips.detailsTooltip' | translate }}">
+                                <i class="icon-user"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                </ng-container>
+
+                <tr *ngIf="(customerList && customerList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'wallet.customer.customerList.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0 table-footer">
+
+        <div class="dataTables_info mb-1 mb-md-3" *ngIf="isLoaded">
+            {{ 'wallet.customer.customerList.tableFooterInfo' | translate: { totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end } }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyCustomer">
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{'wallet.customer.customerList.notFound.header' | translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'wallet.customer.customerList.notFound.info' | translate}}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
+                {{'wallet.customer.customerList.notFound.btnText' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

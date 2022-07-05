@@ -1,0 +1,70 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.bank.update.header' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+
+<form *ngIf="bankData" class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="update-body">
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bank.update.bankName' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankData.name" #fBankName="ngModel" name="bank-name" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankName.errors?.required ? 'visible': 'hidden'}" class="validation mb-0">{{'settings.bank.update.bankNameRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bank.update.shortcode' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankData.shortcode" #fBankShortcode="ngModel" name="bank-shortcode" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankShortcode.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.bank.update.shortcodeRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bank.update.statusLabel' | translate}}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="statusKeys" name="bank-status" class="ng-select-table" [(ngModel)]="bankData.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.bank.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bank.update.imageURL' | translate }}</label>
+            <div class="col-sm-9">
+                <div class="image">
+                    <img [src]="bankData.image_url" class="picture">
+
+                    <label for="firstImg">
+                        <div class="container-circle">
+                            <div class="circle">
+                                <img src="../../../../../../assets/images/profile-edit.svg" alt="">
+                            </div>
+                        </div>
+
+                    </label>
+
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="firstImg" id="firstImg" (change)="onFileSelected($event)">
+
+                    <div class="spinner-container" *ngIf="loadingState">
+                        <div class="loader"></div>
+                    </div>
+
+                </div>
+
+                <div class="validation mb-0 img-validation" [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
+                    <p *ngIf="loadingState">{{'settings.bank.add.loadingValidation' | translate }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-cancel">{{'settings.bank.update.btnCancel' | translate}}</button>
+        <button type="submit" class="btn btn-save">{{'settings.bank.update.btnSubmit' | translate}}</button>
+    </div>
+</form>

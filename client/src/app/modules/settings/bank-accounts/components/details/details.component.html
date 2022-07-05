@@ -1,0 +1,63 @@
+<div class="modal-content">
+
+    <div class="detail-header">
+        <h1 class="modal-title">{{'settings.bankAccounts.details.header' | translate}}</h1>
+        <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+    </div>
+
+    <div class="detail-body" *ngIf="bankAccount">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <ul>
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.bankHolder' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.bank_holder}}</div>
+                    </li>
+
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.iban' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.iban | iban}}</div>
+                    </li>
+
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.branchName' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.branch_name}}</div>
+                    </li>
+
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.dateCreated' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.date_created | customDatePipe:true}}</div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="col-sm-6">
+                <ul>
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.bankName' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.bank_name}}</div>
+                    </li>
+
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.accountNumber' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.account_number}}</div>
+                    </li>
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.branchCode' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{bankAccount.branch_code}} </div>
+                    </li>
+
+                    <li>
+                        <label class="font-weight-semibold mb-0">{{'settings.bankAccounts.details.status' | translate}}</label>
+                        <div class="form-control-plaintext pt-0">{{'settings.bankAccounts.details.statuses.' + bankAccount.status | translate}}</div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>

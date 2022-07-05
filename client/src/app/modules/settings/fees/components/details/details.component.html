@@ -1,0 +1,109 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.fees.details.header' | translate}}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body" *ngIf="fee">
+
+    <!-- FEES -->
+
+    <div class="row">
+        <div class="col-sm-6">
+            <ul>
+
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.feeType' | translate}}</span>
+                    <div class="ml-auto">{{fee.fee_type | titlecase}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.feeDirectionType' | translate}}</span>
+                    <div class="ml-auto">{{fee.fee_direction_type | titlecase}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.feeTransactionType' | translate}}</span>
+                    <div class="ml-auto">{{fee.transaction_type}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.status' | translate}}</span>
+                    <div class="ml-auto">{{'settings.fees.details.statuses.' + fee.status | translate }}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.fixValue' | translate}}</span>
+                    <div class="ml-auto">{{fee.fix_value}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.rateValue' | translate}}</span>
+                    <div class="ml-auto">{{fee.rate_value}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.minValue' | translate}}</span>
+                    <div class="ml-auto">{{fee.min_value}}</div>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <!-- Levels -->
+
+    <div class="row">
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.levelID' | translate}}</span>
+                    <div class="ml-auto">{{fee.level.id}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.levelName' | translate}}</span>
+                    <div class="ml-auto">{{fee.level.name | titlecase}}</div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.levelType' | translate}}</span>
+                    <div class="ml-auto">{{fee.level.type | titlecase}}</div>
+                </li>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.levelStatus' | translate}}</span>
+                    <div class="ml-auto">{{'settings.fees.details.levelStatuses.' + fee.level.status | translate }}</div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <hr>
+    <!-- CURRENCY -->
+
+    <div class="row">
+        <div class="col-sm-6">
+
+            <ul>
+
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.currencyCode' | translate}}</span>
+                    <div class="ml-auto">{{fee.currency.code | uppercase}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.fees.details.currencyStatus' | translate}}</span>
+                    <div class="ml-auto">{{'settings.fees.details.currencyStatuses.' + fee.currency.status | translate }}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>

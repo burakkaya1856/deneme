@@ -1,0 +1,44 @@
+.checkbox {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .item {
+    border-radius: 2px;
+    border: solid 1px #777;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+      border: solid 1px #ff4308;
+      background-color: #ff4308;
+
+      i {
+        display: block;
+      }
+    }
+
+    i {
+      color: #ffffff;
+      display: none;
+    }
+  }
+
+  label {
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: rgba(44, 45, 69, 0.49);
+    cursor: pointer;
+  }
+}
+// border: solid 1px #dfe1e6;
+// background-color: #f4f5f7;

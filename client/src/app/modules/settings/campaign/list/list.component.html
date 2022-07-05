@@ -1,0 +1,139 @@
+<div class="container-fluid d-flex justify-content-end align-items-center">
+    <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3" (click)="addCampaign()">
+        <i class="fa fa-plus mr-2"></i>
+        <span>{{'settings.campaign.list.btnCreateCampaign' | translate }}</span>
+    </div>
+</div>
+
+<div class="bg-white table-container" *ngIf="!emptyList">
+
+
+    <div class="datatable-scroll">
+        <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
+
+            <thead>
+                <tr role="row" class="table-top">
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div *ngIf="searchData || (campaignList && campaignList.length > 0)" class="dataTables_filter">
+                            <label class="d-flex">
+                                <span>{{ 'settings.campaign.list.filterLabel' | translate }}:</span>
+                                <input class="w-100" type="search" placeholder="{{'settings.campaign.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchCampaign($event)">
+                            </label>
+                        </div>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="2"></td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div *ngIf="bsRangeValue || (campaignList && campaignList.length > 0)" class="date-container">
+                            <input type="search" readonly class="form-control date-input" placeholder="{{ 'settings.campaign.list.datePlaceholder' | translate }}" bsDaterangepicker [(ngModel)]="bsRangeValue" (ngModelChange)="searchDate($event)">
+                            <span *ngIf="startDate && endDate" (click)="clearDate()">x</span>
+                        </div>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="1"></td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <ng-select *ngIf="statusKeys && (campaignList && campaignList.length > 0 || selectedStatus)" [ngModel]="selectedStatus" (ngModelChange)="searchStatus($event)" class="ng-select-table" name="status" [searchable]="false" placeholder="{{'settings.campaign.list.statusPlaceholder' | translate }}">
+                            <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.campaign.list.tableStatus.' + item | translate }} </ng-option>
+                        </ng-select>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div class="dataTables_length d-flex">
+                            <label class="d-flex">
+                                <span>{{'settings.campaign.list.tableSizeLabel' | translate }}:</span>
+                                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.campaign.list.tableHead.campaignImage' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.campaign.list.tableHead.campaignTitle' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.campaign.list.tableHead.dateCreated' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.campaign.list.tableHead.campaignStartDate' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.campaign.list.tableHead.campaignEndDate' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'settings.campaign.list.tableHead.status' | translate }}</th>
+                    <th class="text-center sorting-disabled" tabindex="0" rowspan="1" colspan="4">{{ 'settings.campaign.list.tableHead.actions' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+                    <tr *ngFor="let campaign of campaignList">
+                        <td>
+                            <img src="{{campaign.image_url}}" alt="campaign-image" class="img-thumbnail">
+                        </td>
+                        <td>{{campaign.title}}</td>
+                        <td>{{campaign.date_created | customDatePipe:true}}</td>
+                        <td>{{campaign.start_date | customDatePipe:true}}</td>
+                        <td>{{campaign.end_date | customDatePipe:true}}</td>
+                        <td class="text-center">
+                            <span class="badge" [ngClass]="{'badge-danger': campaign.status == 'deleted', 'badge-info': campaign.status == 'passive', 'badge-success': campaign.status =='active'}">
+                                {{'settings.campaign.list.tableStatus.' + campaign.status | translate}}
+                            </span>
+                        </td>
+                        <td class="text-center" colspan="4">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="campaignDetails(campaign.id)" tooltip="{{ 'settings.campaign.list.actionDetailsTooltip' | translate }}">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="updateCampaign(campaign)" tooltip="{{ 'settings.campaign.list.actionEditTooltip' | translate }}">
+                                <i class="icon-pencil3"></i>
+                            </button>
+                            <button class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="deleteCampaign(campaign)" tooltip="{{ 'settings.campaign.list.actionDeleteTooltip' | translate }}">
+                                <i class="icon-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <tr *ngIf="(campaignList && campaignList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'settings.campaign.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{'settings.campaign.list.paginationInfo' | translate: {totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end} }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyList">
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{'settings.campaign.list.notFound.header' | translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'settings.campaign.list.notFound.info' | translate}}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
+                {{'settings.campaign.list.notFound.btnText' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

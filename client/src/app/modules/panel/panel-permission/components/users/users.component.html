@@ -1,0 +1,28 @@
+<div class="users-header">
+    <h1 class="modal-title">{{ 'panel.panelPermission.users.title' | translate }} ({{permission.description}})</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+
+<div class="datatable-scroll">
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th><span [class.head-space]="users && users.length>10">{{ 'panel.panelPermission.users.tableHead.name' | translate }}</span></th>
+                <th>{{ 'panel.panelPermission.users.tableHead.surname' | translate }}</th>
+                <th colspan="2">{{ 'panel.panelPermission.users.tableHead.email' | translate }}</th>
+                <th>{{ 'panel.panelPermission.users.tableHead.role' | translate }}</th>
+            </tr>
+        </thead>
+
+        <tbody [class.scroll]="users && users.length>10">
+            <tr *ngFor="let user of users">
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td colspan="2">{{user.email}}</td>
+                <td><span>{{user.role}}</span> </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

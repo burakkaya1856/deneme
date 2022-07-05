@@ -1,0 +1,46 @@
+<div [class.sidebar-xs]="menuToggle" [class.sidebar-mobile-main]="mobileToggle">
+    <div class="sidebar sidebar-light sidebar-main sidebar-expand-md align-self-start" [ngClass]="sidebarFullscreen ? 'sidebar-fullscreen' : ''">
+        <!-- Sidebar mobile toggler -->
+        <div class="sidebar-mobile-toggler text-center">
+            <a href="#" (click)="themeService.setMobileToggle(!mobileToggle); sidebarFullscreen=false" [ngClass]="mobileToggle ? 'active' : ''" class="sidebar-mobile-main-toggle">
+                <i class="icon-arrow-left8"></i>
+            </a>
+            {{ "Navigation" }}
+            <a href="#" (click)="sidebarFullscreen=!sidebarFullscreen" class="sidebar-mobile-expand">
+                <i class="icon-screen-full"></i>
+                <i class="icon-screen-normal"></i>
+            </a>
+        </div>
+        <!-- /Sidebar mobile toggler -->
+
+        <!-- Sidebar content -->
+        <div class="sidebar-content">
+            <div class="card card-sidebar-mobile">
+                <!-- Main navigation -->
+                <ul class="nav nav-sidebar" data-nav-type="accordion">
+                    <!-- Main -->
+                    <li class="nav-item" [ngClass]="item.children ? 'nav-item-submenu' : ''" *ngFor="let item of menu; let i = index">
+                        <ng-template [ngIf]="!item.children">
+                            <a *ngxPermissionsOnly="item.permissions" routerLinkActive="active" (click)="themeService.setMobileToggle(!mobileToggle); sidebarFullscreen=false" [routerLink]="[item.fullPath]" class="nav-link"><i class="{{item.icon || 'fa fa-th-list'}}"></i> <span>{{
+                  item.title }}</span></a>
+                        </ng-template>
+                        <ng-template [ngIf]="item.children && item.children">
+                            <a href="" (click)="show == i+1 ? show = -1 : show = i+1" class="nav-link"><i class="{{item.icon || 'fa fa-th-list'}}"></i>
+                                <span>{{ item.title }}</span></a>
+                            <ul class="nav nav-group-sub" [ngStyle]="show === i+1 && (!menuToggle || mobileToggle) && {'display' : 'block'}" [attr.data-submenu-title]="item.title">
+                                <li class="nav-item" *ngFor="let childrenItem of item.children;">
+                                    <a (click)="themeService.setMobileToggle(!mobileToggle); sidebarFullscreen=false" *ngxPermissionsOnly="childrenItem.permissions" routerLinkActive="active" [routerLink]="[childrenItem.fullPath]" class="nav-link">{{
+                    childrenItem.title }}</a>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </li>
+                </ul>
+                <!-- /main navigation -->
+            </div>
+        </div>
+        <!-- /sidebar content -->
+
+    </div>
+    <!-- /main sidebar -->
+</div>

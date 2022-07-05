@@ -1,0 +1,23 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.campaign.details.title' | translate}}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<div class="detail-body modal-dialog my-0">
+    <div class="row">
+        <h2 class="text-center w-100">{{campaign.title}}</h2>
+        <div class="col-sm-12 d-flex justify-content-center my-3">
+            <img src="{{campaign.image_url}}" alt="campaign-image" class="img-thumbnail">
+        </div>
+
+        <div class="col-sm-12">
+            <p>{{campaign.content}}</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="detail-footer">
+
+    <button type="submit" class="btn btn-primary" (click)="closeModal()">{{'settings.campaign.details.btnClose' | translate}}</button>
+</div>

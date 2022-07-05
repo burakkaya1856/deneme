@@ -1,0 +1,70 @@
+@import '../../../../../assets/styles/helpers/mixins';
+
+.table-container {
+  position: relative;
+
+  @include screen-size('xxl') {
+    width: 100% !important;
+    overflow-x: scroll !important;
+    min-height: 0.01% !important;
+  }
+
+  .table-top {
+    td {
+      height: 77px;
+
+      &:last-child {
+        min-width: 177px;
+      }
+
+      .date-container {
+        max-width: 253px;
+        min-width: 181px;
+        position: relative;
+
+        input {
+          background-color: #ffffff;
+          width: 100%;
+        }
+
+        span {
+          cursor: pointer;
+          opacity: 0.5;
+          font-size: 14px;
+          position: absolute;
+          top: 6px;
+          right: 11px;
+          z-index: 1004;
+
+          @include screen-size('xl') {
+            right: 8px;
+          }
+        }
+      }
+    }
+
+    .dataTables_filter {
+      margin: 0 !important;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      min-width: 241px;
+      z-index: 1000;
+    }
+
+    .dataTables_length {
+      margin: 0 !important;
+    }
+  }
+
+  td {
+    a {
+      color: rgb(51, 51, 51);
+    }
+
+    .badge {
+      min-width: 67px;
+      max-width: 67px;
+    }
+  }
+}

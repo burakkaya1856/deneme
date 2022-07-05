@@ -1,0 +1,51 @@
+<div class="update-header">
+    <h1 class="modal-title">{{ 'panel.panelPermission.update.title' | translate }}</h1>
+    <button type="button" (click)="closeModal()" class="close">×</button>
+</div>
+
+<form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="permissionData">
+    <div class="update-body">
+
+        <div class="mb-3">
+            <label class="col-form-label d-block">{{ 'panel.panelPermission.update.type' | translate }}:</label>
+            <input [(ngModel)]="permissionData.permission_type" type="text" class="form-control" placeholder="{{ 'panel.panelPermission.update.typePlaceholder' | translate }}" name="fType" #type="ngModel" autocomplete="off" required>
+
+            <div [ngStyle]="{'visibility': f.submitted &&  type.errors?.required ? 'visible' : 'hidden'}" class="validation">
+                <span>{{ 'panel.panelPermission.update.typeRequired' | translate }}</span>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label>{{'panel.panelPermission.update.description' | translate}}</label>
+                <input type="text" class="form-control" [(ngModel)]="permissionData.description" placeholder="{{'panel.panelPermission.update.descriptionPlaceholder' | translate }}" name="fDescription" #description="ngModel" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && description.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'panel.panelPermission.update.descriptionRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'panel.panelPermission.update.statusLabel' | translate}}</label>
+                <ng-select *ngIf="statusKeys" class="ng-select-table" [(ngModel)]="permissionData.status" name="fStatus" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'panel.panelPermission.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="update-footer">
+        <div class="row">
+
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{ 'panel.panelPermission.update.btnCancel' | translate }}</button>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{ 'panel.panelPermission.update.btnSubmit' | translate }}</button>
+            </div>
+
+        </div>
+    </div>
+</form>

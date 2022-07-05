@@ -1,0 +1,133 @@
+<div class="container-fluid d-flex justify-content-end align-items-center">
+    <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3" (click)="addFee()">
+        <i class="fa fa-plus mr-2"></i>
+        <span>{{'settings.fees.list.btnCreateFee' | translate }}</span>
+    </div>
+</div>
+
+<div class="bg-white table-container" *ngIf="!emptyList">
+
+    <div class="datatable-scroll-lg">
+        <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
+
+            <thead>
+                <tr role="row" class="table-top">
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div *ngIf="searchData || (feeList && feeList.length > 0)" class="dataTables_filter">
+                            <label class="d-flex">
+                                <span>{{ 'settings.fees.list.filterLabel' | translate }}:</span>
+                                <input class="w-100" type="search" placeholder="{{'settings.fees.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchFee($event)">
+                            </label>
+                        </div>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="7"></td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <ng-select *ngIf="statusKeys && (feeList && feeList.length > 0 || selectedStatus)" [ngModel]="selectedStatus" (ngModelChange)="searchStatus($event)" class="ng-select-table" name="status" [searchable]="false" placeholder="{{'settings.fees.list.statusPlaceholder' | translate }}">
+                            <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.fees.list.tableStatus.' + item | translate }} </ng-option>
+                        </ng-select>
+                    </td>
+
+                    <td tabindex="0" rowspan="1" colspan="1">
+                        <div class="dataTables_length d-flex">
+                            <label class="d-flex">
+                                <span>{{'settings.fees.list.tableSizeLabel' | translate }}:</span>
+                                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.feeType' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.fixValue' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.feeDirectionType' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.minValue' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.rateValue' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.transactionType' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.currencyCode' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.levelName' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{ 'settings.fees.list.tableHead.status' | translate }}</th>
+                    <th class="text-center sorting-disabled" tabindex="0" rowspan="1" colspan="2">{{ 'settings.fees.list.tableHead.actions' | translate }}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+                    <tr *ngFor="let fee of feeList">
+                        <td>{{fee.fee_type | titlecase}}</td>
+                        <td>{{fee.fix_value}}</td>
+                        <td>{{fee.fee_direction_type | titlecase}}</td>
+                        <td>{{fee.min_value}}</td>
+                        <td>{{fee.rate_value}}</td>
+                        <td>{{fee.transaction_type}}</td>
+                        <td>{{fee.currency.code}}</td>
+                        <td>{{fee.level.name}}</td>
+                        <td class="text-center">
+                            <span class="badge" [ngClass]="{'badge-danger': fee.status === 'deleted', 'badge-info': fee.status === 'passive', 'badge-success': fee.status === 'active'}">
+                                {{ 'settings.fees.list.tableStatus.' + fee.status | translate }}
+                            </span>
+                        </td>
+                        <td class="text-center" colspan="2">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="feeDetails(fee.id)" tooltip="{{ 'settings.fees.list.actionDetailsTooltip' | translate }}">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="updateFee(fee)" tooltip="{{ 'settings.fees.list.actionEditTooltip' | translate }}">
+                                <i class="icon-pencil3"></i>
+                            </button>
+                            <button class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="deleteFee(fee)" tooltip="{{ 'settings.fees.list.actionDeleteTooltip' | translate }}">
+                                <i class="icon-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <tr *ngIf="(feeList && feeList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'settings.fees.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{'settings.fees.list.paginationInfo' | translate: {totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end} }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyList">
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{'settings.fees.list.notFound.header' | translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'settings.fees.list.notFound.info' | translate}}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
+                {{'settings.fees.list.notFound.btnText' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="create">
+
+    <div class="create-title">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <h1>{{'panel.panelUser.create.title' | translate}}</h1>
+        <p>{{'panel.panelUser.create.subtitle' | translate}}</p>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="submitForm(form)">
+
+        <div class="item">
+            <label>{{'panel.panelUser.create.form.item1.label' | translate}}</label>
+            <i class="icon-user text-muted"></i>
+            <input [(ngModel)]="user.name" type="text" placeholder="{{'panel.panelUser.create.form.item1.placeholder' | translate}}" name="fname" #name="ngModel" autocomplete="off" required>
+
+            <div class="validation" [ngStyle]="{'visibility': formSubmitted && name.invalid ? 'visible' : 'hidden'}">
+                <span *ngIf="name.errors?.required">{{'panel.panelUser.create.form.item1.validation.required' | translate}}</span>
+            </div>
+
+        </div>
+
+        <div class="item">
+            <label>{{'panel.panelUser.create.form.item2.label' | translate}}</label>
+            <i class="icon-user text-muted"></i>
+            <input [(ngModel)]="user.surname" type="text" placeholder="{{'panel.panelUser.create.form.item2.placeholder' | translate}}" name="fsurname" #surname="ngModel" autocomplete="off" required>
+
+            <div class="validation" [ngStyle]="{'visibility': formSubmitted && surname.invalid ? 'visible' : 'hidden'}">
+                <span *ngIf="surname.errors?.required">{{'panel.panelUser.create.form.item2.validation.required' | translate}}</span>
+            </div>
+
+        </div>
+
+        <div class="item">
+            <label>{{'panel.panelUser.create.form.item3.label' | translate}}</label>
+            <i class="icon-envelop text-muted"></i>
+            <input [(ngModel)]="user.email" type="text" placeholder="{{'panel.panelUser.create.form.item3.placeholder' | translate}}" name="femail" #email="ngModel" email="true" autocomplete="off" required>
+
+            <div class="validation" [ngStyle]="{'visibility': formSubmitted && email.invalid ? 'visible' : 'hidden'}">
+                <span *ngIf="email.errors?.required">{{'panel.panelUser.create.form.item3.validation.required' | translate}}</span>
+                <span *ngIf="email.invalid && !email.errors?.required ">{{'panel.panelUser.create.form.item3.validation.invalid' | translate}}</span>
+            </div>
+
+        </div>
+
+        <div class="item">
+            <label>{{'panel.panelUser.create.form.item4.label' | translate}}</label>
+
+            <div *ngIf="permissionStates.roles">
+                <i class="icon-stack2 text-muted"></i>
+
+                <ng-select [(ngModel)]="user.role" (ngModelChange)="changeUserRole($event)" placeholder="{{'panel.panelUser.create.form.item4.placeholder' | translate}}" name="fRole" #role="ngModel" class="disable-arrow disable-dropdown disable-clear-all custom" [searchable]="false" [clearable]="true" required>
+                    <ng-option *ngFor="let item of userRoles" [value]="item">{{item.name | titlecase}}</ng-option>
+                </ng-select>
+
+
+                <div class="validation" [ngStyle]="{'visibility': formSubmitted && role.invalid ? 'visible' : 'hidden'}">
+                    <span>{{'panel.panelUser.create.form.item4.validation.required' | translate}}</span>
+                </div>
+            </div>
+
+            <p *ngIf="!permissionStates.roles">{{'panel.panelUser.create.form.error.rolePermission' | translate}}</p>
+        </div>
+
+        <div class="col-12" class="tab-container" *ngIf="user.roleId">
+            <h4>{{ 'panel.panelUser.create.form.tabTitle' | translate }}</h4>
+            <tabset class="tab" [vertical]="tabTitleState" [justified]="justified" *ngIf="modifiedPermissions && modifiedPermissions.length>0">
+                <tab heading="{{ 'panel.panelUser.create.form.tabHeadings.wallet' | translate }}">
+                    <ul *ngFor="let item of  modifiedPermissions | searchFilter:'wallet'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelUser.create.form.tabHeadings.panel' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'panel'" (click)="item.state = !item.state">
+                        <li class="w-100">{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelUser.create.form.tabHeadings.setting' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'setting'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+                <tab heading="{{ 'panel.panelUser.create.form.tabHeadings.report' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'report'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+
+                </tab>
+
+                <tab heading="{{ 'panel.panelUser.create.form.tabHeadings.auth' | translate }}">
+                    <ul *ngFor="let item of modifiedPermissions | searchFilter:'auth'" (click)="item.state = !item.state">
+                        <li>{{item.description}}</li>
+                        <ui-checkbox [checkbox]="item.state"></ui-checkbox>
+                    </ul>
+                </tab>
+
+            </tabset>
+            <p *ngIf="!permissionStates.permissions" class="text-center pt-4">{{'panel.panelUser.create.form.error.permission' | translate}}</p>
+        </div>
+
+        <div class="buttons">
+            <button type="button" class="btn-cancel" routerLink="/panel/panel-user/list">{{'panel.panelUser.create.form.btnBack' | translate}}</button>
+            <button type="submit" [disabled]="!permissionStates.roles || !permissionStates.permissions" class="btn btn-save">{{'panel.panelUser.create.form.btnAdd' | translate}}</button>
+        </div>
+    </form>
+
+</div>

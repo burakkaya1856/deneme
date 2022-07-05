@@ -1,0 +1,135 @@
+<div class="add-header">
+    <h1 class="modal-title">{{'settings.campaign.add.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="add-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>{{'settings.campaign.add.campaignTitle' | translate}}</label>
+                    <input type="text" class="form-control" name="campaign-title" placeholder="{{'settings.campaign.add.campaignTitlePlaceholder' | translate}}" [(ngModel)]="campaign.title" #fCampaignTitle="ngModel" required autocomplete="off">
+                    <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fCampaignTitle.errors?.required ? 'visible' : 'hidden'}">{{'settings.campaign.add.campaignTitleRequired' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12 d-flex flex-column">
+                    <label>{{'settings.campaign.add.campaignDesc' | translate}}</label>
+                    <angular-editor (input)="changeContent()" [(ngModel)]="campaign.content" placeholder="{{'settings.campaign.add.campaignDescPlaceholder' | translate }}" [config]="editorConfig" id="campaign-desc" name="campaign-desc" #fCampaignDesc="ngModel" required autocomplete="off"></angular-editor>
+                    <p class="validation mb-0" [ngStyle]="{'visibility': f.submitted && fCampaignDesc.errors?.required ? 'visible' : 'hidden'}">{{'settings.campaign.add.campaignDescRequired' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row justify-content-sm-center justify-content-between">
+                <div class="col-sm-4 col-6 ">
+                    <label class="image-label">{{'settings.campaign.add.imageURL' | translate}}</label>
+                    <div class="image" [class.active]="campaign.image_url">
+
+                        <img [src]="campaignImage" class="picture">
+
+                        <label for="firstImg" class="mb-0">
+                            <div class="container-circle">
+                                <div class="circle">
+                                    <img src="../../../../../../assets/images/profile-edit.svg" alt="">
+                                </div>
+                            </div>
+
+                        </label>
+                        <input type="file" accept="image/png, image/jpeg, image/jpg" id="firstImg" (change)="campaignImageSelected($event)">
+
+                        <div class="spinner-container" *ngIf="loadingState">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+
+                    <div class="validation mb-0 img-validation" [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
+                        <p *ngIf="!choseImg">{{'settings.campaign.add.imageURLRequired' | translate}}</p>
+                        <p *ngIf="loadingState">{{'settings.campaign.add.loadingValidation' | translate}}</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-6">
+                    <label class="image-label">{{'settings.campaign.add.imageDetailURL' | translate}}</label>
+
+                    <div class="image" [class.active]="campaign.detail_image_url">
+                        <img [src]="detailImage" class="picture">
+                        <label for="secondImg" class="mb-0">
+
+                            <div class="container-circle">
+                                <div class="circle">
+                                    <img src="../../../../../../assets/images/profile-edit.svg" alt="">
+                                </div>
+                            </div>
+
+                        </label>
+                        <input type="file" accept="image/png, image/jpeg, image/jpg" id="secondImg" (change)="detailImageSelected($event)">
+
+                        <div class="spinner-container" *ngIf="detailLoadingState">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="validation mb-0 img-validation" [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
+                        <p *ngIf="!detailChoseImg">{{'settings.campaign.add.imageDetailURLRequired' | translate }}</p>
+                        <p *ngIf="detailLoadingState">{{'settings.campaign.add.loadingValidation' | translate}}</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class=" form-group">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <label>{{'settings.campaign.add.campaignStartDate' | translate}}</label>
+                    <input type="text" placeholder="tarih" readonly="readonly" [(ngModel)]="startDate" class="form-control" #fStartDate="ngModel" name="start-date" required autocomplete="off" bsDatepicker placement="top right">
+                    <label class="mt-3 mt-sm-4">{{'settings.campaign.add.startTimeLabel' | translate}}</label>
+                    <timepicker [(ngModel)]="startTime" [showMeridian]="false" [hoursPlaceholder]="hourPlaceholder" [minutesPlaceholder]="minutePlaceholder" name="start-time" #fStartTime="ngModel" required></timepicker>
+
+                </div>
+
+                <div class="col-sm-4 mt-4 mt-sm-0">
+
+                    <label>{{'settings.campaign.add.campaignEndDate' | translate}}</label>
+                    <input type="text" readonly="readonly" class="form-control" [(ngModel)]="endDate" name="end-time" #fEndDate="ngModel" required autocomplete="off" bsDatepicker placement="top left">
+                    <label class="mt-3 mt-sm-4">{{'settings.campaign.add.endTimeLabel' | translate}}</label>
+                    <timepicker [(ngModel)]="endTime" [showMeridian]="false" [hoursPlaceholder]="hourPlaceholder" [minutesPlaceholder]="minutePlaceholder" name="end-time" #fEndTime="ngModel" required></timepicker>
+
+                </div>
+
+                <div class="col-sm-4 mt-4 mt-sm-0">
+
+                    <label>{{'settings.campaign.add.statusLabel' | translate}}</label>
+                    <ng-select *ngIf="statusKeys" class="ng-select-table" [(ngModel)]="campaign.status" name="status" [clearable]="false" [searchable]="false">
+                        <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.campaign.add.status.' + item | translate }} </ng-option>
+                    </ng-select>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="add-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.campaign.add.btnCancel' | translate}}</button>
+
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{'settings.campaign.add.btnSubmit' | translate}}</button>
+
+            </div>
+
+        </div>
+    </div>
+</form>

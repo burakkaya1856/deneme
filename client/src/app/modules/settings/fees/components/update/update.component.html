@@ -1,0 +1,111 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.fees.update.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="update-body">
+
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <label>{{'settings.fees.update.transactionTypeLabel' | translate}}</label>
+
+                <ng-select *ngIf="this.transactionKeys" class="ng-select-table" name="transaction-type" [(ngModel)]="feeData.transaction_type" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of transactionKeys" [value]="item">{{'settings.fees.update.transactionOptions.' + item | translate }}</ng-option>
+                </ng-select>
+
+
+            </div>
+        </div>
+
+        <div class="row mb-4 ">
+            <div class="col-sm-6 mobile-space">
+                <label>{{'settings.fees.update.levelLabel' | translate}}</label>
+
+                <ng-select *ngIf="levelPermission" (ngModelChange)="changeLevel($event)" [ngModel]="feeData.level.name" class="ng-select-table" name="level-id" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let level of levels" [value]="level.id">{{level.name}}</ng-option>
+                </ng-select>
+
+                <p class="no-permission" *ngIf="!levelPermission">{{'settings.fees.update.error.levelPermission' | translate }}</p>
+
+            </div>
+
+            <div class="col-sm-6 mobile-space">
+                <label>{{'settings.fees.update.currencyLabel' | translate}}</label>
+                <ng-select *ngIf="currencies" [(ngModel)]="feeData.currency.id" name="currency-id" class="ng-select-table" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let currency of currencies" [value]="currency.id">
+                        {{currency.code | uppercase}}
+                        <img class="currency-flag" src="{{currency.flag}}" alt="currency-flag">
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="row mb-4">
+
+            <div class="col-sm-6 mobile-space">
+                <label>{{'settings.fees.update.feeTypeLabel' | translate}}</label>
+                <ng-select *ngIf="feeTypes" class="ng-select-table" name="fee-type" [(ngModel)]="feeData.fee_type" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of feeTypes" [value]="item">{{item | titlecase}}</ng-option>
+                </ng-select>
+            </div>
+
+
+
+            <div class="col-sm-6 mobile-space">
+                <label>{{'settings.fees.update.feeDirectionTypeLabel' | translate}}</label>
+                <ng-select *ngIf="feeDirectionTypes" class="ng-select-table" name="fee-direction-type" [clearable]="false" [searchable]="false" [(ngModel)]="feeData.fee_direction_type">
+                    <ng-option *ngFor="let item of feeDirectionTypes" [value]="item">{{item | titlecase}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+
+            <div class="col-sm-6 mobile-space">
+                <label>{{'settings.fees.update.statusLabel' | translate }}</label>
+
+                <ng-select *ngIf="statusKeys" name="fee-status" class="ng-select-table" [(ngModel)]="feeData.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.fees.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+
+            <div class="col-sm-6 ">
+                <label>{{'settings.fees.update.fixValueLabel' | translate}}</label>
+                <input type="text" class="form-control" name="fix-value" [(ngModel)]="feeData.fix_value" #fFixValue="ngModel" required autocomplete="off" placeholder="{{'settings.fees.update.fixValuePlaceholder' | translate}}">
+                <p [ngStyle]="{'visibility': f.submitted && fFixValue.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.fees.update.fixValueRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-6">
+                <label>{{'settings.fees.update.rateValueLabel' | translate}}</label>
+                <input type="text" class="form-control" name="rate-value" [(ngModel)]="feeData.rate_value" #fRateValue="ngModel" required autocomplete="off" placeholder="{{'settings.fees.update.rateValuePlaceholder' | translate}}">
+                <p [ngStyle]="{'visibility': f.submitted && fRateValue.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.fees.update.rateValueRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.fees.update.minValueLabel' | translate}}</label>
+                <input type="text" class="form-control" name="min-value" [(ngModel)]="feeData.min_value" #fMinValue="ngModel" required autocomplete="off" placeholder="{{'settings.fees.update.minValuePlaceholder' | translate}}">
+                <p [ngStyle]="{'visibility': f.submitted && fMinValue.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.fees.update.minValueRequired' | translate }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="update-footer">
+
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.fees.update.btnCancel' | translate}}</button>
+            </div>
+            <div class="col-6">
+                <button type="submit" [disabled]="!levelPermission" class="btn btn-save">{{'settings.fees.update.btnSubmit' | translate}}</button>
+
+            </div>
+
+        </div>
+    </div>
+</form>

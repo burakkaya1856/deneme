@@ -1,0 +1,33 @@
+<div class="alert mb-0" *ngIf="table.records?.length < 1 && table.loading">
+    <i class="icon-spinner2 spinner mr-1"></i> {{ "Loading... Please wait..." }}
+</div>
+<div class="alert mb-0" *ngIf="table.records?.length < 1 && !table.loading">
+    <i class="fa fa-exclamation-triangle"></i>
+    {{ "No record found" }}
+</div>
+<div class="d-flex flex-column flex-sm-column flex-md-column flex-lg-row flex-xl-row align-items-center align-items-sm-center align-items-md-center align-items-lg-baseline justify-content-sm-center justify-content-md-center justify-content-lg-between " *ngIf="table.metadata && table.records?.length > 0">
+    <div *ngIf="table.metadata.totalPage>0">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="input-group-text">{{ "Size" }}</label>
+            </div>
+            <div class="btn-group" [dropup]="true" container="body" dropdown>
+                <button id="button-basic" dropdownToggle type="button" class="btn  btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+                    {{ table.metadata.pageSize }} <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem" [ngClass]="item == table.metadata.pageSize ? 'active' : ''" *ngFor="let item of table.pageSizes" class="dropdown-item" (click)="table.setPageSize(item); paginationChanged.next(table)">
+                        <button class="dropdown-item">{{ item }}</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="table.metadata.totalPage>0" class="mt-2 mt-md-2 mt-sm-2 mt-lg-0 mt-xl-0">
+        <pagination [itemsPerPage]="table.metadata.pageSize" [totalItems]="table.metadata.totalItem" [(ngModel)]="table.metadata.page" [maxSize]="3" (ngModelChange)="paginationChanged.next(table)" [boundaryLinks]="true"></pagination>
+    </div>
+    <div class="mt-2 mt-md-2 mt-sm-2 mt-lg-0 mt-xl-0">
+        {{ "Total" }} {{ table.metadata.totalItem }}
+        {{ "entries" }}
+    </div>
+</div>

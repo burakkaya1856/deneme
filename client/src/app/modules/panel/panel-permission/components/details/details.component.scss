@@ -1,0 +1,45 @@
+@import '../../../../../../assets/styles/helpers/mixins';
+
+.detail-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+}
+
+.detail-body {
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+  @include screen-size('md') {
+    padding-right: 10px;
+  }
+
+  li {
+    margin-bottom: 20px;
+
+    .text-break {
+      line-break: anywhere;
+    }
+
+    span {
+      color: #f74f00;
+      font-size: 14px;
+    }
+  }
+
+  li::marker {
+    font-size: 109%;
+    color: #f74f00;
+  }
+}

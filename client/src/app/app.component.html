@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<app-menu-horizontal *ngIf="authService.isAuthorized$ | async"></app-menu-horizontal>
+
+<div class="page-content mb-5 pt-0" [class.container]="themeService.boxedLayout$ | async">
+    <div class="content-wrapper">
+
+        <div class="content">
+            <app-alert></app-alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,40 @@
+@import '../../../../../assets/styles/helpers/mixins';
+
+.table-container {
+  position: relative;
+
+  @include screen-size('xxl') {
+    width: 100% !important;
+    overflow-x: scroll !important;
+    min-height: 0.01% !important;
+  }
+
+  .table-top {
+    td {
+      height: 77px;
+
+      &:last-child {
+        min-width: 177px;
+      }
+    }
+
+    .dataTables_filter {
+      margin: 0 !important;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      min-width: 241px;
+      z-index: 1000;
+    }
+
+    .dataTables_length {
+      margin: 0 !important;
+    }
+  }
+
+  td {
+    a {
+      color: rgb(51, 51, 51);
+    }
+  }
+}

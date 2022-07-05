@@ -1,0 +1,116 @@
+<h1>{{ 'wallet.customer.detail.components.transactions.title' | translate }}</h1>
+<hr>
+<div *ngIf="!filterState && (backupTransactionData && backupTransactionData.length>0)">
+
+    <div class="transaction-bar">
+        <div class="date-container">
+            <ng-select *ngIf="reloadState" (change)="changeDate($event)" placeholder="{{ 'wallet.customer.detail.components.transactions.transactionBar.datePlaceholder' | translate }}" class="disable-arrow disable-dropdown disable-clear-all" [searchable]="false" [clearable]="true">
+
+                <ng-option *ngFor="let date of transactionDate" [value]="date.code">{{date.value}}</ng-option>
+
+            </ng-select>
+
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row align-items-center">
+            <button class="filter-btn btn bg-white rounded border detailed-search-button" (click)="filterState=true">
+                <i class="icon-filter4 mr-1"></i>
+                {{ 'wallet.customer.detail.components.transactions.transactionBar.filterButton' | translate }}
+            </button>
+
+            <div class="btn-group download-btn" dropdown>
+
+                <button dropdownToggle id="button-basic" class="btn bg-white border rounded d-flex align-items-center">
+                    <i class="icon-cloud-download mr-1"></i>
+                    {{ 'wallet.customer.detail.components.transactions.transactionBar.download.text' | translate }}
+                </button>
+
+                <ul *dropdownMenu class="dropdown-menu">
+                    <li class="dropdown-item" (click)="downloadAsCSV()">{{ 'wallet.customer.detail.components.transactions.transactionBar.download.csv' | translate }}</li>
+                    <li class="dropdown-item" (click)="downloadXlsx()">{{ 'wallet.customer.detail.components.transactions.transactionBar.download.xlsx' | translate }}</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<filter *ngIf="filterState" (filterResult)="filterEvent($event)"></filter>
+
+<div class="card">
+    <div *ngIf="!emptyTransaction" class="table-responsive" [class.data-error]="!backupTransactionData">
+        <table class="table">
+            <thead>
+                <tr class="table-header text-white">
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field1' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field2' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field3' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field4' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field5' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field6' | translate }}</th>
+                    <th>{{ 'wallet.customer.detail.components.transactions.table.field7' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of transactions; let i = index">
+                    <td>{{ item.transaction_type.value }}</td>
+                    <td>
+                        <span class="badge w-100" [ngStyle]="item.status === 'Başarılı' && {'background-color': '#38dd98', 'color': '#fff'} || item.status === 'Beklemede' && {'background-color': '#f79c1d',  'color': '#fff'} || item.status === 'Başarısız' && {'background-color': '#e02020', 'color': '#fff'}">
+                            {{item.status | titlecase}}
+                        </span>
+                    </td>
+                    <td>{{ item.amount }} {{item.currency}}</td>
+                    <td>{{ item.fee }} {{item.currency}}</td>
+                    <td>{{ item.total_amount }} {{item.currency}}</td>
+
+                    <td>{{ item.transaction_date | customDatePipe:true }} </td>
+                    <td>
+                        <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="detailHandler(item.transaction_id)" tooltip="{{ 'wallet.customer.detail.components.transactions.table.detailsTooltip' | translate }}">
+                            <i class="icon-stats-bars2"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="datatable-footer pb-1 pb-md-0" *ngIf="transactions && transactions.length>0">
+            <div class="btn-group  download-mobile" dropdown>
+                <button dropdownToggle id="button-basic" class="btn bg-white border download-mobile rounded d-flex align-items-center">
+                    <i class="icon-cloud-download mr-1"></i>
+                    {{ 'wallet.customer.detail.components.transactions.transactionBar.download.text' | translate }}
+                </button>
+                <ul *dropdownMenu class="dropdown-menu">
+                    <li class="dropdown-item" (click)="downloadAsCSV()">{{ 'wallet.customer.detail.components.transactions.transactionBar.download.csv' | translate }}</li>
+                    <li class="dropdown-item" (click)="downloadXlsx()">{{ 'wallet.customer.detail.components.transactions.transactionBar.download.xlsx' | translate }}</li>
+
+                </ul>
+            </div>
+
+            <div class="dataTables_info mb-1 mb-md-3">
+                {{ 'wallet.customer.customerList.tableFooterInfo' | translate: { totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end } }}
+            </div>
+
+            <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+                <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="error-container" *ngIf="this.transactions && this.transactions.length == 0">
+
+        <div class="no-data" *ngIf="emptyTransaction">
+            <h2>{{ 'wallet.customer.detail.components.transactions.error.noData.title' | translate }}</h2>
+            <p>{{ 'wallet.customer.detail.components.transactions.error.noData.info' | translate }}</p>
+        </div>
+
+
+        <div class="no-filter" *ngIf="(this.filteredData || this.dateFilter)">
+            <h2>{{ 'wallet.customer.detail.components.transactions.error.noFilter.title' | translate }} </h2>
+            <p>{{ 'wallet.customer.detail.components.transactions.error.noFilter.info' | translate }} </p>
+            <span (click)="reloadData()">{{ 'wallet.customer.detail.components.transactions.error.noFilter.reload' | translate }}</span>
+        </div>
+    </div>
+
+</div>

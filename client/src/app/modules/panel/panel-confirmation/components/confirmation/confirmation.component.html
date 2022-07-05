@@ -1,0 +1,64 @@
+<div class="confirmation-header">
+    <h1 class="modal-title">{{ 'panel.panelConfirmation.confirmation.title' | translate }} ({{confirmationData.description}})</h1>
+    <button class="close" type="button" (click)="closeModal()"><span>×</span></button>
+</div>
+
+<div class="confirmation-body">
+    <div class="row scroll" *ngIf="confirmationData.process_type=='update' || (confirmationData.process_type!='update') && (confirmationData.process_type!='create')">
+        <div class="col-sm-6 middle-border break-word">
+
+            <h4 class="pb-1 border-bottom">
+                {{ 'panel.panelConfirmation.confirmation.prevData' | translate }}
+            </h4>
+
+            <div class="pr-sm-2">
+                <div class="mb-3" *ngFor="let item of confirmationData.previous_data | keyvalue">
+                    <label class="d-block mb-0 font-weight-semibold" for="">{{item.key | titlecase}}</label>
+                    <span>{{item.value}}</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-6 break-word text-sm-right">
+            <h4 class="pb-1 border-bottom ">
+                {{ 'panel.panelConfirmation.confirmation.confirmData' | translate }}
+            </h4>
+
+            <div class="pl-sm-2">
+                <div class="mb-3" *ngFor="let item of confirmationData.confirmation_data | keyvalue">
+                    <label class="d-block mb-0 font-weight-semibold" for="">{{item.key | titlecase}}</label>
+                    <span>{{item.value}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row scroll" *ngIf="confirmationData.process_type=='create'">
+        <div class="col-12 break-word border-bottom">
+            <h4 class="border-bottom pb-1">
+                {{ 'panel.panelConfirmation.confirmation.confirmData' | translate }}
+            </h4>
+            <div class="row pt-1">
+                <div class="mb-3 col-sm-6" *ngFor="let item of confirmationData.confirmation_data | keyvalue">
+                    <label class="d-block mb-0 font-weight-semibold" for="">{{item.key | titlecase}}</label>
+                    <span>{{item.value}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="confirmation-footer mt-2" [class.create-padding]="confirmationData.process_type=='create'">
+    <div class="row">
+
+        <div class="col-6 d-flex justify-content-center">
+            <button (click)="confirm('declined')" type="button" class="btn btn-danger" (click)="closeModal()">{{ 'panel.panelConfirmation.confirmation.btnCancel' | translate }}</button>
+        </div>
+
+        <div class="col-6 d-flex justify-content-center">
+            <button (click)="confirm('approved')" class="btn btn-save">{{ 'panel.panelConfirmation.confirmation.btnSubmit' | translate }}</button>
+        </div>
+
+    </div>
+</div>

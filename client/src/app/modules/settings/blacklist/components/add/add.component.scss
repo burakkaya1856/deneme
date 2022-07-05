@@ -1,0 +1,55 @@
+.add-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+}
+
+.add-body {
+  padding: 30px 20px 20px 20px;
+
+  input {
+    padding: 7px 10px !important;
+  }
+
+  .validation {
+    visibility: hidden;
+    margin-top: 5px;
+    font-size: 11px;
+    height: 12px;
+    color: #f74f00;
+    padding-left: 10px;
+  }
+}
+
+.add-footer {
+  padding: 20px;
+
+  button {
+    border: 1px solid #293a50;
+    width: 100%;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .btn-save {
+    background-color: #293a50;
+    color: #ffffff;
+  }
+
+  .btn-cancel {
+    background-color: #ffffff !important;
+    color: #293a50;
+  }
+}

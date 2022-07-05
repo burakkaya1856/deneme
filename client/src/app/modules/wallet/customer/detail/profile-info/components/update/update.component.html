@@ -1,0 +1,41 @@
+<div class="update-header">
+    <h1 class="modal-title">{{ 'wallet.customer.detail.components.profileInfo.components.update.title' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form *ngIf="walletNo" class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="update-body">
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{ 'wallet.customer.detail.components.profileInfo.components.update.form.item1.label' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="userData.email" email="true" #email="ngModel" name="femail" class="form-control" required autocomplete="off">
+                <div class="validation" [ngStyle]="{visibility:formSubmmitted && email.invalid ? 'visible' : 'hidden'}">
+                    <span *ngIf="email.errors?.required">{{'public.login.form.item1.validation.required' | translate}}</span>
+                    <span *ngIf="email.invalid && !email.errors?.required">{{'public.login.form.item1.validation.invalid' | translate}}</span>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{ 'wallet.customer.detail.components.profileInfo.components.update.form.item2.label' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [ngModel]="userData.phoneNumber" (ngModelChange)="phoneNumberInput($event)" #phoneNumber="ngModel" name="fphoneNumber" class="form-control" required autocomplete="off">
+                <div class="validation" [ngStyle]="{'visibility': formSubmmitted ? 'visible' : 'hidden'}">
+                    <span *ngIf="phoneNumber.errors?.required">{{ 'wallet.customer.detail.components.profileInfo.components.update.form.item2.validation.required' | translate }}</span>
+                    <span *ngIf="!phoneNumber.errors?.required  && !phoneValidate">{{ 'wallet.customer.detail.components.profileInfo.components.update.form.item2.validation.phone' | translate }}</span>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-cancel">{{ 'wallet.customer.detail.components.profileInfo.components.update.form.btnCancel' | translate }}</button>
+        <button type="submit" class="btn btn-save">{{ 'wallet.customer.detail.components.profileInfo.components.update.form.btnSave' | translate }}</button>
+    </div>
+</form>

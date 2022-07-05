@@ -1,0 +1,212 @@
+@import url('~font-awesome/css/font-awesome.css');
+@import url('~@ng-select/ng-select/themes/default.theme.css');
+@import url('~ngx-ui-switch/ui-switch.component.css');
+@import url('assets/limitless/compiled/icomoon/styles.css');
+
+@import url('assets/limitless/compiled/bootstrap.css');
+@import url('assets/limitless/compiled/bootstrap_limitless.css');
+@import url('assets/limitless/compiled/layout.css');
+@import url('assets/limitless/compiled/components.css');
+@import url('assets/limitless/compiled/colors.css');
+@import './assets/styles/main.scss';
+
+/* default select container style (option not opened) */
+
+@media screen and (max-width: 620px) {
+  .nav-tabs {
+    border: none !important;
+    .nav-link.active,
+    .nav-tabs .nav-item.show .nav-link {
+      color: #fff;
+      background-color: #ccc !important;
+      border: none;
+    }
+  }
+}
+
+.ng-select .ng-select-container {
+  background-color: #fafbfc;
+  border: solid 2px #dfe1e6;
+  color: #2c2d45 !important;
+
+  .ng-placeholder {
+    color: rgba(53, 62, 84, 0.6) !important;
+    font-size: 14px;
+  }
+
+  .ng-value-container {
+    .ng-input {
+      cursor: pointer;
+    }
+  }
+}
+
+/* add ng-select-custom class to ng-select component to apply this style */
+.ng-select-table .ng-select-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* when options shows do things select container */
+.ng-select.ng-select-opened > .ng-select-container {
+  background-color: #fafbfc;
+  border: solid 2px #dfe1e6;
+}
+
+/* inside options when hover an element */
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #fafbfc;
+  outline: none !important;
+}
+
+/* selected element (inside option) */
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected.ng-option-marked {
+  background-color: #fafbfc !important;
+}
+
+/* change focused style of select container */
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+  border: solid 2px #dfe1e6;
+  box-shadow: none !important;
+}
+
+/* dont show x next to dropdown icon */
+.ng-select.disable-clear-all .ng-clear-wrapper {
+  display: none;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: #f74f00;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: #f74f00;
+}
+
+/* Overlay-loading Directive */
+.overlay-loading-parent {
+  position: relative;
+}
+
+.overlay-loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  opacity: 0.1;
+  background: #000;
+  display: none;
+}
+
+/* Table-sort directive */
+.tableSortItem.asc::after {
+  content: '\edc4' !important;
+  color: #333 !important;
+}
+
+.tableSortItem.desc::after {
+  content: '\edc6' !important;
+  color: #333 !important;
+}
+
+.tableSortItem::after {
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  min-width: 1em;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  -webkit-font-smoothing: antialiased;
+  content: '\ee38';
+  color: #999 !important;
+}
+
+/* Ui-switch Directive CSS Fix */
+ui-switch .switch-label-unchecked {
+  font-size: 13px !important;
+}
+
+ui-switch .switch.checked {
+  background: #ccc;
+}
+
+/* Ng-select Directive Css Fix */
+.ng-select.is-invalid div {
+  border-color: #f44336;
+}
+
+.ng-select-container {
+  border-radius: 0px !important;
+}
+
+/* ng-date-time-picker */
+.owl-dt-container-inner {
+  padding: 15px !important;
+}
+
+.owl-date-time-timer-box {
+  font-size: 13px !important;
+}
+
+.owl-dt-timer {
+  height: 5.5em !important;
+}
+
+.owl-dt-calendar-control {
+  color: #fff !important;
+  background-color: #293a50;
+  margin-bottom: 15px;
+}
+
+.owl-dt-calendar-control svg {
+  fill: #fff;
+}
+
+.owl-dt-container-buttons {
+  background-color: #293a50;
+  color: #fff;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+  background-color: #293a50;
+}
+
+/* globals */
+.cursor-copy {
+  cursor: copy;
+}
+
+/* Pagination Css Fix */
+.dropdown-menu.show {
+  transform: translateY(0%) !important;
+}
+
+.page-item.active .page-link {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.tooltip {
+  width: 160px;
+}
+
+.tooltip-inner {
+  background-color: #2c2d45;
+}
+
+.bs-datepicker-container {
+  @include screen-size('md') {
+    padding: 0 !important;
+  }
+}

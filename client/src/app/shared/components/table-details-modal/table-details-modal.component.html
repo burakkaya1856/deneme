@@ -1,0 +1,36 @@
+<div class="modal-container" *ngIf="transactionData">
+    <div class="modal-header">
+        <div>
+            <h4>{{ transactionData.transaction.transaction_type.value }}</h4>
+            <p>{{ transactionData.transaction.transaction_date | customDatePipe}}</p>
+        </div>
+        <img src="../../../../../../assets/images/cancel.svg" (click)="bsModalRef.hide()" alt="close icon">
+    </div>
+    <div class="modal-body">
+        <div>
+            <p>{{transactionData.transaction.transaction_type.value}}</p>
+            <span [ngStyle]="transactionData.transaction.status === 'Başarılı' && {'background-color': '#aee9d1'} || transactionData.transaction.status === 'Beklemede' && {'background-color': '#f79c1d'} || transactionData.transaction.status === 'Başarısız' && {'background-color': '#e02020'}">
+                {{transactionData.transaction.status}}
+            </span>
+        </div>
+        <span class="amount-detail">
+            {{transactionData.transaction.amount | currency:'{{transactionData.transaction.currency}}':'':'1.2-3'}} {{transactionData.transaction.currency}}
+        </span>
+        <div class="line"></div>
+
+        <ul *ngFor="let field of transactionData.detail_fields" class="p-0 mb-0">
+            <li class="font-size-sm">{{field.name}}:</li>
+            <li class="font-size-sm">{{field.value}}</li>
+        </ul>
+
+        <ul *ngFor="let field of transactionData.main_fields" class="p-0 mb-0">
+            <li class="font-size-sm">{{field.name}}:</li>
+            <li class="font-size-sm" *ngIf="field.name == 'Miktar' || field.name == 'Komisyon'">{{field.value | currency:'TRY':'':'1.2-3'}}</li>
+            <li class="font-size-sm" *ngIf="field.name != 'Miktar' && field.name != 'Komisyon'">{{field.value}}</li>
+        </ul>
+    </div>
+
+    <div class="modal-footer" *ngIf="sendTransactionEmail">
+        <button type="button" class="btn btn-success" (click)="handerSendReceipt()">{{'shared.tableDetailsModal.sendReceipt' | translate}}</button>
+    </div>
+</div>

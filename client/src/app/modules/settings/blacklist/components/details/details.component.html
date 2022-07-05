@@ -1,0 +1,31 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.blacklist.details.header' | translate}}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body">
+    <div class="row">
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.blacklist.details.blacklistType' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{blacklist.blacklist_type}}</div>
+                </li>
+
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.blacklist.details.status' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{'settings.blacklist.details.statuses.' + blacklist.status | translate}}</div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{'settings.blacklist.details.blacklistValue' | translate}}</span>
+                    <div class="form-control-plaintext pt-0">{{blacklist.value}}</div>
+                </li>
+            </ul>
+        </div>
+    </div>

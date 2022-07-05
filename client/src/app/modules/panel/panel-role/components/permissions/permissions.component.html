@@ -1,0 +1,46 @@
+<div class="permission-header">
+    <h1 class="modal-title">{{ 'panel.panelRole.permissions.title' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+
+<div class="permission-body">
+    <tabset class="tab" [vertical]="tabTitleState" [justified]="justified">
+
+        <tab heading="{{ 'panel.panelRole.permissions.tabHeadings.wallet' | translate }}">
+            <div *ngFor="let item of modifiedPermissions | searchFilter:'wallet'">
+                <span>{{item.description}}</span>
+                <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+            </div>
+        </tab>
+
+        <tab heading="{{ 'panel.panelRole.permissions.tabHeadings.panel' | translate }}">
+            <div *ngFor="let item of modifiedPermissions | searchFilter:'panel'">
+                <span class="w-100">{{item.description}}</span>
+                <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+            </div>
+        </tab>
+
+        <tab heading="{{ 'panel.panelRole.permissions.tabHeadings.setting' | translate }}">
+            <div *ngFor="let item of modifiedPermissions | searchFilter:'setting'">
+                <span>{{item.description}}</span>
+                <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+            </div>
+        </tab>
+
+        <tab heading="{{ 'panel.panelRole.permissions.tabHeadings.report' | translate }}">
+            <div *ngFor="let item of modifiedPermissions | searchFilter:'report'">
+                <span>{{item.description}}</span>
+                <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+            </div>
+        </tab>
+
+        <tab heading="{{ 'panel.panelRole.permissions.tabHeadings.auth' | translate }}">
+            <div *ngFor="let item of modifiedPermissions | searchFilter:'auth'">
+                <span>{{item.description}}</span>
+                <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+            </div>
+        </tab>
+
+    </tabset>
+</div>

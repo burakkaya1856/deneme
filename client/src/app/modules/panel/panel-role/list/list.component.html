@@ -1,0 +1,113 @@
+<div class="container-fluid d-flex justify-content-end align-items-center">
+    <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3" (click)="addRole()">
+        <i class="fa fa-plus mr-2"></i>
+        <span>{{ 'panel.panelRole.list.addButton' | translate }}</span>
+    </div>
+</div>
+
+<div class="bg-white" *ngIf="!emptyRole">
+    <div class="d-flex flex-column flex-md-row justify-content-start justify-content-md-between px-3 pt-3 border-bottom">
+        <div *ngIf="searchData || (panelRoleList && panelRoleList.length>0)" class="dataTables_filter d-flex mx-0">
+            <label class="d-flex">
+                <span>{{ 'panel.panelRole.list.filterLabel' | translate }}:</span>
+                <input class="w-100" [ngModel]="searchData" (ngModelChange)="searchHandler($event)" type="search" placeholder="{{'panel.panelRole.list.filterPlaceholder' | translate }}">
+            </label>
+        </div>
+        <div class="dataTables_length d-flex w-100 justify-content-md-end">
+            <label class="d-flex ">
+
+                <span>{{'panel.panelRole.list.tableSizeLabel' | translate }}:</span>
+                <select [ngModel]="paginationCount" (ngModelChange)="paginationCountHandler($event)" name="DataTables_Table_0_length" class="custom-select pl-3 pr-4">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="datatable-scroll">
+        <table class="table datatable-basic dataTable no-footer table-hover" role="grid">
+
+            <thead>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelRole.list.tableHead.role' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelRole.list.tableHead.code' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelRole.list.tableHead.date' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'panel.panelRole.list.tableHead.permission' | translate }}</th>
+                    <th class="text-right" tabindex="0" rowspan="1" colspan="1"><span class="mr-4">{{ 'panel.panelRole.list.tableHead.actions' | translate }}</span></th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+                    <tr *ngFor="let list of panelRoleList">
+                        <td>{{list.name | titlecase}}</td>
+                        <td>{{list.code | titlecase}}</td>
+                        <td>{{list.date_created | customDatePipe:true}}</td>
+                        <td>
+
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-3 " type="button" (click)="rolePermission(list.permissions)" tooltip="{{ 'panel.panelRole.list.actionPermissionTooltip' | translate }}">
+                                <i class="icon-user-lock"></i>
+                            </button>
+                        </td>
+                        <td class="text-right " colspan="1">
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="detailRole(list)" tooltip="{{ 'panel.panelRole.list.actionDetailTooltip' | translate }}">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="updateRole(list)" tooltip="{{ 'panel.panelRole.list.actionEditTooltip' | translate }}">
+                                <i class="icon-pencil3"></i>
+                            </button>
+                            <button class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="deleteRole(list.id)" tooltip="{{ 'panel.panelRole.list.actionDeleteTooltip' | translate }}">
+                                <i class="icon-trash-alt"></i>
+                            </button>
+                        </td>
+
+                    </tr>
+                </ng-container>
+
+
+                <tr *ngIf="(panelRoleList && panelRoleList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'panel.panelRole.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{info.total}} {{ 'panel.panelRole.list.paginationInfo.data' | translate }} {{info.start}} - {{info.end}} {{ 'panel.panelRole.list.paginationInfo.show' | translate }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="pagination.maxPage" [(ngModel)]="pagination.page" (pageChanged)="paginationPageChangedHandler($event)"></pagination>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyRole">
+
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{ 'panel.panelRole.list.notFound.header' | translate }}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{ 'panel.panelRole.list.notFound.info' | translate }}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">{{ 'panel.panelRole.list.notFound.btnText' | translate }}</button>
+        </div>
+    </div>
+
+</div>

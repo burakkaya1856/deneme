@@ -1,0 +1,16 @@
+<div class="navbar navbar-expand-lg navbar-light footer-md
+">
+    <div [ngClass]="boxedLayout ? 'container' : 'container-fluid'">
+        <div class="text-center d-lg-none w-100">
+            <button type="button" class="navbar-toggler dropdown-toggle" (click)="footerToggle=!footerToggle" [ngClass]="footerToggle ? '' : 'collapsed'" data-toggle="collapse" data-target="#navbar-footer">
+                <i class="icon-unfold mr-2"></i> Footer
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" [ngClass]="footerToggle ? 'show' : ''" id="navbar-footer">
+            <span class="navbar-text">
+                &copy; {{ today | date: "yyy" }}.
+                {{ 'footer.footerText' | translate }}
+            </span>
+        </div>
+    </div>
+</div>

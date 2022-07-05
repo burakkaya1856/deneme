@@ -1,0 +1,76 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{ 'panel.panelRole.details.title' | translate }}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body">
+    <div class="row first">
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{ 'panel.panelRole.details.roleName' | translate }}</span>
+                    <div class="form-control-plaintext pt-0">{{roleDetail.name | titlecase}}</div>
+                </li>
+
+                <li>
+                    <span class="font-weight-semibold mb-0">{{ 'panel.panelRole.details.roleCode' | translate }}</span>
+                    <div class="form-control-plaintext pt-0">{{roleDetail.code | titlecase}}</div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold mb-0">{{ 'panel.panelRole.details.date' | translate }}</span>
+                    <div class="form-control-plaintext pt-0">{{roleDetail.date_created | customDatePipe:true}}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12" class="tab-container">
+        <h4>{{ 'panel.panelRole.details.tabTitle' | translate }}</h4>
+        <tabset *ngIf="modifiedPermissions && modifiedPermissions.length>0" class="tab" [vertical]="tabTitleState" [justified]="justified">
+
+            <tab heading="{{ 'panel.panelRole.details.tabHeadings.wallet' | translate }}">
+                <ul *ngFor="let item of  modifiedPermissions | searchFilter:'wallet'" class="d-flex align-items-center justify-content-between">
+                    <li>{{item.description}}</li>
+                    <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+                </ul>
+            </tab>
+
+            <tab heading="{{ 'panel.panelRole.details.tabHeadings.panel' | translate }}">
+                <ul *ngFor="let item of modifiedPermissions | searchFilter:'panel'" class="d-flex justify-content-between align-items-center">
+                    <li class="w-100">{{item.description}}</li>
+                    <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+                </ul>
+            </tab>
+
+            <tab heading="{{ 'panel.panelRole.details.tabHeadings.setting' | translate }}">
+                <ul *ngFor="let item of modifiedPermissions | searchFilter:'setting'" class="d-flex justify-content-between align-items-center">
+                    <li>{{item.description}}</li>
+                    <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+                </ul>
+            </tab>
+
+            <tab heading="{{ 'panel.panelRole.details.tabHeadings.report' | translate }}">
+                <ul *ngFor="let item of modifiedPermissions | searchFilter:'report'" class="d-flex justify-content-between align-items-center">
+                    <li>{{item.description}}</li>
+                    <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+                </ul>
+            </tab>
+
+
+            <tab heading="{{ 'panel.panelRole.details.tabHeadings.auth' | translate }}">
+                <ul *ngFor="let item of modifiedPermissions | searchFilter:'auth'" class="d-flex justify-content-between align-items-center">
+                    <li>{{item.description}}</li>
+                    <ui-checkbox [checkbox]="item.state" class="no-click"></ui-checkbox>
+                </ul>
+            </tab>
+
+        </tabset>
+        <p *ngIf="!permissionStates.permissions" class="text-center pt-4">{{ 'panel.panelRole.details.error.permission' | translate }}</p>
+
+    </div>

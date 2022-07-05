@@ -1,0 +1,51 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.level.update.header' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+<form *ngIf="levelData" class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="update-body">
+
+        <div class="row">
+            <label class="col-form-label col-sm-3">{{'settings.level.update.levelName' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="levelData.name" #fLevelName="ngModel" name="level-name" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fLevelName.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.level.update.levelNameRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-form-label col-sm-3">{{'settings.level.update.levelType' | translate }}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="levelKeys" [clearable]="false" [searchable]="false" [ngModel]="levelData.type | titlecase" (ngModelChange)="changeLevelType($event)" name="level-type" class="ng-select-table">
+                    <ng-option [value]="levelKeys[0]">{{levelKeys[0] | titlecase}}</ng-option>
+                    <ng-option [value]="levelKeys[1]">{{levelKeys[1] | titlecase}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-form-label col-sm-3 pt-0 pb-0">{{ 'settings.level.update.withDrawAllow' | translate }}</label>
+            <div class="col-sm-9">
+                <ng-select [(ngModel)]="levelData.wd_to_other" name="level-other" [clearable]="false" [searchable]="false" class="ng-select-table">
+                    <ng-option [value]="true">{{ 'settings.level.update.withDrawActive' | translate }}</ng-option>
+                    <ng-option [value]="false">{{ 'settings.level.update.withDrawPassive' | translate }}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.level.update.statusLabel' | translate}}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="statusKeys" name="level-status" [(ngModel)]="this.levelData.status" [clearable]="false" [searchable]="false" class="ng-select-table">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.level.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-cancel">{{'settings.level.update.btnCancel' | translate}}</button>
+        <button type="submit" class="btn btn-save">{{'settings.level.update.btnSubmit' | translate}}</button>
+    </div>
+</form>

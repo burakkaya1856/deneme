@@ -1,0 +1,66 @@
+<div class="filter card">
+    <h6 class="font-weight-bold">{{ 'wallet.customer.detail.components.transactions.components.filter.title' | translate }}</h6>
+
+    <form class="mt-3 form" (ngSubmit)="submitForm()">
+
+        <div class="item">
+
+            <label>{{ 'wallet.customer.detail.components.transactions.components.filter.form.item1.label' | translate }}</label>
+            <ng-select (change)="changeType($event)" placeholder="{{ 'wallet.customer.detail.components.transactions.components.filter.form.item1.placeholder' | translate }}" class="disable-arrow disable-dropdown disable-clear-all" [searchable]="false" [clearable]="true">
+
+                <ng-option *ngFor="let item of transactionFilter.transactionType" [value]="item.code">{{item.value}}</ng-option>
+            </ng-select>
+
+        </div>
+
+        <div class="item">
+            <label>{{ 'wallet.customer.detail.components.transactions.components.filter.form.item2.label' | translate }}</label>
+
+            <ng-select (change)="changeStatus($event)" placeholder="İşlem Durumu Seçiniz" class="disable-arrow disable-dropdown disable-clear-all" [searchable]="false" [clearable]="true">
+
+                <ng-option *ngFor="let item of transactionFilter.transactionStatus" [value]="item">{{item}}</ng-option>
+            </ng-select>
+        </div>
+
+        <div class="item">
+            <label>{{ 'wallet.customer.detail.components.transactions.components.filter.form.item3.label' | translate }}</label>
+            <input readonly [(ngModel)]="filters.showFirstDate" type="text" bsDatepicker name="fdateFirst" placeholder="{{ 'wallet.customer.detail.components.transactions.components.filter.form.item3.placeholder' | translate }}" autocomplete="off">
+
+            <div class="date-icon">
+                <i class="icon-calendar"></i>
+            </div>
+
+        </div>
+        <div class="item">
+            <label>{{ 'wallet.customer.detail.components.transactions.components.filter.form.item4.label' | translate }}</label>
+            <input readonly [(ngModel)]="filters.showNextDate" type="text" bsDatepicker name="fdateSecond" placeholder="{{ 'wallet.customer.detail.components.transactions.components.filter.form.item4.placeholder' | translate }}" autocomplete="off">
+
+            <div class="date-icon">
+                <i class="icon-calendar"></i>
+            </div>
+        </div>
+
+        <div class="item">
+            <h6 class="font-weight-bold">{{ 'wallet.customer.detail.components.transactions.components.filter.form.item5.title' | translate }}</h6>
+
+            <ul class="number-container">
+                <li>
+                    <label>{{ 'wallet.customer.detail.components.transactions.components.filter.form.item5.list1.label' | translate }}</label>
+                    <input [(ngModel)]="filters.minimumAmount" type="text" name="fminimumAmount" autocomplete="off" placeholder="{{ 'wallet.customer.detail.components.transactions.components.filter.form.item5.list1.placeholder' | translate }}" numbersOnly>
+
+                </li>
+                <li>
+                    <label>{{ 'wallet.customer.detail.components.transactions.components.filter.form.item5.list2.label' | translate }}</label>
+                    <input [(ngModel)]="filters.maximumAmount" type="text" name="fmaximumAmount" placeholder="{{ 'wallet.customer.detail.components.transactions.components.filter.form.item5.list2.placeholder' | translate }}" autocomplete="off" numbersOnly>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="filter-btn">
+            <button type="submit">{{ 'wallet.customer.detail.components.transactions.components.filter.form.buttonText' | translate }}</button>
+            <label (click)="closeFilter()">{{ 'wallet.customer.detail.components.transactions.components.filter.form.label' | translate }}</label>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,93 @@
+<div class="bg-white mt-3" *ngIf="!emptyBalance">
+    <div class="d-flex flex-column flex-md-row justify-content-start justify-content-md-between px-3 pt-3 border-bottom">
+        <div *ngIf="searchData || balanceList && balanceList.length>0" class="dataTables_filter d-flex mx-0">
+            <label class="d-flex">
+                <span>{{ 'wallet.manuelBalance.list.filterLabel' | translate }}:</span>
+                <input class="w-100" [ngModel]="searchData" (ngModelChange)="searchHandler($event)" type="search" placeholder="{{'wallet.manuelBalance.list.filterPlaceholder' | translate }}">
+            </label>
+        </div>
+        <div class="dataTables_length d-flex w-100 justify-content-md-end">
+            <label class="d-flex">
+
+                <span>{{'wallet.manuelBalance.list.tableSizeLabel' | translate }}:</span>
+                <select [ngModel]="paginationCount" (ngModelChange)="paginationCountHandler($event)" name="DataTables_Table_0_length" class="custom-select pl-3 pr-4">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="datatable-scroll">
+        <table class="table datatable-basic dataTable no-footer table-hover" role="grid">
+
+            <thead>
+
+                <tr role="row">
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.manuelBalance.list.tableHead.nameSurname' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.manuelBalance.list.tableHead.walletNo' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.manuelBalance.list.tableHead.adminNameSurname' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.manuelBalance.list.tableHead.description' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.manuelBalance.list.tableHead.date' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'wallet.manuelBalance.list.tableHead.amount' | translate }}</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                <ng-container *ngIf="isLoaded">
+                    <tr *ngFor="let list of balanceList">
+                        <td>{{list.customer_full_name}}</td>
+                        <td><a routerLink="/wallet/customer/detail/{{list.wallet_no}}" target="_blank">{{list.wallet_no}}</a></td>
+                        <td>{{list.panel_user_full_name}}</td>
+                        <td>{{list.description}}</td>
+                        <td>{{list.date_created | customDatePipe:true}}</td>
+                        <td>{{list.amount}}</td>
+
+                    </tr>
+                </ng-container>
+
+
+                <tr *ngIf="(balanceList && balanceList.length == 0) && isLoaded">
+                    <td colspan="12">
+                        <h2 class="text-md-center py-5">{{ 'wallet.manuelBalance.list.noData' | translate }}</h2>
+                    </td>
+                </tr>
+
+                <tr *ngIf="!isLoaded">
+                    <td colspan="12" class="px-0">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="datatable-footer pb-1 pb-md-0">
+
+        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+            {{'wallet.manuelBalance.list.paginationInfo' | translate: {totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end} }}
+        </div>
+
+        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="pagination.maxPage" [(ngModel)]="pagination.page" (pageChanged)="paginationPageChangedHandler($event)"></pagination>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyBalance">
+
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
+            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
+            <h1 class="text-center font-weight-semibold mt-2">{{ 'wallet.manuelBalance.list.notFound.header' | translate }}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{ 'wallet.manuelBalance.list.notFound.info' | translate }}</p>
+            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">{{ 'wallet.manuelBalance.list.notFound.btnText' | translate }}</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="navbar navbar-expand-md navbar-dark">
+    <div [ngClass]="boxedLayout ? 'container' : 'container-fluid'">
+        <div class="navbar-brand wmin-0 pt-1 pb-1 mr-1">
+            <a routerLink="/select-service" class="d-inline-block">
+                <img src="/assets/images/paymango.svg" style="height: 27px; top: 2px; position: relative;" alt="Logo" />
+            </a>
+        </div>
+        <span class="navbar-text">
+            <span class="badge badge-flat border-grey">{{ 'navbar.admin' | translate }}</span>
+        </span>
+        <div class="d-md-none" *ngIf="authService.isAuthorized$ | async">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile" (click)="userMenuToggle=!userMenuToggle" [class.collapsed]="userMenuToggle">
+                <i class="icon-user"></i>
+            </button>
+            <button class="navbar-toggler sidebar-mobile-main-toggle" type="button" (click)="themeService.setMobileToggle(!mobileToggle)" [class.active]="mobileToggle">
+                <i class="icon-paragraph-justify3"></i>
+            </button>
+        </div>
+        <div *ngIf="authService.isAuthorized$ | async" class="collapse navbar-collapse" [class.show]="userMenuToggle" id="navbar-mobile">
+            <ul class="navbar-nav">
+            </ul>
+            <ul class="navbar-nav ml-md-auto">
+                <!-- <li class="nav-item">
+                    <a (click)="themeService.setBoxedLayout(!boxedLayout)" [class.active]="boxedLayout" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+                        <i class="icon-screen-full"></i>
+                    </a>
+                </li> -->
+                <li class="nav-item dropdown dropdown-user" dropdown>
+                    <a class="navbar-nav-link dropdown-toggle" data-toggle="dropdown" dropdownToggle>
+                        <i class="icon-user-check"></i>
+                        <span *ngIf="full_name">{{full_name}}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                        <!-- <a class="dropdown-item" routerLink="/profile"><i class="icon-user"></i> {{ 'navbar.accountDropdown.profile' | translate }}</a> -->
+                        <a routerLink="/profile/change-password" class="dropdown-item"><i class="icon-user"></i> {{ 'navbar.accountDropdown.changePassword' | translate }}</a>
+                        <a (click)="logout()" class="dropdown-item"><i class="icon-switch2"></i> {{ 'navbar.accountDropdown.logout' | translate  }}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.blacklist.update.header' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+<form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="blacklistData">
+    <div class="update-body">
+
+        <div class="form-group row mb-4">
+            <label class="col-form-label col-sm-3">{{'settings.blacklist.update.typeLabel' | translate }}</label>
+
+            <div class="col-sm-9">
+                <ng-select name="blacklist-type" *ngIf="types" class="ng-select-table" [ngModel]="blacklistData.blacklist_type" [clearable]=" false" [searchable]="false" (ngModelChange)="optionChange($event)">
+                    <ng-option *ngFor="let type of types" [value]="type">{{'settings.blacklist.update.blacklistOptions.' + type | translate}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.blacklist.update.blacklistOptions.' + labelChange | translate}}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="blacklistData.value" #fBlacklistValue="ngModel" name="blacklist-value" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBlacklistValue.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.blacklist.update.blacklistOptions.' + labelChange | translate}} {{'settings.blacklist.add.blacklistValueRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.blacklist.update.statusLabel' | translate}}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="statusKeys" name="blacklist-status" class="ng-select-table" [(ngModel)]="blacklistData.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.blacklist.update.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()" class="btn btn-cancel">{{'settings.blacklist.update.btnCancel' | translate}}</button>
+        <button type="submit" class="btn btn-save">{{'settings.blacklist.update.btnSubmit' | translate}}</button>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+<div class="add-header">
+    <h1 class="modal-title">{{ 'panel.panelPermission.add.title' | translate }}</h1>
+    <button type="button" (click)="closeModal()" class="close">×</button>
+</div>
+
+<form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="add-body">
+
+        <div class="mb-4">
+            <label class="col-form-label d-block">{{ 'panel.panelPermission.add.type' | translate }}:</label>
+            <input [(ngModel)]="permission.type" type="text" class="form-control" placeholder="{{ 'panel.panelPermission.add.typePlaceholder' | translate }}" name="fType" #type="ngModel" autocomplete="off" required>
+
+            <div [ngStyle]="{'visibility': f.submitted &&  type.errors?.required ? 'visible' : 'hidden'}" class="validation">
+                <span>{{ 'panel.panelPermission.add.typeRequired' | translate }}</span>
+            </div>
+
+        </div>
+
+        <div class="row mb-3">
+
+            <div class="col-sm-6 mb-4 mb-sm-0">
+                <label>{{'panel.panelPermission.add.description' | translate}}</label>
+                <input [(ngModel)]="permission.description" type="text" class="form-control" placeholder="{{'panel.panelPermission.add.descriptionPlaceholder' | translate }}" name="fDescription" #description="ngModel" autocomplete="off" required>
+                <p [ngStyle]="{'visibility': f.submitted && description.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'panel.panelPermission.add.descriptionRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'panel.panelPermission.add.statusLabel' | translate}}</label>
+                <ng-select *ngIf="statusKeys" [(ngModel)]="permission.status" class="ng-select-table" name="fStatus" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'panel.panelPermission.add.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="add-footer">
+        <div class="row">
+
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{ 'panel.panelPermission.add.btnCancel' | translate }}</button>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{ 'panel.panelPermission.add.btnSubmit' | translate }}</button>
+            </div>
+
+        </div>
+    </div>
+</form>

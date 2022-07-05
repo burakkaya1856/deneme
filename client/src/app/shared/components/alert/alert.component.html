@@ -1,0 +1,8 @@
+<div class="alert-container">
+    <div *ngFor="let item of alerts;" [ngClass]="alertTypes[item.type].class" role="alert" class="alert-styled-left alert-dismissible">
+        <button type="button" class="close" (click)="close(item.key)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- <span class="font-weight-semibold mr-1" [innerHtml]="alertTypes[item.type].title"> </span>  --> <span [innerHtml]="item.message"></span>
+    </div>
+</div>

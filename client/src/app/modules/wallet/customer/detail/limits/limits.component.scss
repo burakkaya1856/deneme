@@ -1,0 +1,29 @@
+.table-header {
+  background-color: rgba(204, 204, 204, 0.8);
+}
+
+.table-responsive {
+  height: 629px;
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #ccc;
+  }
+}
+
+.error-container {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+}

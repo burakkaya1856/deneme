@@ -1,0 +1,116 @@
+<div class="dashboard" *ngIf="this.dashboardData">
+
+    <div class="title">
+        <h1>{{ 'wallet.customer.detail.components.dashboard.title' | translate }}</h1>
+
+        <div class="title-right">
+            <span>{{ 'wallet.customer.detail.components.dashboard.status' | translate }} :</span>
+
+            <div class="check">
+                <input type="radio" checked name="flexRadioDefault">
+                <label class="form-check-label">
+                    {{this.dashboardData.status | titlecase}}
+                </label>
+            </div>
+
+            <button class="btn font-weight-light" (click)="updateStatus(walletNo)">{{ 'wallet.customer.detail.components.dashboard.statusBtnChange' | translate }}
+                <i class="icon-loop"></i>
+            </button>
+        </div>
+        <hr>
+
+    </div>
+
+    <div class="card accounts">
+
+        <div class="row mx-0 justify-content-between align-items-center">
+            <h5>{{ 'wallet.customer.detail.components.dashboard.accounts.title' | translate }}</h5>
+
+            <div class="btn-group balance-btn" dropdown>
+
+                <button dropdownToggle id="button-basic" class="font-weight-light btn border rounded d-flex align-items-center">
+                    {{ 'wallet.customer.detail.components.dashboard.balanceBtn' | translate }} <i class="icon-coins ml-1"></i>
+
+                </button>
+
+                <ul *dropdownMenu class="dropdown-menu">
+                    <li class="dropdown-item" (click)="openAddBalance()">{{ 'wallet.customer.detail.components.dashboard.incrementBalance' | translate }}</li>
+                    <li class="dropdown-item" (click)="openRemoveBalance()">{{ 'wallet.customer.detail.components.dashboard.decrementBalance' | translate }}</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 account" *ngFor="let item of selectAccount">
+                <div class="subtitle">{{item.account_type_title}}</div>
+                <div class="balance">{{item.balance | currency:'TRY':'':'1.2-3'}} <span>{{item.currency_code}}</span></div>
+            </div>
+        </div>
+
+        <div class="total">
+            <div class="title">{{ 'wallet.customer.detail.components.dashboard.accounts.total' | translate }}:</div>
+            <div class="value">{{totalBalance | currency:'TRY':'':'1.2-3'}} <span>{{selectCurrency}}</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="table-responsive transactions" *ngIf="dashboardData.transactions && dashboardData.transactions.length>0 ">
+            <table class="table">
+                <thead>
+                    <tr class="table-header text-white">
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field1' | translate }}</th>
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field2' | translate }}</th>
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field3' | translate }}</th>
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field4' | translate }}</th>
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field5' | translate }}</th>
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field6' | translate }}</th>
+                        <th>{{ 'wallet.customer.detail.components.dashboard.table.field7' | translate }}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor=" let transactions of dashboardData.transactions; let i=index">
+                        <td>{{ transactions.transaction_type.value }}</td>
+                        <td>
+                            <span class="badge w-100" [ngStyle]="transactions.status === 'Başarılı' && {'background-color': '#38dd98', 'color': '#fff'} || transactions.status === 'Beklemede' && {'background-color': '#f79c1d',  'color': '#fff'} || transactions.status === 'Başarısız' && {'background-color': '#e02020', 'color': '#fff'}">
+                                {{transactions.status | titlecase}}
+                            </span>
+                        </td>
+                        <td>{{ transactions.amount }} {{transactions.currency}}</td>
+                        <td>{{ transactions.fee }} {{transactions.currency}}</td>
+                        <td>{{ transactions.total_amount }} {{transactions.currency}}</td>
+                        <td>{{ transactions.transaction_date | customDatePipe:true }} </td>
+                        <td>
+                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="detailHandler(transactions.transaction_id)" tooltip="{{ 'wallet.customer.detail.components.dashboard.table.detailsTooltip' | translate }}">
+                                <i class="icon-stats-bars2"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="no-transaction" *ngIf="dashboardData.transactions && dashboardData.transactions.length == 0">
+
+            <div>
+                <h2>{{ 'wallet.customer.detail.components.dashboard.errors.transactions.title' | translate }}</h2>
+                <p>{{ 'wallet.customer.detail.components.dashboard.errors.transactions.info' | translate }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card no-dashboard" *ngIf="dashboardData.length == 0">
+        <div>
+            <h2>{{ 'wallet.customer.detail.components.dashboard.errors.dashboard.title' | translate }}</h2>
+            <p>{{ 'wallet.customer.detail.components.dashboard.errors.dashboard.info' | translate }}</p>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,216 @@
+@import '../../../../../../assets/styles/helpers/mixins';
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 953px;
+
+  @include screen-size('xxl') {
+    grid-template-columns: 768px;
+  }
+
+  @include screen-size('lg') {
+    grid-template-columns: 576px;
+  }
+
+  @include screen-size('md') {
+    grid-template-columns: 300px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @include screen-size('md') {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    span {
+      margin-left: auto;
+      margin-right: 36px;
+      font-size: 16px;
+      color: #ff4308;
+
+      @include screen-size('md') {
+        margin-left: 0;
+      }
+    }
+
+    &-right {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      height: 38px;
+
+      @include screen-size('md') {
+        padding: 0;
+        width: 100%;
+        margin-top: 5px;
+      }
+
+      .check {
+        position: relative;
+
+        input {
+          position: absolute;
+          top: 5px;
+          left: -20px;
+        }
+
+        label {
+          margin-right: 20px !important;
+        }
+      }
+
+      button {
+        @include screen-size('md') {
+          margin-left: auto;
+        }
+
+        i {
+          color: #bbbbbb !important;
+          margin-left: 8px;
+        }
+      }
+
+      .form-check:not(.form-check-inline) {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    hr {
+      width: 100%;
+    }
+  }
+
+  .accounts {
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 43px;
+
+    h5 {
+      font-size: 25px;
+      color: #ff4308;
+    }
+
+    .balance-btn {
+      i {
+        color: #939393 !important;
+      }
+    }
+
+    .account {
+      margin-top: 10px;
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .balance {
+        font-size: 40px;
+        color: #000000;
+        font-weight: 700;
+
+        @include screen-size('xxl') {
+          font-size: 30px;
+        }
+
+        span {
+          font-size: 15px;
+          color: #ff4308;
+        }
+      }
+    }
+
+    .total {
+      margin-top: 10px;
+      padding-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #cccccc;
+
+      .title {
+        font-size: 35px;
+        color: #000000;
+
+        @include screen-size('md') {
+          font-size: 20px;
+        }
+      }
+
+      .value {
+        font-size: 35px;
+        color: #000000;
+        font-weight: 700;
+
+        @include screen-size('md') {
+          font-size: 20px;
+        }
+
+        span {
+          font-size: 15px;
+          color: #ff4308;
+
+          @include screen-size('md') {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .transactions {
+    height: 350px;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: #ccc;
+    }
+
+    .table-header {
+      background-color: rgba(204, 204, 204, 0.8);
+    }
+
+    .badge {
+      font-size: 11px !important;
+    }
+  }
+
+  .no-transaction {
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      text-align: center;
+      margin-bottom: 60px;
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .no-dashboard {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+  }
+}

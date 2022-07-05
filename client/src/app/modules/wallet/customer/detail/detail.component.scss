@@ -1,0 +1,185 @@
+@import '../../../../../assets/styles/helpers/mixins';
+
+.customer {
+  max-width: 1330px;
+  width: 100%;
+  margin: 0 auto;
+
+  .detail {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 40px;
+    padding: 40px 0 0px 20px;
+
+    @include screen-size('xxl') {
+      grid-template-columns: 1fr 3fr;
+      padding: 40px 30px 0px;
+    }
+
+    @include screen-size('xl') {
+      grid-template-columns: 768px;
+      padding: 80px 20px 0px;
+      justify-content: center;
+    }
+
+    @include screen-size('lg') {
+      grid-template-columns: 576px;
+    }
+
+    @include screen-size('md') {
+      grid-template-columns: 300px;
+      padding: 80px 0 0;
+    }
+
+    &-sidebar {
+      height: min-content;
+
+      @include screen-size('xl') {
+        display: none;
+      }
+
+      .active {
+        background-color: rgba(204, 204, 204, 0.3);
+      }
+
+      .profile-img {
+        width: 170px;
+        height: 170px;
+        object-fit: cover;
+      }
+
+      .nav-item {
+        cursor: pointer;
+
+        a {
+          color: #333;
+        }
+
+        &:hover {
+          background-color: rgba(204, 204, 204, 0.3);
+        }
+
+        .nav-link {
+          i {
+            color: rgb(53, 62, 84);
+          }
+        }
+      }
+
+      .card-body {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+
+        h6 {
+          margin-bottom: 10px;
+        }
+
+        ul {
+          list-style: none;
+          display: flex;
+          margin-bottom: 3px;
+          font-size: 12px;
+
+          li {
+            &:first-child {
+              width: 66px;
+              text-align: left;
+            }
+
+            &:last-child {
+              margin-left: 10px;
+              color: #ff4308;
+              cursor: pointer;
+
+              .copy {
+                width: 16px;
+                height: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .navbar-phone {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      width: 100%;
+      background-color: #fff;
+      margin-bottom: 32px;
+      border-radius: 7px;
+      cursor: pointer;
+
+      .active {
+        background-color: rgba(204, 204, 204, 0.3);
+      }
+
+      .navbar-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        img {
+          margin-top: -3px;
+          cursor: pointer;
+          width: 34px;
+          height: 34px;
+          border-radius: 100%;
+          object-fit: cover;
+        }
+
+        .phone {
+          border-right: 1px solid rgb(131, 130, 130);
+          margin-left: auto;
+        }
+
+        span {
+          padding: 0 6px;
+        }
+
+        .down-icon {
+          margin-left: 6px;
+        }
+      }
+
+      .open-navbar {
+        position: absolute;
+        top: 57px;
+        left: 0;
+        z-index: 1;
+        background-color: #fff;
+        width: 100%;
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          .nav-item {
+            cursor: pointer;
+
+            a {
+              color: #333;
+            }
+
+            .nav-link {
+              i {
+                color: rgb(53, 62, 84);
+              }
+            }
+          }
+
+          li {
+            padding: 6px 8px !important;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+
+    .rotate {
+      transform: rotate(180deg);
+    }
+  }
+}
