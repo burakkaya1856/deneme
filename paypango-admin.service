@@ -4,7 +4,7 @@ Description=Paypango admin service.
 [Service]
 Type=simple
 User=paypango-admin
-ExecStart=/bin/bash /opt/monpaypangoeytolia/admin/run.sh
+ExecStart=/bin/bash /opt/paypango/admin/run.sh
 
 [Install]
 WantedBy=multi-user.target

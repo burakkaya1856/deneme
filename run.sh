@@ -1,2 +1,2 @@
-cd /opt/moneytolia/admin
+cd /opt/paypango/admin
 npm run start:dev
