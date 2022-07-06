@@ -20,8 +20,8 @@ mv /home/deployer/rpmbuild/RPMS/noarch/*admin*.rpm /home/deployer/rpmbuild/RPMS/
 fi
 mkdir -p $RPM_BUILD_ROOT/opt/paypango/
 mkdir -p $RPM_BUILD_ROOT/etc/systemd/system
-cp -r /opt/deployer/temp/admin-web $RPM_BUILD_ROOT/opt/paypango/admin
-mv $RPM_BUILD_ROOT/opt/paypango/admin-web/.env $RPM_BUILD_ROOT/opt/paypango/admin/.env.example
+cp -r /opt/deployer/temp/admin-web $RPM_BUILD_ROOT/opt/paypango/
+mv $RPM_BUILD_ROOT/opt/paypango/admin-web/.env $RPM_BUILD_ROOT/opt/paypango/admin-web/.env.example
 rm $RPM_BUILD_ROOT/opt/paypango/admin-web/rpmbuild.spec
 cd $RPM_BUILD_ROOT/opt/paypango/admin-web
 mv paypango-admin.service $RPM_BUILD_ROOT/etc/systemd/system
