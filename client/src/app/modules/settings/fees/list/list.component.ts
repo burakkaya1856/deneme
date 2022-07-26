@@ -62,7 +62,7 @@ export class FeesListComponent implements OnInit {
     let feeParams = {
       search: '',
       status: '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.settingsService.getFeeList(feeParams).subscribe(fees => {
@@ -155,7 +155,7 @@ export class FeesListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: 0,
+        page: 1,
         size: this.paginationCount
       };
       this.getFees(requestData);
@@ -180,7 +180,7 @@ export class FeesListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -192,7 +192,7 @@ export class FeesListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -203,7 +203,7 @@ export class FeesListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;

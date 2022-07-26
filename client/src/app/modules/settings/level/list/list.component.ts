@@ -50,7 +50,7 @@ export class LevelListComponent implements OnInit {
     let levelParams = {
       search: '',
       status: '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.settingsService.getLevelList(levelParams).subscribe(levels => {
@@ -158,7 +158,7 @@ export class LevelListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: 0,
+        page: 1,
         size: this.paginationCount
       };
       this.getLevels(requestData);
@@ -183,7 +183,7 @@ export class LevelListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -196,7 +196,7 @@ export class LevelListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -207,7 +207,7 @@ export class LevelListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;

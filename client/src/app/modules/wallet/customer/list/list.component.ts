@@ -44,7 +44,7 @@ export class ListComponent implements OnInit {
       search: '',
       status: '',
       size: this.paginationCount,
-      page: 0
+      page: 1
     };
     this.walletService.getCustomers(requestData).subscribe(data => {
       this.customerList = data.items;
@@ -93,7 +93,7 @@ export class ListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -104,7 +104,7 @@ export class ListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -117,7 +117,7 @@ export class ListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;

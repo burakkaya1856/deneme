@@ -88,7 +88,11 @@ export const menuConfig = [
       {
         fullPath: '/reports/accounting',
         routeConfig: 'accounting'
-      }
+      },
+      {
+        fullPath: '/reports/fraud',
+        routeConfig: 'fraud'
+      },
     ]
   },
   {

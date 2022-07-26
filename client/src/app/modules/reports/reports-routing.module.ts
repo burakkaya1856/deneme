@@ -27,6 +27,18 @@ const routes: Routes = [
           routeConfig: 'accounting',
           permissions: routeConfig['accounting'].permissions
         }
+      },
+      {
+        path: 'fraud',
+        loadChildren: () =>
+          import('./fraud/fraud.module').then(
+            m => m.FraudModule
+          ),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'fraud',
+          permissions: routeConfig['fraud'].permissions
+        }
       }
     ]
   }

@@ -52,7 +52,7 @@ export class ListComponent implements OnInit {
 
     let requestData = {
       search: '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.panelService.panelRoles(requestData).subscribe(data => {
@@ -180,7 +180,7 @@ export class ListComponent implements OnInit {
 
     let paramsData = {
       search: this.searchData,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = paramsData.page + 1;
@@ -192,7 +192,7 @@ export class ListComponent implements OnInit {
 
     let paramsData = {
       search: this.searchData,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = paramsData.page + 1;

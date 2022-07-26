@@ -227,6 +227,15 @@ export const routeConfig = {
   // /business module
 
   // reports module
+  fraud: {
+    title: 'Fraud',
+    desc: 'You can select a service here',
+    icon: 'icon-user-cancel',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
   accounting: {
     title: 'Kullanıcılar',
     desc: 'You can select a service here',

@@ -7,7 +7,7 @@ export class Table {
   public metadata: IMetadata = {
     page: 1,
     pageSize: 15,
-    totalPage: 0,
+    totalPage: 1,
     totalItem: 0,
     sortBy: '',
     order: ''

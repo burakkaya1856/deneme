@@ -94,7 +94,7 @@ export class FilterComponent implements OnInit {
         end_date: nextDate,
         min_amount: this.filters.minimumAmount,
         max_amount: this.filters.maximumAmount,
-        page: 0,
+        page: 1,
         size: 10
       };
       let state = false;
