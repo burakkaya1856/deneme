@@ -63,7 +63,7 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.walletService.cardDeposits(requestData).subscribe(data => {
@@ -124,7 +124,7 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -139,7 +139,7 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -154,7 +154,7 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -184,7 +184,7 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 
@@ -201,7 +201,7 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 

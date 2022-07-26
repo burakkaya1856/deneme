@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   public isLoaded = false;
   public params = {
     q: '',
-    page: 0,
+    page: 1,
     size: 10
   };
   public pagination = {
@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
     }
     let requestData = {
       q: '',
-      page: 0,
+      page: 1,
       size: 10
     };
     this.walletService.getManuelBalanceList(requestData).subscribe(data => {
@@ -82,7 +82,7 @@ export class ListComponent implements OnInit {
 
     let paramsData = {
       q: this.searchData,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = paramsData.page + 1;
@@ -94,7 +94,7 @@ export class ListComponent implements OnInit {
 
     let paramsData = {
       q: this.searchData,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = paramsData.page + 1;

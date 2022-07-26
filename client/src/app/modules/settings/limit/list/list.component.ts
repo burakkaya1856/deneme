@@ -53,7 +53,7 @@ export class LimitListComponent implements OnInit {
     let limitParams = {
       transaction_type: this.selectedTransactionType || '',
       status: '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.settingsService.getLimitList(limitParams).subscribe(limits => {
@@ -162,7 +162,7 @@ export class LimitListComponent implements OnInit {
       let requestData = {
         transaction_type: this.selectedTransactionType || '',
         status: '',
-        page: 0,
+        page: 1,
         size: this.paginationCount
       };
 
@@ -187,7 +187,7 @@ export class LimitListComponent implements OnInit {
     let requestData = {
       transaction_type: this.selectedTransactionType || '',
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -200,7 +200,7 @@ export class LimitListComponent implements OnInit {
     let requestData = {
       transaction_type: this.selectedTransactionType || '',
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -213,7 +213,7 @@ export class LimitListComponent implements OnInit {
     let requestData = {
       transaction_type: this.selectedTransactionType || '',
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -224,7 +224,7 @@ export class LimitListComponent implements OnInit {
     let requestData = {
       transaction_type: this.selectedTransactionType || '',
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;

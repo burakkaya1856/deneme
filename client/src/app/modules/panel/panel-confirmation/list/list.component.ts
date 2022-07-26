@@ -38,7 +38,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     let requestData = {
-      page: 0,
+      page: 1,
       size: 10
     };
     this.panelService.panelConfirmations(requestData).subscribe(data => {
@@ -80,7 +80,7 @@ export class ListComponent implements OnInit {
     this.paginationCount = event;
 
     let paramsData = {
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = paramsData.page + 1;

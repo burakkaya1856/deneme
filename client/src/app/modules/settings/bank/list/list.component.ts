@@ -53,7 +53,7 @@ export class BankListComponent implements OnInit {
     let requestData = {
       search: '',
       status: '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.settingsService.getBanks(requestData).subscribe(banks => {
@@ -184,7 +184,7 @@ export class BankListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -196,7 +196,7 @@ export class BankListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -207,7 +207,7 @@ export class BankListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -239,7 +239,7 @@ export class BankListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 

@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { jsonToCsv } from '../../../../shared/helpers/jsonToCsv';
 import { jsonToXlsx } from '../../../../shared/helpers/jsonToXlsx';
 @Component({
-  selector: 'accounting-list',
+  selector: 'fraud-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
@@ -20,13 +20,13 @@ export class ListComponent implements OnInit {
   public bsModalRef: BsModalRef;
   public maxPage = 5;
   public months = this.translate.instant(
-    'navigations.reports.accounting.values.months'
+    'navigations.reports.fraud.values.months'
   );
   public fileDownloadKeys = this.translate.instant(
-    'navigations.reports.accounting.values.fileDownloadKeys'
+    'navigations.reports.fraud.values.fileDownloadKeys'
   );
   public fileDownloadTitle = this.translate.instant(
-    'navigations.reports.accounting.values.fileDownloadTitle'
+    'navigations.reports.fraud.values.fileDownloadTitle'
   );
   public searchData = '';
   public selectedStatus = null;
@@ -64,7 +64,7 @@ export class ListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.reportService.getReserveList(requestData).subscribe(data => {
+    this.reportService.getFraudList(requestData).subscribe(data => {
       this.reportList = data.items;
       this.isLoaded = true;
 
@@ -141,7 +141,7 @@ export class ListComponent implements OnInit {
       this.isLoaded = false;
     }, 500);
 
-    this.reportService.getReserveList(reportParams).subscribe(data => {
+    this.reportService.getFraudList(reportParams).subscribe(data => {
       this.reportList = data.items;
       this.isLoaded = true;
       this.pagination.total = data.total;
@@ -210,80 +210,4 @@ export class ListComponent implements OnInit {
     });
   }
 
-  downloadAsCSV(): void {
-    let requestData = {
-      q: this.searchData,
-      reserve_date: this.reserveDate,
-      page: 1,
-      size: 100
-    };
-    this.reportService.getReserveList(requestData).subscribe(data => {
-      let jsonData = data.items;
-
-      let modifyJsonData = [];
-
-      jsonData.forEach(item => {
-        let date = new Date(item.calculate_date);
-
-        item.calculate_date =
-          ('0' + date.getDate()).slice(-2) +
-          ' ' +
-          this.months[date.getMonth()] +
-          ' ' +
-          date.getFullYear() +
-          ' ' +
-          ('0' + date.getHours()).slice(-2) +
-          ':' +
-          ('0' + date.getMinutes()).slice(-2);
-
-        var obj = {};
-
-        Object.keys(item).forEach((key, index) => {
-          let setKey = this.fileDownloadKeys[index];
-          obj[setKey] = item[key];
-        });
-
-        modifyJsonData.push(obj);
-      });
-
-      jsonToCsv(modifyJsonData, this.fileDownloadTitle);
-    });
-  }
-
-  downloadXlsx() {
-    let requestData = {
-      q: this.searchData,
-      reserve_date: this.reserveDate,
-      page: 1,
-      size: 100
-    };
-    this.reportService.getReserveList(requestData).subscribe(data => {
-      let jsonData = data.items;
-
-      let modifyJsonData = [];
-
-      jsonData.forEach(item => {
-        let date = new Date(item.calculate_date);
-
-        item.calculate_date =
-          ('0' + date.getDate()).slice(-2) +
-          ' ' +
-          this.months[date.getMonth()] +
-          ' ' +
-          date.getFullYear();
-        var obj = {};
-
-        Object.keys(item).forEach((key, index) => {
-          let setKey = this.fileDownloadKeys[index];
-          obj[setKey] = item[key];
-        });
-
-        modifyJsonData.push(obj);
-      });
-
-      let exportXlsx = new jsonToXlsx();
-
-      exportXlsx.exportAsExcelFile(modifyJsonData, this.fileDownloadTitle);
-    });
-  }
 }

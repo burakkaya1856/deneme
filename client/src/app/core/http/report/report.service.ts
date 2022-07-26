@@ -5,6 +5,7 @@ import {
   GetAllReserve,
   ReserveIn,
   ReserveOut,
+  FraudOut,
   TotalBalanceOut
 } from './report.interface';
 
@@ -12,7 +13,7 @@ import {
   providedIn: 'root'
 })
 export class ReportService {
-  public baseUrl = 'api/admin/v1/report';
+  public baseUrl = 'api/admin/v1/';
 
   constructor(private http: HttpClient) {}
 
@@ -24,7 +25,17 @@ export class ReportService {
         .set('page', reportData.page.toString())
         .set('size', reportData.size.toString())
     };
-    return this.http.get<ReserveOut>(this.baseUrl + '/reserve-list', options);
+    return this.http.get<ReserveOut>(this.baseUrl + 'report/reserve-list', options);
+  }
+
+  getFraudList(reportData: GetAllReserve): Observable<FraudOut> {
+    let options = {
+      params: new HttpParams()
+        .set('q', reportData.q)
+        .set('page', reportData.page.toString())
+        .set('size', reportData.size.toString())
+    };
+    return this.http.get<FraudOut>(this.baseUrl + 'wallet/transaction/fraud', options);
   }
 
   getTotalReserve(param: ReserveIn): Observable<TotalBalanceOut> {
@@ -32,7 +43,7 @@ export class ReportService {
       params: new HttpParams().set('reserve_date', param.reserve_date)
     };
     return this.http.get<TotalBalanceOut>(
-      this.baseUrl + '/reserve-total',
+      this.baseUrl + 'report/reserve-total',
       options
     );
   }

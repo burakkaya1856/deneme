@@ -62,7 +62,7 @@ export class CampaignListComponent implements OnInit {
       status: '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.settingsService.getCampaigns(campaignParams).subscribe(campaigns => {
@@ -218,7 +218,7 @@ export class CampaignListComponent implements OnInit {
       status: this.selectedStatus || '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -233,7 +233,7 @@ export class CampaignListComponent implements OnInit {
       status: this.selectedStatus || '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 
@@ -247,7 +247,7 @@ export class CampaignListComponent implements OnInit {
       status: this.selectedStatus || '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.pagination.page = requestData.page + 1;
@@ -297,7 +297,7 @@ export class CampaignListComponent implements OnInit {
       status: this.selectedStatus || '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 
@@ -314,7 +314,7 @@ export class CampaignListComponent implements OnInit {
       status: this.selectedStatus || '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 

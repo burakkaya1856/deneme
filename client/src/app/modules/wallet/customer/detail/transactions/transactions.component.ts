@@ -74,7 +74,7 @@ export class TransactionsComponent implements OnInit {
       end_date: null,
       min_amount: null,
       max_amount: null,
-      page: 0,
+      page: 1,
       size: 10
     };
 
@@ -159,7 +159,7 @@ export class TransactionsComponent implements OnInit {
       end_date: null,
       min_amount: null,
       max_amount: null,
-      page: 0,
+      page: 1,
       size: 100
     };
 
@@ -233,7 +233,7 @@ export class TransactionsComponent implements OnInit {
       end_date: null,
       min_amount: null,
       max_amount: null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
 
@@ -253,7 +253,7 @@ export class TransactionsComponent implements OnInit {
       end_date: null,
       min_amount: null,
       max_amount: null,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.reloadState = false;
@@ -288,7 +288,7 @@ export class TransactionsComponent implements OnInit {
       end_date: null,
       min_amount: null,
       max_amount: null,
-      page: 0,
+      page: 1,
       size: 100
     };
 

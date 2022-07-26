@@ -42,7 +42,7 @@ export class NotificationsComponent implements OnInit {
     this.walletNo = this.storageService.getData('wallet_no');
     let requestData = {
       wallet_no: this.walletNo,
-      page: 0,
+      page: 1,
       size: this.paginationCount
     };
     this.walletService.getCustomerNotifications(requestData).subscribe(data => {

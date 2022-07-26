@@ -1364,7 +1364,8 @@
     "reports": {
       "title": "Raporlar",
       "children": {
-        "accounting": "Koruma Hesabı"
+        "accounting": "Koruma Hesabı",
+        "fraud": "Fraud Hesaplar"
       },
       "accounting": {
         "list": {
