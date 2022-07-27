@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   Campaign,
+  FraudOut,
   MessageOut,
   UploadFile,
   UploadMessageOut
@@ -27,6 +28,8 @@ import {
   FeeIn,
   FeeOut,
   FeeParams,
+  FraudIn,
+  FraudParams,
   Level,
   LevelIn,
   LevelOut,
@@ -372,6 +375,32 @@ export class SettingsService {
   getEnums(): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/enum');
   }
+
+    // Bank
+  getFrauds(fraudParams?: FraudParams): Observable<FraudOut> {
+      if (fraudParams) {
+        let options = {
+          params: new HttpParams()
+            .set('search', fraudParams.search)
+            .set('page', fraudParams.page.toString())
+            .set('size', fraudParams.size.toString())
+        };
+        return this.http.get<FraudOut>(this.baseUrl + '/fraud/', options);
+      }
+      return this.http.get<FraudOut>(this.baseUrl + '/fraud/');
+    }
+  
+    getFraudDetails(bankID: string): Observable<Bank> {
+      return this.http.get<Bank>(this.baseUrl + '/bank/' + bankID);
+    }
+  
+  
+    updateFraud(fraudID: string, fraudParams: FraudIn): Observable<MessageOut> {
+      return this.http.put<MessageOut>(
+        this.baseUrl + '/fraud/' + fraudID,
+        fraudParams
+      );
+    }
 
   // Currencies
   getCurrencies(currencyParams?: CurrencyParams): Observable<CurrencyOut> {

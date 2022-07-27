@@ -126,6 +126,10 @@ export const menuConfig = [
       {
         fullPath: '/settings/fees',
         routeConfig: 'fees'
+      },
+      {
+        fullPath: '/settings/fraud',
+        routeConfig: 'fraud'
       }
     ]
   }

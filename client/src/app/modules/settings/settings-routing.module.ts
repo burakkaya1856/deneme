@@ -51,6 +51,16 @@ const routes: Routes = [
         }
       },
       {
+        path: 'fraud',
+        loadChildren: () =>
+          import('./fraud/fraud.module').then(m => m.FraudModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'fraud',
+          permissions: routeConfig['fraud'].permissions
+        }
+      },
+      {
         path: 'campaign',
         loadChildren: () =>
           import('./campaign/campaign.module').then(m => m.CampaignModule),

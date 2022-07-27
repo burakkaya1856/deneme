@@ -86,6 +86,29 @@ export interface BankOut {
   page: number;
 }
 
+export interface Fraud {
+  id: 0;
+  date_created: Date;
+  fraud_rule_type: string;
+  param1: string;
+  param2: string;
+  param3: string;
+  status: string;
+}
+
+export interface FraudIn {
+  param1: number;
+  param2: number;
+  param3: number;
+}
+
+export interface FraudOut {
+  items: Fraud[];
+  total: number;
+  size: number;
+  page: number;
+}
+
 export interface BankParams {
   search: string;
   status: string;
@@ -265,6 +288,14 @@ export interface FeeIn {
   rate_value: number;
   min_value: number;
   status: string;
+}
+
+// Fraud
+
+export interface FraudParams {
+  search: string;
+  page: number;
+  size: number;
 }
 
 // Currency
