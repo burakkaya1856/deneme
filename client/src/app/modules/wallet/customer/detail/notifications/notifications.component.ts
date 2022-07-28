@@ -52,11 +52,11 @@ export class NotificationsComponent implements OnInit {
       this.pagination = {
         total: data.total,
         size: data.size,
-        page: data.page + 1
+        page: data.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });
@@ -66,11 +66,11 @@ export class NotificationsComponent implements OnInit {
     if (!this.loading) {
       let requestData = {
         wallet_no: this.walletNo,
-        page: event.page - 1,
+        page: event.page,
         size: this.paginationCount
       };
 
-      this.pagination.page = requestData.page + 1;
+      this.pagination.page = requestData.page;
       this.getNotificationList(requestData);
     }
   }
@@ -86,7 +86,7 @@ export class NotificationsComponent implements OnInit {
 
         this.pageInfo = {
           total: this.pagination.total,
-          start: this.pagination.size * (this.pagination.page - 1),
+          start: this.pagination.size * (this.pagination.page),
           end: this.pagination.size * this.pagination.page
         };
         this.loading = false;

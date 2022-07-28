@@ -61,11 +61,11 @@ export class BankAccountsListComponent implements OnInit {
       this.pagination = {
         total: accounts.total,
         size: accounts.size,
-        page: accounts.page + 1
+        page: accounts.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyAccount = !this.accountList.length ? true : false;
@@ -117,7 +117,7 @@ export class BankAccountsListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
 
@@ -146,7 +146,7 @@ export class BankAccountsListComponent implements OnInit {
       let requestData = {
         search: this.searchData,
         status: this.selectedStatus || '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.deleteBankAccount(account.id).subscribe(res => {
@@ -168,7 +168,7 @@ export class BankAccountsListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.getAccounts(requestData);
@@ -179,11 +179,11 @@ export class BankAccountsListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getAccounts(requestData);
   }
 
@@ -199,7 +199,7 @@ export class BankAccountsListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getAccounts(requestData);
   }
 
@@ -212,7 +212,7 @@ export class BankAccountsListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getAccounts(requestData);
   }
 
@@ -223,7 +223,7 @@ export class BankAccountsListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getAccounts(requestData);
   }
 
@@ -241,7 +241,7 @@ export class BankAccountsListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });

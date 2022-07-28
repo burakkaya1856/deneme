@@ -91,11 +91,11 @@ export class TransactionsComponent implements OnInit {
           this.pagination = {
             total: data.total,
             size: data.size,
-            page: data.page + 1
+            page: data.page
           };
           this.pageInfo = {
             total: this.pagination.total,
-            start: this.pagination.size * (this.pagination.page - 1),
+            start: this.pagination.size * (this.pagination.page),
             end: this.pagination.size * this.pagination.page
           };
         }
@@ -112,19 +112,19 @@ export class TransactionsComponent implements OnInit {
         end_date: null,
         min_amount: null,
         max_amount: null,
-        page: event.page - 1,
+        page: event.page,
         size: this.paginationCount
       };
       if (this.filteredData) {
         requestData = this.filteredData;
-        requestData.page = event.page - 1;
+        requestData.page = event.page;
       }
       if (this.dateFilter) {
         requestData = this.dateFilter;
-        requestData.page = event.page - 1;
+        requestData.page = event.page;
       }
 
-      this.pagination.page = requestData.page + 1;
+      this.pagination.page = requestData.page;
       this.getTransaction(this.walletNo, requestData);
     }
   }
@@ -141,7 +141,7 @@ export class TransactionsComponent implements OnInit {
 
         this.pageInfo = {
           total: this.pagination.total,
-          start: this.pagination.size * (this.pagination.page - 1),
+          start: this.pagination.size * (this.pagination.page),
           end: this.pagination.size * this.pagination.page
         };
 
@@ -218,7 +218,7 @@ export class TransactionsComponent implements OnInit {
       event.filterData.wallet_no = this.walletNo;
       this.filteredData = event.filterData;
 
-      this.pagination.page = this.filteredData.page + 1;
+      this.pagination.page = this.filteredData.page;
       this.getTransaction(this.walletNo, this.filteredData);
     }
   }
@@ -238,7 +238,7 @@ export class TransactionsComponent implements OnInit {
     };
 
     this.dateFilter = requestData;
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.filteredData = null;
     this.getTransaction(this.walletNo, this.dateFilter);
   }

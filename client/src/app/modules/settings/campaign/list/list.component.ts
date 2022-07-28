@@ -72,11 +72,11 @@ export class CampaignListComponent implements OnInit {
       this.pagination = {
         total: campaigns.total,
         size: campaigns.size,
-        page: campaigns.page + 1
+        page: campaigns.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyList = !this.campaignList.length ? true : false;
@@ -132,7 +132,7 @@ export class CampaignListComponent implements OnInit {
         status: '',
         start_date: this.startDate,
         end_date: this.endDate,
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.getCampaigns(requestData);
@@ -160,7 +160,7 @@ export class CampaignListComponent implements OnInit {
         status: this.selectedStatus || '',
         start_date: this.startDate,
         end_date: this.endDate,
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.deleteCampaign(campaign.id).subscribe(res => {
@@ -189,7 +189,7 @@ export class CampaignListComponent implements OnInit {
         status: '',
         start_date: this.startDate,
         end_date: this.endDate,
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.getCampaigns(requestData);
@@ -202,11 +202,11 @@ export class CampaignListComponent implements OnInit {
       status: this.selectedStatus || '',
       start_date: this.startDate,
       end_date: this.endDate,
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getCampaigns(requestData);
   }
 
@@ -221,7 +221,7 @@ export class CampaignListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getCampaigns(requestData);
   }
 
@@ -237,7 +237,7 @@ export class CampaignListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getCampaigns(requestData);
   }
 
@@ -250,7 +250,7 @@ export class CampaignListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getCampaigns(requestData);
   }
 
@@ -268,7 +268,7 @@ export class CampaignListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });
@@ -318,7 +318,7 @@ export class CampaignListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getCampaigns(requestData);
   }
 

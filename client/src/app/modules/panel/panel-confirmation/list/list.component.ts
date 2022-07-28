@@ -46,11 +46,11 @@ export class ListComponent implements OnInit {
       this.isLoaded = true;
       this.pagination.total = data.total;
       this.pagination.size = data.size;
-      this.pagination.page = data.page + 1;
+      this.pagination.page = data.page;
 
       this.info = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
 
@@ -69,7 +69,7 @@ export class ListComponent implements OnInit {
     this.bsModalRef.content.event.subscribe(data => {
       let requestData = {
         search: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.getConfirmation(requestData);
@@ -83,16 +83,16 @@ export class ListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = paramsData.page + 1;
+    this.pagination.page = paramsData.page;
     this.getConfirmation(paramsData);
   }
 
   paginationPageChangedHandler(event: any) {
     let paramsData = {
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
-    this.pagination.page = paramsData.page + 1;
+    this.pagination.page = paramsData.page;
     this.getConfirmation(paramsData);
   }
 
@@ -109,7 +109,7 @@ export class ListComponent implements OnInit {
 
       this.info = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });

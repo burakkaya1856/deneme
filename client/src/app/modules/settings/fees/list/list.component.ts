@@ -71,11 +71,11 @@ export class FeesListComponent implements OnInit {
       this.pagination = {
         total: fees.total,
         size: fees.size,
-        page: fees.page + 1
+        page: fees.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyList = !this.feeList.length ? true : false;
@@ -106,7 +106,7 @@ export class FeesListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.getFeeList(requestData).subscribe(fees => {
@@ -132,7 +132,7 @@ export class FeesListComponent implements OnInit {
       let requestData = {
         search: this.searchData,
         status: this.selectedStatus || '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.deleteFee(fee.id).subscribe(res => {
@@ -166,11 +166,11 @@ export class FeesListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getFees(requestData);
   }
 
@@ -183,7 +183,7 @@ export class FeesListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getFees(requestData);
   }
 
@@ -195,7 +195,7 @@ export class FeesListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getFees(requestData);
   }
 
@@ -206,7 +206,7 @@ export class FeesListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getFees(requestData);
   }
 
@@ -224,7 +224,7 @@ export class FeesListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });

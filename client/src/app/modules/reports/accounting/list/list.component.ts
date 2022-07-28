@@ -71,11 +71,11 @@ export class ListComponent implements OnInit {
       this.pagination = {
         total: data.total,
         size: data.size,
-        page: data.page + 1
+        page: data.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
 
@@ -120,7 +120,7 @@ export class ListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getReports(requestData);
   }
 
@@ -128,11 +128,11 @@ export class ListComponent implements OnInit {
     let requestData = {
       q: this.searchData,
       reserve_date: this.reserveDate,
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getReports(requestData);
   }
 
@@ -150,7 +150,7 @@ export class ListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });
@@ -192,7 +192,7 @@ export class ListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getReports(requestData);
     let totalReserveRequest = {
       reserve_date: this.reserveDate

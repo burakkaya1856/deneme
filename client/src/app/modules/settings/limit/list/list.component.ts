@@ -62,11 +62,11 @@ export class LimitListComponent implements OnInit {
       this.pagination = {
         total: limits.total,
         size: limits.size,
-        page: limits.page + 1
+        page: limits.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyList = !this.limitList.length ? true : false;
@@ -110,7 +110,7 @@ export class LimitListComponent implements OnInit {
       let requestData = {
         transaction_type: this.selectedTransactionType || '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.getLimitList(requestData).subscribe(limits => {
@@ -139,7 +139,7 @@ export class LimitListComponent implements OnInit {
       let requestData = {
         transaction_type: this.selectedTransactionType || '',
         status: this.selectedStatus || '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
 
@@ -166,7 +166,7 @@ export class LimitListComponent implements OnInit {
         size: this.paginationCount
       };
 
-      this.pagination.page = requestData.page + 1;
+      this.pagination.page = requestData.page;
       this.getLimits(requestData);
     });
   }
@@ -175,11 +175,11 @@ export class LimitListComponent implements OnInit {
     let requestData = {
       transaction_type: this.selectedTransactionType || '',
       status: this.selectedStatus || '',
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLimits(requestData);
   }
 
@@ -190,7 +190,7 @@ export class LimitListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLimits(requestData);
   }
 
@@ -203,7 +203,7 @@ export class LimitListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLimits(requestData);
   }
 
@@ -216,7 +216,7 @@ export class LimitListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLimits(requestData);
   }
 
@@ -227,7 +227,7 @@ export class LimitListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLimits(requestData);
   }
 
@@ -245,7 +245,7 @@ export class LimitListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });

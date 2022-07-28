@@ -149,7 +149,7 @@ export class FraudListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getFrauds(requestData);
   }
 

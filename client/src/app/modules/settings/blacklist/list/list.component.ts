@@ -59,11 +59,11 @@ export class BlackListListComponent implements OnInit {
       this.pagination = {
         total: blacklist.total,
         size: blacklist.size,
-        page: blacklist.page + 1
+        page: blacklist.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyList = !this.blacklists.length ? true : false;
@@ -110,7 +110,7 @@ export class BlackListListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
 
@@ -139,7 +139,7 @@ export class BlackListListComponent implements OnInit {
       const requestData = {
         search: this.searchData,
         status: this.selectedStatus || '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.deleteBlacklist(blacklist.id).subscribe(res => {
@@ -162,7 +162,7 @@ export class BlackListListComponent implements OnInit {
       let blacklistParams = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.getBlacklist(blacklistParams).subscribe(banks => {
@@ -171,11 +171,11 @@ export class BlackListListComponent implements OnInit {
         this.pagination = {
           total: banks.total,
           size: banks.size,
-          page: banks.page + 1
+          page: banks.page
         };
         this.pageInfo = {
           total: this.pagination.total,
-          start: this.pagination.size * (this.pagination.page - 1),
+          start: this.pagination.size * (this.pagination.page),
           end: this.pagination.size * this.pagination.page
         };
       });
@@ -186,11 +186,11 @@ export class BlackListListComponent implements OnInit {
     const requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBlacklist(requestData);
   }
 
@@ -203,7 +203,7 @@ export class BlackListListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBlacklist(requestData);
   }
 
@@ -216,7 +216,7 @@ export class BlackListListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBlacklist(requestData);
   }
 
@@ -227,7 +227,7 @@ export class BlackListListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBlacklist(requestData);
   }
 
@@ -245,7 +245,7 @@ export class BlackListListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });

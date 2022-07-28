@@ -59,11 +59,11 @@ export class LevelListComponent implements OnInit {
       this.pagination = {
         total: levels.total,
         size: levels.size,
-        page: levels.page + 1
+        page: levels.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyList = !this.levelList.length ? true : false;
@@ -107,7 +107,7 @@ export class LevelListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.getLevelList(requestData).subscribe(levels => {
@@ -136,7 +136,7 @@ export class LevelListComponent implements OnInit {
       let requestData = {
         search: this.searchData,
         status: this.selectedStatus || '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.settingsService.deleteLevel(level.id).subscribe(res => {
@@ -169,11 +169,11 @@ export class LevelListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLevels(requestData);
   }
 
@@ -186,7 +186,7 @@ export class LevelListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLevels(requestData);
   }
 
@@ -199,7 +199,7 @@ export class LevelListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLevels(requestData);
   }
 
@@ -210,7 +210,7 @@ export class LevelListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getLevels(requestData);
   }
 
@@ -228,7 +228,7 @@ export class LevelListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });

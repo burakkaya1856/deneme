@@ -63,11 +63,11 @@ export class BankListComponent implements OnInit {
       this.pagination = {
         total: banks.total,
         size: banks.size,
-        page: banks.page + 1
+        page: banks.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyBank = !this.bankList.length ? true : false;
@@ -110,7 +110,7 @@ export class BankListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
 
@@ -136,7 +136,7 @@ export class BankListComponent implements OnInit {
       let requestData = {
         search: this.searchData,
         status: this.selectedStatus || '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
 
@@ -159,7 +159,7 @@ export class BankListComponent implements OnInit {
       let requestData = {
         search: '',
         status: '',
-        page: this.pagination.page - 1,
+        page: this.pagination.page,
         size: this.paginationCount
       };
       this.getBanks(requestData);
@@ -170,11 +170,11 @@ export class BankListComponent implements OnInit {
     let requestData = {
       search: this.searchData,
       status: this.selectedStatus || '',
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBanks(requestData);
   }
 
@@ -187,7 +187,7 @@ export class BankListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBanks(requestData);
   }
 
@@ -199,7 +199,7 @@ export class BankListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBanks(requestData);
   }
 
@@ -210,7 +210,7 @@ export class BankListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBanks(requestData);
   }
 
@@ -228,7 +228,7 @@ export class BankListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });
@@ -243,7 +243,7 @@ export class BankListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getBanks(requestData);
   }
 

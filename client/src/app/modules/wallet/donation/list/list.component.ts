@@ -76,11 +76,11 @@ export class ListComponent implements OnInit {
       this.pagination = {
         total: data.total,
         size: data.size,
-        page: data.page + 1
+        page: data.page
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
       this.emptyDonation = !this.donationList.length ? true : false;
@@ -105,11 +105,11 @@ export class ListComponent implements OnInit {
       status: this.selectedStatus || null,
       start_date: this.start_date || null,
       end_date: this.end_date || null,
-      page: event.page - 1,
+      page: event.page,
       size: this.paginationCount
     };
 
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getDonations(requestData);
   }
 
@@ -124,7 +124,7 @@ export class ListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getDonations(requestData);
   }
 
@@ -137,7 +137,7 @@ export class ListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getDonations(requestData);
   }
 
@@ -152,7 +152,7 @@ export class ListComponent implements OnInit {
       page: 1,
       size: this.paginationCount
     };
-    this.pagination.page = requestData.page + 1;
+    this.pagination.page = requestData.page;
     this.getDonations(requestData);
   }
 
@@ -218,7 +218,7 @@ export class ListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page - 1),
+        start: this.pagination.size * (this.pagination.page),
         end: this.pagination.size * this.pagination.page
       };
     });
