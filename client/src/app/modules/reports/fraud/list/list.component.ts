@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '@app/core/http/report/report.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { defineLocale, trLocale } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { TranslateService } from '@ngx-translate/core';
-import { jsonToCsv } from '../../../../shared/helpers/jsonToCsv';
-import { jsonToXlsx } from '../../../../shared/helpers/jsonToXlsx';
+
 @Component({
   selector: 'fraud-list',
   templateUrl: './list.component.html',
@@ -16,20 +14,9 @@ export class ListComponent implements OnInit {
   public reportList = [];
   public emptyReport = null;
   public totalReserve = null;
-  public selectCurrency = 'TRY';
-  public bsModalRef: BsModalRef;
   public maxPage = 5;
-  public months = this.translate.instant(
-    'navigations.reports.fraud.values.months'
-  );
-  public fileDownloadKeys = this.translate.instant(
-    'navigations.reports.fraud.values.fileDownloadKeys'
-  );
-  public fileDownloadTitle = this.translate.instant(
-    'navigations.reports.fraud.values.fileDownloadTitle'
-  );
+
   public searchData = '';
-  public selectedStatus = null;
   public paginationCount = 10;
   public reserveDate = '';
   public bsDateValue: any;
@@ -47,7 +34,6 @@ export class ListComponent implements OnInit {
 
   constructor(
     private reportService: ReportService,
-    public bsModalService: BsModalService,
     private localeService: BsLocaleService,
     private translate: TranslateService
   ) {
@@ -198,10 +184,6 @@ export class ListComponent implements OnInit {
       reserve_date: this.reserveDate
     };
     this.getTotalReserve(totalReserveRequest);
-  }
-
-  ngOnDestroy() {
-    this.bsModalService.hide();
   }
 
   getTotalReserve(requestData: any) {

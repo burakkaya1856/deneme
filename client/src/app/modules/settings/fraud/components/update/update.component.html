@@ -1,39 +1,94 @@
 <div class="update-header">
-    <h1 class="modal-title">Fraud Kural Düzenleme</h1>
-    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+  <h1 class="modal-title">{{ 'settings.fraud.update.header' | translate }}</h1>
+  <button
+    aria-label="Close"
+    type="button"
+    (click)="closeModal()"
+    class="close"
+    aria-hidden="true"
+  >
+    ×
+  </button>
 </div>
 
-
-<form *ngIf="fraudData" class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <div class="update-body">
-
-        <div class="form-group row">
-            <label class="col-form-label col-sm-3">Adet</label>
-            <div class="col-sm-9">
-                <input type="text" [(ngModel)]="fraudData.param1" #fFraudName="ngModel" name="param1" class="form-control" required autocomplete="off">
-                <p [ngStyle]="{'visibility': f.submitted && fFraudName.errors?.required ? 'visible': 'hidden'}" class="validation mb-0">Gerekli alan</p>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-form-label col-sm-3">Süre</label>
-            <div class="col-sm-9">
-                <input type="text" [(ngModel)]="fraudData.param2" #fFraudName="ngModel" name="param1" class="form-control" required autocomplete="off">
-                <p [ngStyle]="{'visibility': f.submitted && fFraudName.errors?.required ? 'visible': 'hidden'}" class="validation mb-0">Gerekli alan</p>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-form-label col-sm-3">Tutar</label>
-            <div class="col-sm-9">
-                <input type="text" [(ngModel)]="fraudData.param3" #fFraudName="ngModel" name="param1" class="form-control" required autocomplete="off">
-                <p [ngStyle]="{'visibility': f.submitted && fFraudName.errors?.required ? 'visible': 'hidden'}" class="validation mb-0">Gerekli alan</p>
-            </div>
-        </div>
+<form
+  *ngIf="fraudData"
+  class="form-horizontal"
+  [formGroup]="updateForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="update-body">
+    <div class="form-group row">
+      <label class="col-form-label col-sm-3">{{
+        'settings.fraud.update.number' | translate
+      }}</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          formControlName="param1"
+          class="form-control"
+          autocomplete="off"
+        />
+        <!-- TODO: ngstyle çözümü diğer formlar etkilenmesin diye yapıldı tüm formlar reactive yapılacak zaman olursa düzeltilmeli -->
+        <p
+          *ngIf="submitted && f.param1.errors?.required"
+          [ngStyle]="{ visibility: visible }"
+          class="validation mb-0"
+        >
+          {{ 'settings.fraud.update.required' | translate }}
+        </p>
+      </div>
     </div>
 
-    <div class="update-footer">
-        <button type="button" (click)="closeModal()" class="btn btn-cancel">Vazgeç</button>
-        <button type="submit" class="btn btn-save">Kaydet</button>
+    <div class="form-group row">
+      <label class="col-form-label col-sm-3">{{
+        'settings.fraud.update.duration' | translate
+      }}</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          formControlName="param2"
+          class="form-control"
+          autocomplete="off"
+        />
+        <p
+          *ngIf="submitted && f.param2.errors?.required"
+          [ngStyle]="{ visibility: visible }"
+          class="validation mb-0"
+        >
+          {{ 'settings.fraud.update.required' | translate }}
+        </p>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <label class="col-form-label col-sm-3">{{
+        'settings.fraud.update.amount' | translate
+      }}</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          formControlName="param3"
+          class="form-control"
+          autocomplete="off"
+        />
+        <p
+          *ngIf="submitted && f.param3.errors?.required"
+          [ngStyle]="{ visibility: visible }"
+          class="validation mb-0"
+        >
+          {{ 'settings.fraud.update.required' | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="update-footer">
+    <button type="button" (click)="closeModal()" class="btn btn-cancel">
+      {{ 'settings.fraud.update.btnCancel' | translate }}
+    </button>
+    <button type="submit" class="btn btn-save">
+      {{ 'settings.fraud.update.btnSubmit' | translate }}
+    </button>
+  </div>
 </form>

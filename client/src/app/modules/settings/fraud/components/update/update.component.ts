@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { SettingsService } from '@app/core/http';
 import { AlertService } from '@app/shared/services';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -11,48 +11,45 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class UpdateFraudComponent implements OnInit {
   public event: EventEmitter<any> = new EventEmitter();
-  public id: '';
   public fraudData;
-  public customer = null;
-  public selectedFile: File = null;
-  public enumData;
-  public errorMessage = '';
-  public imageType = '';
-  public statusKeys: any;
-  public choseImg = true;
-  public loadingState = false;
+  updateForm: FormGroup;
+  submitted = false;
 
   constructor(
     private bsModalRef: BsModalRef,
     private alertService: AlertService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.enumData.forEach(item => {
-      if (item.Status) {
-        this.statusKeys = Object.keys(item.Status);
-      }
+    this.updateForm = this.formBuilder.group({
+      param1: [this.fraudData.param1, Validators.required],
+      param2: [this.fraudData.param2, Validators.required],
+      param3: [this.fraudData.param3, Validators.required]
     });
   }
 
-  onSubmit(form: NgForm): void {
-    let requestData = {
-      param1: this.fraudData.param1,
-      param2: this.fraudData.param2,
-      param3: this.fraudData.param3,
-    };
-    if (form.valid && !this.loadingState) {
-      this.settingsService
-        .updateFraud(this.fraudData.id, requestData)
-        .subscribe(res => {
-          this.event.emit({ data: true });
-          this.alertService.setNoticeHandler(res.message, 'success', false);
-        });
-      this.closeModal();
-    }
+  get f() {
+    return this.updateForm.controls;
   }
 
+  onSubmit(): void {
+    this.submitted = true;
+
+    if (this.updateForm.invalid) {
+      return;
+    }
+
+    this.settingsService
+      .updateFraud(this.fraudData.id, this.updateForm.value)
+      .subscribe(res => {
+        this.event.emit({ data: true });
+        this.alertService.setNoticeHandler(res.message, 'success', false);
+      });
+    this.closeModal();
+    this.submitted = false;
+  }
 
   closeModal(): void {
     this.bsModalRef.hide();

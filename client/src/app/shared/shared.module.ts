@@ -17,6 +17,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MenuHorizontalComponent } from './components/menu-horizontal/menu-horizontal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TableDetailsModalComponent } from './components/table-details-modal/table-details-modal.component';
+import { StatusComponent } from './components/status/status.component';
+
 //directives
 import { EnumValidator } from './directives/enum.validator';
 import { NohrefDirective } from './directives/nohref.directive';
@@ -85,7 +87,8 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     DeleteModalComponent,
     SpinnerComponent,
     CheckboxComponent,
-    NoRightClickDirective
+    NoRightClickDirective,
+    StatusComponent
   ],
   imports: [
     // core
@@ -142,6 +145,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     TableDetailsModalComponent,
     NotaccessComponent,
     DeleteModalComponent,
+    StatusComponent,
     //directives
     EnumValidator,
     NohrefDirective,
