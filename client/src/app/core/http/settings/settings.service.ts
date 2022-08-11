@@ -376,12 +376,14 @@ export class SettingsService {
     return this.http.get<any>(this.baseUrl + '/enum');
   }
 
-    // Bank
+  // Fraud
   getFrauds(fraudParams?: FraudParams): Observable<FraudOut> {
+
       if (fraudParams) {
         let options = {
           params: new HttpParams()
             .set('search', fraudParams.search)
+            .set('status', fraudParams.status)
             .set('page', fraudParams.page.toString())
             .set('size', fraudParams.size.toString())
         };

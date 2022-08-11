@@ -1,9 +1,3 @@
-<div class="row justify-content-between align-items-center mx-0 py-3">
-
-
-</div>
-
-
 <div class="bg-white table-container" *ngIf="!emptyReport">
 
     <div class="datatable-scroll">
@@ -15,23 +9,19 @@
                     <td tabindex="0" rowspan="1" colspan="1">
                         <div *ngIf="searchData || (reportList && reportList.length > 0)" class="dataTables_filter">
                             <label class="d-flex">
-                                <span>{{ 'navigations.reports.accounting.list.filterLabel' | translate }}:</span>
-                                <input class="w-100" type="search" placeholder="{{'navigations.reports.accounting.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchHandler($event)">
+                                <span>{{ 'navigations.reports.fraud.list.filterLabel' | translate }}:</span>
+                                <input class="w-100" type="search" placeholder="{{'navigations.reports.fraud.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchHandler($event)">
                             </label>
                         </div>
                     </td>
 
-                    <td tabindex="0" rowspan="1" colspan="2"></td>
-
-                    <td tabindex="0" rowspan="1" colspan="1">
-
-                    </td>
+                    <td tabindex="0" rowspan="1" colspan="5"></td>
 
                     <td tabindex="0" rowspan="1" colspan="1">
                         <div class="dataTables_length">
                             <label class="d-flex">
 
-                                <span>{{'navigations.reports.accounting.list.tableSizeLabel' | translate }}:</span>
+                                <span>{{'navigations.reports.fraud.list.tableSizeLabel' | translate }}:</span>
                                 <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
@@ -44,12 +34,13 @@
                 </tr>
 
                 <tr role="row">
-                    <th tabindex="0" rowspan="1" colspan="1">Ad Soyad</th>
-                    <th tabindex="0" rowspan="1" colspan="1">Wallet Numarası</th>
-                    <th tabindex="0" rowspan="1" colspan="1">Rule Tipi</th>
-                    <th tabindex="0" rowspan="1" colspan="1">Aciliyet</th>
-                    <th tabindex="0" rowspan="1" colspan="1">Statu</th>
-                    <th tabindex="0" rowspan="1" colspan="1">Açıklama</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.transactionDate' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.fullName' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.walletNo' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.ruleType' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.exigency' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.status' | translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{'navigations.reports.fraud.list.tableHead.description' | translate }}</th>
                 </tr>
             </thead>
 
@@ -57,7 +48,7 @@
 
                 <ng-container *ngIf="isLoaded">
                     <tr *ngFor="let report of reportList">
-
+                        <td class="text-center" colspan="1">{{report.date_created | customDatePipe:true}}</td>
                         <td>{{report.full_name | titlecase}}</td>
                         <td><a routerLink="/wallet/customer/detail/{{report.wallet_no}}" target="_blank">{{report.wallet_no}}</a></td>
                         <td>{{report.fraud_rule_type | titlecase}}</td>
@@ -101,10 +92,10 @@
     <div class="row d-flex justify-content-center">
         <div class="d-flex flex-column align-items-center">
             <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
-            <h1 class="text-center font-weight-semibold mt-2">{{'wallet.customer.customerList.notFound.header' | translate}}</h1>
-            <p class="text-center text-muted font-weight-semibold mt-2">{{'wallet.customer.customerList.notFound.info' | translate}}</p>
+            <h1 class="text-center font-weight-semibold mt-2">{{'navigations.reports.fraud.list.notFound.header' | translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'navigations.reports.fraud.list.notFound.info' | translate}}</p>
             <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
-                {{'wallet.customer.customerList.notFound.btnText' | translate}}
+                {{'navigations.reports.fraud.list.notFound.btnText' | translate}}
             </button>
         </div>
     </div>

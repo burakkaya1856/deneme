@@ -1,103 +1,196 @@
 <div class="bg-white table-container" *ngIf="!emptyFraud">
+  <div class="datatable-scroll">
+    <table
+      class="table datatable-data-search-inputs dataTable no-footer table-hover"
+      role="grid"
+    >
+      <thead>
+        <tr role="row" class="table-top">
+          <td tabindex="0" rowspan="1" colspan="1">
+            <div
+              *ngIf="searchData || (fraudList && fraudList.length > 0)"
+              class="dataTables_filter"
+            >
+              <label class="d-flex">
+                <span
+                  >{{ 'settings.fraud.list.filterLabel' | translate }}:</span
+                >
+                <input
+                  class="w-100"
+                  type="search"
+                  placeholder="{{
+                    'settings.fraud.list.filterPlaceholder' | translate
+                  }}"
+                  [ngModel]="searchData"
+                  (ngModelChange)="searchFraud($event)"
+                />
+              </label>
+            </div>
+          </td>
 
-    <div class="datatable-scroll">
-        <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
-            <thead>
+          <td tabindex="0" rowspan="1" colspan="3"></td>
 
-                <tr role="row" class="table-top">
+          <td tabindex="0" rowspan="1" colspan="1">
+            <ng-select
+              *ngIf="
+                statusKeys &&
+                ((fraudList && fraudList.length > 0) || selectedStatus)
+              "
+              [ngModel]="selectedStatus"
+              class="ng-select-table"
+              [searchable]="false"
+              placeholder="{{
+                'settings.fraud.list.statusPlaceholder' | translate
+              }}"
+              (ngModelChange)="searchStatus($event)"
+            >
+              <ng-option *ngFor="let item of statusKeys" [value]="item"
+                >{{ 'settings.fraud.list.tableStatus.' + item | translate }}
+              </ng-option>
+            </ng-select>
+          </td>
 
-                    <td tabindex="0" rowspan="1" colspan="1">
-                        <div *ngIf="searchData || (fraudList && fraudList.length > 0)" class="dataTables_filter">
-                            <label class="d-flex">
-                                <span>{{ 'settings.bank.list.filterLabel' | translate }}:</span>
-                                <input class="w-100" type="search" placeholder="{{'settings.bank.list.filterPlaceholder' | translate }}" [ngModel]="searchData" (ngModelChange)="searchFraud($event)">
-                            </label>
-                        </div>
-                    </td>
+          <td tabindex="0" rowspan="1" colspan="1">
+            <div class="dataTables_length d-flex">
+              <label class="d-flex">
+                <span
+                  >{{ 'settings.fraud.list.tableSizeLabel' | translate }}:</span
+                >
+                <select
+                  name="DataTables_Table_0_length"
+                  class="custom-select pl-3 pr-4"
+                  [(ngModel)]="paginationCount"
+                  (ngModelChange)="paginationCountChange($event)"
+                >
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </label>
+            </div>
+          </td>
+        </tr>
 
-                    <td tabindex="0" rowspan="1" colspan="2"></td>
+        <tr role="row">
+          <th tabindex="0" rowspan="1" colspan="1">
+            {{ 'settings.fraud.list.tableHead.ruleDescription' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'settings.fraud.list.tableHead.number' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'settings.fraud.list.tableHead.duration' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'settings.fraud.list.tableHead.amount' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'settings.fraud.list.tableHead.status' | translate }}
+          </th>
+          <th
+            class="text-center sorting-disabled text-right"
+            tabindex="0"
+            rowspan="1"
+            colspan="2"
+          >
+            {{ 'settings.fraud.list.tableHead.actions' | translate }}
+          </th>
+        </tr>
+      </thead>
 
-                    <td tabindex="0" rowspan="1" colspan="1">
-                        <div class="dataTables_length d-flex">
-                            <label class="d-flex">
-                                <span>{{'settings.bank.list.tableSizeLabel' | translate }}:</span>
-                                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </label>
-                        </div>
-                    </td>
-                </tr>
+      <tbody>
+        <ng-container *ngIf="isLoaded">
+          <tr *ngFor="let fraud of fraudList">
+            <td colspan="1">{{ fraud.fraud_rule_type }}</td>
+            <td class="text-center" colspan="1">{{ fraud.param1 }}</td>
+            <td class="text-center" colspan="1">{{ fraud.param2 }}</td>
+            <td class="text-center" colspan="1">{{ fraud.param3 }}</td>
+            <td class="text-center" colspan="1">
+              <status [status]="fraud.status"></status>
+            </td>
+            <td class="text-center" colspan="2">
+              <button
+                class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
+                type="button"
+                (click)="updateFraud(fraud)"
+                tooltip="düzenle"
+              >
+                <i class="icon-pencil3"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
 
-                <tr role="row">
-                    <th tabindex="0" rowspan="1" colspan="1">Kural Açıklaması</th>
-                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">Adet</th>
-                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">Süre</th>
-                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">Tutar</th>
-                    <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">İşlemler</th>
-                </tr>
-            </thead>
+        <tr *ngIf="fraudList && fraudList.length == 0 && isLoaded">
+          <td colspan="12">
+            <h2 class="text-md-center py-5">
+              {{ 'settings.fraud.list.noData' | translate }}
+            </h2>
+          </td>
+        </tr>
 
-            <tbody>
+        <tr *ngIf="!isLoaded">
+          <td colspan="12" class="px-0">
+            <spinner></spinner>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-                <ng-container *ngIf="isLoaded">
-                    <tr *ngFor="let fraud of fraudList">
-                        <td colspan="1">{{fraud.fraud_rule_type}}</td>
-                        <td class="text-center" colspan="1">{{fraud.param1}}</td>
-                        <td class="text-center" colspan="1">{{fraud.param2}}</td>
-                        <td class="text-center" colspan="1">{{fraud.param3}}</td>
-                        <td class="text-center" colspan="2">
-                            <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="updateFraud(fraud)" tooltip="düzenle">
-                                <i class="icon-pencil3"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </ng-container>
-
-                <tr *ngIf="(fraudList && fraudList.length == 0) && isLoaded">
-                    <td colspan="12">
-                        <h2 class="text-md-center py-5">Kural seti bulunamadı</h2>
-                    </td>
-                </tr>
-
-                <tr *ngIf="!isLoaded">
-                    <td colspan="12" class="px-0">
-                        <spinner></spinner>
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
+  <div class="datatable-footer pb-1 pb-md-0">
+    <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+      {{
+        'wallet.customer.customerList.tableFooterInfo'
+          | translate
+            : {
+                totalLength: pageInfo.total,
+                start: pageInfo.start,
+                end: pageInfo.end
+              }
+      }}
     </div>
 
-    <div class="datatable-footer pb-1 pb-md-0">
-
-        <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
-            {{ 'wallet.customer.customerList.tableFooterInfo' | translate: { totalLength: pageInfo.total, start: pageInfo.start, end: pageInfo.end } }}
-        </div>
-
-        <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
-            <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage" (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
-        </div>
-
+    <div
+      class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center"
+      noRightClick
+    >
+      <pagination
+        [boundaryLinks]="true"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+        [totalItems]="pagination.total"
+        [itemsPerPage]="pagination.size"
+        [maxSize]="maxPage"
+        (pageChanged)="pageChanged($event)"
+        [(ngModel)]="pagination.page"
+      ></pagination>
     </div>
+  </div>
 </div>
 
 <div class="container-fluid my-5 py-5" *ngIf="emptyFraud">
-    <div class="row d-flex justify-content-center">
-        <div class="d-flex flex-column align-items-center">
-            <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
-            <h1 class="text-center font-weight-semibold mt-2">{{'settings.fraud.list.notFound.header' | translate}}</h1>
-            <p class="text-center text-muted font-weight-semibold mt-2">{{'settings.fraud.list.notFound.info' | translate}}</p>
-            <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
-                {{'settings.fraud.list.notFound.btnText' | translate}}
-            </button>
-        </div>
+  <div class="row d-flex justify-content-center">
+    <div class="d-flex flex-column align-items-center">
+      <img
+        src="../../../../../assets/images/icon-no-data.svg"
+        alt="not found image"
+      />
+      <h1 class="text-center font-weight-semibold mt-2">
+        {{ 'settings.fraud.list.notFound.header' | translate }}
+      </h1>
+      <p class="text-center text-muted font-weight-semibold mt-2">
+        {{ 'settings.fraud.list.notFound.info' | translate }}
+      </p>
+      <button
+        routerLink="/"
+        class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2"
+      >
+        {{ 'settings.fraud.list.notFound.btnText' | translate }}
+      </button>
     </div>
+  </div>
 </div>
-
-<delete-modal *ngIf="deleteModal"></delete-modal>

@@ -62,8 +62,7 @@
                         <td colspan="1">{{bank.shortcode}}</td>
                         <td class="text-center" colspan="1">{{bank.date_created | customDatePipe:true}}</td>
                         <td class="text-center" colspan="1">
-                            <span class="badge" [ngClass]="{'badge-danger': bank.status === 'deleted', 'badge-info': bank.status === 'passive', 'badge-success': bank.status === 'active'}">
-                                {{ 'settings.bank.list.tableStatus.' + bank.status | translate }} </span>
+                            <status [status]="bank.status"></status>
                         </td>
                         <td class="text-center" colspan="2">
                             <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button" (click)="bankDetails(bank.id)" tooltip="{{ 'settings.bank.list.actionDetailTooltip' | translate }}">

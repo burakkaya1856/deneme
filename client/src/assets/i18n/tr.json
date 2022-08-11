@@ -1409,6 +1409,32 @@
           ],
           "fileDownloadTitle": "Koruma Hesabı"
         }
+      },
+      "fraud": {
+        "list": {
+          "noData": "Aradığınız Kriterlere Göre Bir Sonuç Bulunamadı.",
+          "showRezerv": "Koruma Hesabı Bakiyesi",
+          "filterLabel": "Filtre",
+          "filterPlaceholder": "Bir değer girin...",
+          "tableSizeLabel": "Miktar",
+          "dateLabel": "Tarih:",
+          "dateFilterPlaceholder": "Tarih seçiniz...",
+          "totalTitle": "Koruma Hesabı Bakiyesi:",
+          "tableHead": {
+            "transactionDate": "İşlem Tarihi",
+            "fullName": "Ad Soyad",
+            "walletNo": "Cüzdan Numarası",
+            "ruleType": "Rule Tipi",
+            "exigency": "Aciliyet",
+            "status": "Statü",
+            "description": "Açıklama"
+          },
+          "notFound": {
+            "header": "Fraud Sonucu Bulunamadı",
+            "info": "Henüz bir fraud oluşmamıştır.",
+            "btnText": "ANASAYFA"
+          }
+        }
       }
     },
     "settings": {
@@ -2354,6 +2380,65 @@
           "levelPermission": "Seviye listeleme yetkiniz bulunmamaktadır"
         },
         "btnCancel": "Vazgeç",
+        "btnSubmit": "Kaydet"
+      }
+    },
+    "fraud": {
+      "list": {
+        "notFound": {
+          "header": "Fraud Bulunamadı",
+          "info": "Henüz bir fraud eklenmemiş",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Kural seti bulunamadı.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} fraud arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Fraud Ekle",
+        "bankID": "ID",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "ruleDescription": "Kural Açıklaması",
+          "number": "Adet",
+          "duration": "Süre",
+          "amount": "Tutar",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+
+        "delete": {
+          "headerTitle": "Fraud'ı Sil",
+          "title": "Fraud'ı Silmek Üzeresiniz"
+        }
+      },
+      "details": {
+        "header": "Fraud Detay",
+        "fraudName": "Fraud Adı",
+        "fraudID": "ID",
+        "shortcode": "Kısa Kod",
+        "dateCreated": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "update": {
+        "header": "Fraud Kural Düzenleme",
+        "number": "Adet",
+        "duration": "Süre",
+        "amount": "Tutar",
+        "required": "Lütfen değer giriniz",
+        "btnCancel": "İptal",
         "btnSubmit": "Kaydet"
       }
     }

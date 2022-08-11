@@ -294,6 +294,7 @@ export interface FeeIn {
 
 export interface FraudParams {
   search: string;
+  status: string;
   page: number;
   size: number;
 }
