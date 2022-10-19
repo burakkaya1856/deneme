@@ -96,6 +96,16 @@ export const menuConfig = [
     ]
   },
   {
+    fullPath: '/merchants',
+    routeConfig: 'merchants',
+    children: [
+      {
+        fullPath: '/merchants/list',
+        routeConfig: 'list'
+      }
+    ]
+  },
+  {
     fullPath: '/settings',
     routeConfig: 'settings',
     children: [

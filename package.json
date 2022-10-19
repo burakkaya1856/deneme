@@ -29,7 +29,7 @@
     }
   },
   "validate-branch-name": {
-    "pattern": "(FE-\\d)",
-    "errorMsg": "please change your branch-name, example FE-100"
+    "pattern": "(SPT-\\d)",
+    "errorMsg": "please change your branch-name, example SPT-100"
   }
 }

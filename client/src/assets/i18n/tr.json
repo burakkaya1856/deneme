@@ -93,7 +93,8 @@
       "reportsCardTitle": "Raporlar",
       "reportsCardInfo": "Raporlar Paneli",
       "settingsCardTitle": "Ayarlar",
-      "settingsCardInfo": "Ayarlar Paneli"
+      "settingsCardInfo": "Ayarlar Paneli",
+      "merchants": "Bayiler"
     }
   },
   "panel": {
@@ -1437,6 +1438,12 @@
         }
       }
     },
+    "merchants": {
+      "title": "Bayiler",
+      "children": {
+        "list": "Bayi Başvuruları"
+      }
+    },
     "settings": {
       "title": "Ayarlar",
       "children": {
@@ -1524,6 +1531,35 @@
     },
     "spinner": {
       "subtitle": "Veriler yükleniyor lütfen bekleyiniz..."
+    }
+  },
+  "merchants": {
+    "list": {
+      "notFound": {
+        "header": "Bayi Bulunamadı",
+        "info": "Henüz bir bayi bulunmamaktadır",
+        "btnText": "ANASAYFA"
+      },
+      "noData": "Aradığınız Kriterlerde Banka Bulunmamaktadır.",
+      "filterLabel": "Filtre",
+      "filterPlaceholder": "Bir değer girin...",
+      "actionDetailTooltip": "Başvuruyu Görüntüle",
+      "tableSizeLabel": "Miktar",
+      "paginationInfo": "{{ totalLength }} bayi arasından {{ start }} - {{ end }} görüntüleniyor",
+      "tableHead": {
+        "firmName": "Firma Adı",
+        "dateCreated": "Oluşturma Tarihi",
+        "status": "Durum",
+        "actions": "Eylemler"
+      },
+      "tableStatus": {
+        "approved": "Onaylandı",
+        "waiting": "Onay Bekliyor",
+        "declined": "Reddedildi"
+      }
+    },
+    "detail": {
+      "header": "Bayi Başvuru Detayı"
     }
   },
   "settings": {

@@ -67,6 +67,16 @@ const routes: Routes = [
         }
       },
       {
+        path: 'merchants',
+        loadChildren: () =>
+          import('../merchant/merchant.module').then(m => m.MerchantModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'merchants',
+          permissions: routeConfig['merchants'].permissions
+        }
+      },
+      {
         path: 'settings',
         loadChildren: () =>
           import('../settings/settings.module').then(m => m.SettingsModule),
