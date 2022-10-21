@@ -908,20 +908,7 @@
               }
             },
             "values": {
-              "months": [
-                "Ocak",
-                "Şubat",
-                "Mart",
-                "Nisan",
-                "Mayıs",
-                "Haziran",
-                "Temmuz",
-                "Ağustos",
-                "Eylül",
-                "Ekim",
-                "Kasım",
-                "Aralık"
-              ],
+              "months": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
               "fileDownloadKeys": [
                 "Para Birimi",
                 "Kurum/Kişi",
@@ -1387,27 +1374,8 @@
           }
         },
         "values": {
-          "fileDownloadKeys": [
-            "İsim",
-            "Soyisim",
-            "Cuzdan Numarası",
-            "Bakiye",
-            "Hesaplama Tarihi"
-          ],
-          "months": [
-            "Ocak",
-            "Şubat",
-            "Mart",
-            "Nisan",
-            "Mayıs",
-            "Haziran",
-            "Temmuz",
-            "Ağustos",
-            "Eylül",
-            "Ekim",
-            "Kasım",
-            "Aralık"
-          ],
+          "fileDownloadKeys": ["İsim", "Soyisim", "Cuzdan Numarası", "Bakiye", "Hesaplama Tarihi"],
+          "months": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
           "fileDownloadTitle": "Koruma Hesabı"
         }
       },
@@ -1556,10 +1524,95 @@
         "approved": "Onaylandı",
         "waiting": "Onay Bekliyor",
         "declined": "Reddedildi"
-      }
+      },
+      "confirmTitle": "Başvuru Durumu Güncelle",
+      "confirmSubtitle": "Başvuru durumunu güncellemek istediğinize emin misiniz ?"
     },
     "detail": {
-      "header": "Bayi Başvuru Detayı"
+      "header": "Bayi Başvuru Detayı",
+      "modalTabs": {
+        "firstTab": {
+          "title": "1.Kurumsal Müşteri Bilgileri",
+          "labels": {
+            "tradeNumber": "Ticaret sicil numarası",
+            "tradeOffice": "Ticaret sicil müdürlüğü",
+            "taxOffice": "Vergi Dairesi",
+            "taxIdentityNumber": "Vergi kimlik numarası",
+            "tradeName": "Ticari ünvan",
+            "jobSubject": "Faaliyet konusu",
+            "referanceCompany": "Referans Şirket",
+            "email": "E-posta",
+            "phoneNumber": "Telefon Numarası",
+            "address": "Açık Adres"
+          }
+        },
+        "secondTab": {
+          "title": "2.Şirket Sahibi Bilgileri",
+          "labels": {
+            "fullName": "Ad Soyad",
+            "identityNumber": "Kimlik Numarası",
+            "phoneNumber": "Telefon Numarası",
+            "address": "Açık Adres"
+          }
+        },
+
+        "thirdTab": {
+          "title": "3.Belgeler",
+          "statuses": {
+            "approved": "Onaylandı",
+            "declined": "Reddedildi",
+            "waiting": "İnceleniyor"
+          }
+        }
+      }
+    },
+    "update": {
+      "header": "Bayi Başvuru Güncelleme",
+      "modalTabs": {
+        "firstTab": {
+          "title": "1.Kurumsal Müşteri Bilgileri",
+          "labels": {
+            "tradeNumber": "Ticaret sicil numarası",
+            "tradeOffice": "Ticaret sicil müdürlüğü",
+            "taxOffice": "Vergi Dairesi",
+            "taxIdentityNumber": "Vergi kimlik numarası",
+            "tradeName": "Ticari ünvan",
+            "jobSubject": "Faaliyet konusu",
+            "referanceCompany": "Referans Şirket",
+            "email": "E-posta",
+            "phoneNumber": "Telefon Numarası",
+            "adress": "Açık Adres"
+          },
+          "btn": "Müşteri Güncelle"
+        },
+        "secondTab": {
+          "title": "2.Şirket Sahibi Bilgileri",
+          "labels": {
+            "fullName": "Ad Soyad",
+            "identityNumber": "Kimlik Numarası",
+            "phoneNumber": "Telefon Numarası",
+            "address": "Açık Adres"
+          },
+          "btn": ". Bilgileri Güncelle"
+        },
+
+        "thirdTab": {
+          "title": "3.Belgeler",
+          "note": "Değişiklik sebebini belirtiniz",
+          "notePlaceholder": "Açıklama",
+          "statusLabel": "Dosya Durum Güncelle",
+          "documentType1": "İmza Sürküleri",
+          "documentType2": "Faaliyet Raporu",
+          "statuses": {
+            "approved": "Onaylandı",
+            "declined": "Reddedildi",
+            "waiting": "İnceleniyor"
+          },
+          "btn": ". Dosyayı Güncelle"
+        }
+      },
+      "statusTitle": "Başvuru Durumunu Güncelle",
+      "validation": "Doldurulması zorunlu alan"
     }
   },
   "settings": {

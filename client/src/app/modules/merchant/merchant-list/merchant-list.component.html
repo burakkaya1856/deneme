@@ -1,43 +1,38 @@
 <div class="bg-white table-container mt-5" *ngIf="!emptyMerchant">
   <div class="datatable-scroll">
-    <table
-      class="table datatable-data-search-inputs dataTable no-footer table-hover"
-      role="grid"
-    >
+    <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
       <thead>
         <tr role="row" class="table-top">
           <td tabindex="0" rowspan="1" colspan="1">
-            <div
-              *ngIf="searchData || (merchantList && merchantList.length > 0)"
-              class="dataTables_filter"
-            >
+            <div *ngIf="searchData || (merchantList && merchantList.length > 0)" class="dataTables_filter">
               <label class="d-flex">
                 <span>{{ 'merchants.list.filterLabel' | translate }}:</span>
-                <input
-                  class="w-100"
-                  type="search"
-                  placeholder="{{
+                <input class="w-100" type="search" placeholder="{{
                     'merchants.list.filterPlaceholder' | translate
-                  }}"
-                  [ngModel]="searchData"
-                  (ngModelChange)="searchBank($event)"
-                />
+                  }}" [ngModel]="searchData" (ngModelChange)="searchMerchant($event)" />
               </label>
             </div>
           </td>
+          <td tabindex="0" rowspan="1" colspan="1"></td>
 
-          <td tabindex="0" rowspan="1" colspan="2"></td>
+          <td tabindex="0" rowspan="1" colspan="1">
+            <ng-select *ngIf="statusKeys && (merchantList && merchantList.length > 0 || selectedStatus)"
+              [ngModel]="selectedStatus" class="ng-select-table" [searchable]="false"
+              placeholder="{{'settings.bank.list.statusPlaceholder' | translate }}"
+              (ngModelChange)="searchStatus($event)">
+              <ng-option *ngFor="let item of statusKeys" [value]="item">{{'merchants.list.tableStatus.' + item |
+                translate }} </ng-option>
+            </ng-select>
+          </td>
+
+          <td tabindex="0" rowspan="1" colspan="1"></td>
 
           <td tabindex="0" rowspan="1" colspan="2">
             <div class="dataTables_length d-flex">
               <label class="d-flex">
                 <span>{{ 'merchants.list.tableSizeLabel' | translate }}:</span>
-                <select
-                  name="DataTables_Table_0_length"
-                  class="custom-select pl-3 pr-4"
-                  [(ngModel)]="paginationCount"
-                  (ngModelChange)="paginationCountChange($event)"
-                >
+                <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4" [(ngModel)]="paginationCount"
+                  (ngModelChange)="paginationCountChange($event)">
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
@@ -58,12 +53,7 @@
           <th class="text-center" tabindex="0" rowspan="1" colspan="1">
             {{ 'merchants.list.tableHead.status' | translate }}
           </th>
-          <th
-            class="text-center sorting-disabled text-right"
-            tabindex="0"
-            rowspan="1"
-            colspan="2"
-          >
+          <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">
             {{ 'merchants.list.tableHead.actions' | translate }}
           </th>
         </tr>
@@ -77,27 +67,25 @@
               {{ merchant.date_created | customDatePipe: true }}
             </td>
             <td class="text-center" colspan="1">
-              <span
-                class="badge"
-                [ngClass]="{
+              <span class="badge" [ngClass]="{
                   'badge-warning': merchant.status == 'waiting',
                   'badge-success': merchant.status == 'approved',
                   'badge-danger': merchant.status == 'declined'
-                }"
-                >{{
-                  'merchants.list.tableStatus.' + merchant.status | translate
-                }}</span
-              >
+                }">{{
+                'merchants.list.tableStatus.' + merchant.status | translate
+                }}</span>
             </td>
             <td class="text-center" colspan="2">
-              <button
-                class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
-                type="button"
-                (click)="merchantDetail(merchant.id)"
-                tooltip="{{ 'merchants.list.actionDetailTooltip' | translate }}"
-              >
+              <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button"
+                (click)="merchantDetail(merchant.id)" tooltip="{{ 'merchants.list.actionDetailTooltip' | translate }}">
                 <i class="icon-eye"></i>
               </button>
+              <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2" type="button"
+                (click)="updateMerchant(merchant.id)"
+                tooltip="{{ 'settings.bank.list.actionEditTooltip' | translate }}">
+                <i class="icon-pencil3"></i>
+              </button>
+
             </td>
           </tr>
         </ng-container>
@@ -122,32 +110,18 @@
   <div class="datatable-footer pb-1 pb-md-0">
     <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
       {{
-        'merchants.list.paginationInfo'
-          | translate
-            : {
-                totalLength: pageInfo.total,
-                start: pageInfo.start,
-                end: pageInfo.end
-              }
+      'merchants.list.paginationInfo'| translate: {
+      totalLength: pageInfo.total,
+      start: pageInfo.start,
+      end: pageInfo.end
+      }
       }}
     </div>
 
-    <div
-      class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center"
-      noRightClick
-    >
-      <pagination
-        [boundaryLinks]="true"
-        previousText="&lsaquo;"
-        nextText="&rsaquo;"
-        firstText="&laquo;"
-        lastText="&raquo;"
-        [totalItems]="pagination.total"
-        [itemsPerPage]="pagination.size"
-        [maxSize]="maxPage"
-        (pageChanged)="pageChanged($event)"
-        [(ngModel)]="pagination.page"
-      ></pagination>
+    <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+      <pagination [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;" [totalItems]="pagination.total" [itemsPerPage]="pagination.size" [maxSize]="maxPage"
+        (pageChanged)="pageChanged($event)" [(ngModel)]="pagination.page"></pagination>
     </div>
   </div>
 </div>
@@ -155,20 +129,14 @@
 <div class="container-fluid my-5 py-5" *ngIf="emptyMerchant">
   <div class="row d-flex justify-content-center">
     <div class="d-flex flex-column align-items-center">
-      <img
-        src="../../../../../assets/images/icon-no-data.svg"
-        alt="not found image"
-      />
+      <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image" />
       <h1 class="text-center font-weight-semibold mt-2">
         {{ 'merchants.list.notFound.header' | translate }}
       </h1>
       <p class="text-center text-muted font-weight-semibold mt-2">
         {{ 'merchants.list.notFound.info' | translate }}
       </p>
-      <button
-        routerLink="/"
-        class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2"
-      >
+      <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
         {{ 'merchants.list.notFound.btnText' | translate }}
       </button>
     </div>

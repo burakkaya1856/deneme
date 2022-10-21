@@ -6,11 +6,16 @@ import { MerchantListComponent } from './merchant-list/merchant-list.component';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/shared/shared.module';
-import { MerchantDetailComponent } from './merchant-list/merchant-detail/merchant-detail.component';
+import { MerchantDetailComponent } from './components/merchant-detail/merchant-detail.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { UpdateMerchantComponent } from './components/update/update.component';
 
 @NgModule({
-  declarations: [MerchantListComponent, MerchantDetailComponent],
+  declarations: [
+    MerchantListComponent,
+    MerchantDetailComponent,
+    UpdateMerchantComponent
+  ],
   imports: [
     CommonModule,
     MerchantRoutingModule,

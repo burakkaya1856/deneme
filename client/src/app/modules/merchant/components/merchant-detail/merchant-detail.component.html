@@ -1,0 +1,200 @@
+<div class="detail-header">
+  <h1 class="modal-title">{{ 'merchants.detail.header' | translate }}</h1>
+  <button aria-label="Close" class="close" type="button" (click)="closeModal()">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="detail-body" *ngIf="merchant">
+  <div class="content-head" (click)="showCustomer=!showCustomer">
+
+    <h4>{{ 'merchants.detail.modalTabs.firstTab.title' | translate }}</h4>
+    <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt=""
+      [ngStyle]="{'transform': showCustomer ? 'rotate(180deg)' : 'rotate(0deg)'}">
+
+    <div class="row  customer-information" *ngIf="showCustomer">
+      <div class="col-sm-6">
+        <ul>
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.tradeNumber' | translate
+              }}</span>
+            <div class="ml-auto">{{merchant.trade_registration_number}}</div>
+          </li>
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.taxIdentityNumber' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.tax_identification_number}}</div>
+          </li>
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.jobSubject' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.company_field}}</div>
+          </li>
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.email' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.email}}</div>
+          </li>
+
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.tradeName' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.trade_name}}</div>
+          </li>
+
+        </ul>
+      </div>
+      <div class="col-sm-6">
+        <ul>
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.tradeOffice' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.trade_registration_office}}</div>
+          </li>
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.taxOffice' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.tax_office}}</div>
+          </li>
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.phoneNumber' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.company_phone_number}}</div>
+          </li>
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.address' | translate
+              }}</span>
+            <div class="ml-auto">{{merchant.company_address}}</div>
+          </li>
+
+
+          <li>
+            <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.firstTab.labels.referanceCompany' |
+              translate
+              }}</span>
+            <div class="ml-auto">{{merchant.referance_company}}</div>
+          </li>
+
+
+        </ul>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+  <div class="content-head manager-information" (click)="showCompany=!showCompany">
+    <h4>{{ 'merchants.detail.modalTabs.secondTab.title' | translate}}</h4>
+    <img src="../../../../../assets/images/arrow-down.svg" class="arrow-down" alt=""
+      [ngStyle]="{'transform': showCompany ? 'rotate(180deg)' : 'rotate(0deg)'}">
+
+    <ng-container *ngFor="let company of merchant.company_officials;let i = index">
+
+      <div *ngIf="showCompany">
+        <div class="partial">
+          <div><span>{{i +1 }}</span></div>
+          <div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <ul>
+              <li>
+                <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.secondTab.labels.fullName' |
+                  translate}}</span>
+                <div class="ml-auto">{{company.full_name}}</div>
+              </li>
+
+              <li>
+                <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.secondTab.labels.phoneNumber'
+                  | translate}}</span>
+                <div class="ml-auto">{{company.phone_number}}</div>
+              </li>
+
+
+            </ul>
+          </div>
+
+
+          <div class="col-sm-6">
+            <ul>
+              <li>
+                <span class="font-weight-semibold">{{ 'merchants.detail.modalTabs.secondTab.labels.identityNumber' |
+                  translate}}</span>
+                <div class="ml-auto">{{company.identity_number}}</div>
+              </li>
+
+              <li>
+                <span class="font-weight-semibold">
+                  {{ 'merchants.detail.modalTabs.secondTab.labels.address' | translate}}</span>
+                <div class="ml-auto">{{company.address}}</div>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+    </ng-container>
+  </div>
+
+  <div class="content-head file" (click)="showFile=!showFile">
+    <h4>3.Belgeler</h4>
+    <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt="down"
+      [ngStyle]="{'transform': showFile ? 'rotate(180deg)' : 'rotate(0deg)'}">
+    <div class="file-container" *ngIf="showFile">
+
+      <ng-container *ngFor="let document of merchant.documents;let i = index">
+
+        <div class="file-content">
+          <div class="left">
+            <img src="../../../../../assets/images/pdf-icon.svg" alt="pdf">
+
+            <div class="text">
+              <span>{{document.document_type_id}}</span>
+              <span>{{document.title}}</span>
+              <div *ngIf="document.status != 'declined'">
+                <img class="mr-1" src="../../../../../assets/images/pdf-{{document.status}}.svg" alt="status">
+                <span [ngStyle]="{'color': document.status == 'waiting' ? '#ffab00' : '#07b84e'}">{{
+                  'merchants.update.modalTabs.thirdTab.statuses.' + document.status | translate}}</span>
+              </div>
+
+              <div *ngIf="document.status == 'declined'">
+                <span [ngStyle]="{'color':'#f74f00'}" class="mr-1 font-sm">x</span>
+
+                <span [ngStyle]="{'color':'#f74f00'}">{{
+                  'merchants.update.modalTabs.thirdTab.statuses.' + document.status | translate}}</span>
+
+              </div>
+            </div>
+          </div>
+
+          <i class="mr-4 icon-eye" (click)="downloadFile(document.document_token)" alt="eye"></i>
+
+        </div>
+
+
+
+
+      </ng-container>
+    </div>
+
+  </div>
+</div>
