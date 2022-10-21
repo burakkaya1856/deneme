@@ -1,0 +1,279 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'merchants.update.header'| translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+
+<div class="update-body" *ngIf="merchantData">
+
+    <div class="content-head" (click)="showCustomer=!showCustomer">
+
+        <h4>{{ 'merchants.update.modalTabs.firstTab.title' | translate }}</h4>
+        <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt=""
+            [ngStyle]="{'transform': showCustomer ? 'rotate(180deg)' : 'rotate(0deg)'}">
+    </div>
+
+
+    <form class="form-horizontal" #f="ngForm" (ngSubmit)="firstFormSubmit(f)" *ngIf="showCustomer">
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label class="col-form-label">{{ 'merchants.update.modalTabs.firstTab.labels.tradeNumber' |
+                    translate}}</label>
+                <input type="text" [(ngModel)]="merchantData.trade_registration_number" #fTradeNumber="ngModel"
+                    name="fTradeNumber" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fTradeNumber.errors?.required ? 'visible': 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.taxIdentityNumber' | translate}}</label>
+                <input type="text" [(ngModel)]="merchantData.tax_identification_number" #fTaxIdentity="ngModel"
+                    name="fTaxIdentity" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fTaxIdentity.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.jobSubject' | translate}}</label>
+                <input type="text" [(ngModel)]="merchantData.company_field" #fJobSubject="ngModel" name="fJobSubject"
+                    class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fJobSubject.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.tradeOffice' |
+                    translate
+                    }}</label>
+                <input type="text" [(ngModel)]="merchantData.trade_registration_office" #fTradeRegisterOffice="ngModel"
+                    name="fTradeRegisterOffice" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fTradeRegisterOffice.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.taxOffice' |
+                    translate
+                    }}</label>
+                <input type="text" [(ngModel)]="merchantData.tax_office" #fTradeOffice="ngModel" name="fTradeOffice"
+                    class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fTradeOffice.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.tradeName' |
+                    translate
+                    }}</label>
+                <input type="text" [(ngModel)]="merchantData.trade_name" #fTradeName="ngModel" name="fTradeName"
+                    class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fTradeName.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.referanceCompany' |
+                    translate
+                    }}</label>
+                <input type="text" [(ngModel)]="merchantData.referance_company" #fReferance="ngModel" name="fReferance"
+                    class="form-control" autocomplete="off">
+
+            </div>
+
+
+
+
+
+
+            <div class="col-sm-6">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.phoneNumber' |
+                    translate
+                    }}</label>
+                <input type="text" [(ngModel)]="merchantData.company_phone_number" #fTradePhoneNumber="ngModel"
+                    name="fTradePhoneNumber" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fTradePhoneNumber.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+
+
+            <div class="col-sm-12">
+                <label class="col-form-label">
+                    {{ 'merchants.update.modalTabs.firstTab.labels.adress' |
+                    translate
+                    }}</label>
+                <textarea type="text" [(ngModel)]="merchantData.company_address" #fCompanyAdress="ngModel"
+                    name="fCompanyAdress" class="form-control" required autocomplete="off"></textarea>
+                <p [ngStyle]="{'visibility': f.submitted && fCompanyAdress.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+            </div>
+
+        </div>
+        <button class="btn" type="submit">{{
+            'merchants.update.modalTabs.firstTab.btn' |
+            translate}}</button>
+
+    </form>
+
+
+
+    <div class="content-head" (click)="showCompany=!showCompany">
+        <h4>{{ 'merchants.update.modalTabs.secondTab.title' | translate }}</h4>
+        <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt="arrow"
+            [ngStyle]="{'transform': showCompany ? 'rotate(180deg)' : 'rotate(0deg)'}">
+
+    </div>
+
+    <form #secondform="ngForm" *ngIf="showCompany">
+
+        <div *ngFor="let company of merchantData.company_officials;let i = index">
+
+            <div class="partial">
+                <div><span>{{i +1 }}</span></div>
+                <div></div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-6">
+                    <label class="col-form-label">{{ 'merchants.update.modalTabs.secondTab.labels.fullName' |
+                        translate}}</label>
+                    <input type="text" [(ngModel)]="company.full_name" #fFullName="ngModel"
+                        name="fFullName-{{company.id}}" class="form-control" required autocomplete="off">
+                    <p [ngStyle]="{'visibility': secondform.submitted && fFullName.errors?.required ? 'visible': 'hidden'}"
+                        class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+                </div>
+
+                <div class="col-sm-6">
+                    <label class="col-form-label">{{ 'merchants.update.modalTabs.secondTab.labels.phoneNumber' |
+                        translate}}</label>
+                    <input type="text" [(ngModel)]="company.phone_number" #fPhoneNumber="ngModel"
+                        name="fPhoneNumber-{{company.id}}" class="form-control" required autocomplete="off">
+                    <p [ngStyle]="{'visibility': secondform.submitted && fPhoneNumber.errors?.required ? 'visible': 'hidden'}"
+                        class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+                </div>
+
+                <div class="col-sm-12">
+                    <label class="col-form-label">{{ 'merchants.update.modalTabs.secondTab.labels.identityNumber' |
+                        translate}}</label>
+                    <input type="text" [(ngModel)]="company.identity_number" #fIdentityNumber="ngModel"
+                        name="fIdentityNumber-{{company.id}}" class="form-control" required autocomplete="off">
+                    <p [ngStyle]="{'visibility': secondform.submitted && fIdentityNumber.errors?.required ? 'visible': 'hidden'}"
+                        class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <label class="col-form-label">{{ 'merchants.update.modalTabs.secondTab.labels.address' |
+                        translate}}</label>
+                    <textarea type="text" [(ngModel)]="company.address" #fAddress="ngModel"
+                        name="fAddress-{{company.id}}" class="form-control" required autocomplete="off"></textarea>
+                    <p [ngStyle]="{'visibility': secondform.submitted && fAddress.errors?.required ? 'visible': 'hidden'}"
+                        class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+                </div>
+
+            </div>
+
+            <button class="btn" (click)="secondFormSubmit(secondform,company)">{{i+1}} {{
+                'merchants.update.modalTabs.secondTab.btn' |
+                translate}}</button>
+        </div>
+
+    </form>
+
+    <div class="content-head" (click)="showFile=!showFile">
+        <h4>{{ 'merchants.update.modalTabs.thirdTab.title' | translate }}</h4>
+        <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt=""
+            [ngStyle]="{'transform': showFile ? 'rotate(180deg)' : 'rotate(0deg)'}">
+
+    </div>
+
+
+    <form #thirdform="ngForm" *ngIf="showFile" class="file">
+
+        <div class="file-container" *ngFor="let document of merchantData.documents;let i = index">
+
+            <div class="file-content">
+                <div class="left">
+                    <img src="../../../../../assets/images/pdf-icon.svg" alt="pdf">
+
+                    <div class="text">
+                        <span>{{document.document_type_id}}</span>
+                        <span>{{document.title}}</span>
+                        <div *ngIf="document.status != 'declined'">
+                            <img class="mr-1" src="../../../../../assets/images/pdf-{{document.status}}.svg"
+                                alt="status">
+                            <span [ngStyle]="{'color': document.status == 'waiting' ? '#ffab00' : '#07b84e'}">{{
+                                'merchants.update.modalTabs.thirdTab.statuses.' + document.status | translate}}</span>
+                        </div>
+
+                        <div *ngIf="document.status == 'declined'">
+                            <span [ngStyle]="{'color':'#f74f00'}" class="mr-1 font-sm">x</span>
+
+                            <span [ngStyle]="{'color':'#f74f00'}">{{
+                                'merchants.update.modalTabs.thirdTab.statuses.' + document.status | translate}}</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <i class="mr-4 icon-eye" (click)="downloadFile(document.document_token)" alt="eye"></i>
+
+                <div class="w-100 mt-4">
+
+                    <label class="d-block">{{ 'merchants.update.modalTabs.thirdTab.statusLabel' | translate
+                        }}</label>
+
+                    <ng-select *ngIf="statusKeys" name="status-{{document.id}}" class="ng-select-table"
+                        [(ngModel)]="document.status" [clearable]="false" [searchable]="false">
+                        <ng-option *ngFor="let item of statusKeys" [value]="item">{{
+                            'merchants.update.modalTabs.thirdTab.statuses.' + item |
+                            translate }} </ng-option>
+                    </ng-select>
+
+                </div>
+                <div class="w-100 mt-4">
+                    <label class="d-block">{{ 'merchants.update.modalTabs.thirdTab.note' | translate }}</label>
+                    <textarea type="text" [(ngModel)]="document.value" name="fComment-{{document.id}}"
+                        placeholder="{{ 'merchants.update.modalTabs.thirdTab.notePlaceholder' | translate }}"
+                        #note="ngModel" autocomplete="off" required></textarea>
+                    <p [ngStyle]="{'visibility': thirdform.submitted && note.errors?.required ? 'visible': 'hidden'}"
+                        class="validation mb-0">{{'merchants.update.validation' | translate }}</p>
+                </div>
+
+                <button class="btn" (click)="thirdFormSubmit(thirdform,document)"> {{i+1}} {{
+                    'merchants.update.modalTabs.thirdTab.btn' |
+                    translate}}</button>
+
+
+            </div>
+
+
+        </div>
+
+    </form>
+
+
+    <div class="status">
+        <h4 class="text-center">{{'merchants.update.statusTitle' | translate }}</h4>
+        <div class="status-container">
+            <div *ngFor="let statusKey of statusKeys">
+                <div class="status-part" [class.selected]="merchantData.status == statusKey"
+                    (click)="updateStatus(statusKey)"></div>
+                <label>{{
+                    'merchants.update.modalTabs.thirdTab.statuses.' + statusKey | translate}}</label>
+            </div>
+        </div>
+    </div>
+</div>

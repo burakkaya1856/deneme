@@ -1,0 +1,217 @@
+@import "../../../../../assets/styles/helpers/mixins";
+
+.update-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+}
+
+.update-body {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  .content-head {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+    cursor: pointer;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #353e54;
+      margin: 0;
+      display: inline;
+    }
+
+    .arrow-down {
+      width: 24px;
+      height: 24px;
+      float: right;
+    }
+  }
+
+  form {
+    padding: 20px 29px;
+
+    .partial {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+
+      div {
+        &:first-child {
+          width: 32px;
+          height: 32px;
+          margin: 0 1px 0 0;
+          padding: 5px 14px 7px 12px;
+          border: solid 1px #87859a;
+          border-radius: 50%;
+        }
+
+        &:last-child {
+          width: 100%;
+          height: 1px;
+          margin-left: -1px;
+          background-color: #eee;
+        }
+      }
+    }
+
+    .validation {
+      visibility: hidden;
+      margin-top: 5px;
+      font-size: 11px;
+      height: 12px;
+      color: #f74f00;
+      padding-left: 10px;
+    }
+
+    button {
+      width: 196px;
+      border: 1px solid #293a50;
+      background-color: #293a50;
+      color: #ffffff;
+      margin: 20px 0;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  input {
+    padding: 7px 10px !important;
+  }
+
+  .file {
+    &-container {
+      margin-top: 16px;
+
+      .file-content {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .left {
+          display: flex;
+        }
+        .text {
+          display: flex;
+          flex-direction: column;
+          margin-left: 8px;
+
+          span {
+            &:first-child {
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 1.43;
+              color: #353e54;
+            }
+            &:nth-child(2) {
+              font-size: 12px;
+              line-height: 1.5;
+              color: rgba(53, 62, 84, 0.6);
+            }
+          }
+        }
+
+        i {
+          font-size: 24px;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+
+        textarea {
+          border: 1px solid #ddd !important;
+          padding-top: 7px;
+          padding-left: 10px;
+          width: 100%;
+          height: 104px;
+
+          &:active,
+          &:focus {
+            outline: none !important;
+          }
+        }
+      }
+    }
+  }
+
+  .status {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    h4 {
+      padding: 0 16px;
+    }
+
+    &-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px 29px;
+
+      .status-part {
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        position: relative;
+        border: 1px solid #000;
+        margin: 0 auto;
+        cursor: pointer;
+
+        &.selected {
+          &::before {
+            content: "";
+            position: absolute;
+            background-color: #293a50;
+            top: 3px;
+            left: 3px;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.update-footer {
+  padding: 32px 56px 20px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+    width: 100%;
+    border: 1px solid #293a50;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .btn-save {
+    background-color: #293a50;
+    color: #ffffff;
+  }
+}

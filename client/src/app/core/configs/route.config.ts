@@ -50,6 +50,15 @@ export const routeConfig = {
       redirectTo: systemConfig.unauthorizedRedirectTo
     }
   },
+  merchants: {
+    title: 'Bayiler',
+    desc: 'You can select a service here',
+    icon: 'icon-office',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
   settings: {
     title: 'Ayarlar',
     desc: 'You can select a service here',
@@ -246,6 +255,18 @@ export const routeConfig = {
     }
   },
   // /reports module
+
+  // merchants module
+  list: {
+    title: 'Bayi Başvuruları',
+    desc: 'You can select a service here',
+    icon: 'icon-office',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
+  // merchants module
 
   // settings module
   bank: {
