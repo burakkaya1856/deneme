@@ -92,7 +92,7 @@ export const menuConfig = [
       {
         fullPath: '/reports/fraud',
         routeConfig: 'fraud'
-      },
+      }
     ]
   },
   {
@@ -140,6 +140,10 @@ export const menuConfig = [
       {
         fullPath: '/settings/fraud',
         routeConfig: 'fraud'
+      },
+      {
+        fullPath: '/settings/pos-bank',
+        routeConfig: 'posBank'
       }
     ]
   }

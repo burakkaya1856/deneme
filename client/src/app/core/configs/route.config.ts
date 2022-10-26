@@ -332,6 +332,15 @@ export const routeConfig = {
       redirectTo: systemConfig.unauthorizedRedirectTo
     }
   },
+  posBank: {
+    title: 'Banka Pos',
+    desc: 'You can select a service here',
+    icon: 'icon-credit-card',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
   commission: {
     title: 'Komisyon',
     desc: 'You can select a service here',

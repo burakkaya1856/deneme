@@ -1429,7 +1429,8 @@
         "faq": "Sık Sorulan Sorular",
         "approvalTransactions": "Onay İşlemleri",
         "operators": "Operatorler",
-        "roles": "Roller"
+        "roles": "Roller",
+        "posBank": "Pos Bank"
       }
     },
     "wallet": {
@@ -1616,6 +1617,107 @@
     }
   },
   "settings": {
+    "posBank": {
+      "list": {
+        "notFound": {
+          "header": "Pos Bankası Bulunamadı",
+          "info": "Henüz Pos Bankası bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Pos Bankası Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} hesap arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Hesap Ekle",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "bankName": "Banka Adı",
+          "bankImage": "Banka Resmi",
+          "shortCode": "Kısa Kod",
+          "dateCreated": "Oluşturma Tarihi",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatusShow": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "tableStatus": {
+          "1": "Aktif",
+          "0": "Pasif",
+          "-1": "Silindi"
+        },
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil",
+        "delete": {
+          "headerTitle": "Pos Bankasını Sil",
+          "title": "Pos Bankasını Silmek Üzeresiniz"
+        },
+        "btnCreate": "Pos Bank Oluştur"
+      },
+      "add": {
+        "header": "Pos Bankası Ekle",
+        "bankName": "Banka Adı",
+        "bankNamePlaceholder": "Banka Adı",
+        "bankNameRequired": "Lütfen bir banka adı giriniz.",
+        "shortcode": "Kısa Kod",
+        "shortcodePlaceholder": "Kısa Kod",
+        "shortcodeRequired": "Lütfen bir kısa kod giriniz.",
+        "secure": "3d güvenlik durumu",
+        "securePlaceholder": "3d güvenlik durumu",
+        "0": "Pasif",
+        "1": "Aktif",
+        "imageURL": "Pos Banka Resmi",
+        "imageURLRequired": "Lütfen bir resim seçiniz.",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Pos Bankası Ekle",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      },
+
+      "details": {
+        "header": "Pos Bank Detay",
+        "bankName": "Banka Adı",
+        "shortcode": "Kısa Kod",
+        "secure": "3d güvenlik durumu",
+        "dateCreated": "Oluşturma Tarihi",
+        "status": "Durum",
+        "statuses": {
+          "1": "Aktif",
+          "0": "Pasif"
+        }
+      },
+      "update": {
+        "header": "Pos Bank Düzenle",
+        "bankName": "Banka Adı",
+        "bankNameRequired": "Lütfen bir banka adı giriniz.",
+        "shortcode": "Kısa Kod",
+        "shortcodeRequired": "Lütfen bir kısa kod giriniz.",
+        "imageURL": "Banka Resmi",
+        "imageURLRequired": "Lütfen bir resim seçiniz.",
+        "secure": "3d güvenlik durumu",
+        "0": "Pasif",
+        "1": "Aktif",
+        "imageSaveText": "Resmi Kaydet",
+        "imageSavedText": "Resim Başarıyla Kaydedildi",
+        "statusLabel": "Durum",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "btnCancel": "İptal",
+        "btnSubmit": "Kaydet",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      }
+    },
     "bankAccounts": {
       "list": {
         "notFound": {

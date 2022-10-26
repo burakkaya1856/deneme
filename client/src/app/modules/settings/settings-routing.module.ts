@@ -20,8 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'bank',
-        loadChildren: () =>
-          import('./bank/bank.module').then(m => m.BankModule),
+        loadChildren: () => import('./bank/bank.module').then(m => m.BankModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'bank',
@@ -30,10 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'bank-accounts',
-        loadChildren: () =>
-          import('./bank-accounts/bank-accounts.module').then(
-            m => m.BankAccountsModule
-          ),
+        loadChildren: () => import('./bank-accounts/bank-accounts.module').then(m => m.BankAccountsModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'bankAccounts',
@@ -42,8 +38,7 @@ const routes: Routes = [
       },
       {
         path: 'blacklist',
-        loadChildren: () =>
-          import('./blacklist/blacklist.module').then(m => m.BlackListModule),
+        loadChildren: () => import('./blacklist/blacklist.module').then(m => m.BlackListModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'blacklist',
@@ -52,8 +47,7 @@ const routes: Routes = [
       },
       {
         path: 'fraud',
-        loadChildren: () =>
-          import('./fraud/fraud.module').then(m => m.FraudModule),
+        loadChildren: () => import('./fraud/fraud.module').then(m => m.FraudModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'fraud',
@@ -62,8 +56,7 @@ const routes: Routes = [
       },
       {
         path: 'campaign',
-        loadChildren: () =>
-          import('./campaign/campaign.module').then(m => m.CampaignModule),
+        loadChildren: () => import('./campaign/campaign.module').then(m => m.CampaignModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'campaign',
@@ -72,8 +65,7 @@ const routes: Routes = [
       },
       {
         path: 'limit',
-        loadChildren: () =>
-          import('./limit/limit.module').then(m => m.LimitModule),
+        loadChildren: () => import('./limit/limit.module').then(m => m.LimitModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'limit',
@@ -82,8 +74,7 @@ const routes: Routes = [
       },
       {
         path: 'level',
-        loadChildren: () =>
-          import('./level/level.module').then(m => m.LevelModule),
+        loadChildren: () => import('./level/level.module').then(m => m.LevelModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'level',
@@ -92,12 +83,20 @@ const routes: Routes = [
       },
       {
         path: 'fees',
-        loadChildren: () =>
-          import('./fees/fees.module').then(m => m.FeesModule),
+        loadChildren: () => import('./fees/fees.module').then(m => m.FeesModule),
         canActivate: [NgxPermissionsGuard],
         data: {
           routeConfig: 'fees',
           permissions: routeConfig['fees'].permissions
+        }
+      },
+      {
+        path: 'pos-bank',
+        loadChildren: () => import('./pos-bank/pos-bank.module').then(m => m.PosBankModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'posBank',
+          permissions: routeConfig['posBank'].permissions
         }
       }
     ]

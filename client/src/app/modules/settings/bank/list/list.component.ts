@@ -67,7 +67,7 @@ export class BankListComponent implements OnInit {
       };
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page),
+        start: this.pagination.size * this.pagination.page,
         end: this.pagination.size * this.pagination.page
       };
       this.emptyBank = !this.bankList.length ? true : false;
@@ -122,9 +122,7 @@ export class BankListComponent implements OnInit {
 
   deleteBank(bank): void {
     const initialState = {
-      title: this.translateService.instant(
-        'settings.bank.list.delete.headerTitle'
-      ),
+      title: this.translateService.instant('settings.bank.list.delete.headerTitle'),
       subtitle: this.translateService.instant('settings.bank.list.delete.title')
     };
     this.bsModalRef = this.bsModalService.show(DeleteModalComponent, {
@@ -228,7 +226,7 @@ export class BankListComponent implements OnInit {
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * (this.pagination.page),
+        start: this.pagination.size * this.pagination.page,
         end: this.pagination.size * this.pagination.page
       };
     });

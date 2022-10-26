@@ -1,13 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  Campaign,
-  FraudOut,
-  MessageOut,
-  UploadFile,
-  UploadMessageOut
-} from './settings.interface';
+import { Campaign, FraudOut, MessageOut, PosBankItem, PosBankOut, PosBankParams, UploadFile, UploadMessageOut } from './settings.interface';
 import {
   Bank,
   BankAccount,
@@ -118,9 +112,7 @@ export class SettingsService {
     this.enumSub.next(param);
   }
 
-  getBankAccounts(
-    accountParams: BankAccountParams
-  ): Observable<WalletBankAccountOut> {
+  getBankAccounts(accountParams: BankAccountParams): Observable<WalletBankAccountOut> {
     let options = {
       params: new HttpParams()
         .set('search', accountParams.search)
@@ -128,39 +120,23 @@ export class SettingsService {
         .set('page', accountParams.page.toString())
         .set('size', accountParams.size.toString())
     };
-    return this.http.get<WalletBankAccountOut>(
-      this.baseUrl + '/wallet_bank_account/',
-      options
-    );
+    return this.http.get<WalletBankAccountOut>(this.baseUrl + '/wallet_bank_account/', options);
   }
 
   getBankAccount(accountID: string): Observable<BankAccount> {
-    return this.http.get<BankAccount>(
-      this.baseUrl + '/wallet_bank_account/' + accountID
-    );
+    return this.http.get<BankAccount>(this.baseUrl + '/wallet_bank_account/' + accountID);
   }
 
   createBankAccount(bankAccount: WalletBankAccountIn): Observable<MessageOut> {
-    return this.http.post<MessageOut>(
-      this.baseUrl + '/wallet_bank_account/',
-      bankAccount
-    );
+    return this.http.post<MessageOut>(this.baseUrl + '/wallet_bank_account/', bankAccount);
   }
 
-  updateBankAccount(
-    accountID: string,
-    requestBody: WalletBankAccountIn
-  ): Observable<MessageOut> {
-    return this.http.put<MessageOut>(
-      this.baseUrl + '/wallet_bank_account/' + accountID,
-      requestBody
-    );
+  updateBankAccount(accountID: string, requestBody: WalletBankAccountIn): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/wallet_bank_account/' + accountID, requestBody);
   }
 
   deleteBankAccount(accountID: string): Observable<MessageOut> {
-    return this.http.delete<MessageOut>(
-      this.baseUrl + '/wallet_bank_account/' + accountID
-    );
+    return this.http.delete<MessageOut>(this.baseUrl + '/wallet_bank_account/' + accountID);
   }
 
   // Blacklist
@@ -183,20 +159,12 @@ export class SettingsService {
     return this.http.post<MessageOut>(this.baseUrl + '/blacklist/', blacklist);
   }
 
-  updateBlacklist(
-    blacklistID: string,
-    blacklist: BlacklistIn
-  ): Observable<MessageOut> {
-    return this.http.put<MessageOut>(
-      this.baseUrl + '/blacklist/' + blacklistID,
-      blacklist
-    );
+  updateBlacklist(blacklistID: string, blacklist: BlacklistIn): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/blacklist/' + blacklistID, blacklist);
   }
 
   deleteBlacklist(blacklistID: string): Observable<MessageOut> {
-    return this.http.delete<MessageOut>(
-      this.baseUrl + '/blacklist/' + blacklistID
-    );
+    return this.http.delete<MessageOut>(this.baseUrl + '/blacklist/' + blacklistID);
   }
 
   // Bank
@@ -227,10 +195,7 @@ export class SettingsService {
   }
 
   updateBank(bankID: string, bankParams: BankIn): Observable<MessageOut> {
-    return this.http.put<MessageOut>(
-      this.baseUrl + '/bank/' + bankID,
-      bankParams
-    );
+    return this.http.put<MessageOut>(this.baseUrl + '/bank/' + bankID, bankParams);
   }
 
   // Campaign
@@ -242,41 +207,25 @@ export class SettingsService {
       }
     });
 
-    return this.http.get<CampaignContentOut>(
-      this.baseUrl + '/campaign-content/',
-      {
-        params: httpParams
-      }
-    );
+    return this.http.get<CampaignContentOut>(this.baseUrl + '/campaign-content/', {
+      params: httpParams
+    });
   }
 
   getCampaign(campaignID: string): Observable<Campaign> {
-    return this.http.get<Campaign>(
-      this.baseUrl + '/campaign-content/' + campaignID
-    );
+    return this.http.get<Campaign>(this.baseUrl + '/campaign-content/' + campaignID);
   }
 
   createCampaign(campaign: CampaignContentIn): Observable<MessageOut> {
-    return this.http.post<MessageOut>(
-      this.baseUrl + '/campaign-content/',
-      campaign
-    );
+    return this.http.post<MessageOut>(this.baseUrl + '/campaign-content/', campaign);
   }
 
   deleteCampaign(campaignID: string): Observable<MessageOut> {
-    return this.http.delete<MessageOut>(
-      this.baseUrl + '/campaign-content/' + campaignID
-    );
+    return this.http.delete<MessageOut>(this.baseUrl + '/campaign-content/' + campaignID);
   }
 
-  updateCampaign(
-    campaignID: string,
-    campaign: CampaignContentIn
-  ): Observable<MessageOut> {
-    return this.http.put<MessageOut>(
-      this.baseUrl + '/campaign-content/' + campaignID,
-      campaign
-    );
+  updateCampaign(campaignID: string, campaign: CampaignContentIn): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/campaign-content/' + campaignID, campaign);
   }
 
   // Limits
@@ -333,10 +282,7 @@ export class SettingsService {
   }
 
   updateLevel(levelID: string, levelIn: LevelIn): Observable<MessageOut> {
-    return this.http.put<MessageOut>(
-      this.baseUrl + '/level/' + levelID,
-      levelIn
-    );
+    return this.http.put<MessageOut>(this.baseUrl + '/level/' + levelID, levelIn);
   }
 
   deleteLevel(levelID: string): Observable<MessageOut> {
@@ -378,31 +324,26 @@ export class SettingsService {
 
   // Fraud
   getFrauds(fraudParams?: FraudParams): Observable<FraudOut> {
+    if (fraudParams) {
+      let options = {
+        params: new HttpParams()
+          .set('search', fraudParams.search)
+          .set('status', fraudParams.status)
+          .set('page', fraudParams.page.toString())
+          .set('size', fraudParams.size.toString())
+      };
+      return this.http.get<FraudOut>(this.baseUrl + '/fraud/', options);
+    }
+    return this.http.get<FraudOut>(this.baseUrl + '/fraud/');
+  }
 
-      if (fraudParams) {
-        let options = {
-          params: new HttpParams()
-            .set('search', fraudParams.search)
-            .set('status', fraudParams.status)
-            .set('page', fraudParams.page.toString())
-            .set('size', fraudParams.size.toString())
-        };
-        return this.http.get<FraudOut>(this.baseUrl + '/fraud/', options);
-      }
-      return this.http.get<FraudOut>(this.baseUrl + '/fraud/');
-    }
-  
-    getFraudDetails(bankID: string): Observable<Bank> {
-      return this.http.get<Bank>(this.baseUrl + '/bank/' + bankID);
-    }
-  
-  
-    updateFraud(fraudID: string, fraudParams: FraudIn): Observable<MessageOut> {
-      return this.http.put<MessageOut>(
-        this.baseUrl + '/fraud/' + fraudID,
-        fraudParams
-      );
-    }
+  getFraudDetails(bankID: string): Observable<Bank> {
+    return this.http.get<Bank>(this.baseUrl + '/bank/' + bankID);
+  }
+
+  updateFraud(fraudID: string, fraudParams: FraudIn): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/fraud/' + fraudID, fraudParams);
+  }
 
   // Currencies
   getCurrencies(currencyParams?: CurrencyParams): Observable<CurrencyOut> {
@@ -423,10 +364,43 @@ export class SettingsService {
     let options = {
       params: new HttpParams().set('file_type', imageData.file_type)
     };
-    return this.http.post<UploadMessageOut>(
-      this.baseUrl + '/file',
-      imageData.file,
-      options
-    );
+    return this.http.post<UploadMessageOut>(this.baseUrl + '/file', imageData.file, options);
+  }
+
+  posBankList(posBankParams: PosBankParams): Observable<PosBankOut> {
+    if (posBankParams.status) {
+      let options = {
+        params: new HttpParams()
+          .set('search', posBankParams.search)
+          .set('status', posBankParams.status)
+          .set('page', posBankParams.page.toString())
+          .set('size', posBankParams.size.toString())
+      };
+      return this.http.get<PosBankOut>(this.baseUrl + '/pos-bank/', options);
+    } else {
+      let options = {
+        params: new HttpParams()
+          .set('search', posBankParams.search)
+          .set('page', posBankParams.page.toString())
+          .set('size', posBankParams.size.toString())
+      };
+      return this.http.get<PosBankOut>(this.baseUrl + '/pos-bank/', options);
+    }
+  }
+
+  getPosBankDetails(posBankId: string): Observable<PosBankItem> {
+    return this.http.get<PosBankItem>(this.baseUrl + '/pos-bank/' + posBankId);
+  }
+
+  updatePosBank(posBankId: string, posBankData: any): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/pos-bank/' + posBankId, posBankData);
+  }
+
+  deletePosBank(posBankId: string): Observable<MessageOut> {
+    return this.http.delete<MessageOut>(this.baseUrl + '/pos-bank/' + posBankId);
+  }
+
+  addPosBank(posBankData: any): Observable<MessageOut> {
+    return this.http.post<MessageOut>(this.baseUrl + '/pos-bank/', posBankData);
   }
 }

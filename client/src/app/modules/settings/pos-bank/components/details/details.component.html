@@ -1,0 +1,38 @@
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.posBank.details.header' | translate}}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span
+            aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body" *ngIf="posBank.name">
+    <div class="row">
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.posBank.details.bankName' | translate}}</span>
+                    <div class="ml-auto">{{posBank.name}}</div>
+                </li>
+
+                <li>
+                    <span class="font-weight-semibold">{{'settings.posBank.details.status' | translate}}</span>
+                    <div class="ml-auto">{{'settings.posBank.details.statuses.' + posBank.status | translate}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.posBank.details.shortcode' | translate}}</span>
+                    <div class="ml-auto">{{posBank.shortcode}}</div>
+                </li>
+
+                <li>
+                    <span class="font-weight-semibold">{{'settings.posBank.details.dateCreated' | translate}}</span>
+                    <div class="ml-auto">{{posBank.date_created | customDatePipe:true}}</div>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</div>

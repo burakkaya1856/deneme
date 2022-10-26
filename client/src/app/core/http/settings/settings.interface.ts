@@ -332,3 +332,38 @@ export interface UploadMessageOut {
   message: string;
   url: string;
 }
+
+export interface PosBankItem {
+  id: number;
+  date_created: string;
+  name: string;
+  shortcode: string;
+  image_url: string;
+  status: string;
+  bank_installment: [
+    {
+      id: number;
+      pos_bank_id: number;
+      pos_bank_name: string;
+      installment_name: string;
+      bank_installment_count: number;
+      merchant_installment_count: number;
+      bank_commission: number;
+      status: string;
+    }
+  ];
+}
+
+export interface PosBankParams {
+  search: string;
+  status: string;
+  page: number;
+  size: number;
+}
+
+export interface PosBankOut {
+  items: PosBankItem[];
+  total: number;
+  page: number;
+  size: number;
+}
