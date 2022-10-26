@@ -22,11 +22,7 @@ export class UpdateBankComponent implements OnInit {
   public choseImg = true;
   public loadingState = false;
 
-  constructor(
-    private bsModalRef: BsModalRef,
-    private alertService: AlertService,
-    private settingsService: SettingsService
-  ) {}
+  constructor(private bsModalRef: BsModalRef, private alertService: AlertService, private settingsService: SettingsService) {}
 
   ngOnInit(): void {
     this.enumData.forEach(item => {
@@ -46,12 +42,10 @@ export class UpdateBankComponent implements OnInit {
       status: this.bankData.status
     };
     if (form.valid && !this.loadingState) {
-      this.settingsService
-        .updateBank(this.bankData.id, requestData)
-        .subscribe(res => {
-          this.event.emit({ data: true });
-          this.alertService.setNoticeHandler(res.message, 'success', false);
-        });
+      this.settingsService.updateBank(this.bankData.id, requestData).subscribe(res => {
+        this.event.emit({ data: true });
+        this.alertService.setNoticeHandler(res.message, 'success', false);
+      });
       this.closeModal();
     }
   }

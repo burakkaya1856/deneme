@@ -144,6 +144,10 @@ export const menuConfig = [
       {
         fullPath: '/settings/pos-bank',
         routeConfig: 'posBank'
+      },
+      {
+        fullPath: '/settings/bank-installment',
+        routeConfig: 'bankInstallment'
       }
     ]
   }

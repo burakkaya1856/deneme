@@ -9,7 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddBankComponent implements OnInit {
+export class AddBankInstallmentComponent implements OnInit {
   public event: EventEmitter<any> = new EventEmitter();
   public selectedFile: File = null;
   public url = '../../../../../../assets/images/no-image.svg';

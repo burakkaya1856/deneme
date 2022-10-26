@@ -1,7 +1,19 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Campaign, FraudOut, MessageOut, PosBankItem, PosBankOut, PosBankParams, UploadFile, UploadMessageOut } from './settings.interface';
+import {
+  BankInstallmentOut,
+  BankInstallmentParams,
+  Campaign,
+  FraudOut,
+  MessageOut,
+  PosBankInstallmentIn,
+  PosBankItem,
+  PosBankOut,
+  PosBankParams,
+  UploadFile,
+  UploadMessageOut
+} from './settings.interface';
 import {
   Bank,
   BankAccount,
@@ -402,5 +414,34 @@ export class SettingsService {
 
   addPosBank(posBankData: any): Observable<MessageOut> {
     return this.http.post<MessageOut>(this.baseUrl + '/pos-bank/', posBankData);
+  }
+
+  getBankInstallments(bankInstallmentParams: BankInstallmentParams): Observable<BankInstallmentOut> {
+    if (bankInstallmentParams.status) {
+      let options = {
+        params: new HttpParams()
+          .set('search', bankInstallmentParams.search)
+          .set('status', bankInstallmentParams.status)
+          .set('page', bankInstallmentParams.page.toString())
+          .set('size', bankInstallmentParams.size.toString())
+      };
+      return this.http.get<BankInstallmentOut>(this.baseUrl + '/pos-bank-installment', options);
+    } else {
+      let options = {
+        params: new HttpParams()
+          .set('search', bankInstallmentParams.search)
+          .set('page', bankInstallmentParams.page.toString())
+          .set('size', bankInstallmentParams.size.toString())
+      };
+      return this.http.get<BankInstallmentOut>(this.baseUrl + '/pos-bank-installment', options);
+    }
+  }
+
+  addBankInstallment(bankInstallmentData: PosBankInstallmentIn): Observable<MessageOut> {
+    return this.http.post<MessageOut>(this.baseUrl + '/pos-bank-installment', bankInstallmentData);
+  }
+
+  deleteBankInstallment(bankInstallmentId: string): Observable<MessageOut> {
+    return this.http.delete<MessageOut>(this.baseUrl + '/pos-bank-installment/' + bankInstallmentId);
   }
 }

@@ -367,3 +367,42 @@ export interface PosBankOut {
   page: number;
   size: number;
 }
+
+export interface BankInstallmentParams {
+  search: string;
+  status: string;
+  page: number;
+  size: number;
+}
+
+export interface BankInstallmentItem {
+  id: number;
+  pos_bank_id: number;
+  pos_bank_name: string;
+  installment_name: string;
+  bank_installment_count: number;
+  merchant_installment_count: number;
+  bank_commission: number;
+  status: string;
+}
+
+export interface BankInstallmentOut {
+  items: BankInstallmentItem[];
+  total: number;
+  page: number;
+  size: number;
+}
+
+export interface PosBankInstallmentIn {
+  bank_id: number;
+  installment_name: string;
+  bank_installment_count: number;
+  merchant_installment_count: number;
+  bank_commission: number;
+  normal_min_limit: number;
+  normal_max_limit: number;
+  treed_min_limit: number;
+  treed_max_limit: number;
+  description: string;
+  status: string;
+}

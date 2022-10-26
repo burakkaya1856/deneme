@@ -341,6 +341,15 @@ export const routeConfig = {
       redirectTo: systemConfig.unauthorizedRedirectTo
     }
   },
+  bankInstallment: {
+    title: 'Banka Taksit',
+    desc: 'You can select a service here',
+    icon: 'icon-pie-chart5',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
   commission: {
     title: 'Komisyon',
     desc: 'You can select a service here',

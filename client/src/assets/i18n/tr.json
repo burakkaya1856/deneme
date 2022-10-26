@@ -1430,7 +1430,8 @@
         "approvalTransactions": "Onay İşlemleri",
         "operators": "Operatorler",
         "roles": "Roller",
-        "posBank": "Pos Bank"
+        "posBank": "Pos Bankaları",
+        "bankInstallment": "Banka Taksitleri"
       }
     },
     "wallet": {
@@ -1617,6 +1618,35 @@
     }
   },
   "settings": {
+    "bankInstallment": {
+      "list": {
+        "notFound": {
+          "header": "Banka Taksidi Bulunamadı",
+          "info": "Henüz Banka Taksidi bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Banka Taksidi Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} hesap arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Banka Taksit Ekle",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "bankName": "Banka Adı",
+          "bankInstallmentCount": "Banka Taksit Sayısı",
+          "merchantInstallmentCount": "Bayi Taksit Sayısı",
+          "bankComission": "Banka Komisyonu",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatusShow": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        }
+      }
+    },
     "posBank": {
       "list": {
         "notFound": {

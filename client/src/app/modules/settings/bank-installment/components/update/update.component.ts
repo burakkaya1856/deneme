@@ -5,34 +5,29 @@ import { AlertService } from '@app/shared/services';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'add-bank',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'update-bank',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.scss']
 })
-export class AddBankComponent implements OnInit {
+export class UpdateBankInstallmentComponent implements OnInit {
   public event: EventEmitter<any> = new EventEmitter();
+  public id: '';
+  public bankData;
+  public customer = null;
   public selectedFile: File = null;
-  public url = '../../../../../../assets/images/no-image.svg';
+  public enumData;
+  public errorMessage = '';
   public imageType = '';
   public statusKeys: any;
-  public enumData;
-  public choseImg = false;
+  public choseImg = true;
   public loadingState = false;
-  public bank = {
-    name: '',
-    shortcode: '',
-    image_url: '',
-    status: 'active'
-  };
 
   constructor(private bsModalRef: BsModalRef, private alertService: AlertService, private settingsService: SettingsService) {}
 
   ngOnInit(): void {
     this.enumData.forEach(item => {
       if (item.Status) {
-        this.statusKeys = Object.keys(item.Status).filter(key => {
-          return key != 'deleted';
-        });
+        this.statusKeys = Object.keys(item.Status);
       } else if (item.FileType) {
         this.imageType = Object.keys(item.FileType)[0];
       }
@@ -40,8 +35,14 @@ export class AddBankComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    if (form.valid && this.bank.image_url) {
-      this.settingsService.addBank(this.bank).subscribe(res => {
+    let requestData = {
+      name: this.bankData.name,
+      shortcode: this.bankData.shortcode,
+      image_url: this.bankData.image_url,
+      status: this.bankData.status
+    };
+    if (form.valid && !this.loadingState) {
+      this.settingsService.updateBank(this.bankData.id, requestData).subscribe(res => {
         this.event.emit({ data: true });
         this.alertService.setNoticeHandler(res.message, 'success', false);
       });
@@ -54,16 +55,16 @@ export class AddBankComponent implements OnInit {
     let formData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
     this.loadingState = true;
-    this.choseImg = true;
+    this.choseImg = false;
+
     let requestData = {
       file_type: this.imageType,
       file: formData
     };
 
     this.settingsService.uploadImage(requestData).subscribe(
-      data => {
-        this.url = data.url;
-        this.bank.image_url = data.url;
+      res => {
+        this.bankData.image_url = res.url;
         this.loadingState = false;
       },
       err => {
