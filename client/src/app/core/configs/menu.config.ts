@@ -100,8 +100,8 @@ export const menuConfig = [
     routeConfig: 'merchants',
     children: [
       {
-        fullPath: '/merchants/list',
-        routeConfig: 'list'
+        fullPath: '/merchants/merchant-applications',
+        routeConfig: 'merchantApplications'
       }
     ]
   },

@@ -257,7 +257,7 @@ export const routeConfig = {
   // /reports module
 
   // merchants module
-  list: {
+  merchantApplications: {
     title: 'Bayi Başvuruları',
     desc: 'You can select a service here',
     icon: 'icon-office',

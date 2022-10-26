@@ -1409,7 +1409,8 @@
     "merchants": {
       "title": "Bayiler",
       "children": {
-        "list": "Bayi Başvuruları"
+        "list": "Bayi Başvuruları",
+        "merchantApplications": "Bayi Başvuruları"
       }
     },
     "settings": {
