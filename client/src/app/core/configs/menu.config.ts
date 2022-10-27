@@ -92,7 +92,7 @@ export const menuConfig = [
       {
         fullPath: '/reports/fraud',
         routeConfig: 'fraud'
-      },
+      }
     ]
   },
   {
@@ -102,6 +102,14 @@ export const menuConfig = [
       {
         fullPath: '/merchants/merchant-applications',
         routeConfig: 'merchantApplications'
+      },
+      {
+        fullPath: '/merchants/merchant-transactions',
+        routeConfig: 'merchantTransactions'
+      },
+      {
+        fullPath: '/merchants/merchant-bank',
+        routeConfig: 'merchantBank'
       }
     ]
   },

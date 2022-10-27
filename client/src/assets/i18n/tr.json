@@ -1410,7 +1410,9 @@
       "title": "Bayiler",
       "children": {
         "list": "Bayi Başvuruları",
-        "merchantApplications": "Bayi Başvuruları"
+        "merchantApplications": "Bayi Başvuruları",
+        "merchantTransactions": "Bayi İşlemleri",
+        "merchantBank": "Bayi Bank Pos Tanımları"
       }
     },
     "settings": {
@@ -1614,6 +1616,52 @@
       },
       "statusTitle": "Başvuru Durumunu Güncelle",
       "validation": "Doldurulması zorunlu alan"
+    },
+    "bank": {
+      "add": {
+        "header": "Bayi Banka Taksit Seçeneği Ekle",
+        "merchantLabel": "Bayi Seçiniz",
+        "merchantRequired": "Lütfen bir bayi seçiniz.",
+        "bankLabel": "Banka Seçiniz",
+        "bankRequired": "Lütfen bir banka seçiniz"
+      }
+    },
+    "transactions": {
+      "list": {
+        "notFound": {
+          "header": "Bayi Bulunamadı",
+          "info": "Henüz bir bayi bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Banka Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "statusPlaceholder": "Durum Filtre",
+        "actionDetailTooltip": "Detayları Görüntüle",
+        "transactionTypesPlaceholder": "İşlem Tipi Filtre",
+        "paginationInfo": "{{ totalLength }} işlem arasından {{ start }} - {{ end }} görüntüleniyor",
+        "tableHead": {
+          "merchantName": "Bayi Adı",
+          "merchantTransactionCode": "Bayi İşlem Kodu",
+          "transactionCode": "İşlem Kodu",
+          "transactionDate": "İşlem Tarihi",
+          "transactionType": "İşlem Tipi",
+          "totalAmount": "Toplam Ücret",
+          "status": "Durum"
+        },
+        "transactionTypes": {
+          "pos_deposit": "Pos",
+          "wallet_deposit": "Cüzdan",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "pos_deposit_refund": "Pos İade",
+          "wallet_deposit_refund": "Cüzdan İade"
+        },
+        "statuses": {
+          "approved": "Başarılı",
+          "waiting": "Beklemede",
+          "declined": "Başarısız"
+        }
+      }
     }
   },
   "settings": {

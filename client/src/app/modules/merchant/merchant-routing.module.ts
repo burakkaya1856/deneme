@@ -20,6 +20,24 @@ const routes: Routes = [
           routeConfig: 'merchant-applications',
           permissions: routeConfig['merchantApplications'].permissions
         }
+      },
+      {
+        path: 'merchant-transactions',
+        loadChildren: () => import('./merchant-transactions/merchant-transactions.module').then(m => m.MerchantTransactionsModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'merchant-transactions',
+          permissions: routeConfig['merchantTransactions'].permissions
+        }
+      },
+      {
+        path: 'merchant-bank',
+        loadChildren: () => import('./merchant-bank/merchant-bank.module').then(m => m.MerchantBankModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'merchant-bank',
+          permissions: routeConfig['merchantBank'].permissions
+        }
       }
     ]
   }
