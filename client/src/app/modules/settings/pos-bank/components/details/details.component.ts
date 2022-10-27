@@ -8,6 +8,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class PosBankDetailComponent implements OnInit {
   public posBank: any;
+  public showInstallment: boolean = false;
+  public showMerchant: boolean = false;
   constructor(private bsModalRef: BsModalRef) {}
 
   ngOnInit(): void {}

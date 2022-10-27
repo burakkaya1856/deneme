@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SettingsService } from '@app/core/http';
 import { AlertService } from '@app/shared/services';
+import { TranslateService } from '@ngx-translate/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -22,9 +23,21 @@ export class UpdateBankPosComponent implements OnInit {
   public choseImg = true;
   public loadingState = false;
   public secureArray = [0, 1];
-  constructor(private bsModalRef: BsModalRef, private alertService: AlertService, private settingsService: SettingsService) {}
+  public only3dShow: string = '';
+  constructor(
+    private bsModalRef: BsModalRef,
+    private alertService: AlertService,
+    private settingsService: SettingsService,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
+    if (this.posBankData.only3d) {
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.active');
+    } else {
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.passive');
+    }
+
     this.enumData.forEach(item => {
       if (item.Status) {
         this.statusKeys = Object.keys(item.Status);
@@ -39,7 +52,10 @@ export class UpdateBankPosComponent implements OnInit {
       name: this.posBankData.name,
       shortcode: this.posBankData.shortcode,
       image_url: this.posBankData.image_url,
-      status: this.posBankData.status
+      status: this.posBankData.status,
+      terminal_id: 0,
+      client_id: 0,
+      only3d: this.posBankData.only3d
     };
     if (form.valid && !this.loadingState) {
       this.settingsService.updatePosBank(this.posBankData.id, requestData).subscribe(res => {
@@ -77,5 +93,15 @@ export class UpdateBankPosComponent implements OnInit {
 
   closeModal(): void {
     this.bsModalRef.hide();
+  }
+
+  changeSecure(event: any) {
+    if (event) {
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.active');
+      this.posBankData.only3d = event;
+    } else {
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.passive');
+      this.posBankData.only3d = event;
+    }
   }
 }

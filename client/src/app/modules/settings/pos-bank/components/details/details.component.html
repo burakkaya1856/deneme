@@ -35,4 +35,192 @@
 
 
     </div>
+
+
+    <div class="content-head" (click)="showInstallment=!showInstallment">
+
+        <h4>{{'settings.posBank.details.modalTabs.firstTab.title' | translate}}</h4>
+        <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt="down"
+            [ngStyle]="{'transform': showInstallment ? 'rotate(180deg)' : 'rotate(0deg)'}">
+
+        <div *ngIf="showInstallment">
+
+            <ng-container *ngFor="let installment of posBank.bank_installment;let i = index">
+
+                <div class="bank-installment">
+                    <div class="partial">
+                        <div><span>{{i +1 }}</span></div>
+                        <div></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul>
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.firstTab.labels.processName' |
+                                        translate}}</span>
+                                    <div class="ml-auto">{{installment.installment_name}}</div>
+                                </li>
+
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.firstTab.labels.installmentCount'
+                                        | translate}}</span>
+                                    <div class="ml-auto">{{installment.bank_installment_count}}</div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <ul>
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.firstTab.labels.comission' |
+                                        translate}}</span>
+                                    <div class="ml-auto">{{installment.bank_commission * 100}} %</div>
+                                </li>
+
+                                <li>
+                                    <span class="font-weight-semibold">
+                                        {{ 'settings.posBank.details.modalTabs.firstTab.labels.status' |
+                                        translate}}</span>
+                                    <div class="ml-auto">{{
+                                        'settings.posBank.details.modalTabs.firstTab.labels.statuses.' +
+                                        installment.status
+                                        | translate}}</div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </ng-container>
+
+            <div class="error" *ngIf="posBank.bank_installment && posBank.bank_installment.length==0">
+                <span class="text-center">{{
+                    'settings.posBank.details.modalTabs.firstTab.error'
+                    | translate}}</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content-head" (click)="showMerchant=!showMerchant">
+
+        <h4>
+            {{'settings.posBank.details.modalTabs.secondTab.title' | translate}}</h4>
+
+        <img class="arrow-down" src="../../../../../assets/images/arrow-down.svg" alt=""
+            [ngStyle]="{'transform': showMerchant ? 'rotate(180deg)' : 'rotate(0deg)'}">
+
+        <div *ngIf="showMerchant">
+
+            <ng-container *ngFor="let merchantInstallment of posBank.merchant_bank_installment;let i = index">
+
+                <div class="bank-installment" *ngIf="showMerchant">
+                    <div class="partial">
+                        <div><span>{{i +1 }}</span></div>
+                        <div></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul>
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.processName' |
+                                        translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.installment_name}}</div>
+                                </li>
+
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.installmentCount'
+                                        | translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.merchant_installment_count}}</div>
+                                </li>
+
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.normalMinLimit'
+                                        | translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.normal_min_limit}}</div>
+                                </li>
+
+
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.threedMinLimit'
+                                        | translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.treed_min_limit}}</div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <ul>
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.comission' |
+                                        translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.bank_commission * 100}} %</div>
+                                </li>
+
+
+
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.normalMaxLimit'
+                                        | translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.normal_max_limit}}</div>
+                                </li>
+
+
+
+                                <li>
+                                    <span class="font-weight-semibold">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.threedMaxLimit'
+                                        | translate}}</span>
+                                    <div class="ml-auto">{{merchantInstallment.treed_max_limit}}</div>
+                                </li>
+
+                                <li>
+                                    <span class="font-weight-semibold">
+                                        {{ 'settings.posBank.details.modalTabs.secondTab.labels.status' |
+                                        translate}}</span>
+                                    <div class="ml-auto">{{
+                                        'settings.posBank.details.modalTabs.secondTab.labels.statuses.' +
+                                        merchantInstallment.status
+                                        | translate}}</div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ng-container>
+
+
+            <div class="error" *ngIf="posBank.merchant_bank_installment && posBank.merchant_bank_installment.length==0">
+                <span class="text-center">{{
+                    'settings.posBank.details.modalTabs.secondTab.error'
+                    | translate}}</span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
 </div>

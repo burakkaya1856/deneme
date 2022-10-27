@@ -134,7 +134,7 @@ export class PosBankListComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.bsModalService.show(UpdateBankPosComponent, {
       backdrop: true,
       ignoreBackdropClick: true,
-      initialState: { posBankData }
+      initialState: { posBankData, enumData: this.enumData }
     });
 
     this.bsModalRef.content.event.subscribe(data => {

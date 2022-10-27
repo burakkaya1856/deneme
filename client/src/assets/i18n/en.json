@@ -1635,6 +1635,7 @@
           "bankName": "Banka Adı",
           "bankImage": "Banka Resmi",
           "shortCode": "Kısa Kod",
+          "processName": "İşlem Adı",
           "dateCreated": "Oluşturma Tarihi",
           "status": "Durum",
           "actions": "Eylemler"
@@ -1645,9 +1646,9 @@
           "deleted": "Silindi"
         },
         "tableStatus": {
-          "1": "Aktif",
-          "0": "Pasif",
-          "-1": "Silindi"
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
         },
         "actionDetailTooltip": "Detaylar",
         "actionEditTooltip": "Düzenle",
@@ -1691,7 +1692,55 @@
         "status": "Durum",
         "statuses": {
           "1": "Aktif",
-          "0": "Pasif"
+          "0": "Pasif",
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "modalTabs": {
+          "firstTab": {
+            "title": "Banka Taksitleri",
+            "labels": {
+              "processName": "İşlem Adı",
+              "installmentCount": "Taksit Sayısı",
+              "comission": "Komisyon Oranı",
+              "status": "Durum",
+              "statuses": {
+                "active": "Aktif",
+                "passive": "Pasif",
+                "deleted": "Silindi"
+              }
+            },
+            "error": "Kayıtlı taksit bilgisi bulunamadı"
+          },
+          "secondTab": {
+            "title": "Bayi Taksitleri",
+            "labels": {
+              "processName": "İşlem Adı",
+              "installmentCount": "Taksit Sayısı",
+              "comission": "Komisyon Oranı",
+              "status": "Durum",
+              "statuses": {
+                "active": "Aktif",
+                "passive": "Pasif",
+                "deleted": "Silindi"
+              },
+              "normalMinLimit": "Minimum Limit",
+              "normalMaxLimit": "Maksimum Limit",
+              "threedMaxLimit": "3d Maksimum Limit",
+              "threedMinLimit": "3d Minimum Limit"
+            },
+            "error": "Kayıtlı bayi bilgisi bulunamadı"
+          },
+
+          "thirdTab": {
+            "title": "3.Belgeler",
+            "statuses": {
+              "approved": "Onaylandı",
+              "declined": "Reddedildi",
+              "waiting": "İnceleniyor"
+            }
+          }
         }
       },
       "update": {
@@ -1703,15 +1752,21 @@
         "imageURL": "Banka Resmi",
         "imageURLRequired": "Lütfen bir resim seçiniz.",
         "secure": "3d güvenlik durumu",
-        "0": "Pasif",
-        "1": "Aktif",
+        "securePlaceholder": "3d güvenlik durumu",
+        "secureRequired": "Lütfen 3d güvenlik durumu seçiniz",
         "imageSaveText": "Resmi Kaydet",
         "imageSavedText": "Resim Başarıyla Kaydedildi",
         "statusLabel": "Durum",
         "status": {
           "active": "Aktif",
           "passive": "Pasif",
-          "deleted": "Silindi"
+          "deleted": "Silindi",
+          "0": "Pasif",
+          "1": "Aktif"
+        },
+        "secureStrings": {
+          "active": "Aktif",
+          "passive": "Pasif"
         },
         "btnCancel": "İptal",
         "btnSubmit": "Kaydet",
