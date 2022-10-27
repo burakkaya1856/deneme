@@ -79,7 +79,7 @@
                         <td>{{posBank.date_created | customDatePipe:true}}</td>
                         <td class="text-center">
                             <span class="badge"
-                                [ngClass]="{'badge-danger': posBank.status == -1, 'badge-info': posBank.status == 0, 'badge-success': posBank.status == 1}">
+                                [ngClass]="{'badge-danger': posBank.status == 'deleted', 'badge-info': posBank.status == 'passive', 'badge-success': posBank.status == 'active'}">
                                 {{ 'settings.posBank.list.tableStatus.' + posBank.status | translate }}
                             </span>
                         </td>

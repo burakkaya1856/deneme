@@ -21,7 +21,7 @@
             <label class="col-form-label col-sm-3">{{'settings.posBank.update.shortcode' | translate }}</label>
             <div class="col-sm-9">
                 <input type="text" [(ngModel)]="posBankData.shortcode" #fBankShortcode="ngModel"
-                    name="posbank-shortcode" class="form-control" required autocomplete="off">
+                    name="posbank-shortcode" class="form-control" required autocomplete="off" required>
                 <p [ngStyle]="{'visibility': f.submitted && fBankShortcode.errors?.required ? 'visible' : 'hidden'}"
                     class="validation mb-0">{{'settings.posBank.update.shortcodeRequired' | translate }}</p>
             </div>
@@ -30,13 +30,16 @@
         <div class="form-group row">
             <label class="col-form-label col-sm-3">{{'settings.posBank.update.secure' | translate}}</label>
             <div class="col-sm-9">
-                <ng-select name="posbank-secure" class="ng-select-table" [(ngModel)]="posBankData.only3d"
-                    [clearable]="false" [searchable]="false">
+                <ng-select name="posbank-secure" class="ng-select-table" [ngModel]="posBankData.only3d"
+                    (ngModelChange)="changeSecure($event)" #fBankSecure="ngModel"
+                    placeholder="{{'settings.posBank.update.securePlaceholder' | translate}}" [clearable]="false"
+                    [searchable]="false" required>
                     <ng-option *ngFor="let item of secureArray" [value]="item">{{'settings.posBank.update.status.' +
-                        item
-                        |
-                        translate }} </ng-option>
+                        item | translate }} </ng-option>
                 </ng-select>
+                <p [ngStyle]="{'visibility': f.submitted && fBankSecure.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.posBank.update.secureRequired' | translate }}</p>
+
             </div>
         </div>
 
@@ -75,11 +78,6 @@
                         <div class="loader"></div>
                     </div>
 
-                </div>
-
-                <div class="validation mb-0 img-validation"
-                    [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
-                    <p *ngIf="loadingState">{{'settings.bank.add.loadingValidation' | translate }}</p>
                 </div>
 
             </div>
