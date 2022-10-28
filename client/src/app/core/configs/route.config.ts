@@ -257,10 +257,28 @@ export const routeConfig = {
   // /reports module
 
   // merchants module
-  list: {
+  merchantApplications: {
     title: 'Bayi Başvuruları',
     desc: 'You can select a service here',
     icon: 'icon-office',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
+  merchantTransactions: {
+    title: 'Bayi İşlemleri',
+    desc: 'You can select a service here',
+    icon: 'icon-sync',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
+  merchantBank: {
+    title: 'Bayi Banka Tanımları',
+    desc: 'You can select a service here',
+    icon: 'icon-library2',
     permissions: {
       only: ['AUTHORIZED'],
       redirectTo: systemConfig.unauthorizedRedirectTo

@@ -1,0 +1,50 @@
+<div class="add-header">
+  <h1 class="modal-title">{{ 'merchants.bank.add.header' | translate }}</h1>
+  <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form [formGroup]="merchantBankForm" (ngSubmit)="onSubmit()">
+  <div class="add-body">
+    <div class="row mb-3">
+      <div class="col-12">
+        <label>{{ 'merchants.bank.add.merchantLabel' | translate }}</label>
+        <ng-select *ngIf="merchantList" class="ng-select-table" formControlName="merchant_id" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let item of merchantList" [value]="item.id">{{ item.value }}</ng-option>
+        </ng-select>
+        <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.merchantRequired' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.bankLabel' | translate }}</label>
+        <ng-select
+          *ngIf="bankList"
+          class="ng-select-table"
+          formControlName="bank_id"
+          [clearable]="false"
+          [searchable]="false"
+          (change)="selectBank($event)"
+        >
+          <ng-option *ngFor="let item of bankList" [value]="item.id">{{ item.value }}</ng-option>
+        </ng-select>
+        <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.bankRequired' | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-footer">
+    <div class="row">
+      <div class="col-6">
+        <button type="button" class="btn btn-cancel" (click)="closeModal()">{{ 'settings.bank.add.btnCancel' | translate }}</button>
+      </div>
+      <div class="col-6">
+        <button type="submit" class="btn btn-save">{{ 'settings.bank.add.btnSubmit' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</form>
