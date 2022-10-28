@@ -397,12 +397,18 @@ export interface PosBankInstallmentIn {
   bank_id: number;
   installment_name: string;
   bank_installment_count: number;
-  merchant_installment_count: number;
   bank_commission: number;
-  normal_min_limit: number;
-  normal_max_limit: number;
-  treed_min_limit: number;
-  treed_max_limit: number;
   description: string;
+  status: string;
+}
+
+export interface PosBankInstallmentOut {
+  id: number;
+  pos_bank_id: number;
+  pos_bank_name: string;
+  pos_bank_only3d: any;
+  installment_name: string;
+  bank_installment_count: number;
+  bank_commission: number;
   status: string;
 }

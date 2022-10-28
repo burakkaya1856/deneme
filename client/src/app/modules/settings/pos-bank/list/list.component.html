@@ -25,7 +25,7 @@
                     </td>
 
 
-                    <td tabindex="0" rowspan="1" colspan="2"></td>
+                    <td tabindex="0" rowspan="1" colspan="3"></td>
 
                     <td tabindex="0" rowspan="1" colspan="1">
                         <ng-select *ngIf="statusKeys" [ngModel]="selectedStatus" class="ng-select-table"
@@ -60,7 +60,14 @@
                     <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.posBank.list.tableHead.shortCode' |
                         translate }}</th>
 
-                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.posBank.list.tableHead.dateCreated' |
+
+
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
+                        'settings.posBank.list.tableHead.dateCreated' |
+                        translate }}</th>
+
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
+                        'settings.posBank.list.tableHead.secure' |
                         translate }}</th>
 
                     <th tabindex="0" rowspan="1" colspan="1" class="text-center">{{
@@ -75,13 +82,17 @@
                     <tr *ngFor="let posBank of posBankList">
                         <td>{{posBank.name}}</td>
                         <td>{{posBank.shortcode}}</td>
+                        <td class="text-center">{{posBank.date_created | customDatePipe:true}}</td>
 
-                        <td>{{posBank.date_created | customDatePipe:true}}</td>
                         <td class="text-center">
                             <span class="badge"
-                                [ngClass]="{'badge-danger': posBank.status == 'deleted', 'badge-info': posBank.status == 'passive', 'badge-success': posBank.status == 'active'}">
-                                {{ 'settings.posBank.list.tableStatus.' + posBank.status | translate }}
-                            </span>
+                                [ngClass]="{'badge-info': posBank.only3d == false, 'badge-secondary':posBank.only3d == null, 'badge-success': posBank.only3d == true}">
+                                {{ 'settings.posBank.list.3dStatus.' + posBank.only3d |
+                                translate }} </span>
+                        </td>
+
+                        <td class="text-center">
+                            <status [status]="posBank.status"></status>
                         </td>
                         <td class="text-center">
                             <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
@@ -99,6 +110,7 @@
                                 tooltip="{{ 'settings.posBank.list.actionDeleteTooltip' | translate }}">
                                 <i class="icon-trash-alt"></i>
                             </button>
+
                         </td>
                     </tr>
                 </ng-container>

@@ -8,6 +8,7 @@ import {
   FraudOut,
   MessageOut,
   PosBankInstallmentIn,
+  PosBankInstallmentOut,
   PosBankItem,
   PosBankOut,
   PosBankParams,
@@ -438,10 +439,18 @@ export class SettingsService {
   }
 
   addBankInstallment(bankInstallmentData: PosBankInstallmentIn): Observable<MessageOut> {
-    return this.http.post<MessageOut>(this.baseUrl + '/pos-bank-installment', bankInstallmentData);
+    return this.http.post<MessageOut>(this.baseUrl + '/pos-bank-installment/', bankInstallmentData);
   }
 
   deleteBankInstallment(bankInstallmentId: string): Observable<MessageOut> {
     return this.http.delete<MessageOut>(this.baseUrl + '/pos-bank-installment/' + bankInstallmentId);
+  }
+
+  getBankInstallmentDetails(bankInstallmentId: string) {
+    return this.http.get(this.baseUrl + '/pos-bank-installment/' + bankInstallmentId);
+  }
+
+  updateBankInstallment(bankInstallmentId: string, data: PosBankInstallmentIn): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/pos-bank-installment/' + bankInstallmentId, data);
   }
 }

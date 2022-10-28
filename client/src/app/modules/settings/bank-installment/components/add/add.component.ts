@@ -11,17 +11,18 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class AddBankInstallmentComponent implements OnInit {
   public event: EventEmitter<any> = new EventEmitter();
-  public selectedFile: File = null;
-  public url = '../../../../../../assets/images/no-image.svg';
   public imageType = '';
   public statusKeys: any;
+  public posBankList = [];
   public enumData;
-  public choseImg = false;
-  public loadingState = false;
-  public bank = {
-    name: '',
-    shortcode: '',
-    image_url: '',
+  public bankName = null;
+  public bankId: number;
+  public bankInstallment = {
+    bank_id: null,
+    installment_name: '',
+    bank_installment_count: null,
+    bank_commission: null,
+    description: '',
     status: 'active'
   };
 
@@ -33,15 +34,24 @@ export class AddBankInstallmentComponent implements OnInit {
         this.statusKeys = Object.keys(item.Status).filter(key => {
           return key != 'deleted';
         });
-      } else if (item.FileType) {
-        this.imageType = Object.keys(item.FileType)[0];
       }
+    });
+
+    let requestData = {
+      search: '',
+      status: '',
+      page: 1,
+      size: 100
+    };
+
+    this.settingsService.posBankList(requestData).subscribe((data: any) => {
+      this.posBankList = data.items;
     });
   }
 
   onSubmit(form: NgForm): void {
-    if (form.valid && this.bank.image_url) {
-      this.settingsService.addBank(this.bank).subscribe(res => {
+    if (form.valid && this.bankInstallment.bank_id) {
+      this.settingsService.addBankInstallment(this.bankInstallment).subscribe(res => {
         this.event.emit({ data: true });
         this.alertService.setNoticeHandler(res.message, 'success', false);
       });
@@ -49,32 +59,11 @@ export class AddBankInstallmentComponent implements OnInit {
     }
   }
 
-  onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
-    let formData = new FormData();
-    formData.append('file', this.selectedFile, this.selectedFile.name);
-    this.loadingState = true;
-    this.choseImg = true;
-    let requestData = {
-      file_type: this.imageType,
-      file: formData
-    };
-
-    this.settingsService.uploadImage(requestData).subscribe(
-      data => {
-        this.url = data.url;
-        this.bank.image_url = data.url;
-        this.loadingState = false;
-      },
-      err => {
-        this.loadingState = false;
-        const errorMessage = err.error.message || err.error.detail[0].msg;
-        this.alertService.setNoticeHandler(errorMessage, 'warning', true);
-      }
-    );
-  }
-
   closeModal(): void {
     this.bsModalRef.hide();
+  }
+
+  changeBank($event: any) {
+    this.bankInstallment.bank_id = $event;
   }
 }

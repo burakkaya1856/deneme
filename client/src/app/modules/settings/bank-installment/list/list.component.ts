@@ -87,23 +87,23 @@ export class BankInstallmentListComponent implements OnInit {
     });
   }
 
-  bankDetails(id: any): void {
-    this.settingsService.getBankDetails(id).subscribe(bank => {
+  bankInstallmentDetails(id: any): void {
+    this.settingsService.getBankInstallmentDetails(id).subscribe(bankInstallmentData => {
       this.bsModalRef = this.bsModalService.show(BankInstallmentDetailsComponent, {
         backdrop: true,
         ignoreBackdropClick: true,
-        initialState: { bank }
+        initialState: { bankInstallmentData }
       });
     });
   }
 
-  updateBank(bank): void {
-    let bankData = JSON.parse(JSON.stringify(bank));
+  updateBankInstallment(bankInstallment): void {
+    let bankInstallmentData = JSON.parse(JSON.stringify(bankInstallment));
     this.bsModalRef = this.bsModalService.show(UpdateBankInstallmentComponent, {
       backdrop: true,
       ignoreBackdropClick: true,
       initialState: {
-        bankData,
+        bankInstallmentData,
         enumData: this.enumData
       }
     });
@@ -146,7 +146,7 @@ export class BankInstallmentListComponent implements OnInit {
     });
   }
 
-  addBank(): void {
+  addBankInstallment(): void {
     this.bsModalRef = this.bsModalService.show(AddBankInstallmentComponent, {
       backdrop: true,
       ignoreBackdropClick: true,

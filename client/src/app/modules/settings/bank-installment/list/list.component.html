@@ -1,6 +1,6 @@
 <div class="container-fluid d-flex justify-content-end align-items-center">
     <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3"
-        (click)="addBank()">
+        (click)="addBankInstallment()">
         <i class="fa fa-plus mr-2"></i>
         <span>{{'settings.bankInstallment.list.btnAddAccount' | translate }}</span>
     </div>
@@ -59,15 +59,21 @@
                     <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.bankInstallment.list.tableHead.bankName' |
                         translate }}
                     </th>
+
+
+                    <th tabindex="0" rowspan="1" colspan="1">{{
+                        'settings.bankInstallment.list.tableHead.bankInstallmentName' | translate }}
+                    </th>
+
+
                     <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
                         'settings.bankInstallment.list.tableHead.bankInstallmentCount' | translate }}
                     </th>
-                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
-                        'settings.bankInstallment.list.tableHead.merchantInstallmentCount' | translate }}
-                    </th>
+
                     <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
                         'settings.bankInstallment.list.tableHead.bankComission' | translate }}
                     </th>
+
                     <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
                         'settings.bankInstallment.list.tableHead.status' | translate }}</th>
                     <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">{{
@@ -80,26 +86,26 @@
                 <ng-container *ngIf="isLoaded">
                     <tr *ngFor="let bankInstallment of bankInstallmentList">
                         <td colspan="1">{{bankInstallment.pos_bank_name}}</td>
+                        <td colspan="1">{{bankInstallment.installment_name}}</td>
                         <td class="text-center" colspan="1">{{bankInstallment.bank_installment_count}}</td>
-                        <td class="text-center" colspan="1">{{bankInstallment.merchant_installment_count}}</td>
-                        <td class="text-center" colspan="1">{{bankInstallment.bank_commission * 100}} %</td>
+                        <td class="text-center" colspan="1">{{bankInstallment.bank_commission}}</td>
 
                         <td class="text-center" colspan="1">
                             <status [status]="bankInstallment.status"></status>
                         </td>
                         <td class="text-center" colspan="2">
                             <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
-                                type="button" (click)="bankDetails(bankInstallment.id)"
+                                type="button" (click)="bankInstallmentDetails(bankInstallment.id)"
                                 tooltip="{{ 'settings.bankInstallment.list.actionDetailTooltip' | translate }}">
                                 <i class="icon-eye"></i>
                             </button>
                             <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
-                                type="button" (click)="updateBank(bankInstallment)"
+                                type="button" (click)="updateBankInstallment(bankInstallment)"
                                 tooltip="{{ 'settings.bankInstallment.list.actionEditTooltip' | translate }}">
                                 <i class="icon-pencil3"></i>
                             </button>
                             <button class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2"
-                                type="button" (click)="deleteBank(bankInstallment)"
+                                type="button" (click)="deleteBankInstallment(bankInstallment)"
                                 tooltip="{{ 'settings.bankInstallment.list.actionDeleteTooltip' | translate }}">
                                 <i class="icon-trash-alt"></i>
                             </button>

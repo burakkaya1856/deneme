@@ -1,35 +1,53 @@
-    <div class="detail-header">
-        <h1 class="modal-title">{{'settings.bank.details.header' | translate}}</h1>
-        <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
-    </div>
-    <div class="detail-body" *ngIf="bank">
-        <div class="row">
-            <div class="col-sm-6">
-                <ul>
-                    <li>
-                        <span class="font-weight-semibold">{{'settings.bank.details.bankName' | translate}}</span>
-                        <div class="ml-auto">{{bank.name}}</div>
-                    </li>
+<div class="detail-header">
+    <h1 class="modal-title">{{'settings.bankInstallment.details.header' | translate}}</h1>
+    <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span
+            aria-hidden="true">×</span></button>
+</div>
 
-                    <li>
-                        <span class="font-weight-semibold">{{'settings.bank.details.status' | translate}}</span>
-                        <div class="ml-auto">{{'settings.bank.details.statuses.' + bank.status | translate}}</div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-6">
-                <ul>
-                    <li>
-                        <span class="font-weight-semibold">{{'settings.bank.details.shortcode' | translate}}</span>
-                        <div class="ml-auto">{{bank.shortcode}}</div>
-                    </li>
+<div class="detail-body" *ngIf="bankInstallmentData">
+    <div class="row">
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.bankInstallment.details.bankName'
+                        | translate}}</span>
+                    <div class="ml-auto">{{bankInstallmentData.pos_bank_name}}</div>
+                </li>
 
-                    <li>
-                        <span class="font-weight-semibold">{{'settings.bank.details.dateCreated' | translate}}</span>
-                        <div class="ml-auto">{{bank.date_created | customDatePipe:true}}</div>
-                    </li>
-                </ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.bankInstallment.details.bankInstallmentCount'
+                        | translate}}</span>
+                    <div class="ml-auto">{{bankInstallmentData.bank_installment_count}}</div>
+                </li>
 
-            </div>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.bankInstallment.details.status' | translate}}</span>
+                    <div class="ml-auto">{{'settings.bankInstallment.details.statuses.' +
+                        bankInstallmentData.status | translate}}</div>
+                </li>
+
+
+            </ul>
+        </div>
+
+
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <span class="font-weight-semibold">{{'settings.bankInstallment.details.bankInstallmentName'
+                        | translate}}</span>
+                    <div class="ml-auto">{{bankInstallmentData.installment_name}}</div>
+                </li>
+
+
+                <li>
+                    <span class="font-weight-semibold">{{'settings.bankInstallment.details.comission'
+                        | translate}}</span>
+                    <div class="ml-auto">{{bankInstallmentData.bank_commission}}</div>
+                </li>
+
+            </ul>
+
         </div>
     </div>
+</div>

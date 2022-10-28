@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./details.component.scss']
 })
 export class BankInstallmentDetailsComponent implements OnInit {
-  public bank;
+  public bankInstallmentData;
 
   constructor(private bsModalRef: BsModalRef) {}
 
