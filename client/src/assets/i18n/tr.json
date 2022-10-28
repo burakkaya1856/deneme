@@ -1726,7 +1726,7 @@
           "status": "Durum",
           "actions": "Eylemler"
         },
-        "tableStatusShow": {
+        "tableStatus": {
           "active": "Aktif",
           "passive": "Pasif",
           "deleted": "Silindi"
