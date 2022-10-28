@@ -1661,6 +1661,42 @@
           "waiting": "Beklemede",
           "declined": "Başarısız"
         }
+      },
+      "detail": {
+        "header": "İşlem Detayı",
+        "labelPaymentStatus": "Ödeme Durumu",
+        "labelTransactionDate": "Ödeme Tarihi",
+        "labelTotalAmount": "Tahsil Edilen Tutar",
+        "labelCustomerFullName": "Kart Sahibinin Adı Soyadı",
+        "labelCustomerWalletNumber": "Moneytolia Numarası",
+        "labelCustomerCardNumber": "Kart Numarası",
+        "labelCustomerCardBank": "Kart Bankası",
+        "labelCustomerCardBrand": "Kart Türü",
+        "labelCustomerCardType": "Kart Tipi",
+        "labelMerchantTransactionCode": "Bayi İşlem Kodu",
+        "labelMerchantCustomerFullName": "Müşteri Adı Soyadı",
+        "labelMerchantCustomerEmail": "Müşteri Email'i",
+        "labelMerchantCustomerPhone": "Müşteri Telefon'u",
+        "cardInfoTitle": "Kart Bilgileri",
+        "merchantInfoTitle": "Bayi Bilgileri",
+        "collectionDetailsTitle": "Tahsilat Ayrıntıları",
+        "refundInfoTitle": "İade Bilgileri",
+        "labelIP": "IP Adresi",
+        "labelAmount": "Tutar",
+        "labelFee": "Komisyon Ücreti",
+        "refundLabelID": "ID",
+        "refundLabelAmount": "Tutar",
+        "refundLabelStatus": "İade Durumu",
+        "refundLabelReason": "İade Nedeni",
+        "refundLabelStatuses": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "cardTypes": {
+          "credit": "Kredi Kartı",
+          "debit": "Banka Kartı"
+        }
       }
     }
   },

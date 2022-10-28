@@ -1,1 +1,269 @@
-<p>merchant-transaction-detail works!</p>
+<ng-container *ngIf="transaction && transaction.transaction_type.includes('wallet')">
+  <div class="add-header">
+    <h1 class="modal-title">{{ transaction.transaction_id }} - {{ 'merchants.transactions.detail.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+  </div>
+  <div class="row  transaction-information">
+    <div class="col-sm-12">
+      <h3 class="section__header">{{ 'merchants.transactions.detail.cardInfoTitle' | translate }}</h3>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelPaymentStatus' | translate }}</span>
+          <div class="ml-auto">{{ transaction.transaction_status || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelTransactionDate' | translate }}</span>
+          <div class="ml-auto">{{ transaction.transaction_date | customDatePipe: true || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelTotalAmount' | translate }}</span>
+          <div class="ml-auto">{{ transaction.total_amount }} TRY</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerFullName' | translate }}</span>
+          <div class="ml-auto text-capitalize">{{ transaction.first_name + ' ' + transaction.last_name }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerWalletNumber' | translate }}</span>
+          <div class="ml-auto">{{ transaction.wallet_no || '-' }}</div>
+        </li>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelIP' | translate }}</span>
+          <div class="ml-auto">{{ transaction.ip_address || '-' }}</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-12">
+      <h3 class="section__header">{{ 'merchants.transactions.detail.merchantInfoTitle' | translate }}</h3>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantTransactionCode' | translate }}</span>
+          <div class="ml-auto">{{ transaction.merchant_transaction_id || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantCustomerFullName' | translate }}</span>
+          <div class="ml-auto">{{ transaction.customer_first_name + ' ' + transaction.customer_last_name }}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantCustomerEmail' | translate }}</span>
+          <div class="ml-auto text-capitalize">{{ transaction.customer_email || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantCustomerPhone' | translate }}</span>
+          <div class="ml-auto">{{ transaction.customer_phone_number || '-' }}</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-12">
+      <h3 class="section__header">{{ 'merchants.transactions.detail.collectionDetailsTitle' | translate }}</h3>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelTotalAmount' | translate }}</span>
+          <div class="ml-auto">{{ transaction.total_amount }} TRY</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelAmount' | translate }}</span>
+          <div class="ml-auto">{{ transaction.amount }} TRY</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelFee' | translate }}</span>
+          <div class="ml-auto">{{ transaction.fee }} TRY</div>
+        </li>
+      </ul>
+    </div>
+
+    <ng-container *ngIf="transaction.refund_list.length > 0">
+      <div class="col-sm-12">
+        <h3 class="section__header">{{ 'merchants.transactions.detail.refundInfoTitle' | translate }}</h3>
+      </div>
+      <div class="row px-5 my-3">
+        <div class="refund__item col-12 row mb-2" *ngFor="let refund of transaction.refund_list">
+          <div class="col-sm-2">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelID' | translate }}</span>
+            <div class="ml-auto">{{ refund.transaction_id }}</div>
+          </div>
+          <div class="col-sm-3">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelAmount' | translate }}</span>
+            <div class="ml-auto">{{ refund.refund_amount }}</div>
+          </div>
+          <div class="col-sm-3">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelStatus' | translate }}</span>
+            <div class="ml-auto">{{ 'merchants.transactions.detail.refundLabelStatuses.' + refund.refund_status.name | translate }}</div>
+          </div>
+          <div class="col-sm-4">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelReason' | translate }}</span>
+            <div class="ml-auto">{{ refund.note || refund.refund_type }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="transaction && transaction.transaction_type.includes('pos')">
+  <div class="add-header">
+    <h1 class="modal-title">{{ transaction.transaction_id }} - {{ 'merchants.transactions.detail.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+  </div>
+  <div class="row  transaction-information">
+    <div class="col-sm-12">
+      <h3 class="section__header">{{ 'merchants.transactions.detail.cardInfoTitle' | translate }}</h3>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelPaymentStatus' | translate }}</span>
+          <div class="ml-auto">{{ transaction.transaction_status || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelTransactionDate' | translate }}</span>
+          <div class="ml-auto">{{ transaction.transaction_date | customDatePipe: true || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelTotalAmount' | translate }}</span>
+          <div class="ml-auto">{{ transaction.total_amount }} TRY</div>
+        </li>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerCardBrand' | translate }}</span>
+          <div class="ml-auto">
+            <img [src]="'../../../../../assets/images/' + transaction.card_brand + '-logo.svg'" />
+          </div>
+        </li>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelIP' | translate }}</span>
+          <div class="ml-auto">{{ transaction.ip_address }} TRY</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerFullName' | translate }}</span>
+          <div class="ml-auto text-capitalize">{{ transaction.first_name + ' ' + transaction.last_name }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerCardNumber' | translate }}</span>
+          <div class="ml-auto">{{ transaction.card_number || '-' }}</div>
+        </li>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerCardBank' | translate }}</span>
+          <div class="ml-auto">{{ transaction.card_bank || '-' }}</div>
+        </li>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelCustomerCardType' | translate }}</span>
+          <div class="ml-auto">{{ 'merchants.transactions.detail.cardTypes.' + transaction.card_type | translate }}</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-12">
+      <h3 class="section__header">{{ 'merchants.transactions.detail.merchantInfoTitle' | translate }}</h3>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantTransactionCode' | translate }}</span>
+          <div class="ml-auto">{{ transaction.merchant_transaction_id || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantCustomerFullName' | translate }}</span>
+          <div class="ml-auto">{{ transaction.customer_first_name + ' ' + transaction.customer_last_name }}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantCustomerEmail' | translate }}</span>
+          <div class="ml-auto text-capitalize">{{ transaction.customer_email || '-' }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelMerchantCustomerPhone' | translate }}</span>
+          <div class="ml-auto">{{ transaction.customer_phone_number || '-' }}</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-12">
+      <h3 class="section__header">{{ 'merchants.transactions.detail.collectionDetailsTitle' | translate }}</h3>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelTotalAmount' | translate }}</span>
+          <div class="ml-auto">{{ transaction.total_amount }} TRY</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelAmount' | translate }}</span>
+          <div class="ml-auto">{{ transaction.amount }} TRY</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelFee' | translate }}</span>
+          <div class="ml-auto">{{ transaction.fee }} TRY</div>
+        </li>
+      </ul>
+    </div>
+
+    <ng-container *ngIf="transaction.refund_list.length > 0">
+      <div class="col-sm-12">
+        <h3 class="section__header">{{ 'merchants.transactions.detail.refundInfoTitle' | translate }}</h3>
+      </div>
+      <div class="row px-5 my-3">
+        <div class="refund__item col-12 row mb-2" *ngFor="let refund of transaction.refund_list">
+          <div class="col-sm-2">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelID' | translate }}</span>
+            <div class="ml-auto">{{ refund.transaction_id }}</div>
+          </div>
+          <div class="col-sm-3">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelAmount' | translate }}</span>
+            <div class="ml-auto">{{ refund.refund_amount }}</div>
+          </div>
+          <div class="col-sm-3">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelStatus' | translate }}</span>
+            <div class="ml-auto">{{ 'merchants.transactions.detail.refundLabelStatuses.' + refund.refund_status.name | translate }}</div>
+          </div>
+          <div class="col-sm-4">
+            <span class="font-weight-semibold">{{ 'merchants.transactions.detail.refundLabelReason' | translate }}</span>
+            <div class="ml-auto">{{ refund.note || refund.refund_type }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

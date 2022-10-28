@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MerchantService, SettingsService } from '@app/core/http';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { MerchantTransactionDetailComponent } from '../components/merchant-transaction-detail/merchant-transaction-detail.component';
 
 @Component({
   selector: 'app-merchant-transactions-list',
@@ -35,7 +37,14 @@ export class MerchantTransactionsListComponent implements OnInit {
   transactionTypes = null;
   selectedTransactionType = null;
 
-  constructor(private route: ActivatedRoute, private merchantService: MerchantService, private settingsService: SettingsService) {}
+  bsDetailModalRef: BsModalRef;
+
+  constructor(
+    private route: ActivatedRoute,
+    private merchantService: MerchantService,
+    private settingsService: SettingsService,
+    public bsModalService: BsModalService
+  ) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(v => (this.sub = v));
@@ -183,5 +192,15 @@ export class MerchantTransactionsListComponent implements OnInit {
     };
 
     this.getMerchantsTransactions(requestData);
+  }
+
+  transactionDetail(transaction_id) {
+    this.merchantService.getMerchantTransactionDetail(transaction_id).subscribe(transaction => {
+      this.bsDetailModalRef = this.bsModalService.show(MerchantTransactionDetailComponent, {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        initialState: { transaction }
+      });
+    });
   }
 }

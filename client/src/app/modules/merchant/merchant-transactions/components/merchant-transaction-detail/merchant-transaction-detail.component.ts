@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-merchant-transaction-detail',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./merchant-transaction-detail.component.scss']
 })
 export class MerchantTransactionDetailComponent implements OnInit {
+  transaction!: any;
+  showTransaction = false;
+  constructor(private bsModalRef: BsModalRef) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  closeModal(): void {
+    this.bsModalRef.hide();
   }
-
 }

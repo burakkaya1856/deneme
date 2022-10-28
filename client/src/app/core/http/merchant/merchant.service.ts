@@ -65,6 +65,10 @@ export class MerchantService {
     return this.http.get(this.baseUrl + '/all-transactions?' + this.serialize(merchantTransactionsParams));
   }
 
+  getMerchantTransactionDetail(transaction_id) {
+    return this.http.get(this.baseUrl + '/transaction/' + transaction_id);
+  }
+
   getMerchantTransactionTypes() {
     return this.http.get(this.baseUrl + '/transaction-types');
   }
