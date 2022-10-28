@@ -1,0 +1,96 @@
+<div class="add-header">
+    <h1 class="modal-title">{{'settings.posBank.add.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="add-body">
+
+        <div class="row mb-4">
+            <div class="col-sm-6">
+                <label>{{'settings.posBank.add.bankName' | translate}}</label>
+                <input type="text" class="form-control" [(ngModel)]="posBank.name"
+                    placeholder="{{'settings.posBank.add.bankNamePlaceholder' | translate }}" name="bank-name"
+                    #fBankName="ngModel" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankName.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.posBank.add.bankNameRequired' | translate }}</p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.posBank.add.secure' | translate}}</label>
+                <ng-select class="ng-select-table" [(ngModel)]="posBank.only3d" name="bank-secure" [clearable]="false"
+                    [searchable]="false">
+                    <ng-option *ngFor="let item of secureChoice" [value]="item">{{'settings.posBank.add.' + item |
+                        translate }} </ng-option>
+                </ng-select>
+            </div>
+
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-6">
+                <label>{{'settings.posBank.add.shortcode' | translate}}</label>
+                <input type="text" class="form-control" [(ngModel)]="posBank.shortcode"
+                    placeholder="{{'settings.posBank.add.shortcodePlaceholder' | translate }}" name="bank-shortcode"
+                    #fBankShortcode="ngModel" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankShortcode.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.posBank.add.shortcodeRequired' | translate }}</p>
+            </div>
+            <div class="col-sm-6">
+                <label>{{'settings.posBank.add.statusLabel' | translate}}</label>
+                <ng-select *ngIf="statusKeys" class="ng-select-table" [(ngModel)]="posBank.status" name="bank-status"
+                    [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.posBank.add.status.' + item |
+                        translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="d-block">{{'settings.posBank.add.imageURL' | translate}}</label>
+                <div class="image" [class.active]="posBank.image_url">
+                    <img [src]="url" class="picture">
+
+                    <label for="firstImg">
+                        <div class="container-circle">
+                            <div class="circle">
+                                <img src="../../../../../../assets/images/profile-edit.svg" alt="">
+                            </div>
+                        </div>
+
+                    </label>
+
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="firstImg"
+                        (change)="onFileSelected($event)">
+
+                    <div class="spinner-container" *ngIf="loadingState">
+                        <div class="loader"></div>
+                    </div>
+
+                </div>
+                <div class="validation mb-0 img-validation"
+                    [ngStyle]="{'visibility': f.submitted ? 'visible' : 'hidden'}">
+                    <p *ngIf="!choseImg">{{'settings.posBank.add.imageURLRequired' | translate }}</p>
+                    <p *ngIf="loadingState">{{'settings.posBank.add.loadingValidation' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="add-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.posBank.add.btnCancel' |
+                    translate}}</button>
+
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{'settings.posBank.add.btnSubmit' | translate}}</button>
+
+            </div>
+
+        </div>
+    </div>
+</form>

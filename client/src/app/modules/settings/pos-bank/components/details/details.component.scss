@@ -1,0 +1,106 @@
+.detail-header {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #293a50;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    font-size: 30px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+}
+
+.detail-body {
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+  li {
+    margin-bottom: 20px;
+
+    span {
+      color: #f74f00;
+      font-size: 14px;
+    }
+  }
+
+  li::marker {
+    font-size: 109%;
+    color: #f74f00;
+  }
+
+  .content-head {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+    cursor: pointer;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #353e54;
+      margin: 0;
+      display: inline;
+    }
+
+    .arrow-down {
+      width: 24px;
+      height: 24px;
+      float: right;
+    }
+
+    .error {
+      text-align: center;
+      padding-top: 25px;
+      padding-bottom: 12px;
+    }
+
+    .bank-installment {
+      .partial {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+
+        div {
+          &:first-child {
+            width: 32px;
+            height: 32px;
+            margin: 0 1px 0 0;
+            padding: 5px 14px 7px 12px;
+            border: solid 1px #87859a;
+            border-radius: 50%;
+          }
+
+          &:last-child {
+            width: 100%;
+            height: 1px;
+            margin-left: -1px;
+            background-color: #eee;
+          }
+        }
+      }
+
+      li {
+        margin-bottom: 20px;
+
+        span {
+          color: #f74f00;
+          font-size: 14px;
+        }
+      }
+
+      li::marker {
+        font-size: 109%;
+        color: #f74f00;
+      }
+    }
+  }
+}

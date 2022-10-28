@@ -3,11 +3,13 @@ import { Directive, Input } from '@angular/core';
 
 @Directive({
   selector: '[appEnum]',
-  providers: [{
-    provide: NG_VALIDATORS,
-    useExisting: EnumValidator,
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: EnumValidator,
+      multi: true
+    }
+  ]
 })
 export class EnumValidator implements Validator {
   @Input() appEqual: string;
@@ -22,9 +24,7 @@ export class EnumValidator implements Validator {
     if (c.value && ENUM_REGEXP.test(c.value)) {
       return true;
     } else {
-      return { 'enum': false };
+      return { enum: false };
     }
   }
 }
-
-
