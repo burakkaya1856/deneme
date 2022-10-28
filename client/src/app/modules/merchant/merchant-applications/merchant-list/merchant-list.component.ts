@@ -30,6 +30,7 @@ export class MerchantListComponent implements OnInit {
   emptyMerchant = null;
   bsModalRef: BsModalRef;
   bsModalRefUpdate: BsModalRef;
+  maxPage = 5;
   public selectedStatus = null;
 
   constructor(private merchantService: MerchantService, public bsModalService: BsModalService, private settingsService: SettingsService) {}
@@ -57,11 +58,12 @@ export class MerchantListComponent implements OnInit {
       this.merchantList = data.items;
       this.isLoaded = true;
       this.pagination.total = data.total;
+      this.pagination.page = data.page;
       this.pagination.size = data.size;
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * this.pagination.page,
+        start: this.pagination.size * (this.pagination.page - 1) + 1,
         end: this.pagination.size * this.pagination.page
       };
       this.emptyMerchant = !this.merchantList.length ? true : false;
@@ -77,11 +79,12 @@ export class MerchantListComponent implements OnInit {
       this.isLoaded = true;
       this.pagination.total = data.total;
       this.pagination.size = data.size;
+      this.pagination.page = data.page;
       clearTimeout(loadTimeOut);
 
       this.pageInfo = {
         total: this.pagination.total,
-        start: this.pagination.size * this.pagination.page,
+        start: this.pagination.size * (this.pagination.page - 1) + 1,
         end: this.pagination.size * this.pagination.page
       };
     });

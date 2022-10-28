@@ -17,7 +17,6 @@ export class MerchantService {
           .set('page', merchantParams.page.toString())
           .set('size', merchantParams.size.toString())
       };
-      return this.http.get(this.baseUrl + '/applications', options);
     } else {
       let options = {
         params: new HttpParams()
@@ -61,4 +60,26 @@ export class MerchantService {
     };
     return this.http.put(this.baseUrl + '/application/' + applicationId + '/status', {}, options);
   }
+
+  getAllMerchantTransactions(merchantTransactionsParams) {
+    return this.http.get(this.baseUrl + '/all-transactions?' + this.serialize(merchantTransactionsParams));
+  }
+
+  getMerchantTransactionDetail(transaction_id) {
+    return this.http.get(this.baseUrl + '/transaction/' + transaction_id);
+  }
+
+  getMerchantTransactionTypes() {
+    return this.http.get(this.baseUrl + '/transaction-types');
+  }
+
+  // json to querystring
+  serialize = function(obj) {
+    var str = [];
+    for (var p in obj)
+      if (obj[p]) {
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+      }
+    return str.join('&');
+  };
 }

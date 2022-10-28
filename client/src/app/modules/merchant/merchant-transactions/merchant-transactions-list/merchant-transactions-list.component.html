@@ -1,0 +1,200 @@
+<div class="bg-white table-container mt-5" *ngIf="!emptyMerchantTransactions">
+  <div class="datatable-scroll">
+    <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
+      <thead>
+        <tr role="row" class="table-top">
+          <td tabindex="0" rowspan="1" colspan="1">
+            <div *ngIf="searchData || (merchantTransactionList && merchantTransactionList.length > 0)" class="dataTables_filter">
+              <label class="d-flex">
+                <span>{{ 'merchants.list.filterLabel' | translate }}:</span>
+                <input
+                  class="w-100"
+                  type="search"
+                  placeholder="{{ 'merchants.transactions.list.filterPlaceholder' | translate }}"
+                  [ngModel]="searchData"
+                  (ngModelChange)="searchMerchantTransactions($event)"
+                />
+              </label>
+            </div>
+          </td>
+          <td tabindex="0" rowspan="1" colspan="2"></td>
+          <td tabindex="0" rowspan="1" colspan="1">
+            <div *ngIf="bsRangeValue || (merchantTransactionList && merchantTransactionList.length > 0)" class="date-container">
+              <input
+                readonly
+                class="form-control date-input"
+                placeholder="{{ 'wallet.transfer.list.datePlaceholder' | translate }}"
+                bsDaterangepicker
+                [(ngModel)]="bsRangeValue"
+                (ngModelChange)="searchDate($event)"
+              />
+            </div>
+          </td>
+          <td tabindex="0" rowspan="1" colspan="1">
+            <ng-select
+              *ngIf="transactionTypes && ((merchantTransactionList && merchantTransactionList.length > 0) || selectedTransactionType)"
+              [ngModel]="selectedTransactionType"
+              class="ng-select-table"
+              [searchable]="false"
+              placeholder="{{ 'merchants.transactions.list.transactionTypesPlaceholder' | translate }}"
+              (ngModelChange)="searchTransactionTypes($event)"
+            >
+              <ng-option *ngFor="let item of transactionTypes" [value]="item.value"
+                >{{ 'merchants.transactions.list.transactionTypes.' + item.value | translate }}
+              </ng-option>
+            </ng-select>
+          </td>
+          <td tabindex="0" rowspan="1" colspan="1">
+            <ng-select
+              *ngIf="statusKeys && ((merchantTransactionList && merchantTransactionList.length > 0) || selectedStatus)"
+              [ngModel]="selectedStatus"
+              class="ng-select-table"
+              [searchable]="false"
+              placeholder="{{ 'merchants.transactions.list.statusPlaceholder' | translate }}"
+              (ngModelChange)="searchStatus($event)"
+            >
+              <ng-option *ngFor="let item of statusKeys" [value]="item">{{ 'merchants.transactions.list.statuses.' + item | translate }} </ng-option>
+            </ng-select>
+          </td>
+
+          <td tabindex="0" rowspan="1" colspan="2">
+            <div class="dataTables_length d-flex justify-content-end">
+              <label class="d-flex">
+                <span>{{ 'merchants.list.tableSizeLabel' | translate }}:</span>
+                <select
+                  name="DataTables_Table_0_length"
+                  class="custom-select pl-3 pr-4"
+                  [(ngModel)]="paginationCount"
+                  (ngModelChange)="paginationCountChange($event)"
+                >
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </label>
+            </div>
+          </td>
+        </tr>
+
+        <tr role="row">
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.merchantName' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.merchantTransactionCode' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.transactionCode' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.transactionDate' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.transactionType' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.status' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.transactions.list.tableHead.totalAmount' | translate }}
+          </th>
+          <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">
+            {{ 'merchants.list.tableHead.actions' | translate }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="isLoaded">
+          <tr *ngFor="let merchantTransaction of merchantTransactionList">
+            <td class="text-center" colspan="1">{{ merchantTransaction.merchant_name || '-' }}</td>
+            <td class="text-center" colspan="1">{{ merchantTransaction.merchant_transaction_id || '-' }}</td>
+            <td class="text-center" colspan="1">{{ merchantTransaction.transaction_id || '-' }}</td>
+            <td class="text-center" colspan="1">
+              {{ merchantTransaction.transaction_date | customDatePipe: true }}
+            </td>
+            <td class="text-center" colspan="1">
+              <span
+                class="badge"
+                [ngClass]="{
+                  'badge-primary': merchantTransaction.transaction_type == 'wallet_deposit',
+                  'badge-secondary': merchantTransaction.transaction_type == 'pos_deposit',
+                  'badge-warning': merchantTransaction.transaction_type == 'pos_deposit_refund',
+                  'badge-danger': merchantTransaction.transaction_type == 'wallet_deposit_refund'
+                }"
+              >
+                {{ 'merchants.transactions.list.transactionTypes.' + merchantTransaction.transaction_type | translate }}
+              </span>
+            </td>
+            <td class="text-center" colspan="1">
+              <span
+                class="badge"
+                [ngClass]="{
+                  'badge-warning': merchantTransaction.status == 'Beklemede',
+                  'badge-success': merchantTransaction.status == 'Başarılı',
+                  'badge-danger': merchantTransaction.status == 'Başarısız'
+                }"
+                >{{ merchantTransaction.status }}</span
+              >
+            </td>
+            <td class="text-center" colspan="1">{{ merchantTransaction.total_amount | currency: 'TRY':'':'1.2-3' }} TRY</td>
+            <td class="text-center" colspan="2">
+              <button
+                class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
+                type="button"
+                (click)="transactionDetail(merchantTransaction.transaction_id)"
+                tooltip="{{ 'merchants.transactions.list.actionDetailTooltip' | translate }}"
+              >
+                <i class="icon-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+
+        <tr *ngIf="merchantTransactionList && merchantTransactionList.length == 0 && isLoaded">
+          <td colspan="12">
+            <h2 class="text-md-center py-5">
+              {{ 'merchants.transactions.list.noData' | translate }}
+            </h2>
+          </td>
+        </tr>
+
+        <tr *ngIf="!isLoaded">
+          <td colspan="12" class="px-0">
+            <spinner></spinner>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="datatable-footer pb-1 pb-md-0">
+    <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+      {{
+        'merchants.transactions.list.paginationInfo'
+          | translate
+            : {
+                totalLength: pageInfo.total,
+                start: pageInfo.start,
+                end: pageInfo.end
+              }
+      }}
+    </div>
+
+    <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+      <pagination
+        [boundaryLinks]="true"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+        [totalItems]="pagination.total"
+        [itemsPerPage]="pagination.size"
+        [maxSize]="maxPage"
+        (pageChanged)="pageChanged($event)"
+        [(ngModel)]="pagination.page"
+      ></pagination>
+    </div>
+  </div>
+</div>

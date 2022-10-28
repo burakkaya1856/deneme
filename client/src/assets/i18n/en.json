@@ -1409,7 +1409,10 @@
     "merchants": {
       "title": "Bayiler",
       "children": {
-        "list": "Bayi Başvuruları"
+        "list": "Bayi Başvuruları",
+        "merchantApplications": "Bayi Başvuruları",
+        "merchantTransactions": "Bayi İşlemleri",
+        "merchantBank": "Bayi Bank Pos Tanımları"
       }
     },
     "settings": {
@@ -1614,6 +1617,88 @@
       },
       "statusTitle": "Başvuru Durumunu Güncelle",
       "validation": "Doldurulması zorunlu alan"
+    },
+    "bank": {
+      "add": {
+        "header": "Bayi Banka Taksit Seçeneği Ekle",
+        "merchantLabel": "Bayi Seçiniz",
+        "merchantRequired": "Lütfen bir bayi seçiniz.",
+        "bankLabel": "Banka Seçiniz",
+        "bankRequired": "Lütfen bir banka seçiniz"
+      }
+    },
+    "transactions": {
+      "list": {
+        "notFound": {
+          "header": "Bayi Bulunamadı",
+          "info": "Henüz bir bayi bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Banka Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "statusPlaceholder": "Durum Filtre",
+        "actionDetailTooltip": "Detayları Görüntüle",
+        "transactionTypesPlaceholder": "İşlem Tipi Filtre",
+        "paginationInfo": "{{ totalLength }} işlem arasından {{ start }} - {{ end }} görüntüleniyor",
+        "tableHead": {
+          "merchantName": "Bayi Adı",
+          "merchantTransactionCode": "Bayi İşlem Kodu",
+          "transactionCode": "İşlem Kodu",
+          "transactionDate": "İşlem Tarihi",
+          "transactionType": "İşlem Tipi",
+          "totalAmount": "Toplam Ücret",
+          "status": "Durum"
+        },
+        "transactionTypes": {
+          "pos_deposit": "Pos",
+          "wallet_deposit": "Cüzdan",
+          "bank_withdrawal": "Bankaya Para Gönderme",
+          "pos_deposit_refund": "Pos İade",
+          "wallet_deposit_refund": "Cüzdan İade"
+        },
+        "statuses": {
+          "approved": "Başarılı",
+          "waiting": "Beklemede",
+          "declined": "Başarısız"
+        }
+      },
+      "detail": {
+        "header": "İşlem Detayı",
+        "labelPaymentStatus": "Ödeme Durumu",
+        "labelTransactionDate": "Ödeme Tarihi",
+        "labelTotalAmount": "Tahsil Edilen Tutar",
+        "labelCustomerFullName": "Kart Sahibinin Adı Soyadı",
+        "labelCustomerWalletNumber": "Moneytolia Numarası",
+        "labelCustomerCardNumber": "Kart Numarası",
+        "labelCustomerCardBank": "Kart Bankası",
+        "labelCustomerCardBrand": "Kart Türü",
+        "labelCustomerCardType": "Kart Tipi",
+        "labelMerchantTransactionCode": "Bayi İşlem Kodu",
+        "labelMerchantCustomerFullName": "Müşteri Adı Soyadı",
+        "labelMerchantCustomerEmail": "Müşteri Email'i",
+        "labelMerchantCustomerPhone": "Müşteri Telefon'u",
+        "cardInfoTitle": "Kart Bilgileri",
+        "merchantInfoTitle": "Bayi Bilgileri",
+        "collectionDetailsTitle": "Tahsilat Ayrıntıları",
+        "refundInfoTitle": "İade Bilgileri",
+        "labelIP": "IP Adresi",
+        "labelAmount": "Tutar",
+        "labelFee": "Komisyon Ücreti",
+        "refundLabelID": "ID",
+        "refundLabelAmount": "Tutar",
+        "refundLabelStatus": "İade Durumu",
+        "refundLabelReason": "İade Nedeni",
+        "refundLabelStatuses": {
+          "approved": "Onaylandı",
+          "declined": "Reddedildi",
+          "waiting": "Beklemede"
+        },
+        "cardTypes": {
+          "credit": "Kredi Kartı",
+          "debit": "Banka Kartı"
+        }
+      }
     }
   },
   "settings": {
