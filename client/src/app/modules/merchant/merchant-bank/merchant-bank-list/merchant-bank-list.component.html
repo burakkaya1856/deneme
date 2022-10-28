@@ -1,6 +1,133 @@
 <div class="container-fluid d-flex justify-content-end align-items-center">
-    <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3" (click)="addMerchantBank()">
-        <i class="fa fa-plus mr-2"></i>
-        <span>{{'settings.bank.list.btnAddAccount' | translate }}</span>
+  <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3" (click)="addMerchantBank()">
+    <i class="fa fa-plus mr-2"></i>
+    <span>{{ 'merchants.bank.list.addBtnTitle' | translate }}</span>
+  </div>
+</div>
+
+<div class="bg-white table-container mt-3" *ngIf="!emptyMerchantPosBankInstallments">
+  <div class="datatable-scroll">
+    <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
+      <thead>
+        <tr role="row" class="table-top">
+          <td tabindex="0" rowspan="1" colspan="1">
+            <div *ngIf="searchData || (merchantPosBankInstallmentList && merchantPosBankInstallmentList.length > 0)" class="dataTables_filter">
+              <label class="d-flex">
+                <span>{{ 'merchants.bank.list.filterLabel' | translate }}:</span>
+                <input
+                  class="w-100"
+                  type="search"
+                  placeholder="{{ 'merchants.bank.list.filterPlaceholder' | translate }}"
+                  [ngModel]="searchData"
+                  (ngModelChange)="searchMerchantTransactions($event)"
+                />
+              </label>
+            </div>
+          </td>
+          <td tabindex="0" rowspan="1" colspan="2"></td>
+
+          <td tabindex="0" rowspan="1" colspan="2">
+            <div class="dataTables_length d-flex justify-content-end">
+              <label class="d-flex">
+                <span>{{ 'merchants.list.tableSizeLabel' | translate }}:</span>
+                <select
+                  name="DataTables_Table_0_length"
+                  class="custom-select pl-3 pr-4"
+                  [(ngModel)]="paginationCount"
+                  (ngModelChange)="paginationCountChange($event)"
+                >
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </label>
+            </div>
+          </td>
+        </tr>
+
+        <tr role="row">
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.bank.list.tableHead.merchantName' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.bank.list.tableHead.bankName' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.bank.list.tableHead.installmentCount' | translate }}
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            {{ 'merchants.bank.list.tableHead.installmentFee' | translate }}
+          </th>
+          <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">
+            {{ 'merchants.bank.list.tableHead.actions' | translate }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="isLoaded">
+          <tr *ngFor="let merchantPosBankInstallment of merchantPosBankInstallmentList">
+            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_name || '-' }}</td>
+            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.pos_bank_name || '-' }}</td>
+            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_installment_count || '-' }}</td>
+            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.bank_commission || '-' }}</td>
+            <td class="text-center" colspan="2">
+              <button
+                class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
+                type="button"
+                (click)="merchantPosBankInstallmentDetail(merchantPosBankInstallment.id)"
+                tooltip="{{ 'merchants.transactions.list.actionDetailTooltip' | translate }}"
+              >
+                <i class="icon-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+
+        <tr *ngIf="merchantPosBankInstallmentList && merchantPosBankInstallmentList.length == 0 && isLoaded">
+          <td colspan="12">
+            <h2 class="text-md-center py-5">
+              {{ 'merchants.transactions.list.noData' | translate }}
+            </h2>
+          </td>
+        </tr>
+
+        <tr *ngIf="!isLoaded">
+          <td colspan="12" class="px-0">
+            <spinner></spinner>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="datatable-footer pb-1 pb-md-0">
+    <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
+      {{
+        'merchants.transactions.list.paginationInfo'
+          | translate
+            : {
+                totalLength: pageInfo.total,
+                start: pageInfo.start,
+                end: pageInfo.end
+              }
+      }}
     </div>
+
+    <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
+      <pagination
+        [boundaryLinks]="true"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+        [totalItems]="pagination.total"
+        [itemsPerPage]="pagination.size"
+        [maxSize]="maxPage"
+        (pageChanged)="pageChanged($event)"
+        [(ngModel)]="pagination.page"
+      ></pagination>
+    </div>
+  </div>
 </div>

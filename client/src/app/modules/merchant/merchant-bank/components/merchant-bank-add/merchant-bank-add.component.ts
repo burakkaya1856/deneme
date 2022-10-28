@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MerchantService, SettingsService } from '@app/core/http';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -12,39 +13,26 @@ export class MerchantBankAddComponent implements OnInit {
   submitted = false;
   merchantList: any;
   bankList: any;
+  installmentList: any;
 
-  constructor(private bsModalRef: BsModalRef, private formBuilder: FormBuilder) {
+  constructor(
+    private bsModalRef: BsModalRef,
+    private formBuilder: FormBuilder,
+    private merchantService: MerchantService,
+    private settingService: SettingsService
+  ) {
     this.merchantBankForm = this.formBuilder.group({
       merchant_id: ['', Validators.required],
       bank_id: ['', [Validators.required]],
       installmant_count: ['', [Validators.required]],
-      fee: ['', [Validators.required]]
+      bank_installment_count: ['', Validators.required],
+      bank_commission: ['', [Validators.required]]
     });
   }
 
   ngOnInit(): void {
-    // TODO : bayi listesi dropdown için çekilecek
-    this.merchantList = [
-      { id: 1, value: 'Bayi 1' },
-      { id: 2, value: 'Bayi 2' },
-      { id: 3, value: 'Bayi 3' },
-      { id: 4, value: 'Bayi 4' }
-    ];
-
-    this.bankList = [
-      {
-        id: 1,
-        value: 'Bank 1'
-      },
-      {
-        id: 2,
-        value: 'Bank 2'
-      },
-      {
-        id: 3,
-        value: 'Bank 3'
-      }
-    ];
+    this.getMerchantList();
+    this.getPosBankList();
   }
 
   closeModal(): void {
@@ -63,6 +51,20 @@ export class MerchantBankAddComponent implements OnInit {
   }
 
   selectBank(e: any) {
-    console.log(e);
+    this.settingService.getPosBankDetails(e).subscribe(res => (this.installmentList = res.bank_installment));
+  }
+
+  getMerchantList() {
+    this.merchantService.getMerchantList().subscribe((res: any) => (this.merchantList = res.items));
+  }
+
+  getPosBankList() {
+    let requestData = {
+      search: '',
+      status: '',
+      page: 1,
+      size: 100
+    };
+    this.settingService.posBankList(requestData).subscribe(res => (this.bankList = res.items));
   }
 }

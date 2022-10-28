@@ -9,7 +9,7 @@
       <div class="col-12">
         <label>{{ 'merchants.bank.add.merchantLabel' | translate }}</label>
         <ng-select *ngIf="merchantList" class="ng-select-table" formControlName="merchant_id" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let item of merchantList" [value]="item.id">{{ item.value }}</ng-option>
+          <ng-option *ngFor="let item of merchantList" [value]="item.id">{{ item.trade_name }}</ng-option>
         </ng-select>
         <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
           {{ 'merchants.bank.add.merchantRequired' | translate }}
@@ -28,9 +28,33 @@
           [searchable]="false"
           (change)="selectBank($event)"
         >
-          <ng-option *ngFor="let item of bankList" [value]="item.id">{{ item.value }}</ng-option>
+          <ng-option *ngFor="let item of bankList" [value]="item.id">{{ item.name }}</ng-option>
         </ng-select>
         <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.bankRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.installmentChoice' | translate }}</label>
+        <ng-select *ngIf="installmentList" class="ng-select-table" formControlName="bank_installment_count" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let item of installmentList" [value]="item.id">{{ item.bank_installment_count }}</ng-option>
+        </ng-select>
+        <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.bankRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-12">
+        <label>{{ 'Komisyon Oranı' | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="bank_commission"
+          placeholder="{{ 'settings.bank.add.shortcodePlaceholder' | translate }}"
+          name="bank-shortcode"
+          required
+          autocomplete="off"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.bank_commission.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
           {{ 'merchants.bank.add.bankRequired' | translate }}
         </p>
       </div>

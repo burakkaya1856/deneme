@@ -1412,7 +1412,7 @@
         "list": "Bayi Başvuruları",
         "merchantApplications": "Bayi Başvuruları",
         "merchantTransactions": "Bayi İşlemleri",
-        "merchantBank": "Bayi Bank Pos Tanımları"
+        "merchantBank": "Bayi Pos Bank Tanımları"
       }
     },
     "settings": {
@@ -1624,7 +1624,20 @@
         "merchantLabel": "Bayi Seçiniz",
         "merchantRequired": "Lütfen bir bayi seçiniz.",
         "bankLabel": "Banka Seçiniz",
-        "bankRequired": "Lütfen bir banka seçiniz"
+        "bankRequired": "Lütfen bir banka seçiniz",
+        "installmentChoice": "Taksit Sayısı Seçiniz"
+      },
+      "list": {
+        "addBtnTitle": "Bayi Pos Bank Ekle",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableHead": {
+          "merchantName": "Bayi Adı",
+          "bankName": "Banka Adı",
+          "installmentCount": "Taksit Sayısı",
+          "installmentFee": "Komisyon Oranı",
+          "actions": "Eylemler"
+        }
       }
     },
     "transactions": {
