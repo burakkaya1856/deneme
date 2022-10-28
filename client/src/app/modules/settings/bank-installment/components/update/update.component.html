@@ -1,0 +1,77 @@
+<div class="update-header">
+    <h1 class="modal-title">{{'settings.bankInstallment.update.header' | translate }}</h1>
+    <button aria-label="Close" type="button" (click)="closeModal()" class="close" aria-hidden="true">×</button>
+</div>
+
+
+<form *ngIf="bankInstallmentData" class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="update-body">
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankInstallment.update.bankName' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankInstallmentData.pos_bank_name" #fname="ngModel" name="bank-name"
+                    class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fname.errors?.required ? 'visible': 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.update.bankNameRequired' | translate }}</p>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankInstallment.update.bankInstallmentCount' | translate
+                }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankInstallmentData.bank_installment_count" #fcount="ngModel"
+                    name="bank-count" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fcount.errors?.required ? 'visible': 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.update.bankInstallmentCountRequired' | translate
+                    }}</p>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankInstallment.update.comission' | translate }}</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="bankInstallmentData.bank_commission" #fBankcomission="ngModel"
+                    name="bank-comission" class="form-control" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankcomission.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.update.comissionRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankInstallment.update.description' | translate
+                }}</label>
+            <div class="col-sm-9">
+                <textarea type="text" [(ngModel)]="description" #fdescription="ngModel" name="bank-description"
+                    placeholder="{{'settings.bankInstallment.update.descriptionPlaceholder' | translate }}"
+                    class="form-control" required autocomplete="off"></textarea>
+                <p [ngStyle]="{'visibility': f.submitted && fdescription.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.update.descriptionRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-3">{{'settings.bankInstallment.update.statusLabel' | translate}}</label>
+            <div class="col-sm-9">
+                <ng-select *ngIf="statusKeys" name="bank-status" class="ng-select-table"
+                    [(ngModel)]="bankInstallmentData.status" [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">
+                        {{'settings.bankInstallment.update.status.' + item |
+                        translate }} </ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="update-footer">
+        <button type="button" (click)="closeModal()"
+            class="btn btn-cancel">{{'settings.bankInstallment.update.btnCancel' |
+            translate}}</button>
+        <button type="submit" class="btn btn-save">{{'settings.bankInstallment.update.btnSubmit' | translate}}</button>
+    </div>
+
+</form>

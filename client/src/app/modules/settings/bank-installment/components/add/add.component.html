@@ -1,0 +1,106 @@
+<div class="add-header">
+    <h1 class="modal-title">{{'settings.bankInstallment.add.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="add-body">
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>{{'settings.bankInstallment.add.bankName' | translate}}</label>
+                <ng-select *ngIf="posBankList && posBankList.length>0" class="ng-select-table" [ngModel]="bankName"
+                    placeholder="{{'settings.bankInstallment.add.bankNamePlaceholder' | translate}}"
+                    (ngModelChange)="changeBank($event)" name="fBankName" [clearable]="false" [searchable]="false"
+                    required>
+                    <ng-option *ngFor="let item of posBankList" [value]="item.id">{{item.name}} </ng-option>
+                </ng-select>
+                <p [ngStyle]="{'visibility': f.submitted && !bankInstallment.bank_id ? 'visible' : 'hidden'}"
+                    class="validation mb-0">
+                    {{'settings.bankInstallment.add.bankNameRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-6">
+                <label>{{'settings.bankInstallment.add.bankInstallmentCount' | translate}}</label>
+                <input type="text" class="form-control" [(ngModel)]="bankInstallment.bank_installment_count"
+                    placeholder="0" name="bank-count" #fBankInstallMentCount="ngModel" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankInstallMentCount.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.add.bankInstallmentCountRequired' | translate }}
+                </p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.bankInstallment.add.comission' | translate}}</label>
+                <input type="text" class="form-control" [(ngModel)]="bankInstallment.bank_commission"
+                    placeholder="{{'settings.bankInstallment.add.comissionPlaceholder' | translate}}"
+                    name="bank-comission" #fBankComission="ngModel" required autocomplete="off" maxlength="5">
+                <p [ngStyle]="{'visibility': f.submitted && fBankComission.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.add.comissionRequired' | translate }}
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="row mb-4">
+
+            <div class="col-sm-6">
+                <label>{{'settings.bankInstallment.add.bankInstallmentName' | translate}}</label>
+                <input type="text" class="form-control" [(ngModel)]="bankInstallment.installment_name"
+                    placeholder="{{'settings.bankInstallment.add.bankInstallmentNamePlaceholder' | translate}}"
+                    name="bank-bankInstallmentName" #fBankInstallment="ngModel" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && fBankInstallment.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.add.bankInstallmentNameRequired' | translate }}
+                </p>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.bankInstallment.add.statusLabel' | translate}}</label>
+                <ng-select *ngIf="statusKeys" class="ng-select-table" [(ngModel)]="bankInstallment.status"
+                    placeholder="{{'settings.bankInstallment.add.statusPlaceholder' | translate }}" name="bank-status"
+                    #f [clearable]="false" [searchable]="false">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.bankInstallment.add.status.' +
+                        item |
+                        translate }} </ng-option>
+                </ng-select>
+
+            </div>
+
+
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-12 pt-2 ">
+                <label>{{'settings.bankInstallment.add.description' | translate}}</label>
+
+                <textarea type="text" [(ngModel)]="bankInstallment.description" #fdescription="ngModel"
+                    name="bank-description"
+                    placeholder="{{'settings.bankInstallment.add.descriptionPlaceholder' | translate }}"
+                    class="form-control" required autocomplete="off"></textarea>
+                <p [ngStyle]="{'visibility': f.submitted && fdescription.errors?.required ? 'visible' : 'hidden'}"
+                    class="validation mb-0">{{'settings.bankInstallment.add.descriptionRequired' | translate }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="add-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel"
+                    (click)="closeModal()">{{'settings.bankInstallment.add.btnCancel' |
+                    translate}}</button>
+
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{'settings.bankInstallment.add.btnSubmit' |
+                    translate}}</button>
+
+            </div>
+
+        </div>
+    </div>
+</form>

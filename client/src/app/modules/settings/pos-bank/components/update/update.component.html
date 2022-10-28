@@ -30,7 +30,7 @@
         <div class="form-group row">
             <label class="col-form-label col-sm-3">{{'settings.posBank.update.secure' | translate}}</label>
             <div class="col-sm-9">
-                <ng-select name="posbank-secure" class="ng-select-table" [ngModel]="posBankData.only3d"
+                <ng-select name="posbank-secure" class="ng-select-table" [ngModel]="only3dShow"
                     (ngModelChange)="changeSecure($event)" #fBankSecure="ngModel"
                     placeholder="{{'settings.posBank.update.securePlaceholder' | translate}}" [clearable]="false"
                     [searchable]="false" required>

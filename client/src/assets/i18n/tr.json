@@ -1433,7 +1433,8 @@
         "approvalTransactions": "Onay İşlemleri",
         "operators": "Operatorler",
         "roles": "Roller",
-        "posBank": "Pos Bank"
+        "posBank": "Pos Bankaları",
+        "bankInstallment": "Banka Taksitleri"
       }
     },
     "wallet": {
@@ -1702,6 +1703,119 @@
     }
   },
   "settings": {
+    "bankInstallment": {
+      "list": {
+        "notFound": {
+          "header": "Banka Taksidi Bulunamadı",
+          "info": "Henüz Banka Taksidi bulunmamaktadır",
+          "btnText": "ANASAYFA"
+        },
+        "noData": "Aradığınız Kriterlerde Banka Taksidi Bulunmamaktadır.",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "tableSizeLabel": "Miktar",
+        "paginationInfo": "{{ totalLength }} taksit arasından {{ start }} - {{ end }} görüntüleniyor",
+        "btnAddAccount": "Banka Taksit Ekle",
+        "statusPlaceholder": "Durum Filtre",
+        "tableHead": {
+          "bankName": "Banka Adı",
+          "bankInstallmentCount": "Banka Taksit Sayısı",
+          "bankInstallmentName": "Taksit Adı",
+          "secure": "3d Güvenlik Durumu",
+          "bankComission": "Banka Komisyonu",
+          "status": "Durum",
+          "actions": "Eylemler"
+        },
+        "tableStatus": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        },
+        "3dStatus": {
+          "null": "Pasif",
+          "true": "Aktif",
+          "false": "Pasif"
+        },
+        "actionDetailTooltip": "Detaylar",
+        "actionEditTooltip": "Düzenle",
+        "actionDeleteTooltip": "Sil"
+      },
+      "add": {
+        "header": "Pos Bankası Taksit Ekle",
+        "bankName": "Banka Adı",
+        "bankNamePlaceholder": "Banka Seçiniz",
+        "bankNameRequired": "Lütfen bir banka adı seçiniz.",
+        "bankInstallmentCount": "Banka Taksit Sayısı",
+        "bankInstallmentCountRequired": "Lütfen taksit sayısı giriniz",
+        "bankInstallmentName": "Taksit Adı",
+        "bankInstallmentNamePlaceholder": "Taksitli ödeme",
+        "bankInstallmentNameRequired": "Lütfen taksit adı giriniz",
+        "comission": "Komisyon Oranı",
+        "comissionPlaceholder": "Ondalık deger giriniz (0.0)",
+        "comissionRequired": "Lütfen komisyon giriniz",
+        "description": "Açıklama",
+        "descriptionPlaceholder": "Açıklama",
+        "descriptionRequired": "Lütfen açıklama giriniz",
+        "statusLabel": "Durum",
+        "statusPlaceholder": "Durum Seçiniz",
+        "statusRequired": "Durum bilgisi girilmeli",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "Vazgeç",
+        "btnSubmit": "Pos Bankası Taksit Ekle",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      },
+      "update": {
+        "header": "Pos Bankası Taksit Düzenle",
+        "bankName": "Banka Adı",
+        "bankNameRequired": "Lütfen bir banka adı giriniz.",
+        "secure": "3d güvenlik durumu",
+        "securePlaceholder": "3d güvenlik durumu",
+        "secureRequired": "Lütfen 3d güvenlik durumu seçiniz",
+        "bankInstallmentName": "Taksit Adı",
+        "bankInstallmentNameRequired": "Lütfen taksit adı giriniz",
+        "bankInstallmentCount": "Banka Taksit Sayısı",
+        "bankInstallmentCountRequired": "Lütfen taksit sayısı giriniz",
+        "comission": "Komisyon Oranı",
+        "comissionRequired": "Lütfen komisyon giriniz",
+        "statusLabel": "Durum",
+        "description": "Açıklama",
+        "descriptionPlaceholder": "Değişiklik Sebebini yazınız...",
+        "descriptionRequired": "Lütfen açıklama giriniz",
+        "status": {
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi",
+          "0": "Pasif",
+          "1": "Aktif"
+        },
+        "secureStrings": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        },
+        "btnCancel": "İptal",
+        "btnSubmit": "Kaydet",
+        "loadingValidation": "Resim yükleniyor lütfen bekleyiniz..."
+      },
+      "details": {
+        "header": "Pos Bank Taksit Detay",
+        "bankName": "Banka Adı",
+        "bankInstallmentName": "Taksit Adı",
+        "secure": "3d güvenlik durumu",
+        "bankInstallmentCount": "Banka Taksit Sayısı",
+        "comission": "Komisyon Oranı",
+        "status": "Durum",
+        "statuses": {
+          "1": "Aktif",
+          "0": "Pasif",
+          "active": "Aktif",
+          "passive": "Pasif",
+          "deleted": "Silindi"
+        }
+      }
+    },
     "posBank": {
       "list": {
         "notFound": {
@@ -1713,14 +1827,15 @@
         "filterLabel": "Filtre",
         "filterPlaceholder": "Bir değer girin...",
         "tableSizeLabel": "Miktar",
-        "paginationInfo": "{{ totalLength }} hesap arasından {{ start }} - {{ end }} görüntüleniyor",
+        "paginationInfo": "{{ totalLength }} banka arasından {{ start }} - {{ end }} görüntüleniyor",
         "btnAddAccount": "Hesap Ekle",
         "statusPlaceholder": "Durum Filtre",
         "tableHead": {
           "bankName": "Banka Adı",
           "bankImage": "Banka Resmi",
           "shortCode": "Kısa Kod",
-          "processName": "İşlem Adı",
+          "secure": "3d Güvenlik Durumu",
+          "bankInstallmentName": "Taksit Adı",
           "dateCreated": "Oluşturma Tarihi",
           "status": "Durum",
           "actions": "Eylemler"
@@ -1729,6 +1844,11 @@
           "active": "Aktif",
           "passive": "Pasif",
           "deleted": "Silindi"
+        },
+        "3dStatus": {
+          "null": "Pasif",
+          "true": "Aktif",
+          "false": "Pasif"
         },
         "tableStatus": {
           "active": "Aktif",
@@ -1786,7 +1906,7 @@
           "firstTab": {
             "title": "Banka Taksitleri",
             "labels": {
-              "processName": "İşlem Adı",
+              "bankInstallmentName": "Taksit Adı",
               "installmentCount": "Taksit Sayısı",
               "comission": "Komisyon Oranı",
               "status": "Durum",
@@ -1801,7 +1921,7 @@
           "secondTab": {
             "title": "Bayi Taksitleri",
             "labels": {
-              "processName": "İşlem Adı",
+              "bankInstallmentName": "Taksit Adı",
               "installmentCount": "Taksit Sayısı",
               "comission": "Komisyon Oranı",
               "status": "Durum",

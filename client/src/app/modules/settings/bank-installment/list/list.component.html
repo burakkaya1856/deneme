@@ -1,46 +1,48 @@
 <div class="container-fluid d-flex justify-content-end align-items-center">
     <div class="row btn d-flex align-items-center justify-content-center bg-success-400 px-4 py-2 my-3"
-        (click)="addPosBank()">
+        (click)="addBankInstallment()">
         <i class="fa fa-plus mr-2"></i>
-        <span>{{'settings.posBank.list.btnCreate' | translate }}</span>
+        <span>{{'settings.bankInstallment.list.btnAddAccount' | translate }}</span>
     </div>
 </div>
 
 <div class="bg-white table-container" *ngIf="!emptyList">
 
-    <div class="datatable-scroll-lg">
+    <div class="datatable-scroll">
         <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
-
             <thead>
+
                 <tr role="row" class="table-top">
+
                     <td tabindex="0" rowspan="1" colspan="1">
-                        <div *ngIf="searchData || (posBankList && posBankList.length > 0)" class="dataTables_filter">
+                        <div *ngIf="searchData || (bankInstallmentList && bankInstallmentList.length > 0)"
+                            class="dataTables_filter">
                             <label class="d-flex">
-                                <span>{{ 'settings.posBank.list.filterLabel' | translate }}:</span>
+                                <span>{{ 'settings.bankInstallment.list.filterLabel' | translate }}:</span>
                                 <input class="w-100" type="search"
-                                    placeholder="{{'settings.posBank.list.filterPlaceholder' | translate }}"
-                                    [ngModel]="searchData" (ngModelChange)="searchPosBank($event)">
+                                    placeholder="{{'settings.bankInstallment.list.filterPlaceholder' | translate }}"
+                                    [ngModel]="searchData" (ngModelChange)="searchBank($event)">
                             </label>
                         </div>
                     </td>
 
-
                     <td tabindex="0" rowspan="1" colspan="3"></td>
 
                     <td tabindex="0" rowspan="1" colspan="1">
-                        <ng-select *ngIf="statusKeys" [ngModel]="selectedStatus" class="ng-select-table"
-                            [searchable]="false"
-                            placeholder="{{'settings.posBank.list.statusPlaceholder' | translate }}"
+                        <ng-select
+                            *ngIf="statusKeys && (bankInstallmentList && bankInstallmentList.length > 0 || selectedStatus)"
+                            [ngModel]="selectedStatus" class="ng-select-table" [searchable]="false"
+                            placeholder="{{'settings.bankInstallment.list.statusPlaceholder' | translate }}"
                             (ngModelChange)="searchStatus($event)">
                             <ng-option *ngFor="let item of statusKeys" [value]="item">
-                                {{'settings.posBank.list.tableStatusShow.' + item | translate }} </ng-option>
+                                {{'settings.bankInstallment.list.tableStatus.' + item | translate }} </ng-option>
                         </ng-select>
                     </td>
 
                     <td tabindex="0" rowspan="1" colspan="1">
                         <div class="dataTables_length d-flex">
                             <label class="d-flex">
-                                <span>{{'settings.posBank.list.tableSizeLabel' | translate }}:</span>
+                                <span>{{'settings.bankInstallment.list.tableSizeLabel' | translate }}:</span>
                                 <select name="DataTables_Table_0_length" class="custom-select pl-3 pr-4"
                                     [(ngModel)]="paginationCount" (ngModelChange)="paginationCountChange($event)">
                                     <option value="10">10</option>
@@ -54,71 +56,66 @@
                 </tr>
 
                 <tr role="row">
-                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.posBank.list.tableHead.bankName' |
-                        translate }}</th>
-
-                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.posBank.list.tableHead.shortCode' |
-                        translate }}</th>
+                    <th tabindex="0" rowspan="1" colspan="1">{{ 'settings.bankInstallment.list.tableHead.bankName' |
+                        translate }}
+                    </th>
 
 
+                    <th tabindex="0" rowspan="1" colspan="1">{{
+                        'settings.bankInstallment.list.tableHead.bankInstallmentName' | translate }}
+                    </th>
 
-                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
-                        'settings.posBank.list.tableHead.dateCreated' |
-                        translate }}</th>
 
                     <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
-                        'settings.posBank.list.tableHead.secure' |
-                        translate }}</th>
+                        'settings.bankInstallment.list.tableHead.bankInstallmentCount' | translate }}
+                    </th>
 
-                    <th tabindex="0" rowspan="1" colspan="1" class="text-center">{{
-                        'settings.posBank.list.tableHead.status' | translate }}</th>
-                    <th class="text-center sorting-disabled" tabindex="0" rowspan="1" colspan="1">{{
-                        'settings.posBank.list.tableHead.actions' | translate }}</th>
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
+                        'settings.bankInstallment.list.tableHead.bankComission' | translate }}
+                    </th>
+
+                    <th class="text-center" tabindex="0" rowspan="1" colspan="1">{{
+                        'settings.bankInstallment.list.tableHead.status' | translate }}</th>
+                    <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">{{
+                        'settings.bankInstallment.list.tableHead.actions' | translate }}</th>
                 </tr>
             </thead>
+
             <tbody>
 
                 <ng-container *ngIf="isLoaded">
-                    <tr *ngFor="let posBank of posBankList">
-                        <td>{{posBank.name}}</td>
-                        <td>{{posBank.shortcode}}</td>
-                        <td class="text-center">{{posBank.date_created | customDatePipe:true}}</td>
+                    <tr *ngFor="let bankInstallment of bankInstallmentList">
+                        <td colspan="1">{{bankInstallment.pos_bank_name}}</td>
+                        <td colspan="1">{{bankInstallment.installment_name}}</td>
+                        <td class="text-center" colspan="1">{{bankInstallment.bank_installment_count}}</td>
+                        <td class="text-center" colspan="1">{{bankInstallment.bank_commission}}</td>
 
-                        <td class="text-center">
-                            <span class="badge"
-                                [ngClass]="{'badge-info': posBank.only3d == false, 'badge-secondary':posBank.only3d == null, 'badge-success': posBank.only3d == true}">
-                                {{ 'settings.posBank.list.3dStatus.' + posBank.only3d |
-                                translate }} </span>
+                        <td class="text-center" colspan="1">
+                            <status [status]="bankInstallment.status"></status>
                         </td>
-
-                        <td class="text-center">
-                            <status [status]="posBank.status"></status>
-                        </td>
-                        <td class="text-center">
+                        <td class="text-center" colspan="2">
                             <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
-                                type="button" (click)="posBankDetail(posBank.id)"
-                                tooltip="{{ 'settings.posBank.list.actionDetailTooltip' | translate }}">
+                                type="button" (click)="bankInstallmentDetails(bankInstallment.id)"
+                                tooltip="{{ 'settings.bankInstallment.list.actionDetailTooltip' | translate }}">
                                 <i class="icon-eye"></i>
                             </button>
                             <button class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
-                                type="button" (click)="updatePosBank(posBank)"
-                                tooltip="{{ 'settings.posBank.list.actionEditTooltip' | translate }}">
+                                type="button" (click)="updateBankInstallment(bankInstallment)"
+                                tooltip="{{ 'settings.bankInstallment.list.actionEditTooltip' | translate }}">
                                 <i class="icon-pencil3"></i>
                             </button>
                             <button class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2"
-                                type="button" (click)="deletePosBank(posBank)"
-                                tooltip="{{ 'settings.posBank.list.actionDeleteTooltip' | translate }}">
+                                type="button" (click)="deleteBankInstallment(bankInstallment)"
+                                tooltip="{{ 'settings.bankInstallment.list.actionDeleteTooltip' | translate }}">
                                 <i class="icon-trash-alt"></i>
                             </button>
-
                         </td>
                     </tr>
                 </ng-container>
 
-                <tr *ngIf="(posBankList && posBankList.length == 0) && isLoaded">
+                <tr *ngIf="(bankInstallmentList && bankInstallmentList.length == 0) && isLoaded">
                     <td colspan="12">
-                        <h2 class="text-md-center py-5">{{ 'settings.posBank.list.noData' | translate }}
-                        </h2>
+                        <h2 class="text-md-center py-5">{{ 'settings.bankInstallment.list.noData' | translate }}</h2>
                     </td>
                 </tr>
 
@@ -136,8 +133,9 @@
     <div class="datatable-footer pb-1 pb-md-0">
 
         <div *ngIf="isLoaded" class="dataTables_info mb-1 mb-md-3">
-            {{'settings.posBank.list.paginationInfo' | translate: {totalLength: pageInfo.total, start: pageInfo.start,
-            end: pageInfo.end} }}
+            {{'settings.bankInstallment.list.paginationInfo' | translate: {totalLength: pageInfo.total, start:
+            pageInfo.start, end:
+            pageInfo.end} }}
         </div>
 
         <div class="dataTables_paginate paging_simple_numbers d-md-block d-flex justify-content-center" noRightClick>
@@ -153,13 +151,16 @@
     <div class="row d-flex justify-content-center">
         <div class="d-flex flex-column align-items-center">
             <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image">
-            <h1 class="text-center font-weight-semibold mt-2">{{'settings.posBank.list.notFound.header' | translate}}
-            </h1>
-            <p class="text-center text-muted font-weight-semibold mt-2">{{'settings.posBank.list.notFound.info' |
+            <h1 class="text-center font-weight-semibold mt-2">{{'settings.bankInstallment.list.notFound.header' |
+                translate}}</h1>
+            <p class="text-center text-muted font-weight-semibold mt-2">{{'settings.bankInstallment.list.notFound.info'
+                |
                 translate}}</p>
             <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
-                {{'settings.posBank.list.notFound.btnText' | translate}}
+                {{'settings.bankInstallment.list.notFound.btnText' | translate}}
             </button>
         </div>
     </div>
 </div>
+
+<delete-modal *ngIf="deleteModal"></delete-modal>

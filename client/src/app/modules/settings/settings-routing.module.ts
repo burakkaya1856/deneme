@@ -98,6 +98,15 @@ const routes: Routes = [
           routeConfig: 'posBank',
           permissions: routeConfig['posBank'].permissions
         }
+      },
+      {
+        path: 'bank-installment',
+        loadChildren: () => import('./bank-installment/bank-installment.module').then(m => m.BankInstallmentModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'bankInstallment',
+          permissions: routeConfig['bankInstallment'].permissions
+        }
       }
     ]
   }

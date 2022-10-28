@@ -25,11 +25,7 @@ export class AddBankComponent implements OnInit {
     status: 'active'
   };
 
-  constructor(
-    private bsModalRef: BsModalRef,
-    private alertService: AlertService,
-    private settingsService: SettingsService
-  ) {}
+  constructor(private bsModalRef: BsModalRef, private alertService: AlertService, private settingsService: SettingsService) {}
 
   ngOnInit(): void {
     this.enumData.forEach(item => {

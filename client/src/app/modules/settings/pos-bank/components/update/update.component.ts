@@ -33,9 +33,9 @@ export class UpdateBankPosComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.posBankData.only3d) {
-      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.active');
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureStrings.active');
     } else {
-      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.passive');
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureStrings.passive');
     }
 
     this.enumData.forEach(item => {
@@ -97,10 +97,10 @@ export class UpdateBankPosComponent implements OnInit {
 
   changeSecure(event: any) {
     if (event) {
-      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.active');
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureStrings.active');
       this.posBankData.only3d = event;
     } else {
-      this.only3dShow = this.translateService.instant('settings.posBank.update.secureShow.passive');
+      this.only3dShow = this.translateService.instant('settings.posBank.update.secureStrings.passive');
       this.posBankData.only3d = event;
     }
   }
