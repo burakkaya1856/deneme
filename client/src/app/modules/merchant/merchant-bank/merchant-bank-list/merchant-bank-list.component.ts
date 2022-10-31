@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MerchantService } from '@app/core/http';
+import { AlertService } from '@app/shared/services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { MerchantBankAddComponent } from '../components/merchant-bank-add/merchant-bank-add.component';
+import { MerchantBankDetailComponent } from '../components/merchant-bank-detail/merchant-bank-detail.component';
 
 @Component({
   selector: 'app-merchant-bank-list',
@@ -28,7 +30,7 @@ export class MerchantBankListComponent implements OnInit {
   searchData = '';
   paginationCount = 10;
 
-  constructor(private bsModalService: BsModalService, private merchantService: MerchantService) {}
+  constructor(private bsModalService: BsModalService, private merchantService: MerchantService, private alertService: AlertService) {}
 
   ngOnInit(): void {
     let requestData = {
@@ -98,5 +100,39 @@ export class MerchantBankListComponent implements OnInit {
     this.getMerchantPosBankInstallments(requestData);
   }
 
-  merchantPosBankInstallmentDetail(merchantPosBankInstallmentId) {}
+  merchantPosBankInstallmentDetail(merchantPosBankInstallmentId) {
+    this.merchantService.getMerchantPosBankInstalmentById(merchantPosBankInstallmentId).subscribe(res => {
+      this.bsModalRef = this.bsModalService.show(MerchantBankDetailComponent, {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        initialState: {
+          merchantPosBankInstallment: res
+        }
+      });
+    });
+  }
+
+  merchantPosBankInstallmentEdit(merchantPosBankInstallmentId) {
+    this.merchantService.getMerchantPosBankInstalmentById(merchantPosBankInstallmentId).subscribe(res => {
+      this.bsModalRef = this.bsModalService.show(MerchantBankAddComponent, {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        initialState: {
+          merchantPosBankInstallment: res
+        }
+      });
+    });
+  }
+
+  merchantPosBankInstallmentDelete(merchantPosBankInstallmentId) {
+    this.merchantService.deleteMerchantPosBank(merchantPosBankInstallmentId).subscribe((res: any) => {
+      this.alertService.setNoticeHandler(res.message, 'success', false);
+      let requestData = {
+        search: '',
+        page: 1,
+        size: this.paginationCount
+      };
+      this.getMerchantPosBankInstallments(requestData);
+    });
+  }
 }

@@ -68,7 +68,7 @@
       <tbody>
         <ng-container *ngIf="isLoaded">
           <tr *ngFor="let merchantPosBankInstallment of merchantPosBankInstallmentList">
-            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_name || '-' }}</td>
+            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_trade_name || '-' }}</td>
             <td class="text-center" colspan="1">{{ merchantPosBankInstallment.pos_bank_name || '-' }}</td>
             <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_installment_count || '-' }}</td>
             <td class="text-center" colspan="1">{{ merchantPosBankInstallment.bank_commission || '-' }}</td>
@@ -80,6 +80,23 @@
                 tooltip="{{ 'merchants.transactions.list.actionDetailTooltip' | translate }}"
               >
                 <i class="icon-eye"></i>
+              </button>
+              <button
+                class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"
+                type="button"
+                (click)="merchantPosBankInstallmentEdit(merchantPosBankInstallment.id)"
+                tooltip="{{ 'merchants.bank.list.actionEditTooltip' | translate }}"
+              >
+                <i class="icon-pencil3"></i>
+              </button>
+
+              <button
+                class="btn btn-sm bg-danger-400 text-slate-800 btn-icon rounded-round ml-2"
+                type="button"
+                (click)="merchantPosBankInstallmentDelete(merchantPosBankInstallment.id)"
+                tooltip="{{ 'merchants.bank.list.actionEditTooltip' | translate }}"
+              >
+                <i class="icon-trash-alt"></i>
               </button>
             </td>
           </tr>

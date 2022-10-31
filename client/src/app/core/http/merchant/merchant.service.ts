@@ -79,12 +79,24 @@ export class MerchantService {
     return this.http.get(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/?' + this.serialize(merchantPosBankParams));
   }
 
-  getMerchantPosBanks(){
-
+  getMerchantPosBankInstalmentById(installmentId) {
+    return this.http.get(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/' + installmentId);
   }
 
-  getMerchantList(){
-    return this.http.get(this.baseUrl + "/");
+  addMerchantPosBank(reqBody) {
+    return this.http.post(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/', reqBody);
+  }
+
+  editMerchantPosBank(reqBody) {
+    return this.http.put(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/' + reqBody.id, reqBody);
+  }
+
+  deleteMerchantPosBank(installmentId) {
+    return this.http.delete(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/' +installmentId);
+  }
+
+  getMerchantList() {
+    return this.http.get(this.baseUrl + '/');
   }
 
   // json to querystring
