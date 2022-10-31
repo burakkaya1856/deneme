@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class MerchantService {
   private baseUrl = 'api/admin/v1/panel/merchant';
+  private baseMerchantPosBankUrl = 'api/admin/v1/setting';
+
   constructor(private http: HttpClient) {}
 
   getAllMerchants(merchantParams) {
@@ -71,6 +73,30 @@ export class MerchantService {
 
   getMerchantTransactionTypes() {
     return this.http.get(this.baseUrl + '/transaction-types');
+  }
+
+  getMerchantPosBankInstalments(merchantPosBankParams) {
+    return this.http.get(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/?' + this.serialize(merchantPosBankParams));
+  }
+
+  getMerchantPosBankInstalmentById(installmentId) {
+    return this.http.get(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/' + installmentId);
+  }
+
+  addMerchantPosBank(reqBody) {
+    return this.http.post(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/', reqBody);
+  }
+
+  editMerchantPosBank(reqBody) {
+    return this.http.put(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/' + reqBody.id, reqBody);
+  }
+
+  deleteMerchantPosBank(installmentId) {
+    return this.http.delete(this.baseMerchantPosBankUrl + '/merchant-pos-bank-installment/' +installmentId);
+  }
+
+  getMerchantList() {
+    return this.http.get(this.baseUrl + '/');
   }
 
   // json to querystring

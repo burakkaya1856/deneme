@@ -1,0 +1,64 @@
+<div class="detail-header">
+  <h1 class="modal-title">{{ 'merchants.bank.detail.header' | translate }}</h1>
+  <button aria-label="Close" class="close" type="button" (click)="closeModal()"><span aria-hidden="true">×</span></button>
+</div>
+<div class="detail-body" *ngIf="merchantPosBankInstallment">
+  <div class="row">
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.installmentName' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.installment_name }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.bankName' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.pos_bank_name | translate }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.bankComission' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.bank_commission | translate }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.minLimit' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.normal_min_limit | translate }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.treedMinLimit' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.treed_min_limit | translate }}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <ul>
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.merchantName' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.merchant_trade_name }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.installmentCount' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.merchant_installment_count }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.status' | translate }}</span>
+          <div class="ml-auto">{{ 'merchants.bank.detail.statusses.' + merchantPosBankInstallment.status | translate }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.maxLimit' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.normal_max_limit | translate }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">{{ 'merchants.bank.detail.treedMaxLimit' | translate }}</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.treed_max_limit | translate }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

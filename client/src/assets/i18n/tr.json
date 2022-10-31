@@ -1412,7 +1412,7 @@
         "list": "Bayi Başvuruları",
         "merchantApplications": "Bayi Başvuruları",
         "merchantTransactions": "Bayi İşlemleri",
-        "merchantBank": "Bayi Bank Pos Tanımları"
+        "merchantBank": "Bayi Pos Bank Tanımları"
       }
     },
     "settings": {
@@ -1625,7 +1625,67 @@
         "merchantLabel": "Bayi Seçiniz",
         "merchantRequired": "Lütfen bir bayi seçiniz.",
         "bankLabel": "Banka Seçiniz",
-        "bankRequired": "Lütfen bir banka seçiniz"
+        "bankRequired": "Lütfen bir banka seçiniz",
+        "installmentChoice": "Taksit Sayısı Seçiniz",
+        "bankInstallmentRequired": "Lütfen bir taksit sayısı seçin.",
+        "feeLabel": "Komisyon Oranı",
+        "feePlaceholder": "Ör: 0.12",
+        "feeRequired": "Lütfen komisyon ücretini belirtiniz.",
+        "btnAdd": "Bayi Pos Bank Ekle",
+        "btnEdit": "Bayi Pos Bank Güncelle",
+        "installmentName": "Ödeme Adı",
+        "installmentPlaceholder": "Ör: Avantajlı Ödeme",
+        "normalMinLimit": "Minimum Limit",
+        "normalMinLimitPlaceholder": "Ör: 150",
+        "normalMinLimitRequired": "Lütfen minumum ücreti belirtiniz.",
+        "normalMaxLimit": "Maksimum Limit",
+        "normalMaxLimitPlaceholder": "Ör: 1000",
+        "normalMaxLimitRequired": "Lütfen maksimum ücreti belirtiniz.",
+        "treedMinLimit": "Minimum 3d Ödeme Limiti",
+        "treedMinLimitPlaceholder": "Ör: 150",
+        "treedMinLimitRequired": "Lütfen minumum 3d ödeme ücretini belirtiniz.",
+        "treedMaxLimit": "Maksimum 3d Ödeme Limiti",
+        "treedMaxLimitPlaceholder": "Ör: 1000",
+        "treedMaxLimitRequired": "Lütfen maksimum 3d ödeme ücretini belirtiniz.",
+        "status": "Durum",
+        "statusRequired": "Durum bilgisi girilmeli",
+        "statusses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "edit": {
+        "header": "Bayi Banka Taksit Seçeneği Düzenle"
+      },
+      "detail": {
+        "header": "Bayi Pos Bank Detay",
+        "installmentName": "Ödeme Adı",
+        "bankName": "Banka Adı",
+        "bankComission": "Komisyon Oranı",
+        "minLimit": "Minumum Limit",
+        "maxLimit": "Maksimum Limit",
+        "treedMinLimit": "Minimum 3d Ödeme Limiti",
+        "treedMaxLimit": "Maksimum 3d Ödeme Limiti",
+        "merchantName": "Bayi Adı",
+        "installmentCount": "Taksit Sayısı",
+        "status": "Durum",
+        "statusses": {
+          "active": "Aktif",
+          "passive": "Pasif"
+        }
+      },
+      "list": {
+        "addBtnTitle": "Bayi Pos Bank Ekle",
+        "filterLabel": "Filtre",
+        "filterPlaceholder": "Bir değer girin...",
+        "actionEditTooltip": "Düzenle",
+        "tableHead": {
+          "merchantName": "Bayi Adı",
+          "bankName": "Banka Adı",
+          "installmentCount": "Taksit Sayısı",
+          "installmentFee": "Komisyon Oranı",
+          "actions": "Eylemler"
+        }
       }
     },
     "transactions": {

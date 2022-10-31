@@ -6,9 +6,13 @@ import { MerchantBankListComponent } from './merchant-bank-list/merchant-bank-li
 import { SharedModule } from '@app/shared/shared.module';
 import { MerchantBankAddComponent } from './components/merchant-bank-add/merchant-bank-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MerchantBankDetailComponent } from './components/merchant-bank-detail/merchant-bank-detail.component';
+
+export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
-  declarations: [MerchantBankListComponent, MerchantBankAddComponent],
-  imports: [CommonModule, MerchantBankRoutingModule, SharedModule, ReactiveFormsModule]
+  declarations: [MerchantBankListComponent, MerchantBankAddComponent, MerchantBankDetailComponent],
+  imports: [CommonModule, MerchantBankRoutingModule, SharedModule, ReactiveFormsModule, NgxMaskModule.forRoot()]
 })
 export class MerchantBankModule {}
