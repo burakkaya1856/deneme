@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div class="bg-white table-container mt-3" *ngIf="!emptyMerchantPosBankInstallments">
+<div class="bg-white table-container" *ngIf="!emptyMerchantPosBankInstallments">
   <div class="datatable-scroll">
     <table class="table datatable-data-search-inputs dataTable no-footer table-hover" role="grid">
       <thead>
@@ -47,10 +47,10 @@
         </tr>
 
         <tr role="row">
-          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+          <th tabindex="0" rowspan="1" colspan="1">
             {{ 'merchants.bank.list.tableHead.merchantName' | translate }}
           </th>
-          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+          <th tabindex="0" rowspan="1" colspan="1">
             {{ 'merchants.bank.list.tableHead.bankName' | translate }}
           </th>
           <th class="text-center" tabindex="0" rowspan="1" colspan="1">
@@ -68,8 +68,8 @@
       <tbody>
         <ng-container *ngIf="isLoaded">
           <tr *ngFor="let merchantPosBankInstallment of merchantPosBankInstallmentList">
-            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_trade_name || '-' }}</td>
-            <td class="text-center" colspan="1">{{ merchantPosBankInstallment.pos_bank_name || '-' }}</td>
+            <td colspan="1">{{ merchantPosBankInstallment.merchant_trade_name || '-' }}</td>
+            <td colspan="1">{{ merchantPosBankInstallment.pos_bank_name || '-' }}</td>
             <td class="text-center" colspan="1">{{ merchantPosBankInstallment.merchant_installment_count || '-' }}</td>
             <td class="text-center" colspan="1">{{ merchantPosBankInstallment.bank_commission || '-' }}</td>
             <td class="text-center" colspan="2">
