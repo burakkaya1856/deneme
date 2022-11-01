@@ -39,7 +39,20 @@ export class MerchantBankListComponent implements OnInit {
       size: this.paginationCount
     };
 
-    this.getMerchantPosBankInstallments(requestData);
+    this.merchantService.getMerchantPosBankInstalments(requestData).subscribe((data: any) => {
+      this.merchantPosBankInstallmentList = data.items;
+      this.isLoaded = true;
+      this.pagination.total = data.total;
+      this.pagination.size = data.size;
+      this.pagination.page = data.page;
+
+      this.pageInfo = {
+        total: this.pagination.total,
+        start: this.pagination.size * (this.pagination.page - 1) + 1,
+        end: this.pagination.size * this.pagination.page
+      };
+      this.emptyMerchantPosBankInstallments = !this.merchantPosBankInstallmentList.length ? true : false;
+    });
   }
 
   addMerchantBank() {
@@ -63,7 +76,6 @@ export class MerchantBankListComponent implements OnInit {
         start: this.pagination.size * (this.pagination.page - 1) + 1,
         end: this.pagination.size * this.pagination.page
       };
-      this.emptyMerchantPosBankInstallments = !this.merchantPosBankInstallmentList.length ? true : false;
     });
   }
 
@@ -134,5 +146,17 @@ export class MerchantBankListComponent implements OnInit {
       };
       this.getMerchantPosBankInstallments(requestData);
     });
+  }
+
+  searchMerchantTransactions(event: string): void {
+    this.searchData = event.trim();
+
+    let requestData = {
+      search: this.searchData,
+      page: 1,
+      size: this.paginationCount
+    };
+    this.pagination.page = requestData.page;
+    this.getMerchantPosBankInstallments(requestData);
   }
 }

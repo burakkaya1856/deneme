@@ -105,7 +105,7 @@
         <tr *ngIf="merchantPosBankInstallmentList && merchantPosBankInstallmentList.length == 0 && isLoaded">
           <td colspan="12">
             <h2 class="text-md-center py-5">
-              {{ 'merchants.transactions.list.noData' | translate }}
+              {{ 'merchants.bank.list.noData' | translate }}
             </h2>
           </td>
         </tr>
@@ -145,6 +145,23 @@
         (pageChanged)="pageChanged($event)"
         [(ngModel)]="pagination.page"
       ></pagination>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid my-5 py-5" *ngIf="emptyMerchantPosBankInstallments">
+  <div class="row d-flex justify-content-center">
+    <div class="d-flex flex-column align-items-center">
+      <img src="../../../../../assets/images/icon-no-data.svg" alt="not found image" />
+      <h1 class="text-center font-weight-semibold mt-2">
+        {{ 'merchants.bank.list.notFound.header' | translate }}
+      </h1>
+      <p class="text-center text-muted font-weight-semibold mt-2">
+        {{ 'merchants.bank.list.notFound.info' | translate }}
+      </p>
+      <button routerLink="/" class="btn btn-dark w-100 text-white font-weight-semibold py-2 mt-2">
+        {{ 'merchants.bank.list.notFound.btnText' | translate }}
+      </button>
     </div>
   </div>
 </div>

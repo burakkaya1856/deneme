@@ -1513,7 +1513,7 @@
         "info": "Henüz bir bayi bulunmamaktadır",
         "btnText": "ANASAYFA"
       },
-      "noData": "Aradığınız Kriterlerde Banka Bulunmamaktadır.",
+      "noData": "Aradığınız Kriterlerde Bayi Bulunmamaktadır.",
       "filterLabel": "Filtre",
       "filterPlaceholder": "Bir değer girin...",
       "actionDetailTooltip": "Başvuruyu Görüntüle",
@@ -1679,12 +1679,18 @@
         "filterLabel": "Filtre",
         "filterPlaceholder": "Bir değer girin...",
         "actionEditTooltip": "Düzenle",
+        "noData": "Aradığınız Kriterlerde Bayi Pos Bank Bulunmamaktadır.",
         "tableHead": {
           "merchantName": "Bayi Adı",
           "bankName": "Banka Adı",
           "installmentCount": "Taksit Sayısı",
           "installmentFee": "Komisyon Oranı",
           "actions": "Eylemler"
+        },
+        "notFound": {
+          "header": "Bayi Bulunamadı",
+          "info": "Henüz bir bayi bulunmamaktadır",
+          "btnText": "ANASAYFA"
         }
       }
     },
@@ -1695,7 +1701,7 @@
           "info": "Henüz bir bayi bulunmamaktadır",
           "btnText": "ANASAYFA"
         },
-        "noData": "Aradığınız Kriterlerde Banka Bulunmamaktadır.",
+        "noData": "Aradığınız Kriterlerde İşlem Bulunmamaktadır.",
         "filterLabel": "Filtre",
         "filterPlaceholder": "Bir değer girin...",
         "statusPlaceholder": "Durum Filtre",
