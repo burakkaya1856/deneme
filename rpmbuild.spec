@@ -1,6 +1,6 @@
 name: paypango-admin
 Version: 0.3
-Release: 3.5
+Release: 3.6
 Summary: MONEYTOLIA Admin Page
 
 Group: System
