@@ -236,7 +236,8 @@
                         }}</label>
 
                     <ng-select *ngIf="statusKeys" name="status-{{document.id}}" class="ng-select-table"
-                        [(ngModel)]="document.status" [clearable]="false" [searchable]="false">
+                        [ngModel]="document.status" [clearable]="false" [searchable]="false"
+                        (ngModelChange)="changeDocumentStatus($event,i)">
                         <ng-option *ngFor="let item of statusKeys" [value]="item">{{
                             'merchants.update.modalTabs.thirdTab.statuses.' + item |
                             translate }} </ng-option>
@@ -245,8 +246,9 @@
                 </div>
                 <div class="w-100 mt-4">
                     <label class="d-block">{{ 'merchants.update.modalTabs.thirdTab.note' | translate }}</label>
-                    <textarea type="text" [(ngModel)]="document.value" name="fComment-{{document.id}}"
-                        placeholder="{{ 'merchants.update.modalTabs.thirdTab.notePlaceholder' | translate }}"
+                    <textarea type="text" [disabled]="readOnlyArray[i]" [(ngModel)]="document.value"
+                        name="fComment-{{document.id}}"
+                        placeholder="{{'merchants.update.modalTabs.thirdTab.notePlaceholder' | translate }}"
                         #note="ngModel" autocomplete="off" required></textarea>
                     <p [ngStyle]="{'visibility': thirdform.submitted && note.errors?.required ? 'visible': 'hidden'}"
                         class="validation mb-0">{{'merchants.update.validation' | translate }}</p>

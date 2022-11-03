@@ -22,6 +22,7 @@ export class UpdateMerchantComponent implements OnInit {
   public enumData: any;
   public statusKeys: any;
   public changeNote: string = '';
+  public readOnlyArray = [];
   constructor(
     private bsModalRefPopup: BsModalRef,
     private bsModalRef: BsModalRef,
@@ -41,6 +42,7 @@ export class UpdateMerchantComponent implements OnInit {
 
     this.merchantService.getMerchantDetail(this.id).subscribe(merchant => {
       this.merchantData = merchant;
+
       this.merchantData.documents.forEach(item => {
         if (item.document_type_id == 1) {
           item.document_type_id = this.translateService.instant('merchants.update.modalTabs.thirdTab.documentType1');
@@ -48,6 +50,7 @@ export class UpdateMerchantComponent implements OnInit {
         if (item.document_type_id == 2) {
           item.document_type_id = this.translateService.instant('merchants.update.modalTabs.thirdTab.documentType2');
         }
+        this.readOnlyArray.push(true);
       });
     });
   }
@@ -132,5 +135,12 @@ export class UpdateMerchantComponent implements OnInit {
       // @ts-ignore
       window.open(res.url, '_blank').focus();
     });
+  }
+
+  changeDocumentStatus($event, i: number) {
+    if (this.merchantData.documents[i].status != $event) {
+      this.merchantData.documents[i].status = $event;
+      this.readOnlyArray[i] = false;
+    }
   }
 }
