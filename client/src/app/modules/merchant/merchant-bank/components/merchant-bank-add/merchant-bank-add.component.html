@@ -1,15 +1,25 @@
 <div class="add-header">
-  <h1 class="modal-title">{{ 'merchants.bank.add.header' | translate }}</h1>
+  <h1 class="modal-title">{{ f.id ? ('merchants.bank.edit.header' | translate) : ('merchants.bank.add.header' | translate) }}</h1>
   <button type="button" class="close" (click)="closeModal()">×</button>
 </div>
 
-<form [formGroup]="merchantBankForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="merchantBankForm">
   <div class="add-body">
     <div class="row mb-3">
-      <div class="col-12">
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.installmentName' | translate }}</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="installment_name"
+          placeholder="{{ 'merchants.bank.add.installmentPlaceholder' | translate }}"
+          autocomplete="off"
+        />
+      </div>
+      <div class="col-sm-6">
         <label>{{ 'merchants.bank.add.merchantLabel' | translate }}</label>
         <ng-select *ngIf="merchantList" class="ng-select-table" formControlName="merchant_id" [clearable]="false" [searchable]="false">
-          <ng-option *ngFor="let item of merchantList" [value]="item.id">{{ item.value }}</ng-option>
+          <ng-option *ngFor="let item of merchantList" [value]="item.id">{{ item.trade_name }}</ng-option>
         </ng-select>
         <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
           {{ 'merchants.bank.add.merchantRequired' | translate }}
@@ -28,10 +38,104 @@
           [searchable]="false"
           (change)="selectBank($event)"
         >
-          <ng-option *ngFor="let item of bankList" [value]="item.id">{{ item.value }}</ng-option>
+          <ng-option *ngFor="let item of bankList" [value]="item.id">{{ item.name }}</ng-option>
         </ng-select>
-        <p [ngStyle]="{ visibility: submitted && f.merchant_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+        <p [ngStyle]="{ visibility: submitted && f.bank_id.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
           {{ 'merchants.bank.add.bankRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.installmentChoice' | translate }}</label>
+        <ng-select class="ng-select-table" formControlName="merchant_installment_count" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let item of installmentList" [value]="item.bank_installment_count">{{ item.bank_installment_count }}</ng-option>
+        </ng-select>
+        <p [ngStyle]="{ visibility: submitted && f.merchant_installment_count.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.bankInstallmentRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.normalMinLimit' | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="normal_min_limit"
+          placeholder="{{ 'merchants.bank.add.normalMinLimitPlaceholder' | translate }}"
+          autocomplete="off"
+          mask="000000000"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.normal_min_limit.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.normalMinLimitRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.normalMaxLimit' | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="normal_max_limit"
+          placeholder="{{ 'merchants.bank.add.normalMaxLimitPlaceholder' | translate }}"
+          autocomplete="off"
+          mask="000000000"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.normal_max_limit.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.normalMaxLimitRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.treedMinLimit' | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="treed_min_limit"
+          placeholder="{{ 'merchants.bank.add.treedMinLimitPlaceholder' | translate }}"
+          autocomplete="off"
+          mask="000000000"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.treed_min_limit.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.treedMinLimitRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.treedMaxLimit' | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="treed_max_limit"
+          placeholder="{{ 'merchants.bank.add.treedMaxLimitPlaceholder' | translate }}"
+          autocomplete="off"
+          mask="000000000"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.treed_max_limit.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.treedMaxLimitRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.feeLabel' | translate }}</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="bank_commission"
+          placeholder="{{ 'merchants.bank.add.feePlaceholder' | translate }}"
+          autocomplete="off"
+          mask="0.000"
+          [dropSpecialCharacters]="false"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.bank_commission.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.feeRequired' | translate }}
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>{{ 'merchants.bank.add.status' | translate }}</label>
+        <ng-select class="ng-select-table" formControlName="status" [clearable]="false" [searchable]="false">
+          <ng-option *ngFor="let item of statusKeys" [value]="item">{{ 'merchants.bank.add.statusses.' + item | translate }}</ng-option>
+        </ng-select>
+        <p [ngStyle]="{ visibility: submitted && f.status.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          {{ 'merchants.bank.add.statusRequired' | translate }}
         </p>
       </div>
     </div>
@@ -43,7 +147,9 @@
         <button type="button" class="btn btn-cancel" (click)="closeModal()">{{ 'settings.bank.add.btnCancel' | translate }}</button>
       </div>
       <div class="col-6">
-        <button type="submit" class="btn btn-save">{{ 'settings.bank.add.btnSubmit' | translate }}</button>
+        <button type="button" class="btn btn-save" (click)="onSubmit()">
+          {{ f.id ? ('merchants.bank.add.btnEdit' | translate) : ('merchants.bank.add.btnAdd' | translate) }}
+        </button>
       </div>
     </div>
   </div>

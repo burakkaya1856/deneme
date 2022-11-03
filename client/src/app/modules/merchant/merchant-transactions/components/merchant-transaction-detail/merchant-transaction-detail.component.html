@@ -1,4 +1,4 @@
-<ng-container *ngIf="transaction && transaction.transaction_type.includes('wallet')">
+<ng-container *ngIf="transaction && (transaction.transaction_type == 'wallet_deposit' || transaction.transaction_type == 'wallet_deposit_refund')">
   <div class="add-header">
     <h1 class="modal-title">{{ transaction.transaction_id }} - {{ 'merchants.transactions.detail.header' | translate }}</h1>
     <button type="button" class="close" (click)="closeModal()">×</button>
@@ -126,7 +126,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="transaction && transaction.transaction_type.includes('pos')">
+<ng-container *ngIf="transaction && (transaction.transaction_type == 'pos_deposit' || transaction.transaction_type == 'pos_deposit_refund')">
   <div class="add-header">
     <h1 class="modal-title">{{ transaction.transaction_id }} - {{ 'merchants.transactions.detail.header' | translate }}</h1>
     <button type="button" class="close" (click)="closeModal()">×</button>

@@ -34,7 +34,7 @@ app.use(bodyParser.json({ type: "application/json", limit: "15mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "15mb" }));
 
 
-app.all("/panel/*", require("./routes/api"));
+app.all("/api/*", require("./routes/api"));
 // Health Check Endpoint
 router.get('/', (req, res) => {
   const data = {
