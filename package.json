@@ -27,5 +27,9 @@
     "hooks": {
       "pre-commit": "npx validate-branch-name"
     }
+  },
+  "validate-branch-name": {
+    "pattern": "(SPT-\\d)",
+    "errorMsg": "please change your branch-name, example SPT-100"
   }
 }
