@@ -13,7 +13,7 @@ require('dotenv').config();
 const app = express();
 const router = express.Router();
 
-console.log(`Paypango Customer server http://localhost:${process.env.PORT} listening`);
+console.log(`Paypango Admin server http://localhost:${process.env.PORT} listening`);
 
 app.set("Config", process.env);
 
@@ -42,7 +42,8 @@ router.get('/', (req, res) => {
     message: 'Ok',
     date: new Date()
   }
-
+  console.log(data)
+  
   res.status(200).send(data);
 });
 app.use("/healthcheck", router)
