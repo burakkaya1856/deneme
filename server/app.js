@@ -8,7 +8,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require('express-fileupload');
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 const router = express.Router();
@@ -33,6 +33,7 @@ app.use(fileUpload({
 app.use(bodyParser.json({ type: "application/json", limit: "15mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "15mb" }));
 
+
 app.all("/api/*", require("./routes/api"));
 // Health Check Endpoint
 router.get('/', (req, res) => {
@@ -41,9 +42,8 @@ router.get('/', (req, res) => {
     message: 'Ok',
     date: new Date()
   }
-
   console.log(data)
-
+  
   res.status(200).send(data);
 });
 app.use("/healthcheck", router)
