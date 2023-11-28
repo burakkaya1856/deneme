@@ -1,0 +1,139 @@
+@import '../../../../../assets/styles/helpers/mixins';
+
+.download-btn {
+  button {
+    font-size: 15px;
+
+    @include screen-size('md') {
+      width: 100%;
+      font-size: 13px;
+    }
+  }
+  .dropdown-menu {
+    z-index: 100000;
+
+    @include screen-size('md') {
+      inset: 100% -100px auto auto !important;
+    }
+  }
+}
+
+.total-balance {
+  background-color: #ffffff;
+  display: flex;
+  padding: 0 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+
+  @include screen-size('md') {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 4px 10px;
+  }
+
+  span {
+    display: inline-block;
+
+    &:first-child {
+      font-size: 15px;
+      margin-right: 12px;
+
+      @include screen-size('md') {
+        font-size: 14px;
+        margin-right: auto;
+      }
+    }
+
+    &:nth-child(2) {
+      font-size: 24px;
+      font-weight: 700;
+      color: #000000;
+
+      @include screen-size('md') {
+        font-size: 18px;
+      }
+    }
+
+    &:last-child {
+      font-size: 15px;
+      margin-top: 6px;
+      margin-left: 6px;
+      color: #ff4308;
+
+      @include screen-size('md') {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.table-container {
+  position: relative;
+
+  @include screen-size('xxl') {
+    width: 100% !important;
+    overflow-x: scroll !important;
+    min-height: 0.01% !important;
+  }
+
+  .table-top {
+    td {
+      height: 77px;
+
+      &:nth-child(2) {
+        padding: 0 80px;
+      }
+
+      &:last-child {
+        min-width: 177px;
+      }
+    }
+
+    .date-container {
+      max-width: 253px;
+      min-width: 181px;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      input {
+        background-color: #ffffff;
+        width: 100%;
+      }
+
+      span {
+        cursor: pointer;
+        opacity: 0.5;
+        font-size: 14px;
+        position: absolute;
+        top: 6px;
+        right: 11px;
+        z-index: 1004;
+
+        @include screen-size('xl') {
+          right: 8px;
+        }
+      }
+    }
+
+    .dataTables_filter {
+      margin: 0 !important;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      min-width: 241px;
+      z-index: 1000;
+    }
+
+    .dataTables_length {
+      margin: 0 !important;
+    }
+  }
+
+  td {
+    a {
+      color: rgb(51, 51, 51);
+    }
+  }
+}

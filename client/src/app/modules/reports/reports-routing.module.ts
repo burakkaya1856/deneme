@@ -29,6 +29,18 @@ const routes: Routes = [
         }
       },
       {
+        path: 'merchant-accounting',
+        loadChildren: () =>
+          import('./merchant-accounting/merchant-accounting.module').then(
+            m => m.MerchantAccountingModule
+          ),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'merchantAccounting',
+          permissions: routeConfig['merchantAccounting'].permissions
+        }
+      },
+      {
         path: 'fraud',
         loadChildren: () =>
           import('./fraud/fraud.module').then(

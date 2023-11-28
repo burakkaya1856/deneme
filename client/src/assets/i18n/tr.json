@@ -1352,8 +1352,10 @@
     "reports": {
       "title": "Raporlar",
       "children": {
+        "merchantAccounting": "Merchant Koruma Hesabı",
         "accounting": "Koruma Hesabı",
-        "fraud": "Fraud Hesaplar"
+        "fraud": "Fraud Wallet",
+        "merchantFraud": "Fraud Merchant"
       },
       "accounting": {
         "list": {
@@ -1428,6 +1430,7 @@
         "limit": "Limit",
         "level": "Seviye",
         "fees": "Komisyon",
+        "mcc": "Mcc",
         "commission": "Komisyon",
         "faq": "Sık Sorulan Sorular",
         "approvalTransactions": "Onay İşlemleri",

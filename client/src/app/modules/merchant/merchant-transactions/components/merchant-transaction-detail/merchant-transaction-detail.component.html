@@ -40,6 +40,10 @@
           <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelIP' | translate }}</span>
           <div class="ml-auto">{{ transaction.ip_address || '-' }}</div>
         </li>
+        <li>
+          <span class="font-weight-semibold">Fraud Not</span>
+          <div class="ml-auto">{{ transaction.is_fraud  }}</div>
+        </li>
       </ul>
     </div>
 
@@ -159,8 +163,13 @@
         </li>
         <li>
           <span class="font-weight-semibold">{{ 'merchants.transactions.detail.labelIP' | translate }}</span>
-          <div class="ml-auto">{{ transaction.ip_address }} TRY</div>
+          <div class="ml-auto">{{ transaction.ip_address }}</div>
         </li>
+        <li>
+          <span class="font-weight-semibold">Fraud Not</span>
+          <div class="ml-auto">{{ transaction.fraud_note }}</div>
+        </li>
+
       </ul>
     </div>
     <div class="col-sm-6">

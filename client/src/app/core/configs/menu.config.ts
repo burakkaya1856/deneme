@@ -90,6 +90,10 @@ export const menuConfig = [
         routeConfig: 'accounting'
       },
       {
+        fullPath: '/reports/merchant-accounting',
+        routeConfig: 'merchantAccounting'
+      },
+      {
         fullPath: '/reports/fraud',
         routeConfig: 'fraud'
       }
@@ -152,6 +156,10 @@ export const menuConfig = [
       {
         fullPath: '/settings/pos-bank',
         routeConfig: 'posBank'
+      },
+      {
+        fullPath: '/settings/mcc',
+        routeConfig: 'mcc'
       },
       {
         fullPath: '/settings/bank-installment',

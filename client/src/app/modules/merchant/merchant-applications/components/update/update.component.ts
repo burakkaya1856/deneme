@@ -72,6 +72,7 @@ export class UpdateMerchantComponent implements OnInit {
         company_phone_number: this.merchantData.company_phone_number,
         company_field: this.merchantData.company_field,
         reference_company: this.merchantData.reference_company,
+        mcc: this.merchantData.mcc,
         company_has_25_percent_share_holder: true,
         correctness_agreement: true,
         kvkk_agreement: true,

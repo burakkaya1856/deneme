@@ -17,8 +17,13 @@
         </li>
 
         <li>
+          <span class="font-weight-semibold">Prepaid Komisyon</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.prepaid_commission  }}</div>
+        </li>
+
+        <li>
           <span class="font-weight-semibold">{{ 'merchants.bank.detail.bankComission' | translate }}</span>
-          <div class="ml-auto">{{ merchantPosBankInstallment.bank_commission | translate }}</div>
+          <div class="ml-auto">{{ merchantPosBankInstallment.bank_commission }}</div>
         </li>
 
         <li>
@@ -47,6 +52,17 @@
         <li>
           <span class="font-weight-semibold">{{ 'merchants.bank.detail.status' | translate }}</span>
           <div class="ml-auto">{{ 'merchants.bank.detail.statusses.' + merchantPosBankInstallment.status | translate }}</div>
+        </li>
+
+
+        <li>
+          <span class="font-weight-semibold">Debit Komisyon</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.debit_commission }}</div>
+        </li>
+
+        <li>
+          <span class="font-weight-semibold">Kredi Komisyon</span>
+          <div class="ml-auto">{{ merchantPosBankInstallment.credit_commission }}</div>
         </li>
 
         <li>

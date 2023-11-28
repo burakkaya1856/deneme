@@ -45,6 +45,9 @@ import {
   LimitIn,
   LimitOut,
   LimitParam,
+  MccParams,
+  MccIn,
+  MccOut,
   WalletBankAccountIn,
   WalletBankAccountOut
 } from './settings.interface';
@@ -164,6 +167,7 @@ export class SettingsService {
     return this.http.get<BlacklistOut>(this.baseUrl + '/blacklist/', options);
   }
 
+  
   getBlacklistDetails(blacklistID: string): Observable<Blacklist> {
     return this.http.get<Blacklist>(this.baseUrl + '/blacklist/' + blacklistID);
   }
@@ -284,6 +288,37 @@ export class SettingsService {
       return this.http.get<LevelOut>(this.baseUrl + '/level/', options);
     }
     return this.http.get<LevelOut>(this.baseUrl + '/level/');
+  }
+
+  getMccList(mccParams?: MccParams): Observable<MccOut> {
+    if (mccParams) {
+      let options = {
+        params: new HttpParams()
+          .set('search', mccParams.search)
+          .set('status', mccParams.status)
+          .set('page', mccParams.page.toString())
+          .set('size', mccParams.size.toString())
+      };
+      return this.http.get<MccOut>(this.baseUrl + '/mcc/', options);
+    }
+    return this.http.get<MccOut>(this.baseUrl + '/mcc/');
+  }
+
+
+  getMcckDetails(mccID: string): Observable<MccOut> {
+    return this.http.get<MccOut>(this.baseUrl + '/mcc/' + mccID);
+  }
+
+  deleteMcc(mccID: string): Observable<MessageOut> {
+    return this.http.delete<MessageOut>(this.baseUrl + '/mcc/' + mccID);
+  }
+
+  addMcc(mccParams: MccIn): Observable<MessageOut> {
+    return this.http.post<MessageOut>(this.baseUrl + '/mcc/', mccParams);
+  }
+
+  updateMcc(mccID: string, mccParams: MccIn): Observable<MessageOut> {
+    return this.http.put<MessageOut>(this.baseUrl + '/bamccnk/' + mccID, mccParams);
   }
 
   getLevel(levelID: string): Observable<Level> {

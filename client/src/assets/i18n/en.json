@@ -1352,8 +1352,10 @@
     "reports": {
       "title": "Raporlar",
       "children": {
+        "merchantAccounting": "Merchant Koruma Hesabı",
         "accounting": "Koruma Hesabı",
-        "fraud": "Fraud Hesaplar"
+        "fraud": "Fraud Wallet",
+        "merchantFraud": "Fraud Merchant"
       },
       "accounting": {
         "list": {
@@ -1426,6 +1428,7 @@
         "campaign": "Kampanya",
         "document": "Döküman",
         "limit": "Limit",
+        "mcc": "Mcc",
         "level": "Seviye",
         "fees": "Komisyon",
         "commission": "Komisyon",

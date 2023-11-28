@@ -217,6 +217,13 @@ export interface Level {
   wd_to_other: boolean;
 }
 
+export interface Mcc {
+  id: 0;
+  code: string;
+  name: string;
+  status: string;
+}
+
 export interface LevelOut {
   items: Level[];
   total: number;
@@ -224,7 +231,23 @@ export interface LevelOut {
   page: number;
 }
 
+export interface MccOut {
+  items: Mcc[];
+  total: number;
+  size: number;
+  page: number;
+}
+
+
 export interface LevelParams {
+  search: string;
+  status: string;
+  page: number;
+  size: number;
+}
+
+
+export interface MccParams {
   search: string;
   status: string;
   page: number;
@@ -236,6 +259,11 @@ export interface LevelIn {
   type: string;
   level_status: string;
   wd_to_other: boolean;
+}
+
+export interface MccIn {
+  name: string;
+  code: string;
 }
 
 // Fees

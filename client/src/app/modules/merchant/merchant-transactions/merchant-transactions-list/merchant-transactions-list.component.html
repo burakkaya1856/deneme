@@ -97,8 +97,12 @@
             {{ 'merchants.transactions.list.tableHead.status' | translate }}
           </th>
           <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+            Fraud
+          </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
             {{ 'merchants.transactions.list.tableHead.totalAmount' | translate }}
           </th>
+
           <th class="text-center sorting-disabled text-right" tabindex="0" rowspan="1" colspan="2">
             {{ 'merchants.list.tableHead.actions' | translate }}
           </th>
@@ -138,6 +142,7 @@
                 >{{ merchantTransaction.status }}</span
               >
             </td>
+            <td class="text-center" colspan="1"><span class="badge badge-danger" *ngIf="merchantTransaction.is_fraud">Fraud</span></td>
             <td class="text-center" colspan="1">{{ merchantTransaction.total_amount | currency: 'TRY':'':'1.2-3' }} TRY</td>
             <td class="text-center" colspan="2">
               <button

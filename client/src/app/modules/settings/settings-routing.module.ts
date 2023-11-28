@@ -100,6 +100,15 @@ const routes: Routes = [
         }
       },
       {
+        path: 'mcc',
+        loadChildren: () => import('./mcc/mcc.module').then(m => m.MccModule),
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          routeConfig: 'mcc',
+          permissions: routeConfig['mcc'].permissions
+        }
+      },
+      {
         path: 'bank-installment',
         loadChildren: () => import('./bank-installment/bank-installment.module').then(m => m.BankInstallmentModule),
         canActivate: [NgxPermissionsGuard],

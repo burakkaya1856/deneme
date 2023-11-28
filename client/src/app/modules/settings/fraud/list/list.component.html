@@ -88,6 +88,9 @@
           <th class="text-center" tabindex="0" rowspan="1" colspan="1">
             {{ 'settings.fraud.list.tableHead.status' | translate }}
           </th>
+          <th class="text-center" tabindex="0" rowspan="1" colspan="1">
+           Fraud Type
+          </th>
           <th
             class="text-center sorting-disabled text-right"
             tabindex="0"
@@ -109,6 +112,7 @@
             <td class="text-center" colspan="1">
               <status [status]="fraud.status"></status>
             </td>
+            <td class="text-center" colspan="1">{{ fraud.fraud_base_type }}</td>
             <td class="text-center" colspan="2">
               <button
                 class="btn btn-sm alpha-slate text-slate-800 btn-icon rounded-round ml-2"

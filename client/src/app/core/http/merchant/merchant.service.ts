@@ -33,6 +33,9 @@ export class MerchantService {
   getMerchantDetail(merchant_id) {
     return this.http.get(this.baseUrl + '/application/' + merchant_id);
   }
+  getMcc() {
+    return this.http.get(this.baseUrl + '/application/mcc');
+  }
 
   getFileDownload(document_token) {
     return this.http.get(this.baseUrl + '/application-document/' + document_token);

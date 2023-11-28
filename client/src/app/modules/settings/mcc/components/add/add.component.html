@@ -1,0 +1,61 @@
+<div class="add-header">
+    <h1 class="modal-title">{{'settings.level.add.header' | translate }}</h1>
+    <button type="button" class="close" (click)="closeModal()">×</button>
+</div>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="add-body">
+
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <label>{{'settings.level.add.levelName' | translate}}</label>
+                <input type="text" [(ngModel)]="level.name" class="form-control" placeholder="{{'settings.level.add.levelNamePlaceholder' | translate }}" name="level-name" #flevelName="ngModel" required autocomplete="off">
+                <p [ngStyle]="{'visibility': f.submitted && flevelName.errors?.required ? 'visible' : 'hidden'}" class="validation mb-0">{{'settings.level.add.levelNameRequired' | translate }}</p>
+            </div>
+        </div>
+
+        <div class="row mb-4 pt-1">
+            <div class="col-sm-12">
+                <label>{{'settings.level.add.levelType' | translate}}</label>
+                <ng-select *ngIf="levelKeys" [ngModel]="level.type | titlecase" name="level-type" (ngModelChange)="changeLevelType($event)" [clearable]="false" [searchable]="false" class="ng-select-table">
+                    <ng-option [value]="levelKeys[0]">{{levelKeys[0] | titlecase}}</ng-option>
+                    <ng-option [value]="levelKeys[1]">{{levelKeys[1] | titlecase}}</ng-option>
+                </ng-select>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-6">
+                <label>{{'settings.level.add.statusLabel' | translate}}</label>
+                <ng-select *ngIf="statusKeys" [(ngModel)]="level.level_status" name="level-status" [clearable]="false" [searchable]="false" class="ng-select-table">
+                    <ng-option *ngFor="let item of statusKeys" [value]="item">{{'settings.level.add.status.' + item | translate }} </ng-option>
+                </ng-select>
+            </div>
+
+            <div class="col-sm-6">
+                <label>{{'settings.level.add.withDrawAllow' | translate}}</label>
+                <ng-select [(ngModel)]="level.wd_to_other" name="level-withdraw" [clearable]="false" [searchable]="false" class="ng-select-table">
+                    <ng-option [value]="true">{{'settings.level.add.withDrawActive' | translate}}</ng-option>
+                    <ng-option [value]="false">{{'settings.level.add.withDrawPassive' | translate}}</ng-option>
+                </ng-select>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="add-footer">
+        <div class="row">
+
+            <div class="col-6">
+                <button type="button" class="btn btn-cancel" (click)="closeModal()">{{'settings.level.add.btnCancel' | translate}}</button>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" class="btn btn-save">{{'settings.level.add.btnSubmit' | translate}}</button>
+            </div>
+
+        </div>
+    </div>
+</form>

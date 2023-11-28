@@ -245,8 +245,19 @@ export const routeConfig = {
       redirectTo: systemConfig.unauthorizedRedirectTo
     }
   },
+
   accounting: {
-    title: 'Kullanıcılar',
+    title: 'Reserve Hesap',
+    desc: 'You can select a service here',
+    icon: 'icon-users',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
+  },
+
+  merchantAccounting: {
+    title: 'Reserve Merchant Hesap',
     desc: 'You can select a service here',
     icon: 'icon-users',
     permissions: {
@@ -412,6 +423,14 @@ export const routeConfig = {
       only: ['AUTHORIZED'],
       redirectTo: systemConfig.unauthorizedRedirectTo
     }
+  },
+  mcc: {
+    title: 'Mcc Kodları',
+    desc: 'You can select a service here',
+    icon: 'icon-pencil3',
+    permissions: {
+      only: ['AUTHORIZED'],
+      redirectTo: systemConfig.unauthorizedRedirectTo
+    }
   }
-  // /settings module
 };

@@ -114,6 +114,54 @@
         </p>
       </div>
       <div class="col-sm-6">
+        <label>Debit Komisyon</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="debit_commission"
+          placeholder="Debit Komisyon"
+          autocomplete="off"
+          mask="0.000"
+          [dropSpecialCharacters]="false"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.debit_commission.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          Debit Komisyon
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>Kredi Komisyon</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="credit_commission"
+          placeholder="Kredi Komisyon"
+          autocomplete="off"
+          mask="0.000"
+          [dropSpecialCharacters]="false"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.credit_commission.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          Kredi Komisyon
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>Prepaid Komisyon</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="prepaid_commission"
+          placeholder="Prepaid Komisyon"
+          autocomplete="off"
+          mask="0.000"
+          [dropSpecialCharacters]="false"
+          [validation]="false"
+        />
+        <p [ngStyle]="{ visibility: submitted && f.prepaid_commission.errors?.required ? 'visible' : 'hidden' }" class="validation mb-0">
+          Prepaid Komisyon
+        </p>
+      </div>
+      <div class="col-sm-6">
         <label>{{ 'merchants.bank.add.feeLabel' | translate }}</label>
         <input
           type="number"
